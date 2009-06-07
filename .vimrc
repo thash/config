@@ -1,23 +1,36 @@
-" set my options {{{1
-set dictionary=$VIM/dict/java14.dict
-set cursorline
 set tabstop=4
 set shiftwidth=4
 set autoindent
-"set backupdir=$VIM/tmp
 set noswapfile
 set incsearch
 set nowrapscan
 set number
+set cursorline
 set foldmethod=marker
 set novisualbell
+set laststatus=2
+set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+"set backupdir=$VIM/tmp
+"set dictionary=$VIM/dict/java14.dict
 
 filetype indent on 
 syntax on
-colorscheme murphy
 
-" }}}1
-" aaa
+" Color Settings
+" execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
+colorscheme desert
+highlight Visual ctermfg=darkblue
+highlight Visual ctermbg=grey
+highlight VisualNOS ctermfg=darkblue
+highlight VisualNOS ctermbg=grey
+highlight StatusLine cterm=reverse,bold
+highlight StatusLine ctermfg=green
+highlight StatusLine ctermbg=white
+highlight StatusLineNC cterm=reverse
+" change statusline color in insert mode
+autocmd InsertEnter * highlight StatusLine ctermfg=red
+autocmd InsertLeave * highlight StatusLine ctermfg=green
+
 
 " 文字コードの自動認識 {{{1
 if &encoding !=# 'utf-8'
@@ -155,16 +168,17 @@ nnoremap <C-[> <C-t>
 nnoremap <space>w :<C-u>write<CR>
 nnoremap <space>q :<C-u>quit<CR>
 
-" 検索ハイライトを消す
-nnoremap <ESC><ESC> :^Unohlsearch<CR>
 " 空白行を追加する操作を１ストロークでやりたい
 nnoremap <C-o> o<ESC>k
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
+" 以前開いていたときのカーソル位置を復元する
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Map Leader (,) settings  {{{2
 let mapleader=','
-" insert date, time
+" insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
 inoremap <Leader>dd <C-R>=strftime('%Y-%m-%d')<CR>
 inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
@@ -176,8 +190,7 @@ nnoremap <Leader>cp "+p
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
 "}}}2
 
-
-" 自動補完 from id:Ubuntuさん {{{1
+" autoconplete+ from id:Ubuntuさん {{{1
 " Vimの自動補完を大文字と数字にも対応させる - Hatena::Diary::Ubuntu 
 " <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
 set completeopt=menuone,preview
@@ -203,6 +216,41 @@ endwhile
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
 set lazyredraw
 " }}}1
+
+" ------------------------- functions ------------------------- 
+function! GetEFstatus() " {{{2
+" GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
+" modified...original-> http://memo.officebrook.net/20050512.html 
+	let str = ''
+	let fenc = ''
+	if &fileformat == 'unix'
+		"let str = '[U]'
+		let str = 'unix'
+	else
+		"let str = '[' . &fileformat . ']'
+		let str = &fileformat
+	endif
+	if &fileencoding != ''
+		if &fileencoding =~# 'iso-2022-jp'
+			let fenc = 'iso'
+		elseif &fileencoding == 'utf-8'
+			let fenc = 'utf'
+		elseif &fileencoding == 'cp932'
+			let fenc = 'S'
+		elseif &fileencoding =~# 'euc-jp'
+			let fenc = 'euc'
+		else
+			let fenc = &fileencoding
+		endif
+		"let str = str . '[' . fenc . ']'
+		let str = str . '-' . fenc
+	else
+		let str = str . '[-]'
+	endif
+	unlet fenc
+	return str
+endfunction
+"}}}2
 
 " ------------------------- disabled ------------------------- 
 "disabled {{{1
