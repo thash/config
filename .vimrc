@@ -1,5 +1,8 @@
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set nocompatible
+set ignorecase
 set autoindent
 set noswapfile
 set incsearch
@@ -7,25 +10,25 @@ set nowrapscan
 set number
 set cursorline
 set foldmethod=marker
-set novisualbell
+set visualbell
 set laststatus=2
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
 
-filetype indent on 
 syntax on
+filetype on
+filetype indent on 
+filetype plugin on
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 colorscheme desert
-highlight Visual ctermfg=darkblue
-highlight Visual ctermbg=grey
-highlight VisualNOS ctermfg=darkblue
-highlight VisualNOS ctermbg=grey
+highlight LineNr ctermfg=darkgray
+highlight Visual ctermfg=darkblue ctermbg=grey
+highlight VisualNOS ctermfg=darkblue ctermbg=grey
 highlight StatusLine cterm=reverse,bold
-highlight StatusLine ctermfg=green
-highlight StatusLine ctermbg=white
+highlight StatusLine ctermfg=green ctermbg=white
 highlight StatusLineNC cterm=reverse
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
@@ -108,6 +111,10 @@ noremap j gj
 noremap k gk
 noremap 0 g0
 noremap $ g$
+noremap gj j
+noremap gk k
+noremap g0 0
+noremap g$ $
 " hjkl move in insert mode
 inoremap <C-j> <DOWN>
 inoremap <C-k> <UP>
@@ -130,15 +137,6 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
-" <Esc>
-inoremap <C-@> <Esc>
-vnoremap <C-@> <Esc>
-cnoremap <C-@> <Esc>
-nnoremap <C-Space> <Esc>
-inoremap <C-Space> <Esc>
-vnoremap <C-Space> <Esc>
-cnoremap <C-Space> <Esc>
-
 
 " window間の移動、拡大縮小
 nnoremap <space>j <C-W>j
@@ -147,8 +145,8 @@ nnoremap <space>h <C-W>h
 nnoremap <space>l <C-W>l
 nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
-nnoremap <space>> <C-W>3>
-nnoremap <space>< <C-W>3<
+nnoremap <space>> <C-W>10>
+nnoremap <space>< <C-W>10<
 "Ruby
 nnoremap <space>r :<C-u>!ruby %<CR>
 
@@ -157,12 +155,6 @@ nnoremap <space>r :<C-u>!ruby %<CR>
 nnoremap <UP>    :<C-u>ls<CR>
 nnoremap <RIGHT> :<C-u>bnext<CR>
 nnoremap <LEFT>  :<C-u>bprevious<CR>
-
-" Tab。C-tの避難:戻る挙動はC-[に割り当てる(↑)
-nnoremap <C-t> :tabedit
-nnoremap <C-Tab> :tabNext<CR>
-nnoremap <C-S-Tab> :tabPrevious<CR>
-nnoremap <C-[> <C-t>
 
 " ujihisa流、保存と終了
 nnoremap <space>w :<C-u>write<CR>
@@ -174,13 +166,15 @@ nnoremap <C-o> o<ESC>k
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
 " 以前開いていたときのカーソル位置を復元する
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+" autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
+"normal! g`\"" | endif
 
-" Map Leader (,) settings  {{{2
+" Map Leader (,) settings  {{{1
 let mapleader=','
 " insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
-inoremap <Leader>dd <C-R>=strftime('%Y-%m-%d')<CR>
+inoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
+cnoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
 inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 " Copy/Paste via clipboard
 vnoremap <Leader>cc "+y
@@ -188,37 +182,15 @@ vnoremap <Leader>cx "+y<Esc>gvd
 nnoremap <Leader>cp "+p
 " 1.2.3.4.5.を箇条書き
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
-"}}}2
+"}}}1
 
-" autoconplete+ from id:Ubuntuさん {{{1
-" Vimの自動補完を大文字と数字にも対応させる - Hatena::Diary::Ubuntu 
-" <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
-set completeopt=menuone,preview
-function! CompleteWithoutInsert()
-	return "\<C-n>\<C-r>=pumvisible() ? \"\\<C-P>\\<C-N>\\<C-P>\": \"\"\<CR>"
-endfunction
-inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : CompleteWithoutInsert()
-let letter = "a"
-while letter <=# "z"
-	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-	let letter = nr2char(char2nr(letter) + 1)
-endwhile
-let letter = "A"
-while letter <=# "Z"
-	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-	let letter = nr2char(char2nr(letter) + 1)
-endwhile
-let letter = "0"
-while letter <=# "9"
-	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-	let letter = nr2char(char2nr(letter) + 1)
-endwhile
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
-set lazyredraw
-" }}}1
+nnoremap <Leader>vl :source $MYVIMRC<CR>
+nnoremap <Leader>vs :vs $MYVIMRC<CR>
+
+
 
 " ------------------------- functions ------------------------- 
-function! GetEFstatus() " {{{2
+function! GetEFstatus() " {{{1
 " GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
 " modified...original-> http://memo.officebrook.net/20050512.html 
 	let str = ''
@@ -250,7 +222,7 @@ function! GetEFstatus() " {{{2
 	unlet fenc
 	return str
 endfunction
-"}}}2
+"}}}1
 
 " ------------------------- disabled ------------------------- 
 "disabled {{{1
@@ -275,9 +247,58 @@ set grepprg=grep\ -nH\ $*
 " 実際には、この設定は完璧には機能していないようなので、
 " 現段階では設定を追加しなくても良いと思います。 -> コメントアウト
 " }}}2
-" その他 {{{2
+
 " 文字数カウント
 " vnoremap <F1> :s/./&/g<CR>
-" }}}2
 
+" Mapping for Tab
+" C-tの避難:戻る挙動はC-[に割り当てる(↑)
+" tagstack errorを引き起こすため止める。
+"nnoremap <C-t> :tabedit
+"nnoremap <C-Tab> :tabNext<CR>
+"nnoremap <C-S-Tab> :tabPrevious<CR>
+"nnoremap <C-[> <C-t>
+
+" Highlight ZENKAKU Space and end of line 
+"function! s:HighlightSpaces()
+"	syntax match WideSpace /　/ containedin=ALL
+"	syntax match EOLSpace /\s\+$/ containedin=ALL
+"endf
+"call s:HighlightSpaces()
+"autocmd WinEnter * call s:HighlightSpaces()
+"highlight WideSpace ctermbg=blue guibg=blue
+"highlight EOLSpace ctermbg=red guibg=red
+
+
+" }}}1
+
+" autoconplete+ from id:Ubuntuさん {{{1
+" Vimの自動補完を大文字と数字にも対応させる - Hatena::Diary::Ubuntu 
+" <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
+"set completeopt=menuone,preview
+"
+"function! CompleteWithoutInsert()
+"	return "\<C-n>\<C-r>=pumvisible() ? \"\\<C-P>\\<C-N>\\<C-P>\": \"\"\<CR>"
+"endfunction
+"
+"inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : CompleteWithoutInsert()
+"
+"let letter = "a"
+"while letter <=# "z"
+"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
+"	let letter = nr2char(char2nr(letter) + 1)
+"endwhile
+"let letter = "A"
+"while letter <=# "Z"
+"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
+"	let letter = nr2char(char2nr(letter) + 1)
+"endwhile
+"let letter = "0"
+"while letter <=# "9"
+"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
+"	let letter = nr2char(char2nr(letter) + 1)
+"endwhile
+"
+"inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
+"set lazyredraw
 " }}}1
