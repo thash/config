@@ -116,10 +116,10 @@ noremap gk k
 noremap g0 0
 noremap g$ $
 " hjkl move in insert mode
-inoremap <C-j> <DOWN>
-inoremap <C-k> <UP>
-inoremap <C-l> <RIGHT>
-inoremap <C-h> <LEFT>
+"inoremap <C-j> <DOWN>
+"inoremap <C-k> <UP>
+"inoremap <C-l> <RIGHT>
+"inoremap <C-h> <LEFT>
 
 " autocomplete (, [, {, ", '
 inoremap () ()<LEFT>
@@ -182,10 +182,13 @@ vnoremap <Leader>cx "+y<Esc>gvd
 nnoremap <Leader>cp "+p
 " 1.2.3.4.5.を箇条書き
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
+" for BrainPhantom
+inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<CR><CR>-<ESC>kkkki
 "}}}1
 
 nnoremap <Leader>vl :source $MYVIMRC<CR>
 nnoremap <Leader>vs :vs $MYVIMRC<CR>
+
 
 
 
