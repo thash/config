@@ -1,5 +1,12 @@
 # export PROMPT_COMMAND="echo\"\";pwd" #executed just before display prompt (bash file)
-export PS1="\[\033[037;041m\](\!)[\t][\w]\n\[\033[037;042m\]\u ->\e[00m \[\033[0m\]"
+
+case "$HOSTNAME" in
+  tgg*) # if on TSUBAME
+  export PS1="\[\033[030;043m\][\t]TSUBAME:[\w]\n\[\033[030;043m\]\u ->\e[00m \[\033[0m\]";;
+  *)
+  export PS1="\[\033[037;041m\][\t](\!)[\w]\n\[\033[037;042m\]\u ->\e[00m \[\033[0m\]";;
+esac
+
 # \e[04m ... underline
 export PATH=/opt/local/bin/:/opt/local/sbin/:$PATH
 export CLICOLOR=1
