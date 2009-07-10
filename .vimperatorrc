@@ -1,0 +1,39 @@
+"2.0 (created: 2009/03/28 23:48:07)
+
+set visualbell
+set nobeep
+set titlestring=Firefox
+set complete=l
+set wildoptions=auto
+set go=
+" set showtabline=0
+
+
+nnoremap ; :
+nnoremap : ;
+inoremap <C-a> <C-v><C-a>
+inoremap <C-z> <C-v><C-z>
+inoremap <C-x> <C-v><C-x>
+inoremap <C-c> <C-v><C-c>
+inoremap <C-v> <C-v><C-v>
+cnoremap <C-a> <C-v><C-a>
+cnoremap <C-z> <C-v><C-z>
+cnoremap <C-x> <C-v><C-x>
+cnoremap <C-c> <C-v><C-c>
+cnoremap <C-v> <C-v><C-v>
+
+map j 5<C-e>
+map k 5<C-y>
+map h gT
+map l gt
+map <S-Left> :tabmove! -1<CR>
+map <S-Right> :tabmove! +1<CR>
+
+cnoremap <C-n> <Tab>
+cnoremap <C-p> <S-Tab>
+
+set runtimepath=/Users/thash/.vimperator
+
+" source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:
