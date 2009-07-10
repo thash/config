@@ -1,5 +1,5 @@
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set nocompatible
 set ignorecase
@@ -105,6 +105,12 @@ endif
 
 "}}}1
 
+
+" Replace colon with semi-colon
+nnoremap ; :
+vnoremap ; :
+" use colon as a single quote
+nnoremap : '
 
 " 移動は常に表示ラインでの移動。
 noremap j gj

@@ -18,6 +18,7 @@ alias sl='ls -F'
 alias la='ls -aF'
 alias ll='ls -lhrtF'
 alias l='ls -lhrtF'
+alias v='vim'
 alias his='history'
 alias hig='history | grep '
 
