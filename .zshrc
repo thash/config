@@ -36,6 +36,7 @@ alias s='screen'
 alias v='vim'
 alias his='history'
 alias hig='history | grep '
+alias lg='ll -a | grep '
 
 
 # History 
@@ -48,3 +49,4 @@ alias hig='history | grep '
  setopt hist_reduce_blanks
  setopt hist_save_nodups
  setopt share_history
+

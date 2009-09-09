@@ -1,18 +1,18 @@
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set nocompatible
-set ignorecase
 set autoindent
-set noswapfile
-set incsearch
-set nowrapscan
-set number
 set cursorline
+set expandtab
 set foldmethod=marker
-set visualbell
+set incsearch
+set ignorecase
 set laststatus=2
+set number
+set shiftwidth=4
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set tabstop=4
+set visualbell
+set nocompatible
+set noswapfile
+set nowrapscan
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
 
@@ -100,11 +100,16 @@ if has("gui_win32")
     set printfont=ＭＳ_ゴシック:h10:cSHIFTJIS
     " set printfont=メイリオ:h10:cSHIFTJIS
     autocmd GUIEnter * winpos 200 100
-    autocmd GUIEnter * winsize 100 50
+    autocmd GUIEnter * winsize 150 50
 endif
 
 "}}}1
 
+
+"ESC key
+inoremap <C-Space> <C-[>
+cnoremap <C-Space> <C-[>
+vnoremap <C-Space> <C-[>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -112,7 +117,7 @@ vnoremap ; :
 " use colon as a single quote
 nnoremap : '
 
-" 移動は常に表示ラインでの移動。
+" move by one display line
 noremap j gj
 noremap k gk
 noremap 0 g0
@@ -126,6 +131,12 @@ noremap g$ $
 "inoremap <C-k> <UP>
 "inoremap <C-l> <RIGHT>
 "inoremap <C-h> <LEFT>
+
+"inoremap <C-a> 0
+"inoremap <C-e> $
+
+nnoremap <C-a> 0
+nnoremap <C-e> $
 
 " autocomplete (, [, {, ", '
 inoremap () ()<LEFT>
@@ -144,29 +155,36 @@ nnoremap g* g*zz
 nnoremap g# g#zz
 
 
-" window間の移動、拡大縮小
+" go to another window
 nnoremap <space>j <C-W>j
 nnoremap <space>k <C-W>k
 nnoremap <space>h <C-W>h
 nnoremap <space>l <C-W>l
+" window width/height modification
 nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
 nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
-"Ruby
+" execute current window as a Ruby programm
 nnoremap <space>r :<C-u>!ruby %<CR>
 
-" 矢印キーでバッファ操作
-"nnoremap <DOWN>  :<C-u>bdelete<CR>
-nnoremap <UP>    :<C-u>ls<CR>
-nnoremap <RIGHT> :<C-u>bnext<CR>
-nnoremap <LEFT>  :<C-u>bprevious<CR>
+" tabnew by Space-t
+nnoremap <space>t :<C-u>tabnew <C-d>
+" tabmove by Ctrl-h/l
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 
-" ujihisa流、保存と終了
+" buffer control by arrow keys
+"nnoremap <DOWN>  :<C-u>bdelete<CR>
+"nnoremap <UP>    :<C-u>ls<CR>
+"nnoremap <RIGHT> :<C-u>bnext<CR>
+"nnoremap <LEFT>  :<C-u>bprevious<CR>
+
+" save and quit
 nnoremap <space>w :<C-u>write<CR>
 nnoremap <space>q :<C-u>quit<CR>
 
-" 空白行を追加する操作を１ストロークでやりたい
+" insert a blank line by 1 stroke
 nnoremap <C-o> o<ESC>k
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
@@ -259,14 +277,6 @@ set grepprg=grep\ -nH\ $*
 
 " 文字数カウント
 " vnoremap <F1> :s/./&/g<CR>
-
-" Mapping for Tab
-" C-tの避難:戻る挙動はC-[に割り当てる(↑)
-" tagstack errorを引き起こすため止める。
-"nnoremap <C-t> :tabedit
-"nnoremap <C-Tab> :tabNext<CR>
-"nnoremap <C-S-Tab> :tabPrevious<CR>
-"nnoremap <C-[> <C-t>
 
 " Highlight ZENKAKU Space and end of line 
 "function! s:HighlightSpaces()
