@@ -2,6 +2,7 @@ set autoindent
 set cursorline
 set expandtab
 set foldmethod=marker
+set runtimepath+=$VIM/hatena
 set incsearch
 set ignorecase
 set laststatus=2
@@ -13,8 +14,12 @@ set visualbell
 set nocompatible
 set noswapfile
 set nowrapscan
+set helplang=ja,en
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
+
+" automatically move to last line
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 syntax on
 filetype on
@@ -23,19 +28,22 @@ filetype plugin on
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-colorscheme desert
+colorscheme murphy "desert
 highlight LineNr ctermfg=darkgray
 highlight Visual ctermfg=darkblue ctermbg=grey
 highlight VisualNOS ctermfg=darkblue ctermbg=grey
 highlight StatusLine cterm=reverse,bold
 highlight StatusLine ctermfg=green ctermbg=white
 highlight StatusLineNC cterm=reverse
+" Fold-colors
+highlight Folded guibg=grey guifg=blue
+highlight FoldColumn guibg=darkgrey guifg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
 
-" æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®è‡ªå‹•èªè­˜ {{{1
+" Ê¸»ú¥³¡¼¥É¤Î¼«Æ°Ç§¼± {{{1
 if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
@@ -43,16 +51,16 @@ endif
 if has('iconv')
   let s:enc_euc = 'euc-jp'
   let s:enc_jis = 'iso-2022-jp'
-  " iconvãŒeucJP-msã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+  " iconv¤¬eucJP-ms¤ËÂĞ±ş¤·¤Æ¤¤¤ë¤«¤ò¥Á¥§¥Ã¥¯
   if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'eucjp-ms'
     let s:enc_jis = 'iso-2022-jp-3'
-  " iconvãŒJISX0213ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+  " iconv¤¬JISX0213¤ËÂĞ±ş¤·¤Æ¤¤¤ë¤«¤ò¥Á¥§¥Ã¥¯
   elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'euc-jisx0213'
     let s:enc_jis = 'iso-2022-jp-3'
   endif
-  " fileencodingsã‚’æ§‹ç¯‰
+  " fileencodings¤ò¹½ÃÛ
   if &encoding ==# 'utf-8'
     let s:fileencodings_default = &fileencodings
     let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
@@ -72,11 +80,11 @@ if has('iconv')
       let &fileencodings = &fileencodings .','. s:enc_euc
     endif
   endif
-  " å®šæ•°ã‚’å‡¦åˆ†
+  " Äê¿ô¤ò½èÊ¬
   unlet s:enc_euc
   unlet s:enc_jis
 endif
-" æ—¥æœ¬èªã‚’å«ã¾ãªã„å ´åˆã¯ fileencoding ã« encoding ã‚’ä½¿ã†ã‚ˆã†ã«ã™ã‚‹
+" ÆüËÜ¸ì¤ò´Ş¤Ş¤Ê¤¤¾ì¹ç¤Ï fileencoding ¤Ë encoding ¤ò»È¤¦¤è¤¦¤Ë¤¹¤ë
 if has('autocmd')
   function! AU_ReCheck_FENC()
     if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
@@ -85,20 +93,20 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
-" æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã®è‡ªå‹•èªè­˜
+" ²ş¹Ô¥³¡¼¥É¤Î¼«Æ°Ç§¼±
 set fileformats=unix,dos,mac
-" â–¡ã¨ã‹â—‹ã®æ–‡å­—ãŒã‚ã£ã¦ã‚‚ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãšã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
+" ¢¢¤È¤«¡û¤ÎÊ¸»ú¤¬¤¢¤Ã¤Æ¤â¥«¡¼¥½¥ë°ÌÃÖ¤¬¤º¤ì¤Ê¤¤¤è¤¦¤Ë¤¹¤ë
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š from http://memo.xight.org/2007-11-01-2
+" ¥Õ¥©¥ó¥ÈÀßÄê from http://memo.xight.org/2007-11-01-2
 if has("gui_win32")
-    " set guifont=ï¼­ï¼³_ã‚´ã‚·ãƒƒã‚¯:h9:cSHIFTJIS
+    " set guifont=£Í£Ó_¥´¥·¥Ã¥¯:h9:cSHIFTJIS
     set guifont=meiryo:h16:cSHIFTJIS
-    " set guifont=ãƒ¡ã‚¤ãƒªã‚ª:h9:cSHIFTJIS
-    set printfont=ï¼­ï¼³_ã‚´ã‚·ãƒƒã‚¯:h10:cSHIFTJIS
-    " set printfont=ãƒ¡ã‚¤ãƒªã‚ª:h10:cSHIFTJIS
+    " set guifont=¥á¥¤¥ê¥ª:h9:cSHIFTJIS
+    set printfont=£Í£Ó_¥´¥·¥Ã¥¯:h10:cSHIFTJIS
+    " set printfont=¥á¥¤¥ê¥ª:h10:cSHIFTJIS
     autocmd GUIEnter * winpos 200 100
     autocmd GUIEnter * winsize 150 50
 endif
@@ -107,17 +115,16 @@ endif
 
 
 "ESC key
-inoremap <C-Space> <C-[>
-cnoremap <C-Space> <C-[>
-vnoremap <C-Space> <C-[>
+"inoremap <C-Space> <C-[>
+"cnoremap <C-Space> <C-[>
+"vnoremap <C-Space> <C-[>
 
 " Replace colon with semi-colon
 nnoremap ; :
 vnoremap ; :
-" use colon as a single quote
-nnoremap : '
+"inoremap <C-j> <CR>
 
-" move by one display line
+" move by one display line {{{
 noremap j gj
 noremap k gk
 noremap 0 g0
@@ -126,14 +133,12 @@ noremap gj j
 noremap gk k
 noremap g0 0
 noremap g$ $
+"}}}
 " hjkl move in insert mode
 "inoremap <C-j> <DOWN>
 "inoremap <C-k> <UP>
 "inoremap <C-l> <RIGHT>
 "inoremap <C-h> <LEFT>
-
-"inoremap <C-a> 0
-"inoremap <C-e> $
 
 nnoremap <C-a> 0
 nnoremap <C-e> $
@@ -145,6 +150,7 @@ inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
+
 
 " When searching, always move the cursor to center of window
 nnoremap n nzz
@@ -189,7 +195,7 @@ nnoremap <C-o> o<ESC>k
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
-" ä»¥å‰é–‹ã„ã¦ã„ãŸã¨ãã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¾©å…ƒã™ã‚‹
+" °ÊÁ°³«¤¤¤Æ¤¤¤¿¤È¤­¤Î¥«¡¼¥½¥ë°ÌÃÖ¤òÉü¸µ¤¹¤ë
 " autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 "normal! g`\"" | endif
 
@@ -204,14 +210,14 @@ inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 vnoremap <Leader>cc "+y
 vnoremap <Leader>cx "+y<Esc>gvd
 nnoremap <Leader>cp "+p
-" 1.2.3.4.5.ã‚’ç®‡æ¡æ›¸ã
+" 1.2.3.4.5.¤ò²Õ¾ò½ñ¤­
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
 " for BrainPhantom
-inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<CR><CR>-<ESC>kkkki
+inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 "}}}1
 
-nnoremap <Leader>vl :source $MYVIMRC<CR>
-nnoremap <Leader>vs :vs $MYVIMRC<CR>
+nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
+nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
 
 
 
@@ -269,18 +275,18 @@ filetype plugin on
 set grepprg=grep\ -nH\ $*
 " OPTIONAL: This enables automatic indentation as you type. 
 " }}}2
-" Alignã‚’æ—¥æœ¬èªç’°å¢ƒã§ä½¿ç”¨ã™ã‚‹ãŸã‚ã®è¨­å®š {{{2
+" Align¤òÆüËÜ¸ì´Ä¶­¤Ç»ÈÍÑ¤¹¤ë¤¿¤á¤ÎÀßÄê {{{2
 " let g:Align_xstrlen = 3
-" å®Ÿéš›ã«ã¯ã€ã“ã®è¨­å®šã¯å®Œç’§ã«ã¯æ©Ÿèƒ½ã—ã¦ã„ãªã„ã‚ˆã†ãªã®ã§ã€
-" ç¾æ®µéšã§ã¯è¨­å®šã‚’è¿½åŠ ã—ãªãã¦ã‚‚è‰¯ã„ã¨æ€ã„ã¾ã™ã€‚ -> ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
+" ¼Âºİ¤Ë¤Ï¡¢¤³¤ÎÀßÄê¤Ï´°àú¤Ë¤Ïµ¡Ç½¤·¤Æ¤¤¤Ê¤¤¤è¤¦¤Ê¤Î¤Ç¡¢
+" ¸½ÃÊ³¬¤Ç¤ÏÀßÄê¤òÄÉ²Ã¤·¤Ê¤¯¤Æ¤âÎÉ¤¤¤È»×¤¤¤Ş¤¹¡£ -> ¥³¥á¥ó¥È¥¢¥¦¥È
 " }}}2
 
-" æ–‡å­—æ•°ã‚«ã‚¦ãƒ³ãƒˆ
+" Ê¸»ú¿ô¥«¥¦¥ó¥È
 " vnoremap <F1> :s/./&/g<CR>
 
 " Highlight ZENKAKU Space and end of line 
 "function! s:HighlightSpaces()
-"	syntax match WideSpace /ã€€/ containedin=ALL
+"	syntax match WideSpace /¡¡/ containedin=ALL
 "	syntax match EOLSpace /\s\+$/ containedin=ALL
 "endf
 "call s:HighlightSpaces()
@@ -291,8 +297,8 @@ set grepprg=grep\ -nH\ $*
 
 " }}}1
 
-" autoconplete+ from id:Ubuntuã•ã‚“ {{{1
-" Vimã®è‡ªå‹•è£œå®Œã‚’å¤§æ–‡å­—ã¨æ•°å­—ã«ã‚‚å¯¾å¿œã•ã›ã‚‹ - Hatena::Diary::Ubuntu 
+" autoconplete+ from id:Ubuntu¤µ¤ó {{{1
+" Vim¤Î¼«Æ°Êä´°¤òÂçÊ¸»ú¤È¿ô»ú¤Ë¤âÂĞ±ş¤µ¤»¤ë - Hatena::Diary::Ubuntu 
 " <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
 "set completeopt=menuone,preview
 "

@@ -2,6 +2,7 @@
 autoload -U colors; colors
 setopt prompt_subst
 unsetopt transient_rprompt
+export LANG=ja_JP.UTF-8
 
 if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
     PROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
@@ -19,7 +20,7 @@ alias sl='ls -FG'
 alias la='ls -aFG'
 alias ll='ls -lhrtFG'
 alias l='ls -lhrtFG'
-alias laa='ls -a | grep ^\\.'
+alias laa='ls -A | grep ^\\.'
 #alias l='gls -F --color=auto'
 #alias ls='gls -F --color=auto'
 #alias ll='gls -lF --color=auto'
@@ -35,9 +36,12 @@ alias ..='cd ../'
 #alias ud='cd ../'
 alias s='screen'
 alias v='vim'
+alias gvim='open -a MacVim.app'
+alias pymol='open -a MacPyMOL.app'
 alias his='history'
 alias hig='history | grep '
 alias lg='ll -a | grep '
+alias hoge='cd /Users/thash/'
 
 
 # History 
