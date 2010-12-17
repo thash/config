@@ -14,11 +14,12 @@ fi
 
 # Aliases
 setopt aliases
-alias ls='ls -F'
-alias sl='ls -F'
-alias la='ls -aF'
-alias ll='ls -lhrtF'
-alias l='ls -lhrtF'
+alias ls='ls -FG'
+alias sl='ls -FG'
+alias la='ls -aFG'
+alias ll='ls -lhrtFG'
+alias l='ls -lhrtFG'
+alias laa='ls -a | grep ^\\.'
 #alias l='gls -F --color=auto'
 #alias ls='gls -F --color=auto'
 #alias ll='gls -lF --color=auto'
@@ -36,6 +37,7 @@ alias s='screen'
 alias v='vim'
 alias his='history'
 alias hig='history | grep '
+alias lg='ll -a | grep '
 
 
 # History 
