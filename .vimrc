@@ -35,7 +35,7 @@ autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
 
-" 文字コードの自動認識 {{{1
+" Automatic recognition of Encoding{{{1
 if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
@@ -43,16 +43,16 @@ endif
 if has('iconv')
   let s:enc_euc = 'euc-jp'
   let s:enc_jis = 'iso-2022-jp'
-  " iconvがeucJP-msに対応しているかをチェック
+"  " check iconv can proccess eucIJ-ms or not
   if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'eucjp-ms'
     let s:enc_jis = 'iso-2022-jp-3'
-  " iconvがJISX0213に対応しているかをチェック
+"  " check iconv can proccess JISX0213 or not
   elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'euc-jisx0213'
     let s:enc_jis = 'iso-2022-jp-3'
   endif
-  " fileencodingsを構築
+"  " constract fileencodings
   if &encoding ==# 'utf-8'
     let s:fileencodings_default = &fileencodings
     let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
@@ -72,11 +72,11 @@ if has('iconv')
       let &fileencodings = &fileencodings .','. s:enc_euc
     endif
   endif
-  " 定数を処分
+"  " unlet vars
   unlet s:enc_euc
   unlet s:enc_jis
 endif
-" 日本語を含まない場合は fileencoding に encoding を使うようにする
+"" if no Japanese, use encoding for fileencoding
 if has('autocmd')
   function! AU_ReCheck_FENC()
     if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
@@ -85,14 +85,13 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
-" 改行コードの自動認識
+
 set fileformats=unix,dos,mac
-" □とか○の文字があってもカーソル位置がずれないようにする
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" フォント設定 from http://memo.xight.org/2007-11-01-2
+" font setting from http://memo.xight.org/2007-11-01-2
 if has("gui_win32")
     " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
     set guifont=meiryo:h16:cSHIFTJIS
@@ -189,7 +188,7 @@ nnoremap <C-o> o<ESC>k
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
-" 以前開いていたときのカーソル位置を復元する
+" AutoCmd
 " autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 "normal! g`\"" | endif
 
@@ -204,7 +203,7 @@ inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 vnoremap <Leader>cc "+y
 vnoremap <Leader>cx "+y<Esc>gvd
 nnoremap <Leader>cp "+p
-" 1.2.3.4.5.を箇条書き
+" 1.2.3.4.5. expand numbers
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
 " for BrainPhantom
 inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<CR><CR>-<ESC>kkkki
@@ -269,13 +268,10 @@ filetype plugin on
 set grepprg=grep\ -nH\ $*
 " OPTIONAL: This enables automatic indentation as you type. 
 " }}}2
-" Alignを日本語環境で使用するための設定 {{{2
+" Align plugin setting, maybe {{{2
 " let g:Align_xstrlen = 3
-" 実際には、この設定は完璧には機能していないようなので、
-" 現段階では設定を追加しなくても良いと思います。 -> コメントアウト
 " }}}2
 
-" 文字数カウント
 " vnoremap <F1> :s/./&/g<CR>
 
 " Highlight ZENKAKU Space and end of line 
@@ -288,11 +284,8 @@ set grepprg=grep\ -nH\ $*
 "highlight WideSpace ctermbg=blue guibg=blue
 "highlight EOLSpace ctermbg=red guibg=red
 
-
-" }}}1
-
-" autoconplete+ from id:Ubuntuさん {{{1
-" Vimの自動補完を大文字と数字にも対応させる - Hatena::Diary::Ubuntu 
+" autoconplete+ from id:Ubuntu {{{2
+" Vim - Hatena::Diary::Ubuntu 
 " <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
 "set completeopt=menuone,preview
 "
@@ -320,4 +313,6 @@ set grepprg=grep\ -nH\ $*
 "
 "inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
 "set lazyredraw
+" }}}2
+
 " }}}1
