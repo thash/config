@@ -7,16 +7,20 @@ set incsearch
 set ignorecase
 set laststatus=2
 set number
-set shiftwidth=4
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set shiftwidth=4
 set tabstop=4
 set visualbell
 set nocompatible
 set noswapfile
 set nowrapscan
 set helplang=ja,en
+set splitbelow
+set splitright
+set gdefault " all substitution
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
+set paste
 
 " automatically move to last line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
@@ -35,15 +39,16 @@ highlight VisualNOS ctermfg=darkblue ctermbg=grey
 highlight StatusLine cterm=reverse,bold
 highlight StatusLine ctermfg=green ctermbg=white
 highlight StatusLineNC cterm=reverse
+highlight CursorLine guibg=Grey10
 " Fold-colors
-highlight Folded guibg=grey guifg=blue
+highlight Folded guibg=none guifg=darkgrey
 highlight FoldColumn guibg=darkgrey guifg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
 
-" Automatic recognition of Encoding{{{1
+" 文字コードの自動認識 {{{1
 if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
@@ -51,16 +56,16 @@ endif
 if has('iconv')
   let s:enc_euc = 'euc-jp'
   let s:enc_jis = 'iso-2022-jp'
-"  " check iconv can proccess eucIJ-ms or not
+  " iconvがeucJP-msに対応しているかをチェック
   if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'eucjp-ms'
     let s:enc_jis = 'iso-2022-jp-3'
-"  " check iconv can proccess JISX0213 or not
+  " iconvがJISX0213に対応しているかをチェック
   elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
     let s:enc_euc = 'euc-jisx0213'
     let s:enc_jis = 'iso-2022-jp-3'
   endif
-"  " constract fileencodings
+  " fileencodingsを構築
   if &encoding ==# 'utf-8'
     let s:fileencodings_default = &fileencodings
     let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
@@ -80,11 +85,11 @@ if has('iconv')
       let &fileencodings = &fileencodings .','. s:enc_euc
     endif
   endif
-"  " unlet vars
+  " 定数を処分
   unlet s:enc_euc
   unlet s:enc_jis
 endif
-"" if no Japanese, use encoding for fileencoding
+" 日本語を含まない場合は fileencoding に encoding を使うようにする
 if has('autocmd')
   function! AU_ReCheck_FENC()
     if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
@@ -93,12 +98,14 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
+" 改行コードの自動認識
 set fileformats=unix,dos,mac
+" □とか○の文字があってもカーソル位置がずれないようにする
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" font setting from http://memo.xight.org/2007-11-01-2
+" フォント設定 from http://memo.xight.org/2007-11-01-2
 if has("gui_win32")
     " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
     set guifont=meiryo:h16:cSHIFTJIS
@@ -116,6 +123,14 @@ endif
 "inoremap <C-Space> <C-[>
 "cnoremap <C-Space> <C-[>
 "vnoremap <C-Space> <C-[>
+inoremap <C-Space> <C-[>
+cnoremap <C-Space> <C-[>
+nnoremap <C-Space> <C-[>
+nnoremap <Space> <C-[>
+nnoremap <F1> <C-[>
+inoremap <F1> <C-[>
+" always reset iminsert to zero when leaving Insert mode.
+inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -133,12 +148,13 @@ noremap g0 0
 noremap g$ $
 "}}}
 " hjkl move in insert mode
-"inoremap <C-j> <DOWN>
-"inoremap <C-k> <UP>
-"inoremap <C-l> <RIGHT>
-"inoremap <C-h> <LEFT>
+inoremap <C-j> <DOWN>
+inoremap <C-k> <UP>
+inoremap <C-l> <RIGHT>
+inoremap <C-h> <LEFT>
+inoremap <C-h> <BS>
 
-nnoremap <C-a> 0
+"nnoremap <C-a> 0
 nnoremap <C-e> $
 
 " autocomplete (, [, {, ", '
@@ -171,6 +187,7 @@ nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
 " execute current window as a Ruby programm
 nnoremap <space>r :<C-u>!ruby %<CR>
+nnoremap <space>x :<C-u>!ruby /Users/thash/unix/bin/compile_tex.rb %<CR>
 
 " tabnew by Space-t
 nnoremap <space>t :<C-u>tabnew <C-d>
@@ -190,10 +207,13 @@ nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
 nnoremap <C-o> o<ESC>k
+" join without inserting space
+nnoremap J gJ
+nnoremap gJ J
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
-" AutoCmd
+" 以前開いていたときのカーソル位置を復元する
 " autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 "normal! g`\"" | endif
 
@@ -208,7 +228,7 @@ inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 vnoremap <Leader>cc "+y
 vnoremap <Leader>cx "+y<Esc>gvd
 nnoremap <Leader>cp "+p
-" 1.2.3.4.5. expand numbers
+" 1.2.3.4.5.を箇条書き
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
 " for BrainPhantom
 inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
@@ -273,10 +293,13 @@ filetype plugin on
 set grepprg=grep\ -nH\ $*
 " OPTIONAL: This enables automatic indentation as you type. 
 " }}}2
-" Align plugin setting, maybe {{{2
+" Alignを日本語環境で使用するための設定 {{{2
 " let g:Align_xstrlen = 3
+" 実際には、この設定は完璧には機能していないようなので、
+" 現段階では設定を追加しなくても良いと思います。 -> コメントアウト
 " }}}2
 
+" 文字数カウント
 " vnoremap <F1> :s/./&/g<CR>
 
 " Highlight ZENKAKU Space and end of line 
@@ -289,8 +312,11 @@ set grepprg=grep\ -nH\ $*
 "highlight WideSpace ctermbg=blue guibg=blue
 "highlight EOLSpace ctermbg=red guibg=red
 
-" autoconplete+ from id:Ubuntu {{{2
-" Vim - Hatena::Diary::Ubuntu 
+
+" }}}1
+
+" autoconplete+ from id:Ubuntuさん {{{1
+" Vimの自動補完を大文字と数字にも対応させる - Hatena::Diary::Ubuntu 
 " <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
 "set completeopt=menuone,preview
 "
@@ -318,6 +344,4 @@ set grepprg=grep\ -nH\ $*
 "
 "inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
 "set lazyredraw
-" }}}2
-
 " }}}1

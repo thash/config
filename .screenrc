@@ -1,0 +1,24 @@
+## screen        last modified : 2004-07-26
+# from http://www.q-eng.imat.eng.osaka-cu.ac.jp/~ippei/unix/screen.html
+escape ^T^T             # change prefix key C-a(default) to C-t 
+vbell off               # turn off visible bell
+# bind w windowlist -b  # window list display
+deflogin off    # always add entry to /etc/utemp when new window opened
+bell "Bell in window %." # notify bell of hidden windows
+activity "Activity in window %." # notify status of hidden windows
+autodetach on   # auto detach when connection closed suddenly
+# detach on hangup
+startup_message off     # startup page
+termcapinfo  xterm|kterm|kterm-color 'hs:ts=\E]2;:fs=\007:ds=\E]0;screen\007'
+                        # use title bar for status details
+terminfo xterm|kterm|kterm-color XT # for mice
+shell -$SHELL # make the shell in every window a login shell
+defscrollback 1000
+hardstatus string " %m/%d %D %c [%n:%Lw] %H:%h" # status format
+caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} [%l] %{=b wb}%y/%m/%d(%d) %{=b wm}%c"
+## m:month, d:day, D:weekday, c:current time in 24h,
+### n:window number, w:all window numbers, H:hostname,
+### h:hardstatus of the window, l:current load of the system
+## defhstatus "^En:^Et"
+## defhstatus "screen: ^E (^Et)"
+

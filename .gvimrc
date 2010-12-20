@@ -5,7 +5,7 @@ if has('gui_macvim')
   set showtabline=2
   " no scroll/tool bar
   set go=egmtc
-  set transparency=30
+  set transparency=25
 highlight LineNr ctermfg=darkgray
 
   " No Full Screen size

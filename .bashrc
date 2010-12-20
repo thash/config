@@ -8,7 +8,7 @@ case "$HOSTNAME" in
 esac
 
 # \e[04m ... underline
-export PATH=/opt/local/bin/:/opt/local/sbin/:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExGxcxdxBxegedabagacad
 export HISTFILESIZE="1000"

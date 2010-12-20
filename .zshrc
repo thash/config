@@ -54,4 +54,3 @@ alias hoge='cd /Users/thash/'
  setopt hist_reduce_blanks
  setopt hist_save_nodups
  setopt share_history
-
