@@ -1,12 +1,14 @@
 "colorscheme murphy
 
 if has('gui_macvim')
-  cd ~/Documents/MacVim/
+
+  cd ~
   set showtabline=2
+  set guifont=Osaka-Mono:h11
   " no scroll/tool bar
   set go=egmtc
   set transparency=25
-highlight LineNr ctermfg=darkgray
+  highlight LineNr ctermfg=darkgray
 
   " No Full Screen size
   set lines=54
@@ -16,6 +18,7 @@ highlight LineNr ctermfg=darkgray
   ":macaction zoomAll:
   "map <silent> gw :macaction selectNextWindow:
   "map <silent> gW :macaction selectPreviousWindow:
+  
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
     set guifont=meiryo:h16:cSHIFTJIS
@@ -23,4 +26,5 @@ elseif has("gui_win32")
     " these fonts should be modified
     autocmd GUIEnter * winpos 200 100
     autocmd GUIEnter * winsize 150 50
+
 endif
