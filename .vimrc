@@ -101,18 +101,6 @@ set fileformats=unix,dos,mac
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
-
-" font setting from http://memo.xight.org/2007-11-01-2
-if has("gui_win32")
-    " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
-    set guifont=meiryo:h16:cSHIFTJIS
-    " set guifont=メイリオ:h9:cSHIFTJIS
-    set printfont=ＭＳ_ゴシック:h10:cSHIFTJIS
-    " set printfont=メイリオ:h10:cSHIFTJIS
-    autocmd GUIEnter * winpos 200 100
-    autocmd GUIEnter * winsize 150 50
-endif
-
 "}}}1
 
 
