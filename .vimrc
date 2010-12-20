@@ -7,16 +7,20 @@ set incsearch
 set ignorecase
 set laststatus=2
 set number
-set shiftwidth=4
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set shiftwidth=4
 set tabstop=4
 set visualbell
 set nocompatible
 set noswapfile
 set nowrapscan
 set helplang=ja,en
+set splitbelow
+set splitright
+set gdefault " all substitution
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
+set paste
 
 " automatically move to last line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
@@ -116,6 +120,14 @@ endif
 "inoremap <C-Space> <C-[>
 "cnoremap <C-Space> <C-[>
 "vnoremap <C-Space> <C-[>
+inoremap <C-Space> <C-[>
+cnoremap <C-Space> <C-[>
+nnoremap <C-Space> <C-[>
+nnoremap <Space> <C-[>
+nnoremap <F1> <C-[>
+inoremap <F1> <C-[>
+" always reset iminsert to zero when leaving Insert mode.
+inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " Replace colon with semi-colon
 nnoremap ; :
