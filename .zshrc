@@ -20,13 +20,16 @@ alias laa='ls -A | grep ^\\.'
 alias lg='ll -a | grep '
 alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
-alias gvim='open -a MacVim.app'
-alias pymol='open -a MacPyMOL.app'
 alias his='history'
 alias hig='history | grep '
 alias v='vim'
 alias s='screen -r'
 alias c='clear'
+
+# Mac
+alias gvim='open -a MacVim.app'
+alias pymol='open -a MacPyMOL.app'
+alias gitx='open -a GitX'
 
 alias hoge='cd /Users/hash/'
 alias calc='ruby ~/unix/bin/calc.rb'
