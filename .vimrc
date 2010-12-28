@@ -2,19 +2,28 @@ set autoindent
 set cursorline
 set expandtab
 set foldmethod=marker
+set runtimepath+=$VIM/hatena
 set incsearch
 set ignorecase
 set laststatus=2
 set number
-set shiftwidth=4
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set shiftwidth=4
 set tabstop=4
 set visualbell
 set nocompatible
 set noswapfile
 set nowrapscan
+set helplang=ja,en
+set splitbelow
+set splitright
+set gdefault " all substitution
 "set backupdir=$VIM/tmp
 "set dictionary=$VIM/dict/java14.dict
+set paste
+
+" automatically move to last line
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 syntax on
 filetype on
@@ -23,13 +32,16 @@ filetype plugin on
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-colorscheme desert
+colorscheme murphy "desert
 highlight LineNr ctermfg=darkgray
 highlight Visual ctermfg=darkblue ctermbg=grey
 highlight VisualNOS ctermfg=darkblue ctermbg=grey
 highlight StatusLine cterm=reverse,bold
 highlight StatusLine ctermfg=green ctermbg=white
 highlight StatusLineNC cterm=reverse
+" Fold-colors
+highlight Folded guibg=grey guifg=blue
+highlight FoldColumn guibg=darkgrey guifg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
@@ -85,38 +97,32 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
-
 set fileformats=unix,dos,mac
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
-
-" font setting from http://memo.xight.org/2007-11-01-2
-if has("gui_win32")
-    " set guifont=ＭＳ_ゴシック:h9:cSHIFTJIS
-    set guifont=meiryo:h16:cSHIFTJIS
-    " set guifont=メイリオ:h9:cSHIFTJIS
-    set printfont=ＭＳ_ゴシック:h10:cSHIFTJIS
-    " set printfont=メイリオ:h10:cSHIFTJIS
-    autocmd GUIEnter * winpos 200 100
-    autocmd GUIEnter * winsize 150 50
-endif
-
 "}}}1
 
 
 "ESC key
+"inoremap <C-Space> <C-[>
+"cnoremap <C-Space> <C-[>
+"vnoremap <C-Space> <C-[>
 inoremap <C-Space> <C-[>
 cnoremap <C-Space> <C-[>
-vnoremap <C-Space> <C-[>
+nnoremap <C-Space> <C-[>
+nnoremap <Space> <C-[>
+nnoremap <F1> <C-[>
+inoremap <F1> <C-[>
+" always reset iminsert to zero when leaving Insert mode.
+inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " Replace colon with semi-colon
 nnoremap ; :
 vnoremap ; :
-" use colon as a single quote
-nnoremap : '
+"inoremap <C-j> <CR>
 
-" move by one display line
+" move by one display line {{{
 noremap j gj
 noremap k gk
 noremap 0 g0
@@ -125,14 +131,12 @@ noremap gj j
 noremap gk k
 noremap g0 0
 noremap g$ $
+"}}}
 " hjkl move in insert mode
 "inoremap <C-j> <DOWN>
 "inoremap <C-k> <UP>
 "inoremap <C-l> <RIGHT>
 "inoremap <C-h> <LEFT>
-
-"inoremap <C-a> 0
-"inoremap <C-e> $
 
 nnoremap <C-a> 0
 nnoremap <C-e> $
@@ -144,6 +148,7 @@ inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
+
 
 " When searching, always move the cursor to center of window
 nnoremap n nzz
@@ -206,11 +211,11 @@ nnoremap <Leader>cp "+p
 " 1.2.3.4.5. expand numbers
 nnoremap <Leader>ln <ESC>:s/\./\. \r/g<CR>
 " for BrainPhantom
-inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<CR><CR>-<ESC>kkkki
+inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 "}}}1
 
-nnoremap <Leader>vl :source $MYVIMRC<CR>
-nnoremap <Leader>vs :vs $MYVIMRC<CR>
+nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
+nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
 
 
 
@@ -276,7 +281,7 @@ set grepprg=grep\ -nH\ $*
 
 " Highlight ZENKAKU Space and end of line 
 "function! s:HighlightSpaces()
-"	syntax match WideSpace /　/ containedin=ALL
+"	syntax match WideSpace /��/ containedin=ALL
 "	syntax match EOLSpace /\s\+$/ containedin=ALL
 "endf
 "call s:HighlightSpaces()

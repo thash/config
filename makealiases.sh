@@ -1,7 +1,10 @@
 #!/bin/sh
 
-for filename in vim vimrc gvimrc bashrc zshrc zshenv gitconfig
+for filename in vimrc gvimrc bashrc zshrc zshenv screenrc gitconfig
 do
-	ln -s `pwd`/.$filename $HOME/.$filename
+    if [ -e $HOME/.$filename ]; then 
+        rm -i $HOME/.$filename 
+    fi
+    ln -s `pwd`/.$filename $HOME/.$filename
 done
 
