@@ -23,10 +23,13 @@ alias ..='cd ../'
 alias his='history'
 alias hig='history | grep '
 alias v='vim'
+alias v7='/Users/hash/unix/bin/vim'
 alias s='screen -r'
 alias c='clear'
 
 # Mac
+alias portupdate='sudo port -v selfupdate; sudo port -v upgrade installed'
+
 alias gvim='open -a MacVim.app'
 alias pymol='open -a MacPyMOL.app'
 alias gitx='open -a GitX'
@@ -49,15 +52,15 @@ setopt list_packed
 setopt nolistbeep
 
 # History 
- HISTFILE=${HOME}/.zsh_history
- SAVEHIST=10000
- HISTSIZE=10000
- setopt append_history
- setopt hist_ignore_all_dups
- setopt hist_ignore_space
- setopt hist_reduce_blanks
- setopt hist_save_nodups
- setopt share_history
+# HISTFILE=${HOME}/.zsh_history
+# SAVEHIST=10000
+# HISTSIZE=10000
+# setopt append_history
+# setopt hist_ignore_all_dups
+# setopt hist_ignore_space
+# setopt hist_reduce_blanks
+# setopt hist_save_nodups
+# setopt share_history
 
 
 # screen settings {{{1
