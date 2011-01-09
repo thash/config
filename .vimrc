@@ -32,7 +32,7 @@ filetype plugin on
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-colorscheme murphy "desert
+colorscheme darkblue "murphy, desert
 highlight LineNr ctermfg=darkgray
 highlight Visual ctermfg=darkblue ctermbg=grey
 highlight VisualNOS ctermfg=darkblue ctermbg=grey
