@@ -22,7 +22,7 @@ alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
 alias his='history'
 alias hig='history | grep '
-alias vi='vim'
+alias v='vim'
 alias s='screen -r'
 alias c='clear'
 
