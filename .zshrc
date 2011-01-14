@@ -26,7 +26,7 @@ alias vi='vim'
 alias s='screen -r'
 alias c='clear'
 
-# Mac
+# Mac {{{1
 if [ `uname` = "Darwin" ]; then
     alias gvim='open -a MacVim.app'
     alias pymol='open -a MacPyMOL.app'
@@ -37,7 +37,7 @@ if [ `uname` = "Darwin" ]; then
     alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
     alias ssh2relics='ssh hash@10.0.1.5'
     alias ssh2relics_pub='ssh hash@www.memerelics.net'
-fi
+fi #}}}1
 
 # Settings
 autoload -U compinit 
@@ -48,6 +48,11 @@ setopt pushd_ignore_dups
 setopt correct
 setopt list_packed
 setopt nolistbeep
+
+# ignore CASE when complete
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select=1
+
 
 # History 
 # by default, display latest histories.
