@@ -25,8 +25,10 @@ alias hig='history | grep '
 alias vi='vim'
 alias s='screen -r'
 alias c='clear'
+alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
+alias ssh2relics_pub='ssh hash@www.memerelics.net'
 
-# Mac {{{1
+# Local Mac {{{1
 if [ `uname` = "Darwin" ]; then
     alias gvim='open -a MacVim.app'
     alias pymol='open -a MacPyMOL.app'
@@ -34,9 +36,7 @@ if [ `uname` = "Darwin" ]; then
     alias hoge='cd /Users/hash/'
     alias calc='ruby ~/unix/bin/calc.rb'
     alias rest='sudo vim /etc/hosts'
-    alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
     alias ssh2relics='ssh hash@10.0.1.5'
-    alias ssh2relics_pub='ssh hash@www.memerelics.net'
 fi #}}}1
 
 # Settings
