@@ -27,16 +27,17 @@ alias s='screen -r'
 alias c='clear'
 
 # Mac
-alias gvim='open -a MacVim.app'
-alias pymol='open -a MacPyMOL.app'
-alias gitx='open -a GitX'
-
-alias hoge='cd /Users/hash/'
-alias calc='ruby ~/unix/bin/calc.rb'
-alias rest='sudo vim /etc/hosts'
-alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
-alias ssh2relics='ssh hash@10.0.1.5'
-alias ssh2relics_pub='ssh hash@www.memerelics.net'
+if [ `uname` = "Darwin" ]; then
+    alias gvim='open -a MacVim.app'
+    alias pymol='open -a MacPyMOL.app'
+    alias gitx='open -a GitX'
+    alias hoge='cd /Users/hash/'
+    alias calc='ruby ~/unix/bin/calc.rb'
+    alias rest='sudo vim /etc/hosts'
+    alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
+    alias ssh2relics='ssh hash@10.0.1.5'
+    alias ssh2relics_pub='ssh hash@www.memerelics.net'
+fi
 
 # Settings
 autoload -U compinit 
@@ -49,19 +50,20 @@ setopt list_packed
 setopt nolistbeep
 
 # History 
+# by default, display latest histories.
  HISTFILE=${HOME}/.zsh_history
- SAVEHIST=50000
- HISTSIZE=50000
+ SAVEHIST=500000
+ HISTSIZE=500000
  setopt append_history
  setopt hist_ignore_all_dups
-# setopt hist_ignore_space
-# setopt hist_reduce_blanks
-# setopt hist_save_nodups
-# setopt share_history
+ setopt hist_ignore_space
+ setopt hist_reduce_blanks
+ setopt hist_save_nodups
+ setopt share_history
 
 
 # screen settings {{{1
-# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
+# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140 
 
 if [ "$TERM" = "screen" ]; then
 chpwd () {
@@ -69,7 +71,7 @@ chpwd () {
 #    _update_rprompt
     echo -n "_`dirs`\\"
     ls
-}
+} 
 
 preexec() {
 # see [zsh-workers:13180]
