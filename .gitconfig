@@ -15,5 +15,8 @@
 
 [alias]
     log-g = log --graph --pretty=format:'%Cblue%h %Cgreen%ci %Cblue%m %Creset%s'
-    co = checkout
     status = status -s -b
+    co = checkout
+    b = branch
+    a = add
+    c = commit
