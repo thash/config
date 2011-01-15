@@ -1,8 +1,7 @@
-# Prompt
+# Prompt settings
 autoload -U colors; colors
 setopt prompt_subst
 unsetopt transient_rprompt
-export LANG=ja_JP.UTF-8
 
 if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
     PROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
@@ -11,6 +10,10 @@ else
     PROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
     RPROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
 fi
+
+#Environmant Variables
+export LANG=ja_JP.UTF-8
+export MAILCHECK=0 # on sakura rental server
 
 
 # Aliases
@@ -39,7 +42,7 @@ if [ `uname` = "Darwin" ]; then
     alias ssh2relics='ssh hash@10.0.1.5'
 fi #}}}1
 
-# Settings
+# Set Options
 autoload -U compinit 
 compinit
 setopt auto_cd
