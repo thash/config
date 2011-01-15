@@ -28,6 +28,7 @@ alias hig='history | grep '
 alias vi='vim'
 alias s='screen -r'
 alias c='clear'
+alias g='git'
 alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
 alias ssh2relics_pub='ssh hash@www.memerelics.net'
 
