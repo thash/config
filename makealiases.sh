@@ -8,3 +8,4 @@ do
     ln -s `pwd`/.$filename $HOME/.$filename
 done
 
+source ~/.zshrc
