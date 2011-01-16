@@ -2,12 +2,12 @@
 
 if has('gui_macvim')
 
-  cd ~
+  cd ~/Desktop
   set showtabline=2
   set guifont=Osaka-Mono:h11
   " no scroll/tool bar
   set go=egmtc
-  set transparency=25
+  set transparency=0
   highlight LineNr ctermfg=darkgray
 
   " No Full Screen size
