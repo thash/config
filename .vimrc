@@ -1,3 +1,4 @@
+" Settings
 set autoindent
 set cursorline
 set expandtab
@@ -18,9 +19,20 @@ set helplang=ja,en
 set splitbelow
 set splitright
 set gdefault " all substitution
-"set backupdir=$VIM/tmp
-"set dictionary=$VIM/dict/java14.dict
+set backupdir=$VIM/tmp,.
 set paste
+
+" Language Dictionaries
+"set dictionary=$VIM/dict/java14.dict
+
+" New undo-persistence feature of vim73
+if has('persistent_undo')
+    set undofile
+    set undodir=./.undofiles,$VIM/.undofiles
+endif
+
+" FYI: how to check Vim version, extentions
+" http://vim-users.jp/2010/01/hack115/
 
 " automatically move to last line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
