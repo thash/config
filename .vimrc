@@ -1,3 +1,5 @@
+set encoding=utf8
+set fileencoding=utf8
 set autoindent
 set cursorline
 set expandtab
