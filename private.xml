@@ -4,7 +4,7 @@
         <item>
             <name>Control_L+hjkl</name>
             <identifier>private.vimode_control_hjkl</identifier>
-                <not>Terminal</not>
+                <not>TERMINAL</not>
                 <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L,
                     KeyCode::CURSOR_LEFT</autogen>
                 <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::CONTROL_L,
