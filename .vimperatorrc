@@ -65,7 +65,7 @@ cmap <C-p> <S-Tab>
 " set hintstyle+= font-size:10px; // for 2.0 syntax
 highlight Hint font-size:18px; font-family:monospace; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 1px 0px 1px; position:absolute;
 
-set runtimepath=/Users/thash/.vimperator
+set runtimepath=/Users/hash/.vimperator
 
 " source! ~/.vimperatorrc.local
 
