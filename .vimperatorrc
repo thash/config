@@ -62,7 +62,40 @@ cmap <C-p> <S-Tab>
 
 "" Hint Style
 " set hintstyle+= font-size:10px; // for 2.0 syntax
-highlight Hint font-size:18px; font-family:monospace; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 1px 0px 1px; position:absolute;
+highlight Hint font-size:18px; font-family:monospace; opacity:0.70; color:white; background-color:green; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:7px 0px 0px 0px; position:absolute; 
+hi HintElem     background-color: #D8BFD8;     color: #8A2BE2;
+
+hi StatusLine       color: LightGreen;    background: #000;   font-weight:normal; font-size:10pt;
+
+hi Normal       color: #b7e5c0; background: #333;   font-size: 10pt;
+hi InfoMsg      color: LightGreen; background: #333;   font-size: 10pt;
+hi ModeMsg      color: LightGreen; background: #333;   font-size: 10pt;
+hi MoreMsg      color: LimeGreen;   background: #333;
+"hi LineNr       color: DeepPink;    background: #333;   font-size: 10pt;
+"hi Question     color: Yellow;      background: #333;   font-size: 10pt;
+"hi WarningMsg       color: DeepPink;    background: #333;   font-size: 10pt;
+"hi NonText      background: #333;
+"hi Null         color: CornflowerBlue;
+"hi Tag          color: CornflowerBlue;
+
+hi CompTitle        color: Green;     background:#222;
+hi CompItem[selected]   color: #8A2BE2;    background: #D8BFD8;
+" hi CompDesc     color: ;
+hi GradientLeft    background-color: White;
+hi GradientRight    background-color: Green;
+
+hi Title        color: white;
+hi Indicator        color: DodgerBlue;
+" hi String       color: Orchid;
+" hi Number       color: Orchid;
+" hi Object       color: Khaki;
+ hi Function     color: SkyBlue;
+" hi URL          color: LightGreen;
+
+" hi TabNumber        color: white; font-weight: bold; font-size:10pt;
+
+
+
 
 set runtimepath=/Users/hash/.vimperator
 
