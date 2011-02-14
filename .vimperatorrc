@@ -2,7 +2,6 @@
 
 "settings
 set visualbell
-set nobeep
 set titlestring=Firefox
 set complete=l
 set wildoptions=auto
