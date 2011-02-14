@@ -1,5 +1,6 @@
-"2.0 (created: 2009/03/28 23:48:07)
+" 2011/02/15
 
+"settings
 set visualbell
 set nobeep
 set titlestring=Firefox
@@ -7,10 +8,40 @@ set complete=l
 set wildoptions=auto
 set go=
 " set showtabline=0
+set guioptions+=n
+set complete=sl
+set wildoptions=auto
+set newtab=all
+set nextpattern+=next
+set previouspattern+=prev
+set previouspattern+=previous
+
+map <BS> H
+noremap j 10j
+noremap k 10k
+noremap <C-Space> <esc>
+inoremap <C-Space> <esc>
+noremap <C-@> <esc>
+noremap <C-]> <C-z>
+noremap h <C-p>
+noremap l <C-n>
+map <S-Left> :tabmove! -1<CR>
+map <S-Right> :tabmove! +1<CR>
+
+" map j 5<C-e>
+" map k 5<C-y>
+
+cnoremap <C-n> <Tab>
+cnoremap <C-p> <S-Tab>
 
 
-nnoremap ; :
-nnoremap : ;
+" as a Hatener
+"" add a hatena bookmark.
+map a <esc>:sbm<Space>[
+map e <esc>:eijiro<Space>
+map gm <esc>mg G `
+
+" Cut & Copy & Paste, select all, and Redo.
 inoremap <C-a> <C-v><C-a>
 inoremap <C-z> <C-v><C-z>
 inoremap <C-x> <C-v><C-x>
@@ -22,15 +53,17 @@ cnoremap <C-x> <C-v><C-x>
 cnoremap <C-c> <C-v><C-c>
 cnoremap <C-v> <C-v><C-v>
 
-map j 5<C-e>
-map k 5<C-y>
-map h gT
-map l gt
-map <S-Left> :tabmove! -1<CR>
-map <S-Right> :tabmove! +1<CR>
+noremap _ ma
+noremap } `a
+cmap <C-d> <Tab>
+cmap <C-i> <Tab>
+cmap <C-Space> <ESC>
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
 
-cnoremap <C-n> <Tab>
-cnoremap <C-p> <S-Tab>
+"" Hint Style
+" set hintstyle+= font-size:10px; // for 2.0 syntax
+highlight Hint font-size:18px; font-family:monospace; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 1px 0px 1px; position:absolute;
 
 set runtimepath=/Users/thash/.vimperator
 
