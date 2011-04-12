@@ -1,9 +1,10 @@
-export PATH=$HOME/local/bin/:/opt/local/bin/:/opt/local/sbin/:/Users/thash/unix/bin/:$PATH
+export PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/Users/thash/unix/bin:$PATH
 #first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTR-8
 export LC_ALL="$LANG"
 export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
 export CLICOLOR='true'
+export PERL_BADLANG=0
 
 # .zshenv
 # export PATH=$HOME/local/bin:/opt/local/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/opt:local/sbin:/usr/local/sbin:/usr/sbin:/sbin
