@@ -19,9 +19,9 @@ export MAILCHECK=0 # on sakura rental server
 
 # Aliases
 setopt aliases
-alias ls='ls -FG' sl='ls -FG' la='ls -aFG' ll='ls -lhrtFG' l='ls -lhrtFG'
-alias laa='ls -A | grep ^\\.'
-alias lg='ll -a | grep '
+alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
+alias laa='ls -vA | grep ^\\.'
+alias lg='ll -va | grep '
 alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
 alias his='history'
