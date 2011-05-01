@@ -188,6 +188,8 @@ nnoremap <space>t :<C-u>tabnew <C-d>
 " tabmove by Ctrl-h/l
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-Tab> :tabnext<CR>
+nnoremap <C-S-Tab> :tabprevious<CR>
 
 " buffer control by arrow keys
 "nnoremap <DOWN>  :<C-u>bdelete<CR>
