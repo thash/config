@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for filename in vimrc gvimrc bashrc zshrc zshenv screenrc gitconfig
+for filename in vimrc gvimrc bashrc zshrc zshenv screenrc gitconfig vimperatorrc profile
 do
     if [ -e $HOME/.$filename ]; then 
         rm -i $HOME/.$filename 
