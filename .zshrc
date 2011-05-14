@@ -4,8 +4,13 @@ setopt prompt_subst
 unsetopt transient_rprompt
 
 if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
-    PROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
-    RPROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
+    PROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}\
+[%h]%n%#\
+%{$reset_color%} '
+    RPROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}\
+%(4~,%-1~/.../%2~,%~) [`date +%Y/%m/%d` %T]@%m\
+%{$reset_color%}'
+SPROMPT="%{${bg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 else
     PROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
     RPROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
@@ -13,14 +18,15 @@ fi
 
 #Environmant Variables
 export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 
 
 # Aliases
 setopt aliases
-alias ls='ls -FG' sl='ls -FG' la='ls -aFG' ll='ls -lhrtFG' l='ls -lhrtFG'
-alias laa='ls -A | grep ^\\.'
-alias lg='ll -a | grep '
+alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
+alias laa='ls -vA | grep ^\\.'
+alias lg='ll -va | grep '
 alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
 alias his='history'
@@ -28,7 +34,7 @@ alias hig='history | grep '
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
 alias cl='clear'
-alias g='git'
+alias g='nocorrect git'
 alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
 alias ssh2relics_pub='ssh hash@www.memerelics.net'
 
@@ -70,6 +76,14 @@ zstyle ':completion:*' menu select=1
  setopt hist_save_nodups
  setopt share_history
 
+### refer words from alc using w3c
+function alc() {
+  if [ $# != 0 ]; then
+    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
+  else
+    w3m "http://www.alc.co.jp/"
+  fi
+}
 
 # screen settings {{{1
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140 
@@ -119,3 +133,4 @@ chpwd
 fi
 
 #}}}1
+
