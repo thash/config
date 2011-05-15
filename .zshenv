@@ -13,6 +13,12 @@ export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
+# setting for node
+if [ `ls -a ~ | grep .nave` = ".nave/" ]; then
+    ~/.nave/nave.sh use 0.4.7
+fi
+
+
 # .zshenv
 # export PATH=$HOME/local/bin:/opt/local/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/opt:local/sbin:/usr/local/sbin:/usr/sbin:/sbin
 # export MANPATH=$HOME/local/man:/opt/local/man:/usr/local/man:/usr/share/man:/usr/X11R6/man
