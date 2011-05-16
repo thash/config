@@ -14,7 +14,7 @@ export CLICOLOR='true'
 export PERL_BADLANG=0
 
 # setting for node
-if [ `ls -a ~ | grep .nave` = ".nave/" ]; then
+if [ "`ls -a ~ | grep .nave`" = ".nave/" ]; then
     ~/.nave/nave.sh use 0.4.7
 fi
 
