@@ -2,7 +2,7 @@ export PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
 
 ### if it's on the local Mac, add my bin dir to PATH
-if [ `uname` = "Darwin" ]; then
+if [ "`uname`" = "Darwin" ]; then
     export PATH=/Users/hash/unix/bin:$PATH
 fi
 
