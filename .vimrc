@@ -232,8 +232,9 @@ inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
 
-
-
+" pathogen-vim settings
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " ------------------------- functions ------------------------- 
 function! GetEFstatus() " {{{1
