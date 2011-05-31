@@ -233,8 +233,15 @@ nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
 
 " pathogen-vim settings
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+runtime! autoload/pathogen.vim
+if exists('g:loaded_pathogen')
+    call pathogen#runtime_append_all_bundles()
+    try
+        call pathogen#helptags()
+    catch /Duplicate tag/
+        " noting
+    endtry
+end
 
 " ------------------------- functions ------------------------- 
 function! GetEFstatus() " {{{1
