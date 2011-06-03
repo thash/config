@@ -187,9 +187,12 @@ nnoremap <space>r :<C-u>!ruby %<CR>
 
 " tabnew by Space-t
 nnoremap <space>t :<C-u>tabnew <C-d>
-" tabmove by Ctrl-h/l
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+
+" Ctrl+ h/l to go/back to file
+nnoremap <C-H> <C-O>
+nnoremap <C-L> gf
+
+" tabmove
 nnoremap <C-Tab> :tabnext<CR>
 nnoremap <C-S-Tab> :tabprevious<CR>
 
@@ -232,8 +235,16 @@ inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
 
-
-
+" pathogen-vim settings
+runtime! autoload/pathogen.vim
+if exists('g:loaded_pathogen')
+    call pathogen#runtime_append_all_bundles()
+    try
+        call pathogen#helptags()
+    catch /Duplicate tag/
+        " noting
+    endtry
+end
 
 " ------------------------- functions ------------------------- 
 function! GetEFstatus() " {{{1

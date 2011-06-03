@@ -10,4 +10,4 @@ do
     fi
 done
 
-source ~/.zshrc
+# source ~/.zshrc
