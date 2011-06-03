@@ -77,7 +77,11 @@ zstyle ':completion:*' menu select=1
  setopt share_history
 
 ### rvm settings
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+### always use Ruby 1.9.2
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then 
+    source $HOME/.rvm/scripts/rvm
+    rvm 1.9.2
+fi
 
 ### refer words from alc using w3c
 function alc() {
