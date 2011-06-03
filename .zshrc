@@ -76,6 +76,9 @@ zstyle ':completion:*' menu select=1
  setopt hist_save_nodups
  setopt share_history
 
+### rvm settings
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
 ### refer words from alc using w3c
 function alc() {
   if [ $# != 0 ]; then
