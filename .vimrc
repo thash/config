@@ -211,6 +211,8 @@ nnoremap <C-o> o<ESC>k
 
 autocmd FileType help nnoremap <buffer> q <C-w>q
 
+au BufRead,BufNewFile *.applescript set filetype=applescript
+
 " AutoCmd
 " autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 "normal! g`\"" | endif
