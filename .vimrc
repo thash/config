@@ -23,6 +23,8 @@ set gdefault " all substitution
 set backupdir=$VIM/tmp,~,.
 set paste
 
+let g:vimproc_dll_path = "/home/hash/.vim/autoload/proc.so"
+
 " Language Dictionaries
 "set dictionary=$VIM/dict/java14.dict
 
@@ -247,6 +249,12 @@ if exists('g:loaded_pathogen')
         " noting
     endtry
 end
+
+" VimShell aliases
+nnoremap <silent> ,is :VimShell<CR>
+nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+vmap <silent> ,ss :VimShellSendString<CR>
 
 " ------------------------- functions ------------------------- 
 function! GetEFstatus() " {{{1
