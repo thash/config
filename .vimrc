@@ -59,6 +59,11 @@ highlight FoldColumn guibg=darkgrey guifg=white
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
+" GUI settings
+if has ('gui_macvim')
+    colorscheme slate
+    set transparency=20
+endif
 
 " Automatic recognition of Encoding{{{1
 if &encoding !=# 'utf-8'
