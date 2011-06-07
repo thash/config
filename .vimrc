@@ -45,6 +45,15 @@ filetype on
 filetype indent on 
 filetype plugin on
 
+" omni completion setting
+autocmd FileType *
+\   if &l:omnifunc == ''
+\ |   setlocal omnifunc=syntaxcomplete#Complete
+\ | endif
+
+" Rails settings
+let g:rubycomplete_rails = 1
+
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 colorscheme darkblue "murphy, desert
