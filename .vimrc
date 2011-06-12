@@ -193,6 +193,11 @@ nnoremap <space>j <C-W>j
 nnoremap <space>k <C-W>k
 nnoremap <space>h <C-W>h
 nnoremap <space>l <C-W>l
+" move the window to another position
+nnoremap <space>J <C-W>J
+nnoremap <space>K <C-W>K
+nnoremap <space>H <C-W>H
+nnoremap <space>L <C-W>L
 " window width/height modification
 nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
@@ -265,12 +270,13 @@ if exists('g:loaded_pathogen')
 end
 
 " VimShell aliases
+" TODO: add loaded_vimshell judgement
 nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 vmap <silent> ,ss :VimShellSendString<CR>
 
-" ------------------------- functions ------------------------- 
+" ------------------------- functions -------------------------
 function! GetEFstatus() " {{{1
 " GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
 " modified...original-> http://memo.officebrook.net/20050512.html 
@@ -305,69 +311,22 @@ function! GetEFstatus() " {{{1
 endfunction
 "}}}1
 
-" ------------------------- disabled ------------------------- 
-"disabled {{{1
-
-"vim-latex {{{2
-" REQUIRED. This makes vim invoke latex-suite when you open a tex file.
-filetype plugin on
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-" \ -> /
-" set shellslash
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse latex-suite. Set your grep
-" program to alway generate a file-name.
-set grepprg=grep\ -nH\ $*
-" OPTIONAL: This enables automatic indentation as you type. 
-" }}}2
-" Align plugin setting, maybe {{{2
-" let g:Align_xstrlen = 3
-" }}}2
-
-" vnoremap <F1> :s/./&/g<CR>
-
-" Highlight ZENKAKU Space and end of line 
-"function! s:HighlightSpaces()
-"	syntax match WideSpace /¡¡/ containedin=ALL
-"	syntax match EOLSpace /\s\+$/ containedin=ALL
-"endf
-"call s:HighlightSpaces()
-"autocmd WinEnter * call s:HighlightSpaces()
-"highlight WideSpace ctermbg=blue guibg=blue
-"highlight EOLSpace ctermbg=red guibg=red
-
-" autoconplete+ from id:Ubuntu {{{2
-" Vim - Hatena::Diary::Ubuntu 
-" <http://d.hatena.ne.jp/Ubuntu/20080124/1201139267>
-"set completeopt=menuone,preview
-"
-"function! CompleteWithoutInsert()
-"	return "\<C-n>\<C-r>=pumvisible() ? \"\\<C-P>\\<C-N>\\<C-P>\": \"\"\<CR>"
-"endfunction
-"
-"inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : CompleteWithoutInsert()
-"
-"let letter = "a"
-"while letter <=# "z"
-"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-"	let letter = nr2char(char2nr(letter) + 1)
-"endwhile
-"let letter = "A"
-"while letter <=# "Z"
-"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-"	let letter = nr2char(char2nr(letter) + 1)
-"endwhile
-"let letter = "0"
-"while letter <=# "9"
-"	execute 'inoremap <expr> ' letter ' "' . letter . '" . (pumvisible() ? "" : CompleteWithoutInsert())'
-"	let letter = nr2char(char2nr(letter) + 1)
-"endwhile
-"
-"inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
-"set lazyredraw
-" }}}2
-
-" }}}1
+"display end of line
+set list
+set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<,eol:$
+function! SOLSpaceHilight()
+    syntax match SOLSpace "^\s\+" display containedin=ALL
+    highlight SOLSpace term=underline ctermbg=LightRed
+endf
+function! JISX0208SpaceHilight()
+    syntax match JISX0208Space "ã€€" display containedin=ALL
+    highlight JISX0208Space term=underline ctermbg=brown
+endf
+if has("syntax")
+    syntax on
+        augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call SOLSpaceHilight()
+        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+    augroup END
+endif
