@@ -3,18 +3,21 @@ autoload -U colors; colors
 setopt prompt_subst
 unsetopt transient_rprompt
 
+# define prompt color
 if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
-    PROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}\
+    color_ok="blue"; color_ng="red"
+else
+    color_ok="green"; color_ng="yellow"
+fi
+
+# prompt format
+    PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
 [%h]%n%#\
 %{$reset_color%} '
-    RPROMPT='%{%(!.$bg[default].%(?.$bg[blue].$bg[red]))%}\
+    RPROMPT='`rprompt-git-current-branch`%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
 %(4~,%-1~/.../%2~,%~) [`date +%Y/%m/%d` %T]@%m\
 %{$reset_color%}'
-SPROMPT="%{${bg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
-else
-    PROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}%n@%m:%(5~,%-2~/.../%2~,%~)%#%{$reset_color%} '
-    RPROMPT='%{%(!.$bg[default].%(?.$bg[green].$bg[yellow]))%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
-fi
+    SPROMPT="%{${bg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 
 #Environmant Variables
 export LANG=ja_JP.UTF-8
@@ -144,3 +147,31 @@ fi
 
 #}}}1
 
+### display git branch on the prompt
+autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
+
+function rprompt-git-current-branch {
+  local name st color gitdir action
+  if [[ "$PWD" =~ '/¥.git(/.*)?$' ]]; then
+    return
+  fi
+  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+  if [[ -z $name ]]; then
+    return
+  fi
+
+  gitdir=`git rev-parse --git-dir 2> /dev/null`
+  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+
+  st=`git status 2> /dev/null`
+  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+    color=%F{green}
+  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+    color=%F{yellow}
+  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+    color=%B%F{red}
+  else
+     color=%F{red}
+  fi
+  echo "$color$name$action%f%b "
+}
