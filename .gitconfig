@@ -14,9 +14,10 @@
     autocrlf = input
 
 [alias]
-    log-g = log --graph --pretty=format:'%Cblue%h %Cgreen%ci %Cblue%m %Creset%s'
+    log-g = log --graph --pretty=format:'%Cblue%h %Cred%an %Cgreen%ci %Cblue%m %Creset%s %Cred%d'
     st = status -s -b
     br = branch
+    co = checkout
     re = remote -v
     a = add
     c = commit
@@ -28,3 +29,5 @@
     d3 = diff HEAD~~~
     d4 = diff HEAD~~~~
     d5 = diff HEAD~~~~~
+[apply]
+	whitespace = nowarn
