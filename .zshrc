@@ -53,6 +53,7 @@ if [ `uname` = "Darwin" ]; then
     alias calc='ruby ~/unix/bin/calc.rb'
     alias rest='sudo vim /etc/hosts'
     alias ssh2relics='ssh hash@10.0.1.5'
+    alias mysql='/opt/local/bin/mysql5'
 fi #}}}1
 
 # Set Options
