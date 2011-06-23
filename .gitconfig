@@ -14,7 +14,7 @@
     autocrlf = input
 
 [alias]
-    log-g = log --graph --pretty=format:'%Cblue%h %Cred%an %Cgreen%ci %Cblue%m %Creset%s %Cred%d'
+    logg = log --graph --date-order --pretty=format:'%Cblue%h %Cred%an %Cgreen%ci %Cblue%m %Creset%s %Cred%d'
     st = status -s -b
     br = branch
     co = checkout
