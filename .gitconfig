@@ -22,6 +22,7 @@
     a = add
     c = commit
     # diff
+    d  = diff
     dm = diff master
     dc = diff --cached
     d1 = diff HEAD~
