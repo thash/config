@@ -88,7 +88,7 @@ zstyle ':completion:*' menu select=1
 ### always use Ruby 1.9.2
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then 
     source $HOME/.rvm/scripts/rvm
-    rvm 1.9.2
+    rvm 1.9.2-p180
 fi
 
 ### refer words from alc using w3c
