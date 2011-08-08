@@ -60,6 +60,8 @@ cmap <C-Space> <ESC>
 cmap <C-n> <Tab>
 cmap <C-p> <S-Tab>
 
+noremap <C-q> <S-ESC>
+
 "" Hint Style
 " set hintstyle+= font-size:10px; // for 2.0 syntax
 highlight Hint font-size:18px; font-family:monospace; opacity:0.70; color:white; background-color:green; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:7px 0px 0px 0px; position:absolute; 
