@@ -1,10 +1,31 @@
+" Vundle settings
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" Define active plugins Vundle
+Bundle 'fugitive.vim'
+Bundle 'surround.vim'
+Bundle 'ruby.vim'
+Bundle 'eruby.vim'
+Bundle 'rails.vim'
+Bundle 'railscasts'
+Bundle 'Align'
+Bundle 'project.tar.gz'
+Bundle 'ruby-matchit'
+Bundle 'catn.vim'
+
+filetype plugin indent on
+filetype off
+
 set encoding=utf8
 set fileencoding=utf8
 set autoindent
-set cursorline
+set nocursorline
 set expandtab
 set foldmethod=marker
-set runtimepath+=$VIM/hatena
+set tags=./tags
 set incsearch
 set ignorecase
 set laststatus=2
@@ -41,8 +62,8 @@ endif
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 syntax on
-filetype on
-filetype indent on 
+" filetype on
+filetype indent on
 filetype plugin on
 
 " omni completion setting
@@ -56,7 +77,7 @@ let g:rubycomplete_rails = 1
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-colorscheme darkblue "murphy, desert
+colorscheme desert "murphy, darkblue 
 highlight LineNr ctermfg=darkgray
 highlight Visual ctermfg=darkblue ctermbg=grey
 highlight VisualNOS ctermfg=darkblue ctermbg=grey
@@ -276,6 +297,15 @@ nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 vmap <silent> ,ss :VimShellSendString<CR>
 
+" fugitive.vim settings
+nnoremap <Space>gd :<C-u>Gdiff<Enter>
+nnoremap <Space>gs :<C-u>Gstatus<Enter>
+nnoremap <Space>gl :<C-u>Glog<Enter>
+nnoremap <Space>ga :<C-u>Gwrite<Enter>
+nnoremap <Space>gc :<C-u>Gcommit<Enter>
+nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
+nnoremap <Space>gb :<C-u>Gblame<Enter>
+
 " ------------------------- functions -------------------------
 function! GetEFstatus() " {{{1
 " GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
@@ -313,7 +343,7 @@ endfunction
 
 "display end of line
 set list
-set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<,eol:$
+set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
 function! SOLSpaceHilight()
     syntax match SOLSpace "^\s\+" display containedin=ALL
     highlight SOLSpace term=underline ctermbg=LightRed
