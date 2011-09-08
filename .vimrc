@@ -15,9 +15,15 @@ Bundle 'Align'
 Bundle 'project.tar.gz'
 Bundle 'ruby-matchit'
 Bundle 'catn.vim'
+Bundle 'unite.vim'
+Bundle 'quickrun.vim'
+"for quickrun outputter=browser
+Bundle 'open-browser.vim'
+Bundle 'Markdown'
+Bundle 'snipMate'
 
 filetype plugin indent on
-filetype off
+filetype off "here off, and after vundle finish, on again.
 
 set encoding=utf8
 set fileencoding=utf8
@@ -90,12 +96,6 @@ highlight FoldColumn guibg=darkgrey guifg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
-
-" GUI settings
-if has ('gui_macvim')
-    colorscheme slate
-    set transparency=20
-endif
 
 " Automatic recognition of Encoding{{{1
 if &encoding !=# 'utf-8'
@@ -224,8 +224,9 @@ nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
 nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
-" execute current window as a Ruby programm
-nnoremap <space>r :<C-u>!ruby %<CR>
+" execute current window using QuickRun
+nnoremap <space>r :<C-u>QuickRun<CR>
+nnoremap <space>br :<C-u>QuickRun -outputter browser<CR>
 
 " tabnew by Space-t
 nnoremap <space>t :<C-u>tabnew <C-d>
@@ -305,6 +306,24 @@ nnoremap <Space>ga :<C-u>Gwrite<Enter>
 nnoremap <Space>gc :<C-u>Gcommit<Enter>
 nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
+
+" unite.vim settings
+let g:unite_enable_start_insert=1
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+
 
 " ------------------------- functions -------------------------
 function! GetEFstatus() " {{{1

@@ -4,12 +4,13 @@ if has('gui_macvim')
 
   cd ~/Desktop
   set showtabline=2
-  set guifont=Osaka-Mono:h11
+  set guifont=Osaka-Mono:h10
   " no scroll/tool bar
   set go=egmtc
-  set transparency=0
+  set transparency=20
   highlight LineNr ctermfg=darkgray
 
+  colorscheme desert
   " No Full Screen size
   set lines=54
   set columns=90
@@ -18,7 +19,7 @@ if has('gui_macvim')
   ":macaction zoomAll:
   "map <silent> gw :macaction selectNextWindow:
   "map <silent> gW :macaction selectPreviousWindow:
-  
+
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
     set guifont=meiryo:h16:cSHIFTJIS
