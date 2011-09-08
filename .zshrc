@@ -41,12 +41,17 @@ alias vi='nocorrect vim' vim='nocorrect vim'
 alias rails='nocorrect rails'
 alias r='rails'
 alias cl='clear'
+
+# Aliases
 alias g='nocorrect git'
 alias gst='g st'
 alias st='g st'
 alias glg='g logg | head'
-alias ssh2sakura='ssh takuyahashimoto@112.78.112.93'
-alias ssh2relics_pub='ssh hash@www.memerelics.net'
+alias ga='git add'
+alias gc='git commit -m'
+alias gd='git diff'
+
+alias rake='rake _0.8.7_'
 
 # Local Mac {{{1
 if [ `uname` = "Darwin" ]; then
@@ -57,7 +62,6 @@ if [ `uname` = "Darwin" ]; then
     alias calc='ruby ~/unix/bin/calc.rb'
     alias rest='sudo vim /etc/hosts'
     alias ssh2relics='ssh hash@10.0.1.5'
-    alias mysql='/opt/local/bin/mysql5'
 fi #}}}1
 
 # Set Options
