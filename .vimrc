@@ -80,6 +80,9 @@ endif
 " automatically move to last line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
+" automatically remove spaces end of the line
+autocmd BufWritePre * :%s/\s\+$//ge
+
 syntax on
 " filetype on
 filetype indent on
@@ -96,7 +99,7 @@ let g:rubycomplete_rails = 1
 
 " Color Settings
 " execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-colorscheme desert "murphy, darkblue 
+colorscheme desert "murphy, darkblue
 highlight LineNr ctermfg=darkgray
 highlight Visual ctermfg=darkblue ctermbg=grey
 highlight VisualNOS ctermfg=darkblue ctermbg=grey
@@ -270,7 +273,7 @@ autocmd FileType help nnoremap <buffer> q <C-w>q
 au BufRead,BufNewFile *.applescript set filetype=applescript
 
 " AutoCmd
-" autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
+" autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe
 "normal! g`\"" | endif
 
 " Map Leader (,) settings  {{{1
@@ -341,7 +344,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " ------------------------- functions -------------------------
 function! GetEFstatus() " {{{1
 " GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
-" modified...original-> http://memo.officebrook.net/20050512.html 
+" modified...original-> http://memo.officebrook.net/20050512.html
 	let str = ''
 	let fenc = ''
 	if &fileformat == 'unix'
