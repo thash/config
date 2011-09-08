@@ -50,6 +50,19 @@ set gdefault " all substitution
 set backupdir=$VIM/tmp,~,.
 set paste
 
+" cursorline settings
+set cursorline
+
+  augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+  augroup END
+
+:hi clear CursorLine
+:hi CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
+
 let g:vimproc_dll_path = "/home/hash/.vim/autoload/proc.so"
 
 " Language Dictionaries
