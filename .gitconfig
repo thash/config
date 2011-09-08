@@ -32,3 +32,5 @@
     d5 = diff HEAD~~~~~
 [apply]
 	whitespace = nowarn
+[redmine]
+	apiKey = cd212644cdee5d585e48302289bb7f74e2cfa14f
