@@ -1,10 +1,5 @@
-export PATH=$HOME/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
-
-### if it's on the local Mac, add my bin dir to PATH
-if [ "`uname`" = "Darwin" ]; then
-    export PATH=/Users/hash/unix/bin:$PATH
-fi
 
 #first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTF-8
@@ -22,7 +17,7 @@ fi
 # .zshenv
 # export PATH=$HOME/local/bin:/opt/local/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/opt:local/sbin:/usr/local/sbin:/usr/sbin:/sbin
 # export MANPATH=$HOME/local/man:/opt/local/man:/usr/local/man:/usr/share/man:/usr/X11R6/man
-#  
+#
 #  export LANG=ja_JP.UTF-8
 #  export LC_ALL="$LANG"
 #  export EDITOR=vim
