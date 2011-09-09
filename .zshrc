@@ -65,7 +65,7 @@ if [ `uname` = "Darwin" ]; then
 fi #}}}1
 
 # Set Options
-autoload -U compinit 
+autoload -U compinit
 compinit
 setopt auto_cd
 setopt auto_pushd
@@ -79,7 +79,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
 
-# History 
+# History
 # by default, display latest histories.
  HISTFILE=${HOME}/.zsh_history
  SAVEHIST=500000
@@ -93,7 +93,7 @@ zstyle ':completion:*' menu select=1
 
 ### rvm settings
 ### always use Ruby 1.9.2
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then 
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
     rvm 1.9.2-p180
 fi
@@ -108,7 +108,7 @@ function alc() {
 }
 
 # screen settings {{{1
-# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140 
+# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 
 if [ "$TERM" = "screen" ]; then
 chpwd () {
@@ -116,7 +116,7 @@ chpwd () {
 #    _update_rprompt
     echo -n "_`dirs`\\"
     ls
-} 
+}
 
 preexec() {
 # see [zsh-workers:13180]
@@ -131,7 +131,7 @@ preexec() {
             cmd=(builtin jobs -l $cmd[2])
                 fi
                 ;;
-    %*) 
+    %*)
         cmd=(builtin jobs -l $cmd[1])
         ;;
     cd)

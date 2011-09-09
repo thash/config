@@ -13,7 +13,7 @@ if has('gui_macvim')
   colorscheme desert
   " No Full Screen size
   set lines=54
-  set columns=90
+  set columns=150
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:

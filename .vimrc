@@ -1,3 +1,4 @@
+nmap <C-l> <Plug>(openbrowser-open)
 " Vundle settings
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -21,6 +22,7 @@ Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
 Bundle 'Markdown'
 Bundle 'snipMate'
+Bundle 'TwitVim'
 
 filetype plugin indent on
 filetype off "here off, and after vundle finish, on again.
