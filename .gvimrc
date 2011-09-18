@@ -4,7 +4,7 @@ if has('gui_macvim')
 
   cd ~/Desktop
   set showtabline=2
-  set guifont=Osaka-Mono:h10
+  set guifont=Osaka-Mono:h12
   " no scroll/tool bar
   set go=egmtc
   set transparency=20

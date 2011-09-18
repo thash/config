@@ -23,6 +23,8 @@ Bundle 'open-browser.vim'
 Bundle 'Markdown'
 Bundle 'snipMate'
 Bundle 'TwitVim'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 
 filetype plugin indent on
 filetype off "here off, and after vundle finish, on again.
@@ -65,7 +67,7 @@ set cursorline
 :hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-let g:vimproc_dll_path = "/home/hash/.vim/autoload/proc.so"
+let g:vimproc_dll_path = "$HOME/.vim/autoload/proc.so"
 
 " Language Dictionaries
 "set dictionary=$VIM/dict/java14.dict
@@ -225,7 +227,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " go to another window
 nnoremap <space>j <C-W>j
@@ -242,7 +244,14 @@ nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
 nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
+
 " execute current window using QuickRun
+augroup MyRSpec
+    autocmd!
+    autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+let g:quickrun_config = {}
+let g:quickrun_config['ruby.rspec'] = {'command': 'bash -l -c "source $HOME/.rvm/scripts/rvm"; bundle exec rspec spec/'}
 nnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>br :<C-u>QuickRun -outputter browser<CR>
 
@@ -296,7 +305,10 @@ inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 "}}}1
 
 nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
-nnoremap <Leader>vs :tabnew $MYVIMRC<CR>
+nnoremap <Leader>vs :vs $MYVIMRC<CR>
+
+"FuzzyFinder
+nnoremap <Leader>ff :FufFile **/<CR>
 
 " pathogen-vim settings
 runtime! autoload/pathogen.vim
