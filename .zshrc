@@ -38,7 +38,6 @@ alias pgrep='ps aux | grep '
 alias nameru='find . -name "*" -print | xargs grep '
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
-alias rails='nocorrect rails'
 alias r='rails'
 alias cl='clear'
 
@@ -51,7 +50,9 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gd='git diff'
 
-alias rake='rake _0.8.7_'
+alias be='bundle exec'
+alias cuc='bundle exec cucumber 2>/dev/null'
+alias rsp='bundle exec rspec'
 
 # Local Mac {{{1
 if [ `uname` = "Darwin" ]; then
