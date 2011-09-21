@@ -257,9 +257,9 @@ augroup MyRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 let g:quickrun_config = {}
-let g:quickrun_config['ruby.rspec'] = {'command': 'bash -l -c "source $HOME/.rvm/scripts/rvm"; bundle exec rspec spec/'}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 nnoremap <space>r :<C-u>QuickRun<CR>
-nnoremap <space>br :<C-u>QuickRun -outputter browser<CR>
+nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 
 " tabnew by Space-t
 nnoremap <space>t :<C-u>tabnew <C-d>
