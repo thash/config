@@ -1,7 +1,10 @@
-nmap <C-l> <Plug>(openbrowser-open)
 " Vundle settings
+set nocompatible
+filetype off "here off, and after vundle finish, on again.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+nmap <C-l> <Plug>(openbrowser-open)
 
 Bundle 'gmarik/vundle'
 
@@ -25,9 +28,10 @@ Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'ref.vim'
+Bundle 'neocomplcache'
 
 filetype plugin indent on
-filetype off "here off, and after vundle finish, on again.
 
 set encoding=utf8
 set fileencoding=utf8
@@ -44,7 +48,6 @@ set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
 set shiftwidth=4
 set tabstop=4
 set visualbell
-set nocompatible
 set noswapfile
 set nowrapscan
 set helplang=ja,en
@@ -80,6 +83,9 @@ endif
 
 " FYI: how to check Vim version, extentions
 " http://vim-users.jp/2010/01/hack115/
+
+" automatically move to directory file exist
+autocmd BufEnter * call ChangeDir()
 
 " automatically move to last line
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
@@ -409,3 +415,10 @@ if has("syntax")
         autocmd BufNew,BufRead * call JISX0208SpaceHilight()
     augroup END
 endif
+
+" move to current (opened file exists in) dir
+function! ChangeDir()
+    let _dir = expand("%:p:h")
+    exec "cd " . _dir
+    unlet _dir
+endfunction

@@ -35,11 +35,11 @@ alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep '
 alias pgrep='ps aux | grep '
-alias nameru='find . -name "*" -print | xargs grep '
+alias nameru='find . -name "*" -print | xargs grep -n'
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
 alias r='rails'
-alias cl='clear'
+alias tailf='tail -f'
 
 # Aliases
 alias g='nocorrect git'
