@@ -1,5 +1,4 @@
 " Vundle ============================================ {{{1
-
 " Vundle initialization {{{2
 
 set nocompatible
@@ -10,14 +9,13 @@ call vundle#rc()
 nmap <C-l> <Plug>(openbrowser-open)
 Bundle 'gmarik/vundle'
 
-" }}}2
 " Vundle Define active plugins {{{2
 
 Bundle 'fugitive.vim'
 Bundle 'surround.vim'
 Bundle 'ruby.vim'
 Bundle 'eruby.vim'
-Bundle 'rails.vim'
+Bundle 'tpope/vim-rails'
 Bundle 'railscasts'
 Bundle 'Align'
 Bundle 'project.tar.gz'
@@ -33,20 +31,17 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'ref.vim'
 Bundle 'neocomplcache'
+Bundle 'Changed'
 
-" }}}2
-
-" }}}1
 
 " General ============================================ {{{1
-
 " set someting {{{2
 set encoding=utf8
 set fileencoding=utf8
 set autoindent
-set nocursorline
 set expandtab
 set foldmethod=marker
+set foldlevel=1
 set tags=./tags
 set incsearch
 set ignorecase
@@ -55,16 +50,15 @@ set number
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
 set shiftwidth=4
 set tabstop=4
-set visualbell
 set noswapfile
 set nowrapscan
 set helplang=ja,en
 set splitbelow
 set splitright
+set cmdwinheight=12
 set gdefault " all substitution
-set backupdir=$VIM/tmp,~,.
+set backupdir& backupdir+=$VIM/tmp,.,~
 set paste
-" }}}2
 " cursorline settings {{{2
 set cursorline
 
@@ -77,30 +71,39 @@ set cursorline
 :hi clear CursorLine
 :hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
-" }}}2
+
 " filetype settings + additional {{{2
 filetype plugin indent on
 syntax on
-autocmd FileType help nnoremap <buffer> q <C-w>q
-au BufRead,BufNewFile *.applescript set filetype=applescript
-" omni completion setting
+" filetype autocmd {{{3
+augroup MyAutoCmdFileType
+    autocmd! MyAutoCmdFileType
+    autocmd FileType ruby setl autoindent
+    " smart indent is disabled when paste is on
+    autocmd FileType ruby setl nopaste
+    autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
+    autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
+    autocmd FileType help nnoremap <buffer> q <C-w>q
+    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+augroup END
+" omni completion setting {{{3
 autocmd FileType *
 \   if &l:omnifunc == ''
 \ |   setlocal omnifunc=syntaxcomplete#Complete
 \ | endif
-" }}}2
 " autocmd definitions {{{2
+augroup MyAutoCmdGeneral
+    autocmd! MyAutoCmdGeneral
+    " automatically move to directory file exist
+    " autocmd BufEnter * call ChangeDir()
 
-" automatically move to directory file exist
-autocmd BufEnter * call ChangeDir()
+    " automatically move to last line
+    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" automatically move to last line
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+    " automatically remove spaces end of the line
+    autocmd BufWritePre * :%s/\s\+$//ge
+augroup END
 
-" automatically remove spaces end of the line
-autocmd BufWritePre * :%s/\s\+$//ge
-
-" }}}2
 " New undo-persistence feature of vim73 {{{2
 " FYI: how to check Vim version, extentions
 " http://vim-users.jp/2010/01/hack115/
@@ -108,15 +111,13 @@ if has('persistent_undo')
     set undofile
     set undodir=./.undofiles,$VIM/.undofiles
 endif
-" }}}2
 
-" }}}1
+
 
 " Color/Layout Settings ============================================ {{{1
-
 " colorscheme {{{2
 colorscheme desert "murphy, darkblue
-" }}}2
+
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 highlight LineNr ctermfg=darkgray
@@ -131,7 +132,6 @@ highlight FoldColumn guibg=darkgrey guifg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
-" }}}2
 " display listchars (spaces at end of line, tab etc) {{{2
 set list
 set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
@@ -145,26 +145,20 @@ function! JISX0208SpaceHilight()
 endf
 if has("syntax")
     syntax on
-        augroup invisible
+    augroup invisible
         autocmd! invisible
         autocmd BufNew,BufRead * call SOLSpaceHilight()
         autocmd BufNew,BufRead * call JISX0208SpaceHilight()
     augroup END
 endif
-" }}}2
 
-" }}}1
+
 
 " Key remappings ============================================ {{{1
-
 " general keys {{{2
-"inoremap <C-Space> <C-[>
-"cnoremap <C-Space> <C-[>
-"vnoremap <C-Space> <C-[>
 inoremap <C-Space> <C-[>
 cnoremap <C-Space> <C-[>
 nnoremap <C-Space> <C-[>
-nnoremap <Space> <C-[>
 nnoremap <F1> <C-[>
 inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
@@ -174,7 +168,7 @@ inoremap <ESC> <ESC>:set iminsert=0<CR>
 nnoremap ; :
 vnoremap ; :
 
-" move by one display line {{{3
+" move by one display line
 noremap j gj
 noremap k gk
 noremap 0 g0
@@ -183,7 +177,6 @@ noremap gj j
 noremap gk k
 noremap g0 0
 noremap g$ $
-"}}}3
 
 nnoremap <C-a> 0
 nnoremap <C-e> $
@@ -221,16 +214,34 @@ nnoremap <space>- <C-W>5-
 nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
 
-" tabnew by Space-t
+" tabnew, tabmove
 nnoremap <space>t :<C-u>tabnew <C-d>
+nnoremap <C-Tab> :tabnext<CR>
+nnoremap <C-S-Tab> :tabprevious<CR>
+
+" Open/Close a fold.
+nnoremap fo za
+nnoremap FO zR
+nnoremap fO zM
 
 " Ctrl+ h/l to go/back to file
 nnoremap <C-H> <C-O>
 nnoremap <C-L> gf
 
-" tabmove
-nnoremap <C-Tab> :tabnext<CR>
-nnoremap <C-S-Tab> :tabprevious<CR>
+" tags
+nnoremap tl  <C-]>
+vnoremap tl  <C-]>
+nnoremap tt  :<C-u>tag<CR>
+nnoremap th  :<C-u>pop<CR>
+nnoremap tj  :<C-u>tags<CR>
+
+" select last modified line (gm has a original meaning)
+nnoremap gm '.V
+
+" mark, jump
+nnoremap <space>ma :<C-u>marks<CR>
+nnoremap <space>ms m'
+nnoremap <space>mj ''zz
 
 " buffer control by arrow keys
 "nnoremap <DOWN>  :<C-u>bdelete<CR>
@@ -245,13 +256,9 @@ nnoremap <space>q :<C-u>quit<CR>
 " insert a blank line by 1 stroke
 nnoremap <C-o> o<ESC>k
 
-" Open/Close a fold.
-nnoremap <space>h  zc
-nnoremap <space>l  zo
-
-" }}}2 -- general key mappings
 " Map Leader (,) settings  {{{2
 let mapleader=','
+
 " insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
 inoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
@@ -266,16 +273,12 @@ nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :vs $MYVIMRC<CR>
 " for BrainPhantom
 inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
-"}}}2
-
-" }}}1
 
 " plugin settings ============================================ {{{1
-
 " QuickRun settings {{{2
 " execute current window using QuickRun
-augroup MyRSpec
-    autocmd!
+augroup MyAutoCmdRSpec
+    autocmd! MyAutoCmdRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 let g:quickrun_config = {}
@@ -283,7 +286,7 @@ let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 nnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 
-" }}}2
+
 " unite.vim settings {{{2
 let g:unite_enable_start_insert=1
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
@@ -300,7 +303,7 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
-" }}}2
+
 " VimShell settings and aliases {{{2
 
 let g:vimproc_dll_path = "$HOME/.vim/autoload/proc.so"
@@ -310,7 +313,7 @@ nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 vmap <silent> ,ss :VimShellSendString<CR>
-" }}}2
+
 " fugitive.vim settings {{{2
 nnoremap <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <Space>gs :<C-u>Gstatus<Enter>
@@ -319,18 +322,16 @@ nnoremap <Space>ga :<C-u>Gwrite<Enter>
 nnoremap <Space>gc :<C-u>Gcommit<Enter>
 nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
-" }}}2
+
 " Rails settings {{{2
 let g:rubycomplete_rails = 1
-" }}}2
+
 "FuzzyFinder settings {{{2
 nnoremap <Leader>ff :FufFile **/<CR>
-" }}}2
 
-" }}}1
+
 
 " Functions my/someone's ============================================ {{{1
-
 " Automatic recognition of Encoding {{{2
 if &encoding !=# 'utf-8'
   set encoding=japan
@@ -389,36 +390,36 @@ endif
 function! GetEFstatus() " {{{2
 " GetEFstatus is a function which get file encording and fileformat, then abbreviate them.
 " modified...original-> http://memo.officebrook.net/20050512.html
-	let str = ''
-	let fenc = ''
-	if &fileformat == 'unix'
-		"let str = '[U]'
-		let str = 'unix'
-	else
-		"let str = '[' . &fileformat . ']'
-		let str = &fileformat
-	endif
-	if &fileencoding != ''
-		if &fileencoding =~# 'iso-2022-jp'
-			let fenc = 'iso'
-		elseif &fileencoding == 'utf-8'
-			let fenc = 'utf'
-		elseif &fileencoding == 'cp932'
-			let fenc = 'S'
-		elseif &fileencoding =~# 'euc-jp'
-			let fenc = 'euc'
-		else
-			let fenc = &fileencoding
-		endif
-		"let str = str . '[' . fenc . ']'
-		let str = str . '-' . fenc
-	else
-		let str = str . '[-]'
-	endif
-	unlet fenc
-	return str
+    let str = ''
+    let fenc = ''
+    if &fileformat == 'unix'
+        "let str = '[U]'
+        let str = 'unix'
+    else
+        "let str = '[' . &fileformat . ']'
+        let str = &fileformat
+    endif
+    if &fileencoding != ''
+        if &fileencoding =~# 'iso-2022-jp'
+            let fenc = 'iso'
+        elseif &fileencoding == 'utf-8'
+            let fenc = 'utf'
+        elseif &fileencoding == 'cp932'
+            let fenc = 'S'
+        elseif &fileencoding =~# 'euc-jp'
+            let fenc = 'euc'
+        else
+            let fenc = &fileencoding
+        endif
+        "let str = str . '[' . fenc . ']'
+        let str = str . '-' . fenc
+    else
+        let str = str . '[-]'
+    endif
+    unlet fenc
+    return str
 endfunction
-" }}}2
+
 " :TabpageCD {{{2
 " from http://kana.github.com/config/vim/
 " command! -nargs=? TabpageCD
@@ -432,13 +433,13 @@ endfunction
 "         \ | execute 'cd' fnameescape(t:cwd)
 "
 " AlterCommand cd  TabpageCD
-" }}}2
+
+
+
 " move to current (opened file exists in) dir {{{2
 function! ChangeDir()
     let _dir = expand("%:p:h")
     exec "cd " . _dir
     unlet _dir
 endfunction
-" }}}2
 
-" }}}1
