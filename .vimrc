@@ -31,7 +31,7 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'ref.vim'
 Bundle 'neocomplcache'
-Bundle 'Changed'
+" Bundle 'Changed'
 
 
 " General ============================================ {{{1
@@ -55,9 +55,10 @@ set nowrapscan
 set helplang=ja,en
 set splitbelow
 set splitright
+set visualbell t_vb=
 set cmdwinheight=12
 set gdefault " all substitution
-set backupdir& backupdir+=$VIM/tmp,.,~
+set backupdir=~/tmp,$VIM/tmp
 set paste
 " cursorline settings {{{2
 set cursorline
@@ -102,6 +103,9 @@ augroup MyAutoCmdGeneral
 
     " automatically remove spaces end of the line
     autocmd BufWritePre * :%s/\s\+$//ge
+
+    " automatically add timestamp to backup files
+    autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
 augroup END
 
 " New undo-persistence feature of vim73 {{{2
@@ -224,6 +228,9 @@ nnoremap fo za
 nnoremap FO zR
 nnoremap fO zM
 
+" Open help
+nnoremap <C-Y> :<C-u>h<space>
+
 " Ctrl+ h/l to go/back to file
 nnoremap <C-H> <C-O>
 nnoremap <C-L> gf
@@ -273,6 +280,9 @@ nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :vs $MYVIMRC<CR>
 " for BrainPhantom
 inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
+
+" grep and get titles (markdown)
+nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
 " plugin settings ============================================ {{{1
 " QuickRun settings {{{2
@@ -328,7 +338,7 @@ let g:rubycomplete_rails = 1
 
 "FuzzyFinder settings {{{2
 nnoremap <Leader>ff :FufFile **/<CR>
-
+let g:fuf_file_exclude = '\v\~$|vendor/plugins($|[/\\])|pubic/(images|stylesheets)|\.(o|exe|bak|orig|swp|gif|png|jpg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
 
 " Functions my/someone's ============================================ {{{1

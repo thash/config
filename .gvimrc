@@ -17,8 +17,9 @@ if has('gui_macvim')
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:
-  "map <silent> gw :macaction selectNextWindow:
-  "map <silent> gW :macaction selectPreviousWindow:
+
+  set visualbell t_vb=
+
 
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
