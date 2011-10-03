@@ -1,20 +1,16 @@
-" 2011/02/15
-
-"settings
+"settings {{{2
+set runtimepath=$HOME/.vimperator
 set visualbell
-set titlestring=Firefox
-set complete=l
-set wildoptions=auto
-set go=
-" set showtabline=0
-set guioptions+=n
+set titlestring=ViFox
 set complete=sl
-set wildoptions=auto
+set gui=
 set newtab=all
 set nextpattern+=next
 set previouspattern+=prev
 set previouspattern+=previous
 
+
+"key mappings {{{2
 map <BS> H
 noremap j 10j
 noremap k 10k
@@ -27,30 +23,8 @@ noremap l <C-n>
 map <S-Left> :tabmove! -1<CR>
 map <S-Right> :tabmove! +1<CR>
 
-" map j 5<C-e>
-" map k 5<C-y>
-
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
-
-
-" as a Hatener
-"" add a hatena bookmark.
-map a <esc>:sbm<Space>[
-map e <esc>:eijiro<Space>
-map gm <esc>mg G `
-
-" Cut & Copy & Paste, select all, and Redo.
-inoremap <C-a> <C-v><C-a>
-inoremap <C-z> <C-v><C-z>
-inoremap <C-x> <C-v><C-x>
-inoremap <C-c> <C-v><C-c>
-inoremap <C-v> <C-v><C-v>
-cnoremap <C-a> <C-v><C-a>
-cnoremap <C-z> <C-v><C-z>
-cnoremap <C-x> <C-v><C-x>
-cnoremap <C-c> <C-v><C-c>
-cnoremap <C-v> <C-v><C-v>
 
 noremap _ ma
 noremap } `a
@@ -62,11 +36,35 @@ cmap <C-p> <S-Tab>
 
 noremap <C-q> <S-ESC>
 
-"" Hint Style
+
+" Hatena Settings {{{3
+map a <esc>:sbm<Space>[
+map e <esc>:eijiro<Space>
+map gm <esc>mg G `
+
+
+" Cut & Copy & Paste, select all, and Redo. {{{3
+inoremap <C-a> <C-v><C-a>
+inoremap <C-z> <C-v><C-z>
+inoremap <C-x> <C-v><C-x>
+inoremap <C-c> <C-v><C-c>
+inoremap <C-v> <C-v><C-v>
+cnoremap <C-a> <C-v><C-a>
+cnoremap <C-z> <C-v><C-z>
+cnoremap <C-x> <C-v><C-x>
+cnoremap <C-c> <C-v><C-c>
+cnoremap <C-v> <C-v><C-v>
+
+
+"" Style/Colors {{{2
+
+"" Hint Style {{{3
 " set hintstyle+= font-size:10px; // for 2.0 syntax
-highlight Hint font-size:18px; font-family:monospace; opacity:0.70; color:white; background-color:green; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:7px 0px 0px 0px; position:absolute; 
+highlight Hint font-size:18px; font-family:monospace; opacity:0.70; color:white; background-color:green; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:7px 0px 0px 0px; position:absolute;
 hi HintElem     background-color: #D8BFD8;     color: #8A2BE2;
 
+
+"" Status Line {{{3
 hi StatusLine       color: LightGreen;    background: #000;   font-weight:normal; font-size:10pt;
 
 hi Normal       color: #b7e5c0; background: #333;   font-size: 10pt;
@@ -83,15 +81,15 @@ hi MoreMsg      color: LimeGreen;   background: #333;
 hi CompTitle        color: Green;     background:#222;
 hi CompItem[selected]   color: #8A2BE2;    background: #D8BFD8;
 " hi CompDesc     color: ;
-hi GradientLeft    background-color: White;
-hi GradientRight    background-color: Green;
+" hi GradientLeft    background-color: White;
+" hi GradientRight    background-color: Green;
 
 hi Title        color: white;
 hi Indicator        color: DodgerBlue;
 " hi String       color: Orchid;
 " hi Number       color: Orchid;
 " hi Object       color: Khaki;
- hi Function     color: SkyBlue;
+hi Function     color: SkyBlue;
 " hi URL          color: LightGreen;
 
 " hi TabNumber        color: white; font-weight: bold; font-size:10pt;
@@ -99,8 +97,6 @@ hi Indicator        color: DodgerBlue;
 
 
 
-set runtimepath=/Users/hash/.vimperator
 
-" source! ~/.vimperatorrc.local
 
 " vim: set ft=vimperator:
