@@ -16,7 +16,6 @@ Bundle 'surround.vim'
 Bundle 'ruby.vim'
 Bundle 'eruby.vim'
 Bundle 'tpope/vim-rails'
-Bundle 'railscasts'
 Bundle 'Align'
 Bundle 'project.tar.gz'
 Bundle 'ruby-matchit'
@@ -32,6 +31,11 @@ Bundle 'FuzzyFinder'
 Bundle 'ref.vim'
 Bundle 'neocomplcache'
 " Bundle 'Changed'
+Bundle 'browsereload-mac.vim'
+
+" ColorSchemes
+Bundle 'molokai'
+Bundle 'railscasts'
 
 
 " General ============================================ {{{1
@@ -76,6 +80,12 @@ highlight CursorLine ctermbg=black guibg=black
 " filetype settings + additional {{{2
 filetype plugin indent on
 syntax on
+" skeleton loading autocmd {{{3
+augroup SkeletonLoad
+    autocmd! SkeletonLoad
+    autocmd BufNewFile *.html 0r $HOME/.vim/templates/skel.html
+augroup END
+
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
@@ -86,6 +96,9 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+    autocmd  BufRead,BufNewFile *.md :call ChangeDir()
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 augroup END
 " omni completion setting {{{3
 autocmd FileType *
@@ -120,7 +133,7 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme desert "murphy, darkblue
+colorscheme  desert "molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -166,7 +179,7 @@ nnoremap <C-Space> <C-[>
 nnoremap <F1> <C-[>
 inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
-inoremap <ESC> <ESC>:set iminsert=0<CR>
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -181,6 +194,9 @@ noremap gj j
 noremap gk k
 noremap g0 0
 noremap g$ $
+
+noremap gJ J
+noremap J gJ
 
 nnoremap <C-a> 0
 nnoremap <C-e> $
@@ -200,7 +216,7 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
 " go to another window
 nnoremap <space>j <C-W>j
@@ -244,6 +260,8 @@ nnoremap tj  :<C-u>tags<CR>
 
 " select last modified line (gm has a original meaning)
 nnoremap gm '.V
+" select last pasted block
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " mark, jump
 nnoremap <space>ma :<C-u>marks<CR>

@@ -20,6 +20,8 @@ if has('gui_macvim')
 
   set visualbell t_vb=
 
+  let g:returnApp = "MacVim"
+
 
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
