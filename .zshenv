@@ -1,5 +1,6 @@
-export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
+
 
 #first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTF-8

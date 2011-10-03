@@ -40,6 +40,7 @@ alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
 alias r='rails'
 alias tailf='tail -f'
+alias lan='landslide icampresen.md && open presentation.html'
 
 # Aliases
 alias g='nocorrect git'
@@ -49,6 +50,8 @@ alias glg='g logg | head'
 alias ga='git add'
 alias gc='git commit -m'
 alias gd='git diff'
+alias gstd='nocorrect gstd'
+alias gsta='nocorrect gsta'
 
 alias be='bundle exec'
 alias cuc='bundle exec cucumber 2>/dev/null'
