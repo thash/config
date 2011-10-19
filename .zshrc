@@ -52,6 +52,7 @@ alias gc='git commit -m'
 alias gd='git diff'
 alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
+alias node='nocorrect node'
 
 alias be='bundle exec'
 alias cuc='bundle exec cucumber 2>/dev/null'
