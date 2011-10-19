@@ -26,12 +26,16 @@ Bundle 'open-browser.vim'
 Bundle 'Markdown'
 Bundle 'snipMate'
 Bundle 'TwitVim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'ref.vim'
 Bundle 'neocomplcache'
 " Bundle 'Changed'
 Bundle 'browsereload-mac.vim'
+Bundle 'vimfiler'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'shadow.vim'
+Bundle 'proc.vim'
+Bundle 'neocomplcache'
 
 " ColorSchemes
 Bundle 'molokai'
@@ -63,7 +67,6 @@ set visualbell t_vb=
 set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
-set paste
 " cursorline settings {{{2
 set cursorline
 
@@ -99,6 +102,7 @@ augroup MyAutoCmdFileType
     autocmd  BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
 augroup END
 " omni completion setting {{{3
 autocmd FileType *
@@ -201,6 +205,9 @@ noremap J gJ
 nnoremap <C-a> 0
 nnoremap <C-e> $
 
+inoremap <C-e> <ESC>$a
+inoremap <C-a> <ESC>0i
+
 " autocomplete (, [, {, ", '
 inoremap () ()<LEFT>
 inoremap <> <><LEFT>
@@ -302,6 +309,9 @@ inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 " grep and get titles (markdown)
 nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
+" exec Whoami() to show file name
+nnoremap <Leader>fn :<C-u>call Whoami()<CR>
+
 " plugin settings ============================================ {{{1
 " QuickRun settings {{{2
 " execute current window using QuickRun
@@ -323,6 +333,7 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -357,6 +368,12 @@ let g:rubycomplete_rails = 1
 "FuzzyFinder settings {{{2
 nnoremap <Leader>ff :FufFile **/<CR>
 let g:fuf_file_exclude = '\v\~$|vendor/plugins($|[/\\])|pubic/(images|stylesheets)|\.(o|exe|bak|orig|swp|gif|png|jpg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+
+
+" Openbrowser settings {{{2
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 
 " Functions my/someone's ============================================ {{{1
@@ -471,3 +488,7 @@ function! ChangeDir()
     unlet _dir
 endfunction
 
+" show current file name {{{2
+function! Whoami()
+    exec 'echo expand("%")'
+endfunction
