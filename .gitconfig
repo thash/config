@@ -12,6 +12,7 @@
 
 [core]
     autocrlf = input
+	editor = /usr/bin/vim
 
 [alias]
     logg = log --graph --date-order --pretty=format:'%Cblue%h %Cred%an %Cgreen%ci %Cblue%m %Creset%s %Cred%d'
