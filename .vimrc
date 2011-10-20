@@ -36,6 +36,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'shadow.vim'
 Bundle 'proc.vim'
 Bundle 'neocomplcache'
+Bundle 'mattn/webapi-vim'
 
 " ColorSchemes
 Bundle 'molokai'
