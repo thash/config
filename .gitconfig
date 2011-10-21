@@ -15,7 +15,8 @@
 	editor = /usr/bin/vim
 
 [alias]
-    logg = log --graph --date-order --pretty=format:'%Cblue%h %Cred%an %Cgreen%ci %Cblue%m %Creset%s %Cred%d'
+    logg = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
+    logn = log --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d'
     st = status -s -b
     br = branch
     co = checkout
