@@ -200,6 +200,9 @@ noremap gk k
 noremap g0 0
 noremap g$ $
 
+" don't include newline in visual mode
+vnoremap $ $h
+
 noremap gJ J
 noremap J gJ
 
