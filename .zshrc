@@ -42,7 +42,7 @@ alias r='rails'
 alias tailf='tail -f'
 alias lan='landslide icampresen.md && open presentation.html'
 
-# Aliases
+# Aliases -- for git
 alias g='nocorrect git'
 alias gst='g st'
 alias st='g st'
@@ -55,12 +55,15 @@ alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
 alias node='nocorrect node'
 
+# Aliases -- for Programming
+alias gemst='rvm gemset list'
 alias be='bundle exec'
 alias cuc='bundle exec cucumber 2>/dev/null'
 alias rsp='bundle exec rspec'
 
 # Local Mac {{{1
 if [ `uname` = "Darwin" ]; then
+    alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
     alias gvim='open -a MacVim.app'
     alias pymol='open -a MacPyMOL.app'
     alias gitx='open -a GitX'
@@ -97,12 +100,6 @@ zstyle ':completion:*' menu select=1
  setopt hist_save_nodups
  setopt share_history
 
-### rvm settings
-### always use Ruby 1.9.2
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
-    source $HOME/.rvm/scripts/rvm
-    rvm 1.9.2-p180
-fi
 
 ### refer words from alc using w3c
 function alc() {

@@ -14,6 +14,14 @@ if [ "`ls -a ~ | grep .nave`" = ".nave/" ]; then
     ~/.nave/nave.sh use 0.4.7
 fi
 
+### rvm settings -- should in zshenv, not in zshrc
+### always use Ruby 1.9.2
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
+    source $HOME/.rvm/scripts/rvm
+    rvm 1.9.2-p180
+    rvm gemset use mongoid
+#    rvm gemset use brew
+fi
 
 # .zshenv
 # export PATH=$HOME/local/bin:/opt/local/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/opt:local/sbin:/usr/local/sbin:/usr/sbin:/sbin
