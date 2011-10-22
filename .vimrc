@@ -15,6 +15,7 @@ Bundle 'fugitive.vim'
 Bundle 'surround.vim'
 Bundle 'ruby.vim'
 Bundle 'eruby.vim'
+Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'Align'
 Bundle 'project.tar.gz'
@@ -37,6 +38,7 @@ Bundle 'shadow.vim'
 Bundle 'proc.vim'
 Bundle 'neocomplcache'
 Bundle 'mattn/webapi-vim'
+Bundle 'textobj-user'
 
 " ColorSchemes
 Bundle 'molokai'
@@ -324,7 +326,11 @@ augroup MyAutoCmdRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 let g:quickrun_config = {}
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
+if executable('bundle exec rspec')
+    let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
+else
+    let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
+endif
 nnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 
@@ -368,11 +374,6 @@ nnoremap <Space>gb :<C-u>Gblame<Enter>
 
 " Rails settings {{{2
 let g:rubycomplete_rails = 1
-
-"FuzzyFinder settings {{{2
-nnoremap <Leader>ff :FufFile **/<CR>
-let g:fuf_file_exclude = '\v\~$|vendor/plugins($|[/\\])|pubic/(images|stylesheets)|\.(o|exe|bak|orig|swp|gif|png|jpg)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-
 
 " Openbrowser settings {{{2
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
