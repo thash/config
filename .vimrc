@@ -180,9 +180,9 @@ endif
 
 " Key remappings ============================================ {{{1
 " general keys {{{2
-inoremap <C-Space> <C-[>
-cnoremap <C-Space> <C-[>
-nnoremap <C-Space> <C-[>
+inoremap <Nul> <C-[>
+cnoremap <Nul> <C-[>
+nnoremap <Nul> <C-[>
 nnoremap <F1> <C-[>
 inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
