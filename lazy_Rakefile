@@ -1,0 +1,61 @@
+###################################################
+#              My lazy Rakefile                   #
+###################################################
+
+#-------------------------------------------------#
+#          define definition methods              #
+#-------------------------------------------------#
+def mk_cd_tasks(name, dir = nil)
+    dir ||= name
+
+    task name do
+        sh "tmux split-window -h"
+        sh "tmux send-keys 'clear && cd #{dir} && pwd' C-m"
+        yield name if block_given?
+    end
+
+    task ("w"+name) do
+        sh "tmux new-window -n #{name}"
+        sh "tmux send-keys -t:#{name} 'cd #{dir} && pwd' C-m"
+        yield name if block_given?
+    end
+
+end
+
+def mk_ssh_tasks(server)
+
+    task server do
+        sh "tmux split-window -h"
+        sh "tmux send-keys 'clear && ssh #{server}' C-m"
+    end
+
+    task ("w"+server) do
+        sh "tmux new-window -n #{server}"
+        sh "tmux send-keys -t:#{server} 'ssh #{server}' C-m"
+    end
+
+end
+
+def load_ssh_config
+    servers = []
+    f = File.open("#{ENV['HOME']}/.ssh/config")
+    while line = f.gets
+        if line =~ /^Host/
+            servers << line.split(" ")[1]
+        end
+    end
+    return servers
+end
+
+#-------------------------------------------------#
+#        define ssh tasks from ~/.ssh/config      #
+#-------------------------------------------------#
+load_ssh_config.each{|server|
+    mk_ssh_tasks(server)
+}
+
+
+#-------------------------------------------------#
+#     put your most frequently used dirs here     #
+#-------------------------------------------------#
+
