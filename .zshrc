@@ -71,6 +71,7 @@ if [ `uname` = "Darwin" ]; then
     alias calc='ruby ~/unix/bin/calc.rb'
     alias rest='sudo vim /etc/hosts'
     alias ssh2relics='ssh hash@10.0.1.5'
+    alias refe='/Users/hash/work/src/refe/refe-1_9_2'
 fi #}}}1
 
 # Set Options
@@ -87,6 +88,12 @@ setopt nolistbeep
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
+# Advanced completion settings
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
 
 # History
 # by default, display latest histories.
