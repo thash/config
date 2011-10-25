@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
 
 

@@ -39,6 +39,7 @@ Bundle 'proc.vim'
 Bundle 'neocomplcache'
 Bundle 'mattn/webapi-vim'
 Bundle 'textobj-user'
+Bundle 'Gist.vim'
 
 " ColorSchemes
 Bundle 'molokai'
@@ -70,6 +71,7 @@ set visualbell t_vb=
 set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
+
 " cursorline settings {{{2
 set cursorline
 
@@ -340,8 +342,8 @@ let g:unite_enable_start_insert=1
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 
@@ -379,7 +381,6 @@ let g:rubycomplete_rails = 1
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
