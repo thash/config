@@ -18,9 +18,11 @@ fi
 ### always use Ruby 1.9.2
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
-    rvm 1.9.2-p180
-    rvm gemset use mongoid
+    if [ `uname` = "Darwin" ]; then
+        rvm 1.9.2-p180
+        rvm gemset use mongoid
 #    rvm gemset use brew
+    fi
 fi
 
 # .zshenv
