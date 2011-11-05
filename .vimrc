@@ -36,10 +36,13 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'shadow.vim'
 Bundle 'proc.vim'
+" Bundle 'Shougo/vimshell'
+Bundle 'sudo.vim'
 Bundle 'neocomplcache'
 Bundle 'mattn/webapi-vim'
 Bundle 'textobj-user'
 Bundle 'Gist.vim'
+Bundle 'buftabs'
 
 " ColorSchemes
 Bundle 'molokai'
@@ -138,7 +141,10 @@ if has('persistent_undo')
     set undodir=./.undofiles,$VIM/.undofiles
 endif
 
-
+" Local .vimrc {{{2
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
+endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
@@ -311,14 +317,15 @@ nnoremap <Leader>cp "+p
 " vimrc better handling
 nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :vs $MYVIMRC<CR>
-" for BrainPhantom
-inoremap <Leader>bp <ESC>0la<CR><CR>(p.<ESC>A)<CR><<<ESC>kki
 
 " grep and get titles (markdown)
 nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
 " exec Whoami() to show file name
 nnoremap <Leader>fn :<C-u>call Whoami()<CR>
+
+" set nonumber (used often for copy&paste)
+nnoremap <Leader>nn :<C-u>set nonu<CR>
 
 " plugin settings ============================================ {{{1
 " QuickRun settings {{{2
@@ -381,6 +388,10 @@ let g:rubycomplete_rails = 1
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+" buftabs settings {{{2
+let g:buftabs_in_statusline=1
+let g:buftabs_only_basename=1
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
