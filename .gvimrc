@@ -2,7 +2,7 @@
 
 if has('gui_macvim')
 
-  cd ~/Desktop
+  CdCurrent
   set showtabline=2
   set guifont=Osaka-Mono:h12
   " no scroll/tool bar
@@ -22,6 +22,10 @@ if has('gui_macvim')
 
   let g:returnApp = "MacVim"
 
+  " C-Space to ESC, work only on gvim
+  inoremap <C-Space> <C-[>
+  cnoremap <C-Space> <C-[>
+  nnoremap <C-Space> <C-[>
 
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
