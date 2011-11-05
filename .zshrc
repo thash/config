@@ -42,6 +42,15 @@ alias r='rails'
 alias tailf='tail -f'
 alias lan='landslide icampresen.md && open presentation.html'
 
+# Global Aliases
+alias -g G='| grep'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g L='| less'
+### Edit Stdout with vim, making tmpfile.
+export VIM_TMP=~/tmp/vim_stdout.tmp
+alias -g V="> $VIM_TMP$$; vim $VIM_TMP$$"
+
 # Aliases -- for git
 alias g='nocorrect git'
 alias gst='g st'
@@ -65,6 +74,7 @@ alias rsp='bundle exec rspec'
 if [ `uname` = "Darwin" ]; then
     alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
     alias gvim='open -a MacVim.app'
+    export VMAIL_VIM=mvim #Vmail settings
     alias pymol='open -a MacPyMOL.app'
     alias gitx='open -a GitX'
     alias hoge='cd /Users/hash/'
@@ -72,6 +82,7 @@ if [ `uname` = "Darwin" ]; then
     alias rest='sudo vim /etc/hosts'
     alias ssh2relics='ssh hash@10.0.1.5'
     alias refe='/Users/hash/work/src/refe/refe-1_9_2'
+#    source /usr/local/Cellar/coreutils/8.12/aliases # GNU utils
 fi #}}}1
 
 # Set Options
