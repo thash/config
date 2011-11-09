@@ -14,7 +14,6 @@ Bundle 'gmarik/vundle'
 Bundle 'fugitive.vim'
 Bundle 'surround.vim'
 Bundle 'ruby.vim'
-Bundle 'eruby.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'Align'
@@ -28,7 +27,6 @@ Bundle 'Markdown'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'ref.vim'
-Bundle 'neocomplcache'
 " Bundle 'Changed'
 Bundle 'browsereload-mac.vim'
 Bundle 'vimfiler'
@@ -43,10 +41,13 @@ Bundle 'mattn/webapi-vim'
 Bundle 'textobj-user'
 Bundle 'Gist.vim'
 Bundle 'buftabs'
+Bundle 'zef/vim-cycle'
+Bundle 'The-NERD-Commenter'
 
-" ColorSchemes
+" ColorSchemes, Syntax
 Bundle 'molokai'
 Bundle 'railscasts'
+Bundle 'HTML5-Syntax-File'
 
 
 " General ============================================ {{{1
@@ -107,11 +108,13 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
-    autocmd  BufRead,BufNewFile *.md :call ChangeDir()
+    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
+    autocmd BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
 augroup END
+
 " omni completion setting {{{3
 autocmd FileType *
 \   if &l:omnifunc == ''
@@ -159,8 +162,8 @@ highlight StatusLine cterm=reverse,bold
 highlight StatusLine ctermfg=green ctermbg=white
 highlight StatusLineNC cterm=reverse
 " Fold-colors
-highlight Folded guibg=grey guifg=blue
-highlight FoldColumn guibg=darkgrey guifg=white
+highlight Folded ctermbg=gray ctermfg=darkred guibg=grey guifg=blue
+highlight FoldColumn guibg=darkgrey guifg=white ctermbg=darkgrey ctermfg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
@@ -324,8 +327,8 @@ nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 " exec Whoami() to show file name
 nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 
-" set nonumber (used often for copy&paste)
-nnoremap <Leader>nn :<C-u>set nonu<CR>
+" toggle nonumber (used often for copy&paste)
+nnoremap <Leader>nn :<C-u>set number!<CR>
 
 " plugin settings ============================================ {{{1
 " QuickRun settings {{{2
@@ -345,7 +348,7 @@ nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 
 
 " unite.vim settings {{{2
-let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=0
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
@@ -392,6 +395,11 @@ vmap gx <Plug>(openbrowser-smart-search)
 " buftabs settings {{{2
 let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
+
+" vim-cycle settings {{{2
+let g:cycle_no_mappings=1
+" call AddCycleGroup(['-', '_'])
+nmap <C-C> <Plug>CycleNext
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
