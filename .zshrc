@@ -34,7 +34,7 @@ alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep '
-alias pgrep='ps aux | grep '
+alias pgrep='pgrep -i' pkill='pkill -i'
 alias nameru='find . -name "*" -print | xargs grep -n'
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
@@ -47,6 +47,8 @@ alias -g G='| grep'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
+alias -g TX='tar xvzf'
+alias -g TC='tar cvzf'
 ### Edit Stdout with vim, making tmpfile.
 export VIM_TMP=~/tmp/vim_stdout.tmp
 alias -g V="> $VIM_TMP$$; vim $VIM_TMP$$"
@@ -62,10 +64,12 @@ alias gc='git commit -m'
 alias gd='git diff'
 alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
-alias node='nocorrect node'
 
 # Aliases -- for Programming
+alias node='nocorrect node'
 alias gemst='rvm gemset list'
+alias gemset='rvm gemset list'
+alias irb='pry'
 alias be='bundle exec'
 alias cuc='bundle exec cucumber 2>/dev/null'
 alias rsp='bundle exec rspec'
@@ -128,54 +132,6 @@ function alc() {
   fi
 }
 
-# screen settings {{{1
-# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
-
-if [ "$TERM" = "screen" ]; then
-chpwd () {
-#    _set_env_git_current_branch
-#    _update_rprompt
-    echo -n "_`dirs`\\"
-    ls
-}
-
-preexec() {
-# see [zsh-workers:13180]
-# http://www.zsh.org/mla/workers/2000/msg03993.html
-    emulate -L zsh
-        local -a cmd; cmd=(${(z)2})
-        case $cmd[1] in
-        fg)
-        if (( $#cmd == 1 )); then
-            cmd=(builtin jobs -l %+)
-        else
-            cmd=(builtin jobs -l $cmd[2])
-                fi
-                ;;
-    %*)
-        cmd=(builtin jobs -l $cmd[1])
-        ;;
-    cd)
-        if (( $#cmd == 2)); then
-            cmd[1]=$cmd[2]
-                fi
-                ;&
-                *)
-                echo -n "k$cmd[1]:t\\"
-                return
-                ;;
-    esac
-
-        local -A jt; jt=(${(kv)jobtexts})
-
-        $cmd >>(read num rest
-                cmd=(${(z)${(e):-\$jt$num}})
-                echo -n "k$cmd[1]:t\\") 2>/dev/null
-}
-chpwd
-fi
-
-#}}}1
 
 ### display git branch on the prompt
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
