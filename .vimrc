@@ -64,8 +64,8 @@ set ignorecase
 set laststatus=2
 set number
 set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set noswapfile
 set nowrapscan
 set helplang=ja,en
