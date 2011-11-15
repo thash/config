@@ -23,6 +23,7 @@
     re = remote -v
     a = add
     c = commit
+    s = show
     # diff
     d  = diff
     dm = diff master
