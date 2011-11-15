@@ -52,6 +52,7 @@ alias -g TC='tar cvzf'
 ### Edit Stdout with vim, making tmpfile.
 export VIM_TMP=~/tmp/vim_stdout.tmp
 alias -g V="> $VIM_TMP$$; vim $VIM_TMP$$"
+alias -g BGEM="vendor/bundle/ruby/1.9.1/gems/"
 
 # Aliases -- for git
 alias g='nocorrect git'
@@ -70,6 +71,7 @@ alias node='nocorrect node'
 alias gemst='rvm gemset list'
 alias gemset='rvm gemset list'
 alias irb='pry'
+alias b='bundle'
 alias be='bundle exec'
 alias cuc='bundle exec cucumber 2>/dev/null'
 alias rsp='bundle exec rspec'
