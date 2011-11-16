@@ -20,21 +20,16 @@ Bundle 'Align'
 Bundle 'project.tar.gz'
 Bundle 'ruby-matchit'
 Bundle 'catn.vim'
-Bundle 'unite.vim'
 Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
 Bundle 'Markdown'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'ref.vim'
-" Bundle 'Changed'
 Bundle 'browsereload-mac.vim'
-Bundle 'vimfiler'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'shadow.vim'
-Bundle 'proc.vim'
-" Bundle 'Shougo/vimshell'
 Bundle 'sudo.vim'
 Bundle 'neocomplcache'
 Bundle 'mattn/webapi-vim'
@@ -44,6 +39,14 @@ Bundle 'buftabs'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
 
+" Unite, and more
+Bundle 'unite.vim'
+Bundle 'basyura/unite-rails'
+Bundle 'Sixeight/unite-grep'
+Bundle 'proc.vim'
+Bundle 'vimfiler'
+
+" Bundle 'Shougo/vimshell'
 " ColorSchemes, Syntax
 Bundle 'molokai'
 Bundle 'railscasts'
@@ -352,10 +355,11 @@ let g:unite_enable_start_insert=0
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-" nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-" nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
+nnoremap <silent> ,um :<C-u>Unite mapping<CR>
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
