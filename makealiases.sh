@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for filename in vimrc gvimrc zshrc zshenv tmux.conf gitconfig vimperatorrc profile
+for filename in vimrc gvimrc zshrc zshenv tmux.conf gitconfig vimperatorrc profile gemrc
 do
     if [ -e $HOME/.$filename ]; then
         rm -i $HOME/.$filename
