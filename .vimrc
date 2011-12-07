@@ -27,24 +27,26 @@ Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'ref.vim'
 Bundle 'browsereload-mac.vim'
-Bundle 'h1mesuke/unite-outline'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'shadow.vim'
-Bundle 'sudo.vim'
-Bundle 'neocomplcache'
 Bundle 'mattn/webapi-vim'
 Bundle 'textobj-user'
 Bundle 'Gist.vim'
-Bundle 'buftabs'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
+"Bundle 'buftabs'
 
-" Unite, and more
+" Unite, and new generation plugins
 Bundle 'unite.vim'
+Bundle 'h1mesuke/unite-outline'
 Bundle 'basyura/unite-rails'
 Bundle 'Sixeight/unite-grep'
-Bundle 'proc.vim'
-Bundle 'vimfiler'
+" Bundle 'neocomplcache'
+" Bundle 'Shougo/vimshell'
+" " installed by git clone...
+" Bundle 'Shougo/vimproc'
+" Bundle 'proc.vim'
+" Bundle 'vimfiler'
 
 " Bundle 'Shougo/vimshell'
 " ColorSchemes, Syntax
@@ -60,7 +62,7 @@ set fileencoding=utf8
 set autoindent
 set expandtab
 set foldmethod=marker
-set foldlevel=1
+set foldlevel=2
 set tags=./tags
 set incsearch
 set ignorecase
@@ -137,6 +139,7 @@ augroup MyAutoCmdGeneral
 
     " automatically add timestamp to backup files
     autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
+
 augroup END
 
 " New undo-persistence feature of vim73 {{{2
@@ -327,6 +330,7 @@ nnoremap <Leader>vs :vs $MYVIMRC<CR>
 " grep and get titles (markdown)
 nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
+
 " exec Whoami() to show file name
 nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 
@@ -352,26 +356,38 @@ nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 
 " unite.vim settings {{{2
 let g:unite_enable_start_insert=0
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-nnoremap <silent> ,uo :<C-u>Unite outline<CR>
-nnoremap <silent> ,um :<C-u>Unite mapping<CR>
+let g:unite_split_rule="topleft"
+let g:unite_update_time=10
+let g:unite_cursor_line_highlight="CursorLine"
+let g:unite_source_file_ignore_pattern='vendor/bundle'
+nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
+nnoremap <silent> ,uu :<C-u>UniteWithCurrentDir -buffer-name=files file buffer -auto-preview<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline -auto-preview<CR>
+nnoremap <silent> ,um :<C-u>Unite mapping -auto-preview<CR>
+"nnoremap <silent> ,ur :<C-u>Unite rails/<C-d>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
 
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  nmap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  nmap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  nmap <silent> <buffer> <expr> <C-s> unite#do_action('split')
+  imap <silent> <buffer> <expr> <C-s> unite#do_action('split')
+  nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
+  imap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
+  nmap <silent> <buffer> <ESC><ESC> q
+  imap <silent> <buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " VimShell settings and aliases {{{2
 
-let g:vimproc_dll_path = "$HOME/.vim/autoload/proc.so"
+if has('mac')
+  let g:vimproc_dll_path = "/Users/hash/.vim/bundle/vimproc/autoload/proc.so"
+endif
 
 " TODO: add loaded_vimshell judgement
 nnoremap <silent> ,is :VimShell<CR>
@@ -521,3 +537,10 @@ endfunction
 function! Whoami()
     exec 'echo expand("%")'
 endfunction
+
+" search word and open result in splitt window {{{2
+command! -nargs=* Nameru call Nameru(<f-args>)
+function! Nameru(word)
+  exec 'vimgrep /' . a:word . '/ % | cwin'
+endfunction
+

@@ -1,5 +1,3 @@
-"colorscheme murphy
-
 if has('gui_macvim')
 
   CdCurrent
@@ -10,7 +8,7 @@ if has('gui_macvim')
   set transparency=20
   highlight LineNr ctermfg=darkgray
 
-  colorscheme desert
+  colorscheme torte
   " No Full Screen size
   set lines=54
   set columns=150
