@@ -219,17 +219,22 @@ noremap gk k
 noremap g0 0
 noremap g$ $
 
-" don't include newline in visual mode
-vnoremap $ $h
-
+" join without space
 noremap gJ J
 noremap J gJ
 
+" scroll screen (cursor doesn't move
+nnoremap <C-N> 5<C-E>
+nnoremap <C-P> 5<C-Y>
+
+" don't include newline in visual mode
+vnoremap $ $h
+
+" cursor to the first char of the line, like Emacs.
 nnoremap <C-a> 0
 nnoremap <C-e> $
-
-inoremap <C-e> <ESC>$a
 inoremap <C-a> <ESC>0i
+inoremap <C-e> <ESC>$a
 
 " autocomplete (, [, {, ", '
 inoremap () ()<LEFT>
@@ -371,6 +376,7 @@ nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  imap <silent> <buffer> <C-h> <ESC><Plug>(unite_delete_backword_path)
   nmap <buffer> <C-j> <Plug>(unite_select_next_line)
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   nmap <buffer> <C-k> <Plug>(unite_select_previous_line)
