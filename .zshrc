@@ -41,6 +41,7 @@ alias vi='nocorrect vim' vim='nocorrect vim'
 alias r='rails'
 alias tailf='tail -f'
 alias lan='landslide icampresen.md && open presentation.html'
+alias scon='vim ~/.ssh/config'
 
 # Global Aliases
 alias -g G='| grep'
