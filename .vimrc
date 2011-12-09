@@ -103,6 +103,12 @@ augroup SkeletonLoad
     autocmd BufNewFile *.html 0r $HOME/.vim/templates/skel.html
 augroup END
 
+" set Shebang line {{{3
+augroup SetShebang
+      autocmd! SetShebang
+    autocmd BufNewFile *.rb 0put =\"# -*- encoding: UTF-8 -*-\"|$
+augroup END
+
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
