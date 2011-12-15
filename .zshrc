@@ -28,14 +28,15 @@ export MAILCHECK=0 # on sakura rental server
 # Aliases
 setopt aliases
 alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
-alias laa='ls -vA | grep ^\\.'
-alias lg='ll -va | grep '
+alias laa='ls -vA | grep --ignore-case --color=auto ^\\.'
+alias lg='ll -va | grep --ignore-case --color=auto'
 alias mv='mv -i' cp='cp -i' rm='rm -i'
 alias ..='cd ../'
 alias his='history'
-alias hig='history 500 | grep '
+alias hig='history 500 | grep --color=auto --ignore-case'
+alias grep='grep --color=auto --ignore-case'
 alias pgrep='pgrep -i' pkill='pkill -i'
-alias nameru='find . -name "*" -print | xargs grep -n'
+alias nameru='find . -name "*" -print | xargs grep --color=auto --ignore-case -n'
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
 alias r='rails'
@@ -44,7 +45,7 @@ alias lan='landslide icampresen.md && open presentation.html'
 alias scon='vim ~/.ssh/config'
 
 # Global Aliases
-alias -g G='| grep'
+alias -g G='| grep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
