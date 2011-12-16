@@ -13,10 +13,12 @@
 [core]
     autocrlf = input
 	editor = /usr/bin/vim
+	quotepath = false
 
 [alias]
     logg = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
     logn = log --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d'
+    logo = log --oneline --decorate
     st = status -s -b
     br = branch
     co = checkout
@@ -35,3 +37,5 @@
     d5 = diff HEAD~~~~~
 [apply]
 	whitespace = nowarn
+[push]
+	default = tracking
