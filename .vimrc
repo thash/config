@@ -30,11 +30,15 @@ Bundle 'browsereload-mac.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'shadow.vim'
 Bundle 'mattn/webapi-vim'
-Bundle 'textobj-user'
 Bundle 'Gist.vim'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
-"Bundle 'buftabs'
+
+" textobj
+Bundle 'textobj-user'
+Bundle 'textobj-indent'
+Bundle 'textobj-function'
+Bundle 't9md/vim-textobj-function-ruby'
 
 " Unite, and new generation plugins
 Bundle 'unite.vim'
@@ -163,7 +167,7 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme  desert "molokai, murphy, darkblue
+colorscheme  desert "torte, molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
