@@ -26,6 +26,7 @@
     a = add
     c = commit
     s = show
+    f = fetch
     # diff
     d  = diff
     dm = diff master

@@ -24,6 +24,12 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 
+# key-bindings (check by bindkey -L)
+# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
+bindkey "^O" clear-screen # originally, it's L
+bindkey "^I" kill-line    # originally, it's K
+
+bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 
 # Aliases
 setopt aliases
@@ -36,6 +42,7 @@ alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
 alias grep='grep --color=auto --ignore-case'
 alias pgrep='pgrep -i' pkill='pkill -i'
+alias psg='ps aux | grep'
 alias nameru='find . -name "*" -print | xargs grep --color=auto --ignore-case -n'
 alias s='screen -r'
 alias vi='nocorrect vim' vim='nocorrect vim'
