@@ -27,7 +27,7 @@ export MAILCHECK=0 # on sakura rental server
 # key-bindings (check by bindkey -L)
 # NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
 bindkey "^O" clear-screen # originally, it's L
-bindkey "^I" kill-line    # originally, it's K
+bindkey "^Y" kill-line    # originally, it's K
 
 bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 
