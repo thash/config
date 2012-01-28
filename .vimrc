@@ -33,6 +33,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'Gist.vim'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
+Bundle 'eregex.vim'
 
 " textobj
 Bundle 'textobj-user'
@@ -46,9 +47,9 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'basyura/unite-rails'
 Bundle 'Sixeight/unite-grep'
 " Bundle 'neocomplcache'
-" Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimshell'
 " " installed by git clone...
-" Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimproc'
 " Bundle 'proc.vim'
 " Bundle 'vimfiler'
 
@@ -141,6 +142,8 @@ augroup MyAutoCmdGeneral
     " automatically move to directory file exist
     " autocmd BufEnter * call ChangeDir()
 
+    " automatically open quickfix window after :vimgrep
+    autocmd QuickfixCmdPost vimgrep cw
     " automatically move to last line
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
@@ -165,9 +168,14 @@ if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
+" settings for vimshell
+if filereadable(expand('~/.vimrc.vimshell'))
+    source ~/.vimrc.vimshell
+endif
+
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme  desert "torte, molokai, murphy, darkblue
+colorscheme  torte "desert, molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -241,7 +249,7 @@ nnoremap <C-P> 5<C-Y>
 vnoremap $ $h
 
 " cursor to the first char of the line, like Emacs.
-nnoremap <C-a> 0
+nnoremap <C-a> 0w
 nnoremap <C-e> $
 inoremap <C-a> <ESC>0i
 inoremap <C-e> <ESC>$a
@@ -253,6 +261,10 @@ inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
+inoremap `` ``<LEFT>
+
+" for better usage
+inoremap  _
 
 " When searching, always move the cursor to center of window
 nnoremap n nzz
@@ -325,6 +337,7 @@ nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
 nnoremap <C-o> o<ESC>k
+nnoremap <CR> o<ESC>
 
 " Map Leader (,) settings  {{{2
 let mapleader=','
@@ -366,7 +379,12 @@ else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
 nnoremap <space>r :<C-u>QuickRun<CR>
+vnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
+
+" if executable('gcc')
+"   let g:quickrun_config['C'] = {'command': 'gcc'}
+" end
 
 
 " unite.vim settings {{{2
@@ -408,6 +426,7 @@ endif
 " TODO: add loaded_vimshell judgement
 nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 vmap <silent> ,ss :VimShellSendString<CR>
 
