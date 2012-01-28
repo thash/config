@@ -18,6 +18,8 @@ fi
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
     if [ `uname` = "Darwin" ]; then
-        rvm 1.9.2-p180
+        rvm use 1.9.2-p180
+        rvm gemset use rspec-book
+        #rvm 1.9.3-p0
     fi
 fi
