@@ -1,0 +1,6 @@
+[submodule "zsh-manydots-magic"]
+	path = zsh-manydots-magic
+	url = git://github.com/knu/zsh-manydots-magic.git
+[submodule ".zsh/zsh-manydots-magic"]
+	path = .zsh/zsh-manydots-magic
+	url = git://github.com/knu/zsh-manydots-magic.git

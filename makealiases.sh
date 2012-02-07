@@ -10,4 +10,6 @@ do
     fi
 done
 
+ln -s `pwd`/.zsh $HOME/.zsh
+
 # source ~/.zshrc

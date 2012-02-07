@@ -24,6 +24,12 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 
+fpath=(~/.zsh ${fpath})
+
+### zsh manydots magic
+autoload -Uz manydots-magic
+manydots-magic
+
 # key-bindings (check by bindkey -L)
 # NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
 bindkey "^O" clear-screen # originally, it's L
@@ -88,6 +94,7 @@ alias irb='pry'
 alias b='bundle'
 alias bi='bundle install'
 alias be='bundle exec'
+alias ber='bundle exec rails'
 alias cuc='bundle exec cucumber 2>/dev/null'
 alias rsp='bundle exec rspec'
 
