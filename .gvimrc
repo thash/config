@@ -1,6 +1,7 @@
 if has('gui_macvim')
 
   CdCurrent
+  set cursorcolumn
   set showtabline=2
   set guifont=Osaka-Mono:h12
   " no scroll/tool bar

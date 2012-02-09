@@ -87,17 +87,16 @@ set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
 " cursorline settings {{{2
-set cursorline
-
   augroup cch
     autocmd! cch
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
+    autocmd WinLeave * set nocursorline cursorcolumn
+    autocmd WinEnter,BufRead * set cursorline cursorcolumn
   augroup END
 
 :hi clear CursorLine
 :hi CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
+hi CursorLine ctermbg=black guibg=black
+hi CursorColumn ctermbg=black guibg=green
 
 " filetype settings + additional {{{2
 filetype plugin indent on
