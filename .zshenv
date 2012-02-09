@@ -1,8 +1,6 @@
 export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
 
-export ZDOTDIR=$HOME/.zsh
-
 #first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTF-8
 export LC_ALL="$LANG"
