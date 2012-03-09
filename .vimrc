@@ -34,6 +34,7 @@ Bundle 'Gist.vim'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
 Bundle 'eregex.vim'
+Bundle 'Lokaltog/vim-powerline'
 
 " textobj
 Bundle 'textobj-user'
@@ -44,8 +45,9 @@ Bundle 't9md/vim-textobj-function-ruby'
 " Unite, and new generation plugins
 Bundle 'unite.vim'
 Bundle 'h1mesuke/unite-outline'
-Bundle 'basyura/unite-rails'
+" Bundle 'basyura/unite-rails'
 Bundle 'Sixeight/unite-grep'
+
 " Bundle 'neocomplcache'
 Bundle 'Shougo/vimshell'
 " " installed by git clone...
@@ -62,6 +64,7 @@ Bundle 'HTML5-Syntax-File'
 
 " General ============================================ {{{1
 " set someting {{{2
+set t_Co=256
 set encoding=utf8
 set fileencoding=utf8
 set autoindent
@@ -87,11 +90,11 @@ set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
 " cursorline settings {{{2
-  augroup cch
-    autocmd! cch
-    autocmd WinLeave * set nocursorline cursorcolumn
-    autocmd WinEnter,BufRead * set cursorline cursorcolumn
-  augroup END
+" augroup cch
+"   autocmd! cch
+"   autocmd WinLeave * set nocursorline nocursorcolumn
+"   autocmd WinEnter,BufRead * set cursorline cursorcolumn
+" augroup END
 
 :hi clear CursorLine
 :hi CursorLine gui=underline
@@ -174,7 +177,7 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme  torte "desert, molokai, murphy, darkblue
+colorscheme desert "torte, molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -193,10 +196,6 @@ autocmd InsertLeave * highlight StatusLine ctermfg=green
 " display listchars (spaces at end of line, tab etc) {{{2
 set list
 set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
-function! SOLSpaceHilight()
-    syntax match SOLSpace "^\s\+" display containedin=ALL
-    highlight SOLSpace term=underline ctermbg=LightRed
-endf
 function! JISX0208SpaceHilight()
     syntax match JISX0208Space "　" display containedin=ALL
     highlight JISX0208Space term=underline ctermbg=brown
@@ -205,7 +204,6 @@ if has("syntax")
     syntax on
     augroup invisible
         autocmd! invisible
-        autocmd BufNew,BufRead * call SOLSpaceHilight()
         autocmd BufNew,BufRead * call JISX0208SpaceHilight()
     augroup END
 endif
@@ -260,7 +258,6 @@ inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
-inoremap `` ``<LEFT>
 
 " for better usage
 inoremap  _
@@ -364,7 +361,7 @@ nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
-" plugin settings ============================================ {{{1
+" plugins setting ============================================ {{{1
 " QuickRun settings {{{2
 " execute current window using QuickRun
 augroup MyAutoCmdRSpec
@@ -377,6 +374,15 @@ if executable('bundle exec rspec')
 else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
+
+" let g:quickrun_config['ruby'] = {
+" \  'command': ''ruby',
+" \  'exec': 'source $HOME/.rvm/scripts/rvm && source .rvmrc && ruby',
+" \  'tempfile': '{tempname()}.rb'
+" \ }
+
+let g:Align_xstrlen=3
+
 nnoremap <space>r :<C-u>QuickRun<CR>
 vnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
@@ -385,21 +391,30 @@ nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 "   let g:quickrun_config['C'] = {'command': 'gcc'}
 " end
 
+" ref.vim
+let g:ref_alc_start_linenumber = 44
+let g:ref_alc_encoding = 'utf-8'
 
 " unite.vim settings {{{2
-let g:unite_enable_start_insert=0
+let g:unite_enable_start_insert=1
 let g:unite_split_rule="topleft"
 let g:unite_update_time=10
-let g:unite_cursor_line_highlight="CursorLine"
+let g:unite_enable_split_vertically=1
+let g:unite_winwidth=50
 let g:unite_source_file_ignore_pattern='vendor/bundle'
 nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
+"nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
-nnoremap <silent> ,uu :<C-u>UniteWithCurrentDir -buffer-name=files file buffer -auto-preview<CR>
+nnoremap <silent> ,uu :<C-u>Unite  file buffer -buffer-name=files<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline -auto-preview<CR>
 nnoremap <silent> ,um :<C-u>Unite mapping -auto-preview<CR>
-"nnoremap <silent> ,ur :<C-u>Unite rails/<C-d>
+nnoremap <silent> ,ug :<C-u>Unite grep file<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
+
+call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
+"call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
+"call unite#set_substitute_pattern('file', '/\ze[^*]', '/*', 10)
+call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
@@ -408,8 +423,8 @@ function! s:unite_my_settings()
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   nmap <buffer> <C-k> <Plug>(unite_select_previous_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-  nmap <silent> <buffer> <expr> <C-s> unite#do_action('split')
-  imap <silent> <buffer> <expr> <C-s> unite#do_action('split')
+  nmap <silent> <buffer> <expr> <C-y> unite#do_action('split')
+  imap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   nmap <silent> <buffer> <ESC><ESC> q
@@ -426,8 +441,10 @@ endif
 nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
-nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
-vmap <silent> ,ss :VimShellSendString<CR>
+" nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+" vmap <silent> ,ss :VimShellSendString<CR>
+nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
+vmap <silent> <Space>s :VimShellSendString<CR>
 
 " fugitive.vim settings {{{2
 nnoremap <Space>gd :<C-u>Gdiff<Enter>
@@ -454,6 +471,9 @@ let g:buftabs_only_basename=1
 let g:cycle_no_mappings=1
 " call AddCycleGroup(['-', '_'])
 nmap <C-C> <Plug>CycleNext
+
+" vim-powerline setting {{{2
+" let g:Powerline_symbols = 'fancy'
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
