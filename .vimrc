@@ -367,6 +367,12 @@ nnoremap <Leader>nn :<C-u>set number!<CR>
 augroup MyAutoCmdRSpec
     autocmd! MyAutoCmdRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+    autocmd BufNewFile,BufRead Gemfile       set filetype=ruby
+    autocmd BufNewFile,BufRead Capfile       set filetype=ruby
+    autocmd BufNewFile,BufRead *.watchr      set filetype=ruby
+    autocmd BufNewFile,BufRead *.ru          set filetype=ruby
+    autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
+    autocmd BufNewFile,BufRead *.god         set filetype=ruby
 augroup END
 let g:quickrun_config = {}
 if executable('bundle exec rspec')
@@ -405,10 +411,10 @@ let g:unite_source_file_ignore_pattern='vendor/bundle'
 nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR>
 "nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
-nnoremap <silent> ,uu :<C-u>Unite  file buffer -buffer-name=files<CR>
+nnoremap <silent> ,uu :<C-u>Unite file buffer -buffer-name=files<CR>
 nnoremap <silent> ,uo :<C-u>Unite outline -auto-preview<CR>
 nnoremap <silent> ,um :<C-u>Unite mapping -auto-preview<CR>
-nnoremap <silent> ,ug :<C-u>Unite grep file<CR>
+nnoremap <silent> ,ug :<C-u>Unite grep file -auto-preview<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
