@@ -29,6 +29,7 @@
     c = commit
     s = show
     f = fetch
+    g = grep
     # diff
     d  = diff
     dm = diff master
