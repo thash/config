@@ -30,6 +30,17 @@ fpath=(~/.zsh $fpath)
 autoload -Uz manydots-magic
 manydots-magic
 
+### autoload ~/.zsh/*.zsh file as a part of .zshrc
+ZSHHOME="${HOME}/.zsh"
+
+if [ -d $ZSHHOME -a -r $ZSHHOME -a \
+     -x $ZSHHOME ]; then
+    for i in $ZSHHOME/*; do
+        [[ ${i##*/} = *.zsh ]] &&
+            [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+    done
+fi
+
 # key-bindings (check by bindkey -L)
 # NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
 bindkey "^O" clear-screen # originally, it's L
@@ -80,6 +91,7 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gcm='git commit -m'
 alias gd='git diff'
+alias gg='git grep'
 alias gull='git pull origin'
 alias gush='git push origin'
 alias gstd='nocorrect gstd'
@@ -184,3 +196,4 @@ function rprompt-git-current-branch {
   fi
   echo "$color$name$action%f%b "
 }
+
