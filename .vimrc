@@ -18,11 +18,11 @@ Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'Align'
 Bundle 'project.tar.gz'
-Bundle 'ruby-matchit'
 Bundle 'catn.vim'
 Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
-Bundle 'Markdown'
+Bundle 'tpope/vim-markdown'
+Bundle 'mkitt/markdown-preview.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'ref.vim'
@@ -45,7 +45,6 @@ Bundle 't9md/vim-textobj-function-ruby'
 " Unite, and new generation plugins
 Bundle 'unite.vim'
 Bundle 'h1mesuke/unite-outline'
-" Bundle 'basyura/unite-rails'
 Bundle 'Sixeight/unite-grep'
 
 " Bundle 'neocomplcache'
@@ -89,12 +88,15 @@ set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
+set formatoptions-=r
+set formatoptions-=o
+
 " cursorline settings {{{2
-" augroup cch
-"   autocmd! cch
-"   autocmd WinLeave * set nocursorline nocursorcolumn
-"   autocmd WinEnter,BufRead * set cursorline cursorcolumn
-" augroup END
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline "nocursorcolumn
+  autocmd WinEnter,BufRead * set cursorline "cursorcolumn
+augroup END
 
 :hi clear CursorLine
 :hi CursorLine gui=underline
@@ -113,7 +115,7 @@ augroup END
 " set Shebang line {{{3
 augroup SetShebang
       autocmd! SetShebang
-    autocmd BufNewFile *.rb 0put =\"# -*- encoding: UTF-8 -*-\"|$
+    autocmd BufNewFile *.rb 0put =\"# -*- coding: utf-8 -*-\"|$
 augroup END
 
 " filetype autocmd {{{3
@@ -150,7 +152,7 @@ augroup MyAutoCmdGeneral
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
     " automatically remove spaces end of the line
-    autocmd BufWritePre * :%s/\s\+$//ge
+    " autocmd BufWritePre * :%s/\s\+$//ge
 
     " automatically add timestamp to backup files
     autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
@@ -177,7 +179,7 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme desert "torte, molokai, murphy, darkblue
+colorscheme torte "desert, molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -300,10 +302,6 @@ nnoremap fO zM
 " Open help
 nnoremap <C-Y> :<C-u>h<space>
 
-" Ctrl+ h/l to go/back to file
-nnoremap <C-H> <C-O>
-nnoremap <C-L> gf
-
 " tags
 nnoremap tl  <C-]>
 vnoremap tl  <C-]>
@@ -332,7 +330,6 @@ nnoremap <space>w :<C-u>write<CR>
 nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
-nnoremap <C-o> o<ESC>k
 nnoremap <CR> o<ESC>
 
 " Map Leader (,) settings  {{{2
