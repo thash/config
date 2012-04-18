@@ -1,1 +1,0 @@
-/Users/hash/git/config/.zsh

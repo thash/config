@@ -1,1 +1,1 @@
-.zsh/auto-fu/auto-fu.zsh
+auto-fu/auto-fu.zsh

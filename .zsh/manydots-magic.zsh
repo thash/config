@@ -1,1 +1,0 @@
-.zsh/zsh-manydots-magic/manydots-magic

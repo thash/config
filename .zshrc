@@ -26,10 +26,6 @@ export MAILCHECK=0 # on sakura rental server
 
 fpath=(~/.zsh $fpath)
 
-### zsh manydots magic
-autoload -Uz manydots-magic
-manydots-magic
-
 ### autoload ~/.zsh/*.zsh file as a part of .zshrc
 ZSHHOME="${HOME}/.zsh"
 
@@ -39,6 +35,15 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
         [[ ${i##*/} = *.zsh ]] &&
             [ \( -f $i -o -h $i \) -a -r $i ] && . $i
     done
+fi
+
+if [ -f $ZSHHOME/auto-fu.zsh ]; then
+  zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+  zstyle ':completion:*' completer _oldlist _complete _match _ignored \
+    _approximate _list _history
+  zstyle ':auto-fu:highlight' completion/one fg=blue
+  zstyle ':auto-fu:var' postdisplay $'
+  navi > '
 fi
 
 # key-bindings (check by bindkey -L)
@@ -139,11 +144,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
 # Advanced completion settings
-zstyle ':completion:*' verbose yes
+# zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' keep-prefix
 
 # History
 # by default, display latest histories.
