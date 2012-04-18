@@ -1,0 +1,1 @@
+.zsh/auto-fu/auto-fu.zsh
