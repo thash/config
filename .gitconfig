@@ -40,6 +40,8 @@
     d4 = diff HEAD~~~~
     d5 = diff HEAD~~~~~
 [apply]
-	whitespace = nowarn
+  whitespace = nowarn
 [push]
-	default = tracking
+  default = tracking
+[pull]
+  rebase = true
