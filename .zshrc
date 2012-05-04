@@ -23,6 +23,7 @@ fi
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
+export EDITOR=vim
 
 fpath=(~/.zsh $fpath)
 
@@ -39,8 +40,7 @@ fi
 
 if [ -f $ZSHHOME/auto-fu.zsh ]; then
   zle-line-init () {auto-fu-init;}; zle -N zle-line-init
-  zstyle ':completion:*' completer _oldlist _complete _match _ignored \
-    _approximate _list _history
+  zstyle ':completion:*' completer _oldlist _complete _history
   zstyle ':auto-fu:highlight' completion/one fg=blue
   zstyle ':auto-fu:var' postdisplay $'
   navi > '
@@ -203,3 +203,4 @@ function rprompt-git-current-branch {
   echo "$color$name$action%f%b "
 }
 
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r18

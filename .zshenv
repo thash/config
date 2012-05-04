@@ -1,5 +1,6 @@
-export PATH=$HOME/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.rvm/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/node_modules/.bin:$PATH
+
 
 #first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTF-8
@@ -16,9 +17,9 @@ fi
 ### rvm settings -- should in zshenv, not in zshrc
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
+    # when called from quickrun, load .rvmrc
     if [ `uname` = "Darwin" ]; then
-        rvm use 1.9.2-p180
-        rvm gemset use rspec-book
-        #rvm 1.9.3-p0
+        rvm use 1.9.3-p0
+        rvm gemset use global
     fi
 fi
