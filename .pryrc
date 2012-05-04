@@ -20,7 +20,8 @@ Pry.config.commands.command "lastcopy", "Last result copy to clipboard" do
   pbcopy _pry_.last_result.chomp
 end
 
-Pry.config.prompt = proc { "#{Time.now.strftime("%X")}:pry % " }
+Pry.config.prompt = [proc { "-----<#{Time.now.strftime("%H:%m")}:pry % " },
+                     proc { "----------:wait | " }]
 
 cs = Pry::CommandSet.new do
   import Pry::Commands
