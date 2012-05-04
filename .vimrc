@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 Bundle 'fugitive.vim'
 Bundle 'surround.vim'
 Bundle 'ruby.vim'
+Bundle 'scala.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'Align'
@@ -128,6 +129,7 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+    autocmd BufRead,BufNewFile *.scala set filetype=scala
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
     autocmd BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
@@ -332,6 +334,9 @@ nnoremap <space>q :<C-u>quit<CR>
 " insert a blank line by 1 stroke
 nnoremap <CR> o<ESC>
 
+" paste yanked text
+nnoremap <C-p> "0p
+
 " Map Leader (,) settings  {{{2
 let mapleader=','
 
@@ -357,6 +362,8 @@ nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
+
+nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
