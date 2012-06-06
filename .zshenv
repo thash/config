@@ -1,8 +1,5 @@
 export PATH=$HOME/bin:$HOME/.rvm/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/node_modules/.bin:$PATH
 
-
-#first $HOME... is for sakura rental server.
 export LANG=ja_JP.UTF-8
 export LC_ALL="$LANG"
 export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
