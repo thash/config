@@ -35,7 +35,6 @@ Bundle 'Gist.vim'
 Bundle 'zef/vim-cycle'
 Bundle 'The-NERD-Commenter'
 Bundle 'eregex.vim'
-Bundle 'Lokaltog/vim-powerline'
 
 " textobj
 Bundle 'textobj-user'
@@ -48,22 +47,22 @@ Bundle 'unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'Sixeight/unite-grep'
 
-" Bundle 'neocomplcache'
+" Shougo-san series
 Bundle 'Shougo/vimshell'
-" " installed by git clone...
 Bundle 'Shougo/vimproc'
-" Bundle 'proc.vim'
+" Bundle 'neocomplcache'
 " Bundle 'vimfiler'
 
-" Bundle 'Shougo/vimshell'
 " ColorSchemes, Syntax
 Bundle 'molokai'
-Bundle 'railscasts'
 Bundle 'HTML5-Syntax-File'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'altercation/vim-colors-solarized'
 
 
 " General ============================================ {{{1
 " set someting {{{2
+set shortmess=asIAWT "simpler messages
 set t_Co=256
 set encoding=utf8
 set fileencoding=utf8
@@ -158,7 +157,6 @@ augroup MyAutoCmdGeneral
 
     " automatically add timestamp to backup files
     autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
-
 augroup END
 
 " New undo-persistence feature of vim73 {{{2
@@ -181,7 +179,9 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
-colorscheme torte "desert, molokai, murphy, darkblue
+let g:solarized_termcolors=256
+colorscheme solarized "other favorites: torte, desert, molokai, murphy, darkblue
+set background=dark
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -197,21 +197,21 @@ highlight FoldColumn guibg=darkgrey guifg=white ctermbg=darkgrey ctermfg=white
 " change statusline color in insert mode
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
-" display listchars (spaces at end of line, tab etc) {{{2
-set list
-set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
-function! JISX0208SpaceHilight()
-    syntax match JISX0208Space "　" display containedin=ALL
-    highlight JISX0208Space term=underline ctermbg=brown
-endf
-if has("syntax")
-    syntax on
-    augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
-    augroup END
-endif
 
+" display listchars (spaces at end of line, tab etc) {{{2
+set nolist " set list to display listchars
+" set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
+" function! JISX0208SpaceHilight()
+"     syntax match JISX0208Space "　" display containedin=ALL
+"     highlight JISX0208Space term=underline ctermbg=brown
+" endf
+" if has("syntax")
+"     syntax on
+"     augroup invisible
+"         autocmd! invisible
+"         autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+"     augroup END
+" endif
 
 
 " Key remappings ============================================ {{{1
@@ -364,6 +364,12 @@ nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
 nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
+
+"" Don't use Browser reload cuz it breaks tmux display
+" augroup MyBrowserReload
+"   command! -bar BrowserReload silent !osascript $HOME/bin/reload.scpt
+" augroup END
+" nnoremap <silent> <Leader>rl :BrowserReload<CR>
 
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
