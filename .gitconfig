@@ -30,6 +30,7 @@
     s = show
     f = fetch
     g = grep
+    cherry = cherry -v
     # diff
     d  = diff
     dm = diff master
