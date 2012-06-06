@@ -39,11 +39,15 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
 fi
 
 if [ -f $ZSHHOME/auto-fu.zsh ]; then
-  zle-line-init () {auto-fu-init;}; zle -N zle-line-init
-  zstyle ':completion:*' completer _oldlist _complete _history
+  zle-line-init () {auto-fu-init;}
+  zle -N zle-line-init
+  zstyle ':completion:*' completer _oldlist _complete #_history
   zstyle ':auto-fu:highlight' completion/one fg=blue
   zstyle ':auto-fu:var' postdisplay $'
   navi > '
+  bindkey-advice-before "^G" afu+cancel
+  bindkey-advice-before "^[" afu+cancel
+  bindkey-advice-before "^J" afu+cancel afu+accept-line
 fi
 
 # key-bindings (check by bindkey -L)
@@ -72,6 +76,7 @@ alias r='rails'
 alias tailf='tail -f'
 alias lan='landslide icampresen.md && open presentation.html'
 alias scon='vim ~/.ssh/config'
+alias ta='tmux attach'
 
 # Global Aliases
 alias -g G='| grep --color=auto --ignore-case'
@@ -90,6 +95,7 @@ alias g='nocorrect git'
 alias gst='git st && g stash list'
 alias st='git st'
 alias gb='git br -a'
+alias glgg='git logg'
 alias glg='git logg | head'
 alias gln='git logn | head'
 alias ga='git add'
@@ -110,6 +116,8 @@ alias irb='pry'
 alias b='bundle'
 alias bi='bundle install'
 alias be='bundle exec'
+alias bs='bundle show'
+alias bo='bundle open'
 alias ber='bundle exec rails'
 alias cuc='bundle exec cucumber 2>/dev/null'
 alias rsp='bundle exec rspec'
@@ -123,7 +131,7 @@ if [ `uname` = "Darwin" ]; then
     alias gitx='open -a GitX'
     alias hoge='cd /Users/hash/'
     alias calc='ruby ~/unix/bin/calc.rb'
-    alias rest='sudo vim /etc/hosts'
+    alias rest='sudo vim --noplugin /etc/hosts'
     alias ssh2relics='ssh hash@10.0.1.5'
     alias refe='/Users/hash/work/src/refe/refe-1_9_2'
 #    source /usr/local/Cellar/coreutils/8.12/aliases # GNU utils
@@ -144,12 +152,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
 # Advanced completion settings
-# zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' keep-prefix
+  # zstyle ':completion:*' verbose yes
+# zstyle ':completion:*:descriptions' format '%B%d%b'
+# zstyle ':completion:*:messages' format '%d'
+# zstyle ':completion:*:warnings' format 'No matches for: %d'
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' keep-prefix
 
 # History
 # by default, display latest histories.
@@ -179,7 +187,7 @@ autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
 function rprompt-git-current-branch {
   local name st color gitdir action
-  if [[ "$PWD" =~ '/¥.git(/.*)?$' ]]; then
+  if [[ "$PWD" =~ '/.git(/.*)?$' ]]; then
     return
   fi
   name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
