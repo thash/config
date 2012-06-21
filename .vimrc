@@ -88,6 +88,8 @@ set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
+set clipboard=unnamed,autoselect
+
 set formatoptions-=r
 set formatoptions-=o
 
@@ -125,6 +127,7 @@ augroup MyAutoCmdFileType
     " smart indent is disabled when paste is on
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
+    autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
@@ -180,8 +183,8 @@ endif
 " Color/Layout Settings ============================================ {{{1
 " colorscheme {{{2
 let g:solarized_termcolors=256
-colorscheme solarized "other favorites: torte, desert, molokai, murphy, darkblue
 set background=dark
+colorscheme solarized "other favorites: torte, desert, molokai, murphy, darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -199,19 +202,23 @@ autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
 " display listchars (spaces at end of line, tab etc) {{{2
-set nolist " set list to display listchars
-" set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
+set nolist " list or nolist
+"set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
 " function! JISX0208SpaceHilight()
 "     syntax match JISX0208Space "　" display containedin=ALL
 "     highlight JISX0208Space term=underline ctermbg=brown
 " endf
-" if has("syntax")
-"     syntax on
-"     augroup invisible
-"         autocmd! invisible
-"         autocmd BufNew,BufRead * call JISX0208SpaceHilight()
-"     augroup END
-" endif
+
+" highlight spaces at the end of line.
+function! EOLSpaceHilight()
+    syntax match EOLSpace " $" display containedin=ALL
+    highlight EOLSpace term=underline ctermbg=red
+endf
+augroup invisible
+  autocmd! invisible
+  " autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+  autocmd BufNew,BufRead * call EOLSpaceHilight()
+augroup END
 
 
 " Key remappings ============================================ {{{1
@@ -414,9 +421,9 @@ let g:ref_alc_encoding = 'utf-8'
 " unite.vim settings {{{2
 let g:unite_enable_start_insert=1
 let g:unite_split_rule="topleft"
-let g:unite_update_time=10
+let g:unite_update_time=50
 let g:unite_enable_split_vertically=1
-let g:unite_winwidth=50
+let g:unite_winwidth=75
 let g:unite_source_file_ignore_pattern='vendor/bundle'
 nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR>
 "nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
@@ -470,6 +477,9 @@ nnoremap <Space>ga :<C-u>Gwrite<Enter>
 nnoremap <Space>gc :<C-u>Gcommit<Enter>
 nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
+
+nnoremap <Space>p :set paste<CR>
+nnoremap <Space>np :set nopaste<CR>
 
 " Rails settings {{{2
 let g:rubycomplete_rails = 1
