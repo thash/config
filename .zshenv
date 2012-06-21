@@ -6,6 +6,10 @@ export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
+if [ "`ls -a ~ | grep .cabal`" != "" ]; then
+  export PATH=$HOME/.cabal/bin/:$PATH
+fi
+
 # setting for node
 if [ "`ls -a ~ | grep .nave`" = ".nave/" ]; then
     ~/.nave/nave.sh use 0.4.7

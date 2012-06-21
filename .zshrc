@@ -41,7 +41,7 @@ fi
 if [ -f $ZSHHOME/auto-fu.zsh ]; then
   zle-line-init () {auto-fu-init;}
   zle -N zle-line-init
-  zstyle ':completion:*' completer _oldlist _complete #_history
+#  zstyle ':completion:*' completer _oldlist _complete #_history
   zstyle ':auto-fu:highlight' completion/one fg=blue
   zstyle ':auto-fu:var' postdisplay $'
   navi > '
@@ -94,6 +94,7 @@ alias -g BGEM="vendor/bundle/ruby/1.9.1/gems/"
 alias g='nocorrect git'
 alias gst='git st && g stash list'
 alias st='git st'
+alias gs='git st'
 alias gb='git br -a'
 alias glgg='git logg'
 alias glg='git logg | head'
@@ -101,15 +102,20 @@ alias gln='git logn | head'
 alias ga='git add'
 alias gc='git commit -m'
 alias gcm='git commit -m'
+alias gch='git cherry -v'
 alias gd='git diff'
 alias gg='git grep'
 alias gull='git pull origin'
 alias gush='git push origin'
 alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
+alias gchs='nocorrect gchs'
+
+alias hubb='hub browse'
 
 # Aliases -- for Programming
 alias node='nocorrect node'
+alias ghci='ghci 2>&1 | HsColour -tty'
 alias gemst='rvm gemset list'
 alias gemset='rvm gemset list'
 alias irb='pry'
