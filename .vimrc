@@ -4,6 +4,7 @@
 set nocompatible
 filetype off "here off, and after vundle finish, on again.
 set rtp+=~/.vim/bundle/vundle/
+let g:vundle_default_git_proto='git'
 call vundle#rc()
 
 nmap <C-l> <Plug>(openbrowser-open)
