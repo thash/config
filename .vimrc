@@ -608,13 +608,15 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 
+
 " vim-cycle settings {{{2
 let g:cycle_no_mappings=1
-" call AddCycleGroup(['-', '_'])
+" E117: Unknown function: AddCycleGroup ...
+" call addCycleGroup(['-', '_'])
+" call AddCycleGroup(['hoge', 'fuga', 'piyo'])
 nmap <C-C> <Plug>CycleNext
 
-" vim-powerline setting {{{2
-" let g:Powerline_symbols = 'fancy'
+
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
