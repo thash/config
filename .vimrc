@@ -13,52 +13,55 @@ Bundle 'gmarik/vundle'
 " Vundle Define active plugins {{{2
 
 Bundle 'fugitive.vim'
+Bundle 'Gist.vim'
 Bundle 'surround.vim'
 Bundle 'ruby.vim'
-Bundle 'scala.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-rails'
 Bundle 'Align'
-Bundle 'project.tar.gz'
-Bundle 'catn.vim'
 Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
 Bundle 'tpope/vim-markdown'
-Bundle 'mkitt/markdown-preview.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 Bundle 'ref.vim'
-Bundle 'browsereload-mac.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'shadow.vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'Gist.vim'
 Bundle 'zef/vim-cycle'
-Bundle 'The-NERD-Commenter'
 Bundle 'eregex.vim'
 
-" textobj
 Bundle 'textobj-user'
 Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
-" Unite, and new generation plugins
-Bundle 'unite.vim'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'Sixeight/unite-grep'
 
-" Shougo-san series
+""" Shougo-san series {{{3
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 " Bundle 'neocomplcache'
 " Bundle 'vimfiler'
 
-" ColorSchemes, Syntax
-Bundle 'molokai'
+
+""" Unite, and new generation plugins
+Bundle 'unite.vim'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'Sixeight/unite-grep'
+
+
+""" ColorSchemes, Syntax {{{3
 Bundle 'HTML5-Syntax-File'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+
+""" Filetypes -- depends on current work {{{3
+"Bundle 'kchmck/vim-coffee-script'
+"Bundle 'scala.vim'
+"Bundle 'mkitt/markdown-preview.vim'
+"Bundle 'mattn/webapi-vim'
+"Bundle 'shadow.vim'
+Bundle 'stonean/slim'
+Bundle 'bbommarito/vim-slim'
 
 
 " General ============================================ {{{1
