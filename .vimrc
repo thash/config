@@ -624,7 +624,7 @@ if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
 endif
-if has('iconv')
+if has('iconv') " :echo has('iconv') => 0
   let s:enc_euc = 'euc-jp'
   let s:enc_jis = 'iso-2022-jp'
 "  " check iconv can proccess eucIJ-ms or not
