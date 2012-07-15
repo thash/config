@@ -73,7 +73,8 @@ set fileencoding=utf8
 set autoindent
 set expandtab
 set foldmethod=marker
-set foldlevel=2
+set foldlevel=1
+set foldnestmax=2
 set tags=./tags
 set incsearch
 set ignorecase
@@ -92,7 +93,7 @@ set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
-set clipboard=unnamed,autoselect
+"set clipboard=unnamed,autoselect
 
 set formatoptions-=r
 set formatoptions-=o
