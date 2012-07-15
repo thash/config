@@ -383,14 +383,17 @@ nnoremap <Leader>vs :vs $MYVIMRC<CR>
 " grep and get titles (markdown)
 nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
-
 " exec Whoami() to show file name
 nnoremap <Leader>fn :<C-u>call Whoami()<CR>
 
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
+" set UTF-8
 nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
+
+" yank from line marked as 'a' to current line
+nnoremap <Leader>ma :'a,.y<CR>
 
 "" Don't use Browser reload cuz it breaks tmux display
 " augroup MyBrowserReload
@@ -398,6 +401,96 @@ nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 " augroup END
 " nnoremap <silent> <Leader>rl :BrowserReload<CR>
 
+
+"""" Dvorak {{{2
+"""" http://vim.cybermirror.org/runtime/keymap/dvorak.vim
+"""" line zero {{{3
+"""inoremap - [
+"""inoremap ^ ]
+"""inoremap = {
+"""inoremap ~ }
+"""
+"""" first line {{{3
+"""inoremap q '
+"""inoremap w ,
+"""inoremap e .
+"""inoremap r p
+"""inoremap t y
+"""inoremap y f
+"""inoremap u g
+"""inoremap i c
+"""inoremap o r
+"""inoremap p l
+"""inoremap @ ?
+"""inoremap [ =
+"""
+"""inoremap Q "
+"""inoremap W <
+"""inoremap E >
+"""inoremap R P
+"""inoremap T Y
+"""inoremap Y F
+"""inoremap U G
+"""inoremap I C
+"""inoremap O R
+"""inoremap P L
+"""inoremap ` ?
+"""inoremap { +
+"""
+"""
+"""" second line {{{3
+"""" inoremap a a
+"""inoremap s o
+""""imap d e
+"""inoremap f u
+"""inoremap g i
+"""inoremap h d
+"""inoremap j h
+"""inoremap k t
+"""inoremap l n
+"""inoremap ; s
+"""inoremap : -
+"""inoremap ] \
+"""
+"""" inoremap A A
+"""inoremap S O
+"""inoremap D E
+"""inoremap F U
+"""inoremap G I
+"""inoremap H D
+"""inoremap J H
+"""inoremap K T
+"""inoremap L N
+"""inoremap + S
+"""inoremap * _
+"""" inoremap } | <= No mapping found
+"""
+"""" third line {{{3
+"""inoremap z ;
+"""inoremap x q
+"""inoremap c j
+"""inoremap v k
+"""inoremap b x
+"""inoremap n b
+"""" inoremap m m
+"""inoremap , w
+"""inoremap . v
+"""inoremap / z
+"""
+"""inoremap Z :
+"""inoremap X Q
+"""inoremap C J
+"""inoremap V K
+"""inoremap B X
+"""inoremap N B
+"""" inoremap M M
+"""inoremap < W
+"""inoremap > V
+"""inoremap ? Z
+"""
+"""
+"""
+"""
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
 " execute current window using QuickRun
