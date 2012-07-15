@@ -575,8 +575,10 @@ endif
 
 " TODO: add loaded_vimshell judgement
 nnoremap <silent> ,is :VimShell<CR>
-nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+nnoremap <silent> ,irb :VimShellInteractive pry<CR>
+nnoremap <silent> ,irc :VimShellInteractive bundle exec rails console<CR>
 nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
+nnoremap <silent> ,ihs :VimShellInteractive ghci<CR>
 " nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 " vmap <silent> ,ss :VimShellSendString<CR>
 nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
