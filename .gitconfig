@@ -46,3 +46,5 @@
   default = tracking
 [pull]
   rebase = true
+[grep]
+  lineNumber = true
