@@ -226,7 +226,7 @@ set nolist " list or nolist
 
 " highlight spaces at the end of line.
 function! EOLSpaceHilight()
-    syntax match EOLSpace " $" display containedin=ALL
+    syntax match EOLSpace " *$" display containedin=ALL
     highlight EOLSpace term=underline ctermbg=red
 endf
 augroup invisible
@@ -285,8 +285,10 @@ inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
 
-" for better usage
+" improve
 inoremap  _
+" inoremap ¥ \
+" cnoremap ¥ \
 
 " When searching, always move the cursor to center of window
 nnoremap n nzz
@@ -355,6 +357,9 @@ nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
 nnoremap <CR> o<ESC>
+
+" yank from cursol to eol
+nnoremap Y y$
 
 " paste yanked text
 nnoremap <C-p> "0p
