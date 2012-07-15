@@ -11,23 +11,23 @@ set previouspattern+=previous
 
 
 "key mappings {{{2
-map <BS> H
-noremap j 10j
-noremap k 10k
+nnoremap <BS> H
+nnoremap j 10j
+nnoremap k 10k
 noremap <C-Space> <esc>
 inoremap <C-Space> <esc>
 noremap <C-@> <esc>
 noremap <C-]> <C-z>
-noremap h <C-p>
-noremap l <C-n>
+nnoremap h <C-p>
+nnoremap l <C-n>
 map <S-Left> :tabmove! -1<CR>
 map <S-Right> :tabmove! +1<CR>
 
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
 
-noremap _ ma
-noremap } `a
+nnoremap _ ma
+nnoremap } `a
 cmap <C-d> <Tab>
 cmap <C-i> <Tab>
 cmap <C-Space> <ESC>
@@ -38,9 +38,9 @@ noremap <C-q> <S-ESC>
 
 
 " Hatena Settings {{{3
-map a <esc>:sbm<Space>[
-map e <esc>:eijiro<Space>
-map gm <esc>mg G `
+" map a <esc>:sbm<Space>[
+" map e <esc>:eijiro<Space>
+" map gm <esc>mg G `
 
 
 " Cut & Copy & Paste, select all, and Redo. {{{3
