@@ -737,7 +737,31 @@ endfunction
 
 " search word and open result in splitt window {{{2
 command! -nargs=* Nameru call Nameru(<f-args>)
-function! Nameru(word)
-  exec 'vimgrep /' . a:word . '/ % | cwin'
+function! Nameru()
+  let word = input('search: ')
+  if word == ""
+    return
+  endif
+  exec 'vimgrep /' . word . '/ % | cwin'
 endfunction
+nnoremap <Leader>na :<C-u>call Nameru()<CR>
+
+" Load settings for each location. {{{2
+" http://d.hatena.ne.jp/thinca/20100216/1266294717
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('vimrc_local.vim', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+
+" if g:loaded_vimrc == 0
+"   call s:vimrc_local(getcwd())
+" endif
+
 
