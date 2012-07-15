@@ -207,6 +207,15 @@ highlight FoldColumn guibg=darkgrey guifg=white ctermbg=darkgrey ctermfg=white
 autocmd InsertEnter * highlight StatusLine ctermfg=red
 autocmd InsertLeave * highlight StatusLine ctermfg=green
 
+" vim-indent-guides {{{3
+" vim-indent-guides activated by <Leader>ig
+let g:indent_guides_auto_colors = 0
+augroup indentGuides
+  autocmd! indentGuides
+  autocmd WinEnter,BufRead * highlight IndentGuidesOdd  ctermbg=black
+  autocmd WinEnter,BufRead * highlight IndentGuidesEven ctermbg=darkblue
+augroup END
+
 " display listchars (spaces at end of line, tab etc) {{{2
 set nolist " list or nolist
 "set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
