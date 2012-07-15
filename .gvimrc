@@ -8,6 +8,7 @@ if has('gui_macvim')
   set go=egmtc
   set transparency=20
   highlight LineNr ctermfg=darkgray
+  highlight Visual guibg=yellow guifg=darkgray
 
   colorscheme torte
   " No Full Screen size
@@ -25,6 +26,12 @@ if has('gui_macvim')
   inoremap <C-Space> <C-[>
   cnoremap <C-Space> <C-[>
   nnoremap <C-Space> <C-[>
+
+  augroup indentGuidesGUI
+    autocmd! indentGuidesGUI
+    autocmd WinEnter,BufRead * highlight IndentGuidesOdd  guibg=darkgray
+    autocmd WinEnter,BufRead * highlight IndentGuidesEven guibg=black
+  augroup END
 
 elseif has("gui_win32")
 " font setting from http://memo.xight.org/2007-11-01-2
