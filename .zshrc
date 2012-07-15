@@ -60,6 +60,7 @@ bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 # Aliases
 setopt aliases
 alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
+alias y='ls -vFG'
 alias laa='ls -vA | grep --ignore-case --color=auto ^\\.'
 alias lg='ll -va | grep --ignore-case --color=auto'
 alias mv='mv -i' cp='cp -i' rm='rm -i'
@@ -70,13 +71,14 @@ alias grep='grep --color=auto --ignore-case'
 alias pgrep='pgrep -i' pkill='pkill -i'
 alias psg='ps aux | grep'
 alias s='screen -r'
-alias v='nocorrect vim' vim='nocorrect vim'
+#alias v='nocorrect vim' vim='nocorrect vim'
 alias vimrc='vim ~/.vimrc'
 alias r='rails'
 alias tailf='tail -f'
 alias lan='landslide icampresen.md && open presentation.html'
 alias scon='vim ~/.ssh/config'
 alias ta='tmux attach'
+alias ifconfig.me='curl ifconfig.me/ip'
 
 # Global Aliases
 alias -g G='| grep --color=auto --ignore-case'
@@ -104,7 +106,7 @@ alias gc='git commit -m'
 alias gcm='git commit -m'
 alias gch='git cherry -v'
 alias gd='git diff'
-alias gg='git grep'
+alias gg='git grep -H --heading --break'
 alias gull='git pull origin'
 alias gush='git push origin'
 alias gstd='nocorrect gstd'
@@ -115,7 +117,6 @@ alias hubb='hub browse'
 
 # Aliases -- for Programming
 alias node='nocorrect node'
-alias ghci='ghci 2>&1 | HsColour -tty'
 alias gemst='rvm gemset list'
 alias gemset='rvm gemset list'
 alias irb='pry'
@@ -130,7 +131,7 @@ alias rsp='bundle exec rspec'
 
 # Local Mac {{{1
 if [ `uname` = "Darwin" ]; then
-    alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
+    #alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
     alias gvim='open -a MacVim.app'
     export VMAIL_VIM=mvim #Vmail settings
     alias pymol='open -a MacPyMOL.app'
