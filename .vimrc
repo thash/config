@@ -101,7 +101,7 @@ set formatoptions-=o
 " cursorline settings {{{2
 augroup cch
   autocmd! cch
-  autocmd WinLeave * set nocursorline "nocursorcolumn
+  autocmd WinLeave * set nocursorline nocursorcolumn
   autocmd WinEnter,BufRead * set cursorline "cursorcolumn
 augroup END
 
@@ -135,6 +135,7 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
+    autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufNewFile *.scala set filetype=scala
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
@@ -161,7 +162,7 @@ augroup MyAutoCmdGeneral
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
     " automatically remove spaces end of the line
-    " autocmd BufWritePre * :%s/\s\+$//ge
+    autocmd BufWritePre * :%s/\s\+$//ge
 
     " automatically add timestamp to backup files
     autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
