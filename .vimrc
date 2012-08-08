@@ -93,6 +93,9 @@ set cmdwinheight=12
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
+" load my plugins under development.
+set rtp+=~/.vim/dev/
+
 "set clipboard=unnamed,autoselect
 
 set formatoptions-=r
