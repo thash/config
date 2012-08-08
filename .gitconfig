@@ -9,6 +9,8 @@
     interactive = auto
     grep = auto
 
+[github]
+  user = memerelics
 
 [core]
     autocrlf = input
@@ -48,3 +50,7 @@
   rebase = true
 [grep]
   lineNumber = true
+
+[tig "bind"]
+  generic = g move-first-line
+  generic = G move-last-line
