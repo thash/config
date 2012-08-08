@@ -244,13 +244,16 @@ augroup END
 
 " Key remappings ============================================ {{{1
 " general keys {{{2
+"" <Nul> means <C-Space>
 inoremap <Nul> <C-[>
 cnoremap <Nul> <C-[>
+vnoremap <Nul> <C-[>
 nnoremap <Nul> <C-[>
 nnoremap <F1> <C-[>
 inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+inoremap jj <ESC>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -269,10 +272,6 @@ noremap g$ $
 " join without space
 noremap gJ J
 noremap J gJ
-
-" scroll screen (cursor doesn't move
-nnoremap <C-N> 5<C-E>
-nnoremap <C-P> 5<C-Y>
 
 " don't include newline in visual mode
 vnoremap $ $h
@@ -356,6 +355,11 @@ nnoremap <space>ma :<C-u>marks<CR>
 nnoremap <space>ms m'
 nnoremap <space>mj ''zz
 
+" Moving up/down by function, unfolding current function but folding all else
+noremap [[ [[zMzvz.
+noremap ]] ]]zMzvz.
+
+
 " buffer control by arrow keys
 "nnoremap <DOWN>  :<C-u>bdelete<CR>
 "nnoremap <UP>    :<C-u>ls<CR>
@@ -371,9 +375,6 @@ nnoremap <CR> o<ESC>
 
 " yank from cursol to eol
 nnoremap Y y$
-
-" paste yanked text
-nnoremap <C-p> "0p
 
 " Map Leader (,) settings  {{{2
 let mapleader=','
@@ -405,6 +406,13 @@ nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 
 " yank from line marked as 'a' to current line
 nnoremap <Leader>ma :'a,.y<CR>
+
+" open file has the filename under cursor in 'path'.
+nnoremap <Space>f gf
+nnoremap <Space>F <C-w>f
+
+nnoremap <Space>p :set paste<CR>
+nnoremap <Space>np :set nopaste<CR>
 
 "" Don't use Browser reload cuz it breaks tmux display
 " augroup MyBrowserReload
@@ -449,25 +457,46 @@ nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
 "   let g:quickrun_config['C'] = {'command': 'gcc'}
 " end
 
-" ref.vim
+" ref.vim {{{3
 let g:ref_alc_start_linenumber = 44
 let g:ref_alc_encoding = 'utf-8'
+"let g:ref_no_default_key_mappings = 1
+
+" ref.vim sources
+let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
+
+
+" RainbowParenthesesToggle {{{3
+"   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
+let g:rbpt_max = 7
+let g:rbpt_loadcmd_toggle = 0
+
+" syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+
+" Gist
+"let g:gist_browser_command = 'firefox %URL% &'
 
 " unite.vim settings {{{2
 let g:unite_enable_start_insert=1
 let g:unite_split_rule="topleft"
 let g:unite_update_time=50
 let g:unite_enable_split_vertically=1
-let g:unite_winwidth=75
+let g:unite_winheight=10
+let g:unite_winwidth=50
 let g:unite_source_file_ignore_pattern='vendor/bundle'
-nnoremap <silent> ,ub :<C-u>Unite buffer -auto-preview<CR>
+"let g:unite_source_file_mru_filename_format = ''
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview<CR>
 "nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
-nnoremap <silent> ,uu :<C-u>Unite file buffer -buffer-name=files<CR>
-nnoremap <silent> ,uo :<C-u>Unite outline -auto-preview<CR>
-nnoremap <silent> ,um :<C-u>Unite mapping -auto-preview<CR>
-nnoremap <silent> ,ug :<C-u>Unite grep file -auto-preview<CR>
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
+nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
+nnoremap <silent> <Leader>uu :<C-u>Unite -no-quit file buffer -buffer-name=files<CR>
+nnoremap <silent> <Leader>j :<C-u>Unite file -buffer-name=files<CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview<CR>
+nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview<CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite -no-quit grep file -auto-preview<CR>
+" nnoremap <silent> <Leader>ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
+nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -buffer-name=ack -auto-preview ack::<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
@@ -476,6 +505,7 @@ call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  highlight EOLSpace none
   imap <silent> <buffer> <C-h> <ESC><Plug>(unite_delete_backword_path)
   nmap <buffer> <C-j> <Plug>(unite_select_next_line)
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
@@ -485,9 +515,19 @@ function! s:unite_my_settings()
   imap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-  nmap <silent> <buffer> <ESC><ESC> q
-  imap <silent> <buffer> <ESC><ESC> <ESC>q
+  imap <buffer> jj <Plug>(unite_insert_leave)
+  imap <buffer> <Space> /
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <silent> <buffer> <ESC><ESC> <Plug>(unite_exit)
 endfunction
+
+" vim-unite-ack
+let g:unite_source_ack_command = "ack --ignore-dir=vendor"
+
+" Vimfiler settings {{{2
+let g:vimfiler_as_default_explorer = 1
+call vimfiler#set_execute_file('vim,rb,md,txt,js,haml,html,yml', 'vim')
+nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 
 " VimShell settings and aliases {{{2
 
@@ -509,14 +549,7 @@ vmap <silent> <Space>s :VimShellSendString<CR>
 " fugitive.vim settings {{{2
 nnoremap <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <Space>gs :<C-u>Gstatus<Enter>
-nnoremap <Space>gl :<C-u>Glog<Enter>
-nnoremap <Space>ga :<C-u>Gwrite<Enter>
-nnoremap <Space>gc :<C-u>Gcommit<Enter>
-nnoremap <Space>gC :<C-u>Git commit --amend<Enter>
 nnoremap <Space>gb :<C-u>Gblame<Enter>
-
-nnoremap <Space>p :set paste<CR>
-nnoremap <Space>np :set nopaste<CR>
 
 " Rails settings {{{2
 let g:rubycomplete_rails = 1
@@ -530,6 +563,8 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 
+" YankRing.vim settings {{{2
+let g:yankring_history_dir = '$HOME/tmp'
 
 " vim-cycle settings {{{2
 let g:cycle_no_mappings=1
@@ -685,5 +720,30 @@ endfunction
 " if g:loaded_vimrc == 0
 "   call s:vimrc_local(getcwd())
 " endif
+
+" git-diff-aware version of gf commands. {{{2
+" http://labs.timedia.co.jp/2011/04/git-diff-aware-gf-commands-for-vim.html
+nnoremap <expr> gf  <SID>do_git_diff_aware_gf('gf')
+nnoremap <expr> gF  <SID>do_git_diff_aware_gf('gF')
+nnoremap <expr> <C-w>f  <SID>do_git_diff_aware_gf('<C-w>f')
+nnoremap <expr> <C-w><C-f>  <SID>do_git_diff_aware_gf('<C-w><C-f>')
+nnoremap <expr> <C-w>F  <SID>do_git_diff_aware_gf('<C-w>F')
+nnoremap <expr> <C-w>gf  <SID>do_git_diff_aware_gf('<C-w>gf')
+nnoremap <expr> <C-w>gF  <SID>do_git_diff_aware_gf('<C-w>gF')
+
+function! s:do_git_diff_aware_gf(command)
+  let target_path = expand('<cfile>')
+  if target_path =~# '^[ab]/'  " with a peculiar prefix of git-diff(1)?
+    if filereadable(target_path) || isdirectory(target_path)
+      return a:command
+    else
+      " BUGS: Side effect - Cursor position is changed.
+      let [_, c] = searchpos('\f\+', 'cenW')
+      return c . '|' . 'v' . (len(target_path) - 2 - 1) . 'h' . a:command
+    endif
+  else
+    return a:command
+  endif
+endfunction
 
 
