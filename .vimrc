@@ -10,23 +10,25 @@ call vundle#rc()
 nmap <C-l> <Plug>(openbrowser-open)
 Bundle 'gmarik/vundle'
 
-" Vundle Define active plugins {{{2
 
+" Vundle Define active plugins {{{2
 Bundle 'fugitive.vim'
-Bundle 'Gist.vim'
+Bundle 'mattn/webapi-vim'
+" Bundle 'Gist.vim' -- updated.
 Bundle 'surround.vim'
-Bundle 'ruby.vim'
-Bundle 'taq/vim-rspec'
-Bundle 'tpope/vim-rails'
 Bundle 'Align'
 Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
-Bundle 'tpope/vim-markdown'
 Bundle 'snipMate'
 Bundle 'TwitVim'
-Bundle 'ref.vim'
 Bundle 'zef/vim-cycle'
-Bundle 'eregex.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'ack.vim'
+Bundle 'YankRing.vim'
+Bundle 'kien/rainbow_parentheses.vim'
+
+Bundle 'ref.vim'
+Bundle 'soh335/vim-ref-jquery'
 
 Bundle 'textobj-user'
 Bundle 'textobj-indent'
@@ -34,34 +36,32 @@ Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
 
-""" Shougo-san series {{{3
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimproc'
-" Bundle 'neocomplcache'
-" Bundle 'vimfiler'
-
-
-""" Unite, and new generation plugins
+""" Unite, and new generation plugins {{{3
 Bundle 'unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'Sixeight/unite-grep'
+Bundle 't9md/vim-unite-ack'
+Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimfiler'
 
 
 """ ColorSchemes, Syntax {{{3
-Bundle 'HTML5-Syntax-File'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'scrooloose/syntastic'
 
 
 """ Filetypes -- depends on current work {{{3
-"Bundle 'kchmck/vim-coffee-script'
-"Bundle 'scala.vim'
+Bundle 'ruby.vim'
+" Bundle 'tpope/vim-rails'
+Bundle 'rorymckinley/vim-symbols-strings'
+Bundle 'taq/vim-rspec'
+Bundle 'tpope/vim-markdown'
 "Bundle 'mkitt/markdown-preview.vim'
-"Bundle 'mattn/webapi-vim'
-"Bundle 'shadow.vim'
-Bundle 'stonean/slim'
-Bundle 'bbommarito/vim-slim'
+"Bundle 'stonean/slim'
+"Bundle 'bbommarito/vim-slim'
+"Bundle 'mattn/zencoding-vim'
+Bundle 'vspec'
 
 
 " General ============================================ {{{1
