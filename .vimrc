@@ -146,6 +146,9 @@ augroup MyAutoCmdFileType
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
+
+    autocmd VimEnter *.scm RainbowParenthesesToggle
+    autocmd Syntax *.scm RainbowParenthesesLoadRound
 augroup END
 
 " omni completion setting {{{3
@@ -281,12 +284,17 @@ inoremap <C-a> <ESC>0i
 inoremap <C-e> <ESC>$a
 
 " autocomplete (, [, {, ", '
-inoremap () ()<LEFT>
+" inoremap () ()<LEFT>
 inoremap <> <><LEFT>
 inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
+
+" parentheses specific settings for test
+imap <C-j> (
+inoremap ( ()<Esc>:let leavechar=")"<CR>i
+" imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a
 
 " improve
 inoremap  _
