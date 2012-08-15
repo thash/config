@@ -41,7 +41,7 @@ Bundle 't9md/vim-textobj-function-ruby'
 
 
 """ Unite, and new generation plugins {{{3
-Bundle 'unite.vim'
+Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'Sixeight/unite-grep'
 Bundle 't9md/vim-unite-ack'
@@ -490,6 +490,10 @@ let g:unite_enable_split_vertically=1
 let g:unite_winheight=10
 let g:unite_winwidth=50
 let g:unite_source_file_ignore_pattern='vendor/bundle'
+
+" auto save unite sessions for quick startup
+let g:unite_source_session_enable_auto_save = 1
+
 "let g:unite_source_file_mru_filename_format = ''
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview<CR>
 "nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
@@ -509,6 +513,9 @@ call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
+  " load saved unite session -- used with g:unite_source_session_enable_auto_save
+  autocmd VimEnter * UniteSessionLoad
+
   highlight EOLSpace none
   imap <silent> <buffer> <C-h> <ESC><Plug>(unite_delete_backword_path)
   nmap <buffer> <C-j> <Plug>(unite_select_next_line)
@@ -520,7 +527,6 @@ function! s:unite_my_settings()
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <buffer> jj <Plug>(unite_insert_leave)
-  imap <buffer> <Space> /
   nmap <buffer> <ESC> <Plug>(unite_exit)
   imap <silent> <buffer> <ESC><ESC> <Plug>(unite_exit)
 endfunction
