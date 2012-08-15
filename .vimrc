@@ -142,6 +142,7 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
+    autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufNewFile *.scala set filetype=scala
@@ -693,21 +694,21 @@ function! ChangeDir()
     unlet _dir
 endfunction
 
-" show current file name {{{2
-function! Whoami()
-    exec 'echo expand("%")'
-endfunction
-
 " search word and open result in splitt window {{{2
-command! -nargs=* Nameru call Nameru(<f-args>)
-function! Nameru()
+function! s:nameru()
   let word = input('search: ')
   if word == ""
     return
   endif
-  exec 'vimgrep /' . word . '/ % | cwin'
+  try
+    exec 'vimgrep /' . word . '/ %'
+  catch /E480:\ No\ match/
+    echomsg 'No match.'
+    exec 'cclose'
+  endtry
 endfunction
-nnoremap <Leader>na :<C-u>call Nameru()<CR>
+command! -nargs=* Nameru call <sid>nameru(<f-args>)
+nnoremap <Leader>na :Nameru<CR>
 
 " Load settings for each location. {{{2
 " http://d.hatena.ne.jp/thinca/20100216/1266294717
