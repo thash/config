@@ -262,6 +262,8 @@ inoremap jj <ESC>
 " Replace colon with semi-colon
 nnoremap ; :
 vnoremap ; :
+nnoremap q; q:
+vnoremap q; q:
 
 " move by one display line
 noremap j gj
@@ -294,15 +296,21 @@ inoremap [] []<LEFT>
 inoremap '' ''<LEFT>
 inoremap "" ""<LEFT>
 
-" parentheses specific settings for test
-imap <C-j> (
-inoremap ( ()<Esc>:let leavechar=")"<CR>i
-" imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a
+""" lazy symbols {{{3
+" quote key is too far from my fingers
+inoremap <C-F><C-D> ''<LEFT>
+inoremap <C-F><C-F> ""<LEFT>
+inoremap <C-F><C-J> -
+inoremap <C-F><C-K> =
+inoremap <C-F><C-L> _
 
-" improve
+" parentheses specific settings for test
+inoremap <C-J> ()<LEFT>
+" inoremap <C-J><C-J> []<LEFT>
+" inoremap <C-J><C-F> {}<LEFT>
+" inoremap <C-J><C-D> []<LEFT>
+
 inoremap  _
-" inoremap ¥ \
-" cnoremap ¥ \
 
 " When searching, always move the cursor to center of window
 nnoremap n nzz
@@ -338,9 +346,6 @@ nnoremap <C-S-Tab> :tabprevious<CR>
 nnoremap fo za
 nnoremap FO zR
 nnoremap fO zM
-
-" Open help
-nnoremap <C-Y> :<C-u>h<space>
 
 " tags
 nnoremap tl  <C-]>
@@ -380,6 +385,8 @@ nnoremap <CR> o<ESC>
 " yank from cursol to eol
 nnoremap Y y$
 
+
+" ======================================================================
 " Map Leader (,) settings  {{{2
 let mapleader=','
 
@@ -399,8 +406,8 @@ nnoremap <Leader>vs :vs $MYVIMRC<CR>
 " grep and get titles (markdown)
 nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
 
-" exec Whoami() to show file name
-nnoremap <Leader>fn :<C-u>call Whoami()<CR>
+" show currently editing file name
+nnoremap <Leader>fn :<C-u>echo expand("%")<CR>
 
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
@@ -474,6 +481,7 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 "   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
 let g:rbpt_max = 7
 let g:rbpt_loadcmd_toggle = 0
+nnoremap <Leader>rp :<C-u>RainbowParenthesesLoadRound<CR>
 
 " syntastic
 let g:syntastic_enable_signs=1
@@ -550,19 +558,14 @@ nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive pry<CR>
 nnoremap <silent> ,irc :VimShellInteractive bundle exec rails console<CR>
 nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
-nnoremap <silent> ,ihs :VimShellInteractive ghci<CR>
-" nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
-" vmap <silent> ,ss :VimShellSendString<CR>
+" nnoremap <silent> ,ihs :VimShellInteractive ghci<CR> " Haskell
 nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
 vmap <silent> <Space>s :VimShellSendString<CR>
 
 " fugitive.vim settings {{{2
-nnoremap <Space>gd :<C-u>Gdiff<Enter>
-nnoremap <Space>gs :<C-u>Gstatus<Enter>
-nnoremap <Space>gb :<C-u>Gblame<Enter>
-
-" Rails settings {{{2
-let g:rubycomplete_rails = 1
+nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
+nnoremap <silent> <Space>gs :<C-u>Gstatus<Enter>
+nnoremap <silent> <Space>gb :<C-u>Gblame<Enter>
 
 " Openbrowser settings {{{2
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
@@ -682,21 +685,6 @@ function! GetEFstatus() " {{{2
     return str
 endfunction
 
-" :TabpageCD {{{2
-" from http://kana.github.com/config/vim/
-" command! -nargs=? TabpageCD
-"             \   execute 'cd' fnameescape(<q-args>)
-"             \ | let t:cwd = getcwd()
-"
-" autocmd MyAutoCmd TabEnter *
-"             \   if !exists('t:cwd')
-"             \ |   let t:cwd = getcwd()
-"             \ | endif
-"         \ | execute 'cd' fnameescape(t:cwd)
-"
-" AlterCommand cd  TabpageCD
-
-
 
 " move to current (opened file exists in) dir {{{2
 function! ChangeDir()
@@ -763,5 +751,4 @@ function! s:do_git_diff_aware_gf(command)
     return a:command
   endif
 endfunction
-
 
