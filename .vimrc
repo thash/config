@@ -579,12 +579,12 @@ let g:buftabs_only_basename=1
 
 " YankRing.vim settings {{{2
 let g:yankring_history_dir = '$HOME/tmp'
+let g:yankring_min_element_length = 4
+let g:yankring_paste_using_g = 0
 
 " vim-cycle settings {{{2
+" I added personal setting into vim-cycle plugin itseif
 let g:cycle_no_mappings=1
-" E117: Unknown function: AddCycleGroup ...
-" call addCycleGroup(['-', '_'])
-" call AddCycleGroup(['hoge', 'fuga', 'piyo'])
 nmap <C-C> <Plug>CycleNext
 
 " sequence settings {{{2
