@@ -21,11 +21,15 @@ Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
+" Bundle 'daisuzu/facebook.vim'
+Bundle 'The-NERD-Commenter'
 Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'csv.vim'
+Bundle 'sequence'
 
 Bundle 'ref.vim'
 Bundle 'soh335/vim-ref-jquery'
@@ -573,7 +577,15 @@ let g:cycle_no_mappings=1
 " call AddCycleGroup(['hoge', 'fuga', 'piyo'])
 nmap <C-C> <Plug>CycleNext
 
+" sequence settings {{{2
+nmap <Leader>sa <Plug>SequenceN_Increment
+vmap <Leader>sa <Plug>SequenceV_Increment
+nmap <Leader>sx <Plug>SequenceN_Decrement
+vmap <Leader>sx <Plug>SequenceV_Decrement
 
+""" facebook.vim settings {{{2
+""let g:facebook_access_token_file = expand('~/.fb_access_token')
+""let g:facebook_timezone = '+0900'
 
 " Functions my/someone's ============================================ {{{1
 " Automatic recognition of Encoding {{{2
