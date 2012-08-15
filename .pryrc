@@ -40,35 +40,21 @@ end
 #  puts "close."
 #end
 
+module ComposableFunction
+  def self.included(klass)
+    klass.send(:alias_method, :<<, :compose)
+  end
 
-### hirb ###
-# begin
-#   require 'hirb'
-# rescue LoadError
-#   begin
-#     require 'bundler/setup'
-#     require 'hirb'
-#   rescue LoadError
-#     # Missing goodies, bummer
-#   end
-# end
-#
-# if defined? Hirb
-#   # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
-#   Hirb::View.instance_eval do
-#     def enable_output_method
-#       @output_method = true
-#       @old_print = Pry.config.print
-#       Pry.config.print = proc do |output, value|
-#         Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
-#       end
-#     end
-#
-#     def disable_output_method
-#       Pry.config.print = @old_print
-#       @output_method = nil
-#     end
-#   end
-#
-#   Hirb.enable
-# end
+  def compose(g)
+    lambda {|*args| self.to_proc.call(g.to_proc.call(*args))}
+  end
+
+  def >>(g)
+    g << self
+  end
+end
+
+[Proc, Method, Symbol].each do |klass|
+  klass.send(:include, ComposableFunction)
+end
+
