@@ -359,8 +359,6 @@ nnoremap tj  :<C-u>tags<CR>
 
 " select last modified line (gm has a original meaning)
 nnoremap gm '.V
-" select last pasted block
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " mark, jump
 nnoremap <space>ma :<C-u>marks<CR>
@@ -406,9 +404,6 @@ nnoremap <Leader>cp "+p
 nnoremap <Leader>vl :source $MYVIMRC<CR>:source $HOME/.gvimrc<CR>
 nnoremap <Leader>vs :vs $MYVIMRC<CR>
 
-" grep and get titles (markdown)
-nnoremap <Leader>gp :<C-u>vimgrep /^#/ %<CR>:cwin<CR>
-
 " show currently editing file name
 nnoremap <Leader>fn :<C-u>echo expand("%")<CR>
 
@@ -427,6 +422,9 @@ nnoremap <Space>F <C-w>f
 
 nnoremap <Space>p :set paste<CR>
 nnoremap <Space>np :set nopaste<CR>
+
+" select last pasted block
+nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 "" Don't use Browser reload cuz it breaks tmux display
 " augroup MyBrowserReload
@@ -585,8 +583,7 @@ let g:buftabs_only_basename=1
 
 " YankRing.vim settings {{{2
 let g:yankring_history_dir = '$HOME/tmp'
-let g:yankring_min_element_length = 4
-let g:yankring_paste_using_g = 0
+" let g:yankring_paste_using_g = 0
 
 " vim-cycle settings {{{2
 " I added personal setting into vim-cycle plugin itseif
