@@ -333,11 +333,12 @@ nnoremap <space>J <C-W>J
 nnoremap <space>K <C-W>K
 nnoremap <space>H <C-W>H
 nnoremap <space>L <C-W>L
-" window width/height modification
+" window resizing
 nnoremap <space>+ <C-W>5+
 nnoremap <space>- <C-W>5-
 nnoremap <space>> <C-W>10>
 nnoremap <space>< <C-W>10<
+nnoremap <space>= <C-W>=
 
 " tabnew, tabmove
 nnoremap <space>t :<C-u>tabnew <C-d>
@@ -495,26 +496,29 @@ let g:syntastic_auto_loc_list=2
 " unite.vim settings {{{2
 let g:unite_enable_start_insert=1
 let g:unite_split_rule="topleft"
+"let g:unite_enable_split_vertically=1
 let g:unite_update_time=50
-let g:unite_enable_split_vertically=1
-let g:unite_winheight=10
+let g:unite_winheight=20
 let g:unite_winwidth=50
 let g:unite_source_file_ignore_pattern='vendor/bundle'
+
+let g:unite_source_file_mru_time_format = "(%a)%H:%M "
+let g:unite_source_file_mru_filename_format = ":~:." "default
 
 " auto save unite sessions for quick startup
 let g:unite_source_session_enable_auto_save = 1
 
-"let g:unite_source_file_mru_filename_format = ''
-nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview<CR>
-"nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -auto-preview<CR>
-nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview<CR>
-nnoremap <silent> <Leader>uu :<C-u>Unite -no-quit file buffer -buffer-name=files<CR>
-nnoremap <silent> <Leader>j :<C-u>Unite file -buffer-name=files<CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview<CR>
-nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview<CR>
-nnoremap <silent> <Leader>ug :<C-u>Unite -no-quit grep file -auto-preview<CR>
-" nnoremap <silent> <Leader>ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file -auto-preview<CR>
-nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -buffer-name=ack -auto-preview ack::<CR>
+" UniteWithBufferDir -> initial input text is current buffer dir
+nnoremap <silent> <Leader>j  :<C-u>Unite file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite -no-quit grep file -auto-resize -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
@@ -537,6 +541,7 @@ function! s:unite_my_settings()
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
   imap <buffer> jj <Plug>(unite_insert_leave)
+  imap <buffer> <buffer> qq <Plug>(unite_exit)
   nmap <buffer> <ESC> <Plug>(unite_exit)
   imap <silent> <buffer> <ESC><ESC> <Plug>(unite_exit)
 endfunction
