@@ -39,6 +39,7 @@ Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
+Bundle 'tsukkee/lingr-vim'
 
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
