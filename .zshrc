@@ -142,6 +142,7 @@ if [ `uname` = "Darwin" ]; then
     alias ssh2relics='ssh hash@10.0.1.5'
     alias refe='/Users/hash/work/src/refe/refe-1_9_2'
 #    source /usr/local/Cellar/coreutils/8.12/aliases # GNU utils
+    alias sed='gsed'
 fi #}}}1
 
 # Set Options
