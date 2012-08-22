@@ -258,7 +258,10 @@ nnoremap <F1> <C-[>
 inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
-inoremap jj <ESC>
+inoremap jj <ESC>jj
+inoremap lll <ESC>lll
+inoremap hh <ESC>hh
+inoremap kk <ESC>kk
 
 " Replace colon with semi-colon
 nnoremap ; :
