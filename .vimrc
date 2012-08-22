@@ -66,7 +66,6 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'stonean/slim'
 "Bundle 'bbommarito/vim-slim'
 "Bundle 'mattn/zencoding-vim'
-Bundle 'vspec'
 
 
 " General ============================================ {{{1
