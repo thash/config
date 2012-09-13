@@ -72,7 +72,7 @@
                 <autogen>--KeyToKey-- KeyCode::J,     VK_OPTION, KeyCode::KEY_4</autogen>
                 <autogen>--KeyToKey-- KeyCode::K,     VK_OPTION, KeyCode::KEY_5</autogen>
                 <autogen>--KeyToKey-- KeyCode::L,     VK_OPTION, KeyCode::KEY_6</autogen>
-                <autogen>--KeyToKey-- KeyCode::Y,     VK_OPTION, KeyCode::KEY_7</autogen>
+                <autogen>--KeyToKey-- KeyCode::U,     VK_OPTION, KeyCode::KEY_7</autogen>
                 <autogen>--KeyToKey-- KeyCode::I,     VK_OPTION, KeyCode::KEY_8</autogen>
                 <autogen>--KeyToKey-- KeyCode::O,     VK_OPTION, KeyCode::KEY_9</autogen>
         </item>
