@@ -44,8 +44,9 @@ Bundle 'tsukkee/lingr-vim'
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
-Bundle 'Sixeight/unite-grep'
-Bundle 't9md/vim-unite-ack'
+Bundle 'sgur/unite-git_grep'
+" Bundle 'Sixeight/unite-grep'
+" Bundle 't9md/vim-unite-ack'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -259,9 +260,6 @@ inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 inoremap jj <ESC>jj
-inoremap lll <ESC>lll
-inoremap hh <ESC>hh
-inoremap kk <ESC>kk
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -500,7 +498,7 @@ let g:unite_split_rule="topleft"
 let g:unite_update_time=50
 let g:unite_winheight=20
 let g:unite_winwidth=50
-let g:unite_source_file_ignore_pattern='vendor/bundle'
+"let g:unite_source_file_ignore_pattern='vendor/bundle'
 
 let g:unite_source_file_mru_time_format = "(%a)%H:%M "
 let g:unite_source_file_mru_filename_format = ":~:." "default
@@ -509,7 +507,7 @@ let g:unite_source_file_mru_filename_format = ":~:." "default
 let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
-nnoremap <silent> <Leader>j  :<C-u>Unite file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>j  :<C-u>Unite file -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
@@ -517,8 +515,8 @@ nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-pr
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ug :<C-u>Unite -no-quit grep file -auto-resize -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -here -auto-preview -winheight=250 -prompt=＼(^o^)／ <CR>
+" nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
