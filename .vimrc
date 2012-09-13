@@ -141,6 +141,7 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby setl fileencoding=utf-8
+    autocmd FileType ruby inoremap <C-m> <CR><CR>end<Esc>-cc
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
