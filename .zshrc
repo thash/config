@@ -29,6 +29,7 @@ export EDITOR=vim
 fpath=(~/.zsh $fpath)
 
 ### autoload ~/.zsh/*.zsh file as a part of .zshrc
+# should work only on Mac.
 if [ `uname` = "Darwin" ]; then
   ZSHHOME="${HOME}/.zsh"
 
@@ -40,17 +41,17 @@ if [ `uname` = "Darwin" ]; then
   done
   fi
 
-  if [ -f $ZSHHOME/auto-fu.zsh ]; then
-    zle-line-init () {auto-fu-init;}
-    zle -N zle-line-init
-    #  zstyle ':completion:*' completer _oldlist _complete #_history
-    zstyle ':auto-fu:highlight' completion/one fg=blue
-    zstyle ':auto-fu:var' postdisplay $'
-    navi > '
-    bindkey-advice-before "^G" afu+cancel
-    bindkey-advice-before "^[" afu+cancel
-    bindkey-advice-before "^J" afu+cancel afu+accept-line
-  fi
+  #if [ -f $ZSHHOME/auto-fu.zsh ]; then
+  #  zle-line-init () {auto-fu-init;}
+  #  zle -N zle-line-init
+  #  #  zstyle ':completion:*' completer _oldlist _complete #_history
+  #  zstyle ':auto-fu:highlight' completion/one fg=blue
+  #  zstyle ':auto-fu:var' postdisplay $'
+  #  navi > '
+  #  bindkey-advice-before "^G" afu+cancel
+  #  bindkey-advice-before "^[" afu+cancel
+  #  bindkey-advice-before "^J" afu+cancel afu+accept-line
+  #fi
 fi
 
 # key-bindings (check by bindkey -L)
