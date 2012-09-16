@@ -203,7 +203,7 @@ endif
 " colorscheme {{{2
 let g:solarized_termcolors=256
 set background=dark
-colorscheme default " other favorites: solarized torte desert molokai murphy darkblue
+colorscheme default "other favorites: torte, desert, molokai, murphy, darkblue, solarized
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
