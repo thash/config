@@ -41,4 +41,17 @@ elseif has("gui_win32")
     autocmd GUIEnter * winpos 200 100
     autocmd GUIEnter * winsize 150 50
 
+elseif has('gui')
+
+  set background=dark
+  colorscheme solarized
+  set novisualbell
+
+  highlight LineNr ctermfg=darkgray
+  highlight Visual guibg=yellow guifg=darkgray
+
+  " C-Space to ESC, work only on gvim
+  inoremap <C-Space> <C-[>
+  cnoremap <C-Space> <C-[>
+  nnoremap <C-Space> <C-[>
 endif
