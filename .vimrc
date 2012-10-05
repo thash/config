@@ -54,6 +54,10 @@ Bundle 'Shougo/vimfiler'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'cschlueter/vim-wombat'
+Bundle 'dw_colors'
+Bundle 'Zenburn'
+Bundle 'molokai'
 Bundle 'scrooloose/syntastic'
 
 
@@ -141,21 +145,21 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby setl fileencoding=utf-8
-    autocmd FileType ruby inoremap <C-m> <CR><CR>end<Esc>-cc
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufNewFile *.scala set filetype=scala
+    autocmd BufRead,BufNewFile *.kahua set filetype=scheme
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
     autocmd BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
 
-    autocmd VimEnter *.scm RainbowParenthesesToggle
-    autocmd Syntax *.scm RainbowParenthesesLoadRound
+    autocmd FileType scheme RainbowParenthesesToggle
+    autocmd FileType scheme RainbowParenthesesLoadRound
 augroup END
 
 " omni completion setting {{{3
@@ -203,7 +207,7 @@ endif
 " colorscheme {{{2
 let g:solarized_termcolors=256
 set background=dark
-colorscheme default "other favorites: torte, desert, molokai, murphy, darkblue, solarized
+colorscheme molokai " default solarized torte desert murphy darkblue
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
@@ -483,7 +487,7 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 "   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
 let g:rbpt_max = 7
 let g:rbpt_loadcmd_toggle = 0
-nnoremap <Leader>rp :<C-u>RainbowParenthesesLoadRound<CR>
+nnoremap <Leader>rp :<C-u>RainbowParenthesesLoadRound<CR>:<C-u>RainbowParenthesesToggle<CR>
 
 " syntastic
 let g:syntastic_enable_signs=1
@@ -509,12 +513,12 @@ let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
 nnoremap <silent> <Leader>j  :<C-u>Unite file -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -here -auto-preview -winheight=250 -prompt=＼(^o^)／ <CR>
 " nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
@@ -535,6 +539,8 @@ function! s:unite_my_settings()
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   nmap <buffer> <C-k> <Plug>(unite_select_previous_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  nmap <buffer> <C-l> i/<ESC>
+  imap <buffer> <C-l> /
   nmap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   imap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
