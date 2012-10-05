@@ -29,18 +29,18 @@ export EDITOR=vim
 fpath=(~/.zsh $fpath)
 
 ### autoload ~/.zsh/*.zsh file as a part of .zshrc
+#ZSHHOME="${HOME}/.zsh"
+#
+#if [ -d $ZSHHOME -a -r $ZSHHOME -a \
+#  -x $ZSHHOME ]; then
+#for i in $ZSHHOME/*; do
+#  [[ ${i##*/} = *.zsh ]] &&
+#    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+#done
+#fi
+
 # should work only on Mac.
 if [ `uname` = "Darwin" ]; then
-  ZSHHOME="${HOME}/.zsh"
-
-  if [ -d $ZSHHOME -a -r $ZSHHOME -a \
-    -x $ZSHHOME ]; then
-  for i in $ZSHHOME/*; do
-    [[ ${i##*/} = *.zsh ]] &&
-      [ \( -f $i -o -h $i \) -a -r $i ] && . $i
-  done
-  fi
-
   #if [ -f $ZSHHOME/auto-fu.zsh ]; then
   #  zle-line-init () {auto-fu-init;}
   #  zle -N zle-line-init
@@ -63,8 +63,11 @@ bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 
 # Aliases
 setopt aliases
-alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
-alias y='ls -vFG'
+if [ `uname` = "Darwin" ];then
+  alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
+else
+  alias ls='ls -vF --color' sl='ls -vF --color' la='ls -avF --color' ll='ls -lhrtvF --color' l='ls -lhrtvF --color'
+fi
 alias laa='ls -vA | grep --ignore-case --color=auto ^\\.'
 alias lg='ll -va | grep --ignore-case --color=auto'
 alias mv='mv -i' cp='cp -i' rm='rm -i'
