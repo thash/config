@@ -204,10 +204,7 @@ if filereadable(expand('~/.vimrc.vimshell'))
 endif
 
 " Color/Layout Settings ============================================ {{{1
-" colorscheme {{{2
-let g:solarized_termcolors=256
-set background=dark
-colorscheme molokai " default solarized torte desert murphy darkblue
+" colorscheme => ~/.vimrc.local
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
