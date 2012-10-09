@@ -7,7 +7,7 @@ export CLICOLOR='true'
 export PERL_BADLANG=0
 
 if [ "`ls -a ~ | grep .cabal`" != "" ]; then
-  export PATH=$HOME/.cabal/bin/:$PATH
+  export PATH=$HOME/.cabal/bin:$PATH
 fi
 
 # setting for node
