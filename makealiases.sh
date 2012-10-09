@@ -8,9 +8,11 @@ do
     ln -s `pwd`/.$filename $HOME/.$filename
 done
 
-if [ -d $HOME/.zsh ]; then
-  rm -i -r $HOME/.zsh
+if [ -d `pwd`/.zsh ]; then
+  if [ -d $HOME/.zsh ]; then
+    rm -i -r $HOME/.zsh
+  fi
+  ln -s `pwd`/.zsh $HOME/.zsh
 fi
-ln -s `pwd`/.zsh $HOME/.zsh
 
 # source ~/.zshrc
