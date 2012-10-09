@@ -151,7 +151,7 @@ fi #}}}1
 
 # Set Options
 autoload -U compinit
-compinit
+compinit -u
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
