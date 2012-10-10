@@ -22,24 +22,19 @@ Bundle 'open-browser.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 " Bundle 'daisuzu/facebook.vim'
-Bundle 'The-NERD-Commenter'
 Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'csv.vim'
-Bundle 'sequence'
 
 Bundle 'ref.vim'
-Bundle 'soh335/vim-ref-jquery'
 
 Bundle 'textobj-user'
 Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
-Bundle 'tsukkee/lingr-vim'
 
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
@@ -54,8 +49,6 @@ Bundle 'Shougo/vimfiler'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'cschlueter/vim-wombat'
-Bundle 'dw_colors'
 Bundle 'Zenburn'
 Bundle 'molokai'
 Bundle 'scrooloose/syntastic'
@@ -63,14 +56,14 @@ Bundle 'scrooloose/syntastic'
 
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
-" Bundle 'tpope/vim-rails'
-Bundle 'rorymckinley/vim-symbols-strings'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 "Bundle 'mkitt/markdown-preview.vim'
 "Bundle 'stonean/slim'
 "Bundle 'bbommarito/vim-slim'
 "Bundle 'mattn/zencoding-vim'
+Bundle 'soh335/vim-ref-jquery'
+" Bundle 'tsukkee/lingr-vim'
 
 
 " General ============================================ {{{1
