@@ -20,7 +20,6 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
     # when called from quickrun, load .rvmrc
     if [ `uname` = "Darwin" ]; then
-        rvm use 1.9.3-p0
-        rvm gemset use global
+        rvm use 1.9.3-p194
     fi
 fi

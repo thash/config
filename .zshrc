@@ -28,19 +28,19 @@ export EDITOR=vim
 
 fpath=(~/.zsh $fpath)
 
-### autoload ~/.zsh/*.zsh file as a part of .zshrc
-#ZSHHOME="${HOME}/.zsh"
-#
-#if [ -d $ZSHHOME -a -r $ZSHHOME -a \
-#  -x $ZSHHOME ]; then
-#for i in $ZSHHOME/*; do
-#  [[ ${i##*/} = *.zsh ]] &&
-#    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
-#done
-#fi
-
 # should work only on Mac.
 if [ `uname` = "Darwin" ]; then
+  #ZSHHOME="${HOME}/.zsh"
+
+  ## autoload ~/.zsh/*.zsh file as a part of .zshrc
+  #if [ -d $ZSHHOME -a -r $ZSHHOME -a \
+  #  -x $ZSHHOME ]; then
+  #for i in $ZSHHOME/*; do
+  #  [[ ${i##*/} = *.zsh ]] &&
+  #    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+  #done
+  #fi
+
   #if [ -f $ZSHHOME/auto-fu.zsh ]; then
   #  zle-line-init () {auto-fu-init;}
   #  zle -N zle-line-init
