@@ -54,4 +54,9 @@ elseif has('gui')
   inoremap <C-Space> <C-[>
   cnoremap <C-Space> <C-[>
   nnoremap <C-Space> <C-[>
+
+  " Linux have no Command key.
+  nnoremap <Leader>pp "+gP
+  vnoremap <C-X> "+x
+  vnoremap <C-C> "+y
 endif
