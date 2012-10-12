@@ -65,6 +65,9 @@ bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 setopt aliases
 if [ `uname` = "Darwin" ];then
   alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
+  alias gvim='open -a MacVim.app'
+  alias rest='sudo vim --noplugin /etc/hosts'
+  alias sed='gsed'
 else
   alias ls='ls -vF --color' sl='ls -vF --color' la='ls -avF --color' ll='ls -lhrtvF --color' l='ls -lhrtvF --color'
 fi
@@ -80,10 +83,13 @@ alias pgrep='pgrep -i' pkill='pkill -i'
 alias vimrc='vim ~/.vimrc'
 alias r='rails'
 alias tailf='tail -f'
-alias lan='landslide icampresen.md && open presentation.html'
 alias scon='vim ~/.ssh/config'
-alias ta='tmux attach'
 alias ifconfig.me='curl ifconfig.me/ip'
+
+if [ `uname` = "Linux" ];then
+  alias tmux='TERM=screen-256color-bce tmux'
+fi
+alias ta='tmux attach'
 
 # Global Aliases
 alias -g G='| grep --color=auto --ignore-case'
@@ -121,33 +127,10 @@ alias gchs='nocorrect gchs'
 alias hubb='hub browse'
 
 # Aliases -- for Programming
-alias node='nocorrect node'
-alias gemst='rvm gemset list'
-alias gemset='rvm gemset list'
-alias b='bundle'
 alias bi='bundle install'
 alias be='bundle exec'
 alias bs='bundle show'
 alias bo='bundle open'
-alias ber='bundle exec rails'
-alias cuc='bundle exec cucumber 2>/dev/null'
-alias rsp='bundle exec rspec'
-
-# Local Mac {{{1
-if [ `uname` = "Darwin" ]; then
-    #alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
-    alias gvim='open -a MacVim.app'
-    export VMAIL_VIM=mvim #Vmail settings
-    alias pymol='open -a MacPyMOL.app'
-    alias gitx='open -a GitX'
-    alias hoge='cd /Users/hash/'
-    alias calc='ruby ~/unix/bin/calc.rb'
-    alias rest='sudo vim --noplugin /etc/hosts'
-    alias ssh2relics='ssh hash@10.0.1.5'
-    alias refe='/Users/hash/work/src/refe/refe-1_9_2'
-#    source /usr/local/Cellar/coreutils/8.12/aliases # GNU utils
-    alias sed='gsed'
-fi #}}}1
 
 # Set Options
 autoload -U compinit
