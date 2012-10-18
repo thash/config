@@ -66,7 +66,6 @@ setopt aliases
 if [ `uname` = "Darwin" ];then
   alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
   alias gvim='open -a MacVim.app'
-  alias rest='sudo vim --noplugin /etc/hosts'
   alias sed='gsed'
 else
   alias ls='ls -vF --color' sl='ls -vF --color' la='ls -avF --color' ll='ls -lhrtvF --color' l='ls -lhrtvF --color'
@@ -85,11 +84,20 @@ alias r='rails'
 alias tailf='tail -f'
 alias scon='vim ~/.ssh/config'
 alias ifconfig.me='curl ifconfig.me/ip'
+alias rest='sudo -H vim --noplugin /etc/hosts'
 
 if [ `uname` = "Linux" ];then
   alias tmux='TERM=screen-256color-bce tmux'
 fi
 alias ta='tmux attach'
+
+if cat /etc/issue | grep -q Ubuntu; then
+  alias ag='sudo apt-get'
+  alias ac='sudo apt-cache'
+  alias agi='sudo apt-get install -y'
+  alias acs='sudo apt-cache search'
+fi
+
 
 # Global Aliases
 alias -g G='| grep --color=auto --ignore-case'
@@ -109,6 +117,7 @@ alias gst='git st && g stash list'
 alias st='git st'
 alias gs='git st'
 alias gb='git br -a'
+alias gf='git fetch -p'
 alias glgg='git logg'
 alias glg='git logg | head'
 alias gln='git logn | head'
