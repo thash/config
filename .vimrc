@@ -40,7 +40,6 @@ Bundle 't9md/vim-textobj-function-ruby'
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'sgur/unite-git_grep'
-" Bundle 'Sixeight/unite-grep'
 " Bundle 't9md/vim-unite-ack'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
@@ -49,7 +48,6 @@ Bundle 'Shougo/vimfiler'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'Zenburn'
 Bundle 'molokai'
 Bundle 'scrooloose/syntastic'
 
@@ -59,12 +57,6 @@ Bundle 'ruby.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 "Bundle 'mkitt/markdown-preview.vim'
-"Bundle 'stonean/slim'
-"Bundle 'bbommarito/vim-slim'
-"Bundle 'mattn/zencoding-vim'
-Bundle 'soh335/vim-ref-jquery'
-" Bundle 'tsukkee/lingr-vim'
-
 
 " General ============================================ {{{1
 " set someting {{{2
