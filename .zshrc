@@ -91,7 +91,7 @@ if [ `uname` = "Linux" ];then
 fi
 alias ta='tmux attach'
 
-if cat /etc/issue | grep -q Ubuntu; then
+if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   alias ag='sudo apt-get'
   alias ac='sudo apt-cache'
   alias agi='sudo apt-get install -y'
