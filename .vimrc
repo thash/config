@@ -234,6 +234,16 @@ augroup invisible
   autocmd BufNew,BufRead * call EOLSpaceHilight()
 augroup END
 
+" [vim -b] binary edit (xxd) mode
+augroup BinaryXXD
+  autocmd!
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | %!xxd -r | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
+augroup END
+
 
 " Key remappings ============================================ {{{1
 " general keys {{{2
