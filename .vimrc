@@ -145,6 +145,7 @@ augroup MyAutoCmdFileType
 
     autocmd FileType scheme RainbowParenthesesToggle
     autocmd FileType scheme RainbowParenthesesLoadRound
+    autocmd FileType scheme inoremap <buffer> <C-L> <ESC>f)a<space>()<LEFT>
 augroup END
 
 " omni completion setting {{{3
