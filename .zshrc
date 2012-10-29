@@ -96,6 +96,10 @@ if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   alias ac='sudo apt-cache'
   alias agi='sudo apt-get install -y'
   alias acs='sudo apt-cache search'
+  if [ -f /usr/lib/mozc/mozc_tool ]; then
+    alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
+    alias mozc-dict='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
+  fi
 fi
 
 
