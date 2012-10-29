@@ -57,6 +57,7 @@ Bundle 'ruby.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 "Bundle 'mkitt/markdown-preview.vim'
+Bundle 'tsaleh/vim-matchit'
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -135,9 +136,8 @@ augroup MyAutoCmdFileType
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
-    autocmd BufRead,BufNewFile *.scala set filetype=scala
-    autocmd BufRead,BufNewFile *.kahua set filetype=scheme
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
+    autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
@@ -442,7 +442,6 @@ augroup MyAutoCmdRSpec
     autocmd BufNewFile,BufRead *.watchr      set filetype=ruby
     autocmd BufNewFile,BufRead *.ru          set filetype=ruby
     autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
-    autocmd BufNewFile,BufRead *.god         set filetype=ruby
 augroup END
 let g:quickrun_config = {}
 if executable('bundle exec rspec')
