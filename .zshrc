@@ -13,14 +13,14 @@ fi
 
 # define color by $?, [count]name, and float $.
 PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-[%h]%n%{$reset_color%} \
+%m%{$reset_color%} \
 %{$fg[blue]%}%B\$%b%{$reset_color%} '
 
 # git branch, path, date@hostname(define color by $?)
 RPROMPT='`rprompt-git-current-branch`\
 %{$reset_color%}%{$fg[blue]%}%B%(4~,%-1~|/%2~,%~)%b \
 %{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-[`date +%Y/%m/%d` %T]@%m%{$reset_color%}'
+%{$fg[black]%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
 
 SPROMPT="%{${bg[red]}%}\
 m9(^Д^) \
