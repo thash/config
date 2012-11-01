@@ -11,14 +11,20 @@ else
     color_ok="green"; color_ng="yellow"
 fi
 
-# prompt format
-    PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-[%h]%n%#\
-%{$reset_color%} '
-    RPROMPT='`rprompt-git-current-branch`%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-%(4~,%-1~/.../%2~,%~) [`date +%Y/%m/%d` %T]@%m\
-%{$reset_color%}'
-    SPROMPT="%{${bg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
+# define color by $?, [count]name, and float $.
+PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
+[%h]%n%{$reset_color%} \
+%{$fg[blue]%}%B\$%b%{$reset_color%} '
+
+# git branch, path, date@hostname(define color by $?)
+RPROMPT='`rprompt-git-current-branch`\
+%{$reset_color%}%{$fg[blue]%}%B%(4~,%-1~|/%2~,%~)%b \
+%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
+[`date +%Y/%m/%d` %T]@%m%{$reset_color%}'
+
+SPROMPT="%{${bg[red]}%}\
+m9(^Д^) \
+%R -> %r [nyae]? %{${reset_color}%}"
 
 #Environmant Variables
 export LANG=ja_JP.UTF-8
