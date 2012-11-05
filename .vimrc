@@ -49,6 +49,7 @@ Bundle 'Shougo/vimfiler'
 """ ColorSchemes, Syntax {{{3
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'molokai'
+Bundle 'Gentooish'
 Bundle 'scrooloose/syntastic'
 
 
@@ -75,7 +76,7 @@ set incsearch
 set ignorecase
 set laststatus=2
 set number
-set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ %y\ enc:%{GetEFstatus()}
 set shiftwidth=2
 set tabstop=2
 set noswapfile
@@ -109,7 +110,7 @@ augroup END
 
 " set Shebang line {{{3
 augroup SetShebang
-      autocmd! SetShebang
+    autocmd! SetShebang
     autocmd BufNewFile *.rb 0put =\"# -*- coding: utf-8 -*-\"|$
 augroup END
 
@@ -185,18 +186,11 @@ endif
 
 " detailed color {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-highlight LineNr ctermfg=darkgray
-highlight Visual ctermfg=darkblue ctermbg=grey
-highlight VisualNOS ctermfg=darkblue ctermbg=grey
-highlight StatusLine cterm=reverse,bold
-highlight StatusLine ctermfg=green ctermbg=white
-highlight StatusLineNC cterm=reverse
-" Fold-colors
-highlight Folded ctermbg=gray ctermfg=darkred guibg=grey guifg=blue
-highlight FoldColumn guibg=darkgrey guifg=white ctermbg=darkgrey ctermfg=white
 " change statusline color in insert mode
-autocmd InsertEnter * highlight StatusLine ctermfg=red
-autocmd InsertLeave * highlight StatusLine ctermfg=green
+highlight StatusLine cterm=reverse,bold ctermfg=darkgreen ctermbg=black
+autocmd InsertEnter * highlight StatusLine ctermfg=red ctermbg=white
+autocmd InsertLeave * highlight StatusLine ctermfg=darkgreen ctermbg=black
+
 
 " vim-indent-guides {{{3
 " vim-indent-guides activated by <Leader>ig
@@ -205,8 +199,7 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 augroup indentGuides
   autocmd! indentGuides
-  autocmd WinEnter,BufRead * highlight IndentGuidesOdd  ctermbg=black
-  autocmd WinEnter,BufRead * highlight IndentGuidesEven ctermbg=darkblue
+  autocmd WinEnter,BufRead * highlight IndentGuidesEven ctermbg=black
 augroup END
 
 " display listchars (spaces at end of line, tab etc) {{{2
