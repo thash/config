@@ -90,6 +90,7 @@ alias r='rails'
 alias tailf='tail -f'
 alias scon='vim ~/.ssh/config'
 alias ifconfig.me='curl ifconfig.me/ip'
+alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 
 if [ `uname` = "Linux" ];then
