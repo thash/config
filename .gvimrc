@@ -43,6 +43,7 @@ elseif has("gui_win32")
 
 elseif has('gui')
 
+  set guioptions=
   set background=dark
   colorscheme solarized
   set novisualbell
