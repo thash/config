@@ -96,17 +96,7 @@ set rtp+=~/.vim/dev/
 set formatoptions-=r
 set formatoptions-=o
 
-" cursorline settings {{{2
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline nocursorcolumn
-  autocmd WinEnter,BufRead * set cursorline "cursorcolumn
-augroup END
-
-:hi clear CursorLine
-:hi CursorLine gui=underline
-hi CursorLine ctermbg=black guibg=black
-hi CursorColumn ctermbg=black guibg=green
+" highlight clear CursorLine
 
 " filetype settings + additional {{{2
 filetype plugin indent on
