@@ -93,10 +93,14 @@ alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 
-if [ `uname` = "Linux" ];then
-  alias tmux='TERM=screen-256color-bce tmux'
+if [ $COLORTERM = 'gnome-terminal' ];then
+  #alias tmux='TERM=screen-256color-bce tmux'
+  alias tmux='TERM=xterm-256color tmux'
+  alias vim='TERM=xterm-256color vim'
+  alias ta='TERM=xterm-256color tmux attach'
+else
+  alias ta='tmux attach'
 fi
-alias ta='tmux attach'
 
 if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   alias ag='sudo apt-get'
