@@ -18,13 +18,13 @@ PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
 
 # git branch, path, date@hostname(define color by $?)
 RPROMPT='`rprompt-git-current-branch`\
-%{$reset_color%}%{$fg[blue]%}%B%(4~,%-1~|/%2~,%~)%b \
+%{$reset_color%}%{$fg[blue]%}%B%(4~,%-1~|%2~,%~)%b \
 %{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
 %{$fg[black]%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
 
-SPROMPT="%{${bg[red]}%}\
+SPROMPT='%{${bg[red]}%}\
 m9(^Д^) \
-%R -> %r [nyae]? %{${reset_color}%}"
+%R -> %r ?[nyae]%{${reset_color}%} '
 
 #Environmant Variables
 export LANG=ja_JP.UTF-8
@@ -238,4 +238,3 @@ function rprompt-git-current-branch {
   echo "$color$name$action%f%b "
 }
 
-export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r18
