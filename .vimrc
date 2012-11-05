@@ -139,13 +139,14 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd BufRead,BufNewFile *.md :call ChangeDir()
-    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
+    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
+    autocmd Filetype *.html inoremap <buffer> </ </<C-x><C-o><ESC>==
 
     autocmd FileType scheme RainbowParenthesesToggle
     autocmd FileType scheme RainbowParenthesesLoadRound
-    autocmd FileType scheme inoremap <buffer> <C-L> <ESC>f)a<space>()<LEFT>
+
+    autocmd Filetype haml IndentGuidesEnable
 augroup END
 
 " omni completion setting {{{3
@@ -210,6 +211,8 @@ autocmd InsertLeave * highlight StatusLine ctermfg=green
 " vim-indent-guides {{{3
 " vim-indent-guides activated by <Leader>ig
 let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 augroup indentGuides
   autocmd! indentGuides
   autocmd WinEnter,BufRead * highlight IndentGuidesOdd  ctermbg=black
@@ -310,6 +313,9 @@ inoremap <C-J> ()<LEFT>
 " inoremap <C-J><C-F> {}<LEFT>
 " inoremap <C-J><C-D> []<LEFT>
 
+" move cursor (proc a b*) => (proc a b) *
+inoremap <C-L> <RIGHT><Space>
+
 inoremap  _
 
 " When searching, always move the cursor to center of window
@@ -375,7 +381,7 @@ noremap ]] ]]zMzvz.
 "nnoremap <LEFT>  :<C-u>bprevious<CR>
 
 " save and quit
-nnoremap <space>w :<C-u>write<CR>
+nnoremap <space>w :<C-u>update<CR>
 nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
