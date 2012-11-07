@@ -76,7 +76,7 @@ set incsearch
 set ignorecase
 set laststatus=2
 set number
-set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ %y\ enc:%{GetEFstatus()}
+set statusline=%{fugitive#statusline()}%F%r%m%h%w%=%l/%L(%3p%%)\ %y\ enc:%{GetEFstatus()}
 set shiftwidth=2
 set tabstop=2
 set noswapfile
@@ -96,8 +96,6 @@ set rtp+=~/.vim/dev/
 
 set formatoptions-=r
 set formatoptions-=o
-
-" highlight clear CursorLine
 
 " filetype settings + additional {{{2
 filetype plugin indent on
@@ -184,13 +182,15 @@ endif
 " Color/Layout Settings ============================================ {{{1
 " colorscheme => ~/.vimrc.local
 
-" detailed color {{{2
+" highlight {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 " change statusline color in insert mode
 highlight StatusLine cterm=reverse,bold ctermfg=darkgreen ctermbg=black
 autocmd InsertEnter * highlight StatusLine ctermfg=red ctermbg=white
 autocmd InsertLeave * highlight StatusLine ctermfg=darkgreen ctermbg=black
 
+highlight clear CursorLine
+highlight clear LineNr
 
 " vim-indent-guides {{{3
 " vim-indent-guides activated by <Leader>ig
