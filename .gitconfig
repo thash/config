@@ -45,9 +45,9 @@
 [apply]
   whitespace = nowarn
 [push]
-  default = tracking
-# [pull]
-#   rebase = true
+	default = upstream
+[pull]
+  rebase = true
 [grep]
   lineNumber = true
 
