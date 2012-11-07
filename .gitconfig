@@ -1,5 +1,7 @@
+[include]
+  path = .gitconfig.local
+
 [user]
-	name = Hash
 	email = takuya21hashimoto@gmail.com
 
 [color]
