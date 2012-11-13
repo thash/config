@@ -116,6 +116,7 @@ alias -g G='| grep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
+alias -g N='2> /dev/null'
 alias -g TX='tar xvzf'
 alias -g TC='tar cvzf'
 ### Edit Stdout with vim, making tmpfile.
