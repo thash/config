@@ -2,7 +2,10 @@ export PATH=$HOME/bin:$HOME/.rvm/bin:$HOME/local/bin:/opt/local/bin:/opt/local/s
 
 export LANG=ja_JP.UTF-8
 export LC_ALL="$LANG"
-export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
+if [ $COLORTERM = "gnome-terminal" ]; then
+  export TERM="xterm-256color"
+fi
+# export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
