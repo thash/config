@@ -79,6 +79,7 @@ fi
 alias laa='ls -vA | grep --ignore-case --color=auto ^\\.'
 alias lg='ll -va | grep --ignore-case --color=auto'
 alias mv='mv -i' cp='cp -i' rm='rm -i'
+alias less='less -R' # colorful less
 alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
