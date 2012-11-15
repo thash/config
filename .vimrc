@@ -52,7 +52,6 @@ Bundle 'molokai'
 Bundle 'Gentooish'
 Bundle 'scrooloose/syntastic'
 
-
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
 Bundle 'taq/vim-rspec'
@@ -139,6 +138,8 @@ augroup MyAutoCmdFileType
     autocmd Filetype scheme RainbowParenthesesToggle
     autocmd Filetype scheme RainbowParenthesesLoadRound
 
+    autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
+    autocmd Filetype erlang highlight erlangVariable ctermfg=81
 augroup END
 
 
@@ -546,9 +547,9 @@ endif
 " TODO: add loaded_vimshell judgement
 nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive pry<CR>
-nnoremap <silent> ,irc :VimShellInteractive bundle exec rails console<CR>
 nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
 " nnoremap <silent> ,ihs :VimShellInteractive ghci<CR> " Haskell
+nnoremap <silent> ,ier :VimShellInteractive erl<CR>
 nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
 vmap <silent> <Space>s :VimShellSendString<CR>
 
