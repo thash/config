@@ -249,6 +249,8 @@ inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 inoremap jj <ESC>jj
+inoremap jk <ESC>
+inoremap kj <ESC>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -741,4 +743,5 @@ function! s:do_git_diff_aware_gf(command)
     return a:command
   endif
 endfunction
+
 
