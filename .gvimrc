@@ -1,3 +1,6 @@
+" Plugins with Gvim
+Bundle 'colorsel.vim'
+
 if has('gui_macvim')
 
   CdCurrent
