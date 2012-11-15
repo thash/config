@@ -401,6 +401,9 @@ nnoremap <Leader>fn :<C-u>echo expand("%")<CR>
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
+" Toggle set paste/nopaste
+nnoremap <Space>p :set paste!<CR>
+
 " set UTF-8
 nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 
@@ -411,18 +414,8 @@ nnoremap <Leader>ma :'a,.y<CR>
 nnoremap <Space>f gf
 nnoremap <Space>F <C-w>f
 
-nnoremap <Space>p :set paste<CR>
-nnoremap <Space>np :set nopaste<CR>
-
 " select last pasted block
 nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-"" Don't use Browser reload cuz it breaks tmux display
-" augroup MyBrowserReload
-"   command! -bar BrowserReload silent !osascript $HOME/bin/reload.scpt
-" augroup END
-" nnoremap <silent> <Leader>rl :BrowserReload<CR>
-
 
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
@@ -472,7 +465,7 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 "   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
 let g:rbpt_max = 7
 let g:rbpt_loadcmd_toggle = 0
-nnoremap <Leader>rp :<C-u>RainbowParenthesesLoadRound<CR>:<C-u>RainbowParenthesesToggle<CR>
+nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 
 " syntastic
 let g:syntastic_enable_signs=1
