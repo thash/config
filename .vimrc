@@ -73,6 +73,7 @@ set foldlevel=1
 set foldnestmax=2
 set tags=./tags
 set incsearch
+set hlsearch
 set ignorecase
 set laststatus=2
 set number
