@@ -190,7 +190,7 @@ endif
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 " change statusline color in insert mode
 highlight StatusLine cterm=reverse,bold ctermfg=darkgreen ctermbg=black
-autocmd InsertEnter * highlight StatusLine ctermfg=red ctermbg=white
+autocmd InsertEnter * highlight StatusLine ctermfg=blue ctermbg=black
 autocmd InsertLeave * highlight StatusLine ctermfg=darkgreen ctermbg=black
 
 highlight clear CursorLine
