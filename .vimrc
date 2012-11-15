@@ -122,22 +122,25 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
+    " [Ruby] convert Hash style
+    autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
+
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
-    autocmd BufRead,BufNewFile *.md :call ChangeDir()
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
-    autocmd Filetype *.html inoremap <buffer> </ </<C-x><C-o><ESC>==
-
-    autocmd FileType scheme RainbowParenthesesToggle
-    autocmd FileType scheme RainbowParenthesesLoadRound
-
     autocmd Filetype haml IndentGuidesEnable
+
+    " adding VimEnter, TermResponse... don't work as I expect.
+    autocmd Filetype scheme RainbowParenthesesToggle
+    autocmd Filetype scheme RainbowParenthesesLoadRound
+
 augroup END
+
 
 " omni completion setting {{{3
 autocmd FileType *
