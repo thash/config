@@ -499,7 +499,7 @@ nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -toggle -buf
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -here -auto-preview -winheight=250 -prompt=＼(^o^)／ <CR>
 " nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
@@ -539,21 +539,6 @@ let g:unite_source_ack_command = "ack --ignore-dir=vendor"
 let g:vimfiler_as_default_explorer = 1
 call vimfiler#set_execute_file('vim,rb,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
-
-" VimShell settings and aliases {{{2
-
-if has('mac')
-  let g:vimproc_dll_path = "/Users/hash/.vim/bundle/vimproc/autoload/proc.so"
-endif
-
-" TODO: add loaded_vimshell judgement
-nnoremap <silent> ,is :VimShell<CR>
-nnoremap <silent> ,irb :VimShellInteractive pry<CR>
-nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
-" nnoremap <silent> ,ihs :VimShellInteractive ghci<CR> " Haskell
-nnoremap <silent> ,ier :VimShellInteractive erl<CR>
-nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
-vmap <silent> <Space>s :VimShellSendString<CR>
 
 " fugitive.vim settings {{{2
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
