@@ -35,6 +35,7 @@ cmap <C-n> <Tab>
 cmap <C-p> <S-Tab>
 
 noremap <C-q> <S-ESC>
+noremap <ESC><ESC> :set nohlsearch
 
 
 " Hatena Settings {{{3
