@@ -140,7 +140,15 @@ augroup MyAutoCmdFileType
 
     autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
     autocmd Filetype erlang highlight erlangVariable ctermfg=81
+    autocmd Filetype erlang  inoremap <C-J><C-J> ()<LEFT>
+    autocmd Filetype erlang  inoremap <C-J><C-K> {}<LEFT>
+    autocmd Filetype int-erl inoremap <C-J><C-J> ()<LEFT>
+    autocmd Filetype int-erl inoremap <C-J><C-K> {}<LEFT>
+    " move cursor {a: b*} => {a: b}. * |or| self(*) => self(). *
+    autocmd Filetype erlang  inoremap <C-J>. <RIGHT>.<Space>
+    autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
 augroup END
+
 
 
 " omni completion setting {{{3
@@ -305,6 +313,8 @@ inoremap <C-J> ()<LEFT>
 
 " move cursor (proc a b*) => (proc a b) *
 inoremap <C-L> <RIGHT><Space>
+" move cursor {a: b*} => {a: b}, * |or| self(*) => self(), *
+inoremap <C-J>, <RIGHT>,<Space>
 
 inoremap  _
 
