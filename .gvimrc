@@ -51,6 +51,8 @@ elseif has('gui')
   colorscheme solarized
   set novisualbell
 
+  set lines=50
+
   highlight LineNr ctermfg=darkgray
   highlight Visual guibg=yellow guifg=darkgray
 
