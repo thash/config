@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 
 " Vundle Define active plugins {{{2
+Bundle 'calendar.vim'
 Bundle 'fugitive.vim'
 Bundle 'mattn/webapi-vim'
 " Bundle 'Gist.vim' -- updated.
@@ -511,7 +512,7 @@ nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-pr
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -here -auto-preview -winheight=250 -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -winheight=500 -prompt=(?_?) <CR>
 " nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
