@@ -1,4 +1,11 @@
-# Prompt settings
+### Environmant Variables ### {{{2
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+export MAILCHECK=0 # on sakura rental server
+export EDITOR=vim
+
+
+### Prompt settings ### {{{2
 #
 autoload -U colors; colors
 setopt prompt_subst
@@ -26,41 +33,8 @@ SPROMPT='%{${bg[red]}%}\
 m9(^Д^) \
 %R -> %r ?[nyae]%{${reset_color}%} '
 
-#Environmant Variables
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
-export MAILCHECK=0 # on sakura rental server
-export EDITOR=vim
 
-fpath=(~/.zsh $fpath)
-
-# should work only on Mac.
-if [ `uname` = "Darwin" ]; then
-  #ZSHHOME="${HOME}/.zsh"
-
-  ## autoload ~/.zsh/*.zsh file as a part of .zshrc
-  #if [ -d $ZSHHOME -a -r $ZSHHOME -a \
-  #  -x $ZSHHOME ]; then
-  #for i in $ZSHHOME/*; do
-  #  [[ ${i##*/} = *.zsh ]] &&
-  #    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
-  #done
-  #fi
-
-  #if [ -f $ZSHHOME/auto-fu.zsh ]; then
-  #  zle-line-init () {auto-fu-init;}
-  #  zle -N zle-line-init
-  #  #  zstyle ':completion:*' completer _oldlist _complete #_history
-  #  zstyle ':auto-fu:highlight' completion/one fg=blue
-  #  zstyle ':auto-fu:var' postdisplay $'
-  #  navi > '
-  #  bindkey-advice-before "^G" afu+cancel
-  #  bindkey-advice-before "^[" afu+cancel
-  #  bindkey-advice-before "^J" afu+cancel afu+accept-line
-  #fi
-fi
-
-# Aliases
+### Aliases ### {{{2
 setopt aliases
 if [ `uname` = "Darwin" ];then
   alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
@@ -104,7 +78,7 @@ if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
 fi
 
 
-# Global Aliases
+### Global Aliases {{{3
 alias -g G='| grep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
@@ -112,12 +86,8 @@ alias -g L='| less'
 alias -g N='2> /dev/null'
 alias -g TX='tar xvzf'
 alias -g TC='tar cvzf'
-### Edit Stdout with vim, making tmpfile.
-export VIM_TMP=~/tmp/vim_stdout.tmp
-alias -g V="> $VIM_TMP$$; vim $VIM_TMP$$"
-alias -g BGEM="vendor/bundle/ruby/1.9.1/gems/"
 
-# Aliases -- for git
+### Aliases -- for git {{{3
 alias g='nocorrect git'
 alias gst='git st && g stash list'
 alias st='git st'
@@ -142,13 +112,15 @@ alias gchs='nocorrect gchs'
 
 alias hubb='hub browse'
 
-# Aliases -- for Programming
+### Aliases -- for Programming {{{3
 alias bi='bundle install'
 alias be='bundle exec'
 alias bs='bundle show'
 alias bo='bundle open'
 
-# Set Options
+
+
+### Set Options ### {{{2
 autoload -U compinit
 compinit -u
 setopt auto_cd
@@ -170,7 +142,7 @@ zstyle ':completion:*' menu select=1
 # zstyle ':completion:*' group-name ''
 # zstyle ':completion:*' keep-prefix
 
-# History
+### History ### {{{2
 # by default, display latest histories.
  HISTFILE=${HOME}/.zsh_history
  SAVEHIST=500000
@@ -186,7 +158,8 @@ autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-### key bindkeys (bindkey -L) ###
+
+### key bindkeys (bindkey -L) ### {{{2
 # NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
 bindkey "^O" clear-screen # originally, it's L
 bindkey "^H" backward-delete-char # backward-char
@@ -210,7 +183,38 @@ function runvim() {
 zle -N runvim
 bindkey '\@' runvim
 
-### display git branch on the prompt
+
+### libs, miscs ### {{{2
+fpath=(~/.zsh $fpath)
+
+# should work only on Mac.
+if [ `uname` = "Darwin" ]; then
+  #ZSHHOME="${HOME}/.zsh"
+
+  ## autoload ~/.zsh/*.zsh file as a part of .zshrc
+  #if [ -d $ZSHHOME -a -r $ZSHHOME -a \
+  #  -x $ZSHHOME ]; then
+  #for i in $ZSHHOME/*; do
+  #  [[ ${i##*/} = *.zsh ]] &&
+  #    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+  #done
+  #fi
+
+  #if [ -f $ZSHHOME/auto-fu.zsh ]; then
+  #  zle-line-init () {auto-fu-init;}
+  #  zle -N zle-line-init
+  #  #  zstyle ':completion:*' completer _oldlist _complete #_history
+  #  zstyle ':auto-fu:highlight' completion/one fg=blue
+  #  zstyle ':auto-fu:var' postdisplay $'
+  #  navi > '
+  #  bindkey-advice-before "^G" afu+cancel
+  #  bindkey-advice-before "^[" afu+cancel
+  #  bindkey-advice-before "^J" afu+cancel afu+accept-line
+  #fi
+fi
+
+
+### display git branch on the prompt ### {{{3
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
 function rprompt-git-current-branch {
@@ -240,7 +244,7 @@ function rprompt-git-current-branch {
 }
 
 
-### perl settings in ubuntu
+### perl settings in ubuntu {{{3
 if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
 
   export PERL_LOCAL_LIB_ROOT="/home/hash/perl5";
