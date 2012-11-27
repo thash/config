@@ -60,13 +60,6 @@ if [ `uname` = "Darwin" ]; then
   #fi
 fi
 
-# key-bindings (check by bindkey -L)
-# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
-bindkey "^O" clear-screen # originally, it's L
-bindkey "^Y" kill-line    # originally, it's K
-
-bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
-
 # Aliases
 setopt aliases
 if [ `uname` = "Darwin" ];then
@@ -192,26 +185,30 @@ zstyle ':completion:*' menu select=1
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+### key bindkeys (bindkey -L) ###
+# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
+bindkey "^O" clear-screen # originally, it's L
+bindkey "^H" backward-delete-char # backward-char
+bindkey "^L" clear-screen # forward-char
+bindkey "^K" kill-line
+
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey "^H" backward-char
-bindkey "^L" forward-char
-bindkey "^K" kill-line
+
 bindkey "^U" backward-delete-char
 bindkey '^R' history-incremental-search-backward
+bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
 
-
-### refer words from alc using w3c
-function alc() {
-  if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
-  else
-    w3m "http://www.alc.co.jp/"
-  fi
+function runvim() {
+  exec < /dev/tty
+  vim .
+  zle reset-prompt
 }
-
+zle -N runvim
+bindkey '\@' runvim
 
 ### display git branch on the prompt
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
@@ -242,3 +239,14 @@ function rprompt-git-current-branch {
   echo "$color$name$action%f%b "
 }
 
+
+### perl settings in ubuntu
+if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
+
+  export PERL_LOCAL_LIB_ROOT="/home/hash/perl5";
+  export PERL_MB_OPT="--install_base /home/hash/perl5";
+  export PERL_MM_OPT="INSTALL_BASE=/home/hash/perl5";
+  export PERL5LIB="/home/hash/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/hash/perl5/lib/perl5";
+  export PATH="/home/hash/perl5/bin:$PATH";
+
+fi
