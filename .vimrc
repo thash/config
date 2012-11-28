@@ -318,10 +318,9 @@ inoremap <C-F><C-K> =
 inoremap <C-F><C-L> _
 
 " parentheses specific settings for test
-inoremap <C-J> ()<LEFT>
-" inoremap <C-J><C-J> []<LEFT>
-" inoremap <C-J><C-F> {}<LEFT>
-" inoremap <C-J><C-D> []<LEFT>
+inoremap <C-J><C-J> ()<LEFT>
+inoremap <C-J><C-K> {}<LEFT>
+inoremap <C-J><C-L> []<LEFT>
 
 " move cursor (proc a b*) => (proc a b) *
 inoremap <C-L> <RIGHT><Space>
