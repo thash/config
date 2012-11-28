@@ -69,7 +69,6 @@ set fileencoding=utf8
 set autoindent
 set expandtab
 set foldmethod=marker
-set foldminlines=5
 set foldlevel=1
 set foldnestmax=2
 set tags=./tags
@@ -117,6 +116,8 @@ augroup END
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
+
+    """ Ruby {{{4
     autocmd FileType ruby setl autoindent
     " smart indent is disabled when paste is on
     autocmd FileType ruby setl nopaste
@@ -124,22 +125,27 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     " [Ruby] convert Hash style
-    autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
 
+    """ vim {{{4
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
-    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+
+    """ HTML, HAML, XML etc {{{4
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype haml IndentGuidesEnable
 
+    """ Scheme {{{4
     " adding VimEnter, TermResponse... don't work as I expect.
     autocmd Filetype scheme RainbowParenthesesToggle
     autocmd Filetype scheme RainbowParenthesesLoadRound
+    " TODO: remove all <C-*> mappings when open scheme file.
+    autocmd Filetype scheme inoremap <C-J> ()<LEFT>
 
+    """ Erlang {{{4
     autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
     autocmd Filetype erlang highlight erlangVariable ctermfg=81
     autocmd Filetype erlang  inoremap <C-J><C-J> ()<LEFT>
@@ -149,6 +155,10 @@ augroup MyAutoCmdFileType
     " move cursor {a: b*} => {a: b}. * |or| self(*) => self(). *
     autocmd Filetype erlang  inoremap <C-J>. <RIGHT>.<Space>
     autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
+
+    """ Others {{{4
+    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+    autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
 augroup END
 
 
