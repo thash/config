@@ -1,0 +1,4 @@
+--smart-case
+--ignore-dir=vendor
+--ignore-dir=coverage
+--ignore-dir=.bundle
