@@ -181,7 +181,7 @@ function runvim() {
   zle reset-prompt
 }
 zle -N runvim
-bindkey '\@' runvim
+bindkey '\@\@' runvim
 
 
 ### libs, miscs ### {{{2
