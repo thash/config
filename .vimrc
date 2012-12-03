@@ -522,7 +522,7 @@ nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-
 nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -winheight=500 -prompt=(?_?) <CR>
-" nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
+nnoremap <silent> <Leader>ua :<C-u>Unite -buffer-name=ack -prompt=(?_?) ack:.:<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
