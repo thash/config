@@ -27,7 +27,7 @@ Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
-Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'memerelics/rainbow_parentheses.vim'
 
 Bundle 'ref.vim'
 
@@ -139,14 +139,18 @@ augroup MyAutoCmdFileType
 
     """ Scheme {{{4
     " adding VimEnter, TermResponse... don't work as I expect.
-    autocmd Filetype scheme RainbowParenthesesToggle
+    " autocmd Filetype scheme RainbowParenthesesToggle
+    autocmd Filetype scheme RainbowParenthesesActivate
     autocmd Filetype scheme RainbowParenthesesLoadRound
     " TODO: remove all <C-*> mappings when open scheme file.
     autocmd Filetype scheme inoremap <C-J> ()<LEFT>
 
     """ Erlang {{{4
     autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
-    autocmd Filetype erlang highlight erlangVariable ctermfg=81
+    autocmd Filetype erlang syntax match erlangRecord /#[a-z]\+[a-zA-Z0-9.]*/
+    autocmd Filetype erlang highlight erlangVariable ctermfg=218
+    autocmd Filetype erlang highlight erlangRecord ctermfg=61
+    autocmd Filetype erlang highlight erlangDirective ctermfg=22
     autocmd Filetype erlang  inoremap <C-J><C-J> ()<LEFT>
     autocmd Filetype erlang  inoremap <C-J><C-K> {}<LEFT>
     autocmd Filetype int-erl inoremap <C-J><C-J> ()<LEFT>
