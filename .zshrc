@@ -65,10 +65,13 @@ alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 
+### tmux
 if [ `uname` = "Linux" ];then
   alias tmux='TERM=screen-256color-bce tmux'
 fi
 alias ta='tmux attach'
+alias tmux-key-remote='tmux set-option -ag prefix C-b'
+alias tmux-key-local='tmux set-option -ag prefix C-t'
 
 if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   alias ag='sudo apt-get'
