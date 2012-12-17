@@ -26,6 +26,11 @@ export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 export EDITOR=vim
 
+if [[ -s $HOME/.zsh_local ]] ; then
+  source $HOME/.zsh_local
+fi
+
+
 fpath=(~/.zsh $fpath)
 
 ### autoload ~/.zsh/*.zsh file as a part of .zshrc
