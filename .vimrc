@@ -148,7 +148,7 @@ augroup MyAutoCmdFileType
 
     """ Erlang {{{4
     autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
-    autocmd Filetype erlang syntax match erlangRecord /#[a-z]\+[a-zA-Z0-9.]*/
+    autocmd Filetype erlang syntax match erlangRecord /#[a-z]\+[a-zA-Z0-9_.]*/
     autocmd Filetype erlang highlight erlangVariable ctermfg=218
     autocmd Filetype erlang highlight erlangRecord ctermfg=61
     autocmd Filetype erlang highlight erlangDirective ctermfg=22
@@ -159,6 +159,7 @@ augroup MyAutoCmdFileType
     " move cursor {a: b*} => {a: b}. * |or| self(*) => self(). *
     autocmd Filetype erlang  inoremap <C-J>. <RIGHT>.<Space>
     autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
+    autocmd Filetype int-erl inoremap <C-L> <RIGHT><Space>
 
     """ Others {{{4
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
