@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 
 " Vundle Define active plugins {{{2
+Bundle 'calendar.vim'
 Bundle 'fugitive.vim'
 Bundle 'mattn/webapi-vim'
 " Bundle 'Gist.vim' -- updated.
@@ -22,31 +23,24 @@ Bundle 'open-browser.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
 " Bundle 'daisuzu/facebook.vim'
-Bundle 'The-NERD-Commenter'
 Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'csv.vim'
-Bundle 'sequence'
+Bundle 'memerelics/rainbow_parentheses.vim'
 
 Bundle 'ref.vim'
-Bundle 'soh335/vim-ref-jquery'
 
 Bundle 'textobj-user'
 Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
-Bundle 'tsukkee/lingr-vim'
 
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
-Bundle 'sgur/unite-git_grep'
-" Bundle 'Sixeight/unite-grep'
-" Bundle 't9md/vim-unite-ack'
+Bundle 't9md/vim-unite-ack'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
@@ -54,20 +48,16 @@ Bundle 'Shougo/vimfiler'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'molokai'
+Bundle 'Gentooish'
 Bundle 'scrooloose/syntastic'
-
 
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
-" Bundle 'tpope/vim-rails'
-Bundle 'rorymckinley/vim-symbols-strings'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 "Bundle 'mkitt/markdown-preview.vim'
-"Bundle 'stonean/slim'
-"Bundle 'bbommarito/vim-slim'
-"Bundle 'mattn/zencoding-vim'
-
+Bundle 'tsaleh/vim-matchit'
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -82,10 +72,11 @@ set foldlevel=1
 set foldnestmax=2
 set tags=./tags
 set incsearch
+set hlsearch
 set ignorecase
 set laststatus=2
 set number
-set statusline=%F%r%m%h%w%=%l/%L(%3p%%)\ FileType:%y/Form:%{GetEFstatus()}
+set statusline=%{fugitive#statusline()}%F%r%m%h%w%=%l/%L(%3p%%)\ %y\ enc:%{GetEFstatus()}
 set shiftwidth=2
 set tabstop=2
 set noswapfile
@@ -106,18 +97,6 @@ set rtp+=~/.vim/dev/
 set formatoptions-=r
 set formatoptions-=o
 
-" cursorline settings {{{2
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline nocursorcolumn
-  autocmd WinEnter,BufRead * set cursorline "cursorcolumn
-augroup END
-
-:hi clear CursorLine
-:hi CursorLine gui=underline
-hi CursorLine ctermbg=black guibg=black
-hi CursorColumn ctermbg=black guibg=green
-
 " filetype settings + additional {{{2
 filetype plugin indent on
 syntax on
@@ -129,34 +108,63 @@ augroup END
 
 " set Shebang line {{{3
 augroup SetShebang
-      autocmd! SetShebang
-    autocmd BufNewFile *.rb 0put =\"# -*- coding: utf-8 -*-\"|$
+    autocmd! SetShebang
+    autocmd BufNewFile *.rb 0put =\"# coding: utf-8\"|$
 augroup END
 
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
+
+    """ Ruby {{{4
     autocmd FileType ruby setl autoindent
     " smart indent is disabled when paste is on
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby setl fileencoding=utf-8
-    autocmd FileType ruby inoremap <C-m> <CR><CR>end<Esc>-cc
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
+    " [Ruby] convert Hash style
+
+    """ vim {{{4
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
-    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
-    autocmd BufRead,BufNewFile *.scala set filetype=scala
-    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
-    autocmd BufRead,BufNewFile *.md :call ChangeDir()
-    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-    autocmd Filetype xhtml inoremap <buffer> </ </<C-x><C-o>
 
-    autocmd VimEnter *.scm RainbowParenthesesToggle
-    autocmd Syntax *.scm RainbowParenthesesLoadRound
+    """ HTML, HAML, XML etc {{{4
+    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
+    autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
+    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
+    autocmd Filetype haml IndentGuidesEnable
+
+    """ Scheme {{{4
+    " adding VimEnter, TermResponse... don't work as I expect.
+    " autocmd Filetype scheme RainbowParenthesesToggle
+    autocmd Filetype scheme RainbowParenthesesActivate
+    autocmd Filetype scheme RainbowParenthesesLoadRound
+    " TODO: remove all <C-*> mappings when open scheme file.
+    autocmd Filetype scheme inoremap <C-J> ()<LEFT>
+
+    """ Erlang {{{4
+    autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
+    autocmd Filetype erlang syntax match erlangRecord /#[a-z]\+[a-zA-Z0-9.]*/
+    autocmd Filetype erlang highlight erlangVariable ctermfg=218
+    autocmd Filetype erlang highlight erlangRecord ctermfg=61
+    autocmd Filetype erlang highlight erlangDirective ctermfg=22
+    autocmd Filetype erlang  inoremap <C-J><C-J> ()<LEFT>
+    autocmd Filetype erlang  inoremap <C-J><C-K> {}<LEFT>
+    autocmd Filetype int-erl inoremap <C-J><C-J> ()<LEFT>
+    autocmd Filetype int-erl inoremap <C-J><C-K> {}<LEFT>
+    " move cursor {a: b*} => {a: b}. * |or| self(*) => self(). *
+    autocmd Filetype erlang  inoremap <C-J>. <RIGHT>.<Space>
+    autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
+
+    """ Others {{{4
+    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+    autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
 augroup END
+
+
 
 " omni completion setting {{{3
 autocmd FileType *
@@ -200,33 +208,26 @@ if filereadable(expand('~/.vimrc.vimshell'))
 endif
 
 " Color/Layout Settings ============================================ {{{1
-" colorscheme {{{2
-let g:solarized_termcolors=256
-set background=dark
-colorscheme default "other favorites: torte, desert, molokai, murphy, darkblue, solarized
+" colorscheme => ~/.vimrc.local
 
-" detailed color {{{2
+" highlight {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
-highlight LineNr ctermfg=darkgray
-highlight Visual ctermfg=darkblue ctermbg=grey
-highlight VisualNOS ctermfg=darkblue ctermbg=grey
-highlight StatusLine cterm=reverse,bold
-highlight StatusLine ctermfg=green ctermbg=white
-highlight StatusLineNC cterm=reverse
-" Fold-colors
-highlight Folded ctermbg=gray ctermfg=darkred guibg=grey guifg=blue
-highlight FoldColumn guibg=darkgrey guifg=white ctermbg=darkgrey ctermfg=white
 " change statusline color in insert mode
-autocmd InsertEnter * highlight StatusLine ctermfg=red
-autocmd InsertLeave * highlight StatusLine ctermfg=green
+highlight StatusLine cterm=reverse,bold ctermfg=darkgreen ctermbg=black
+autocmd InsertEnter * highlight StatusLine ctermfg=blue ctermbg=black
+autocmd InsertLeave * highlight StatusLine ctermfg=darkgreen ctermbg=black
+
+highlight clear CursorLine
+highlight clear LineNr
 
 " vim-indent-guides {{{3
 " vim-indent-guides activated by <Leader>ig
 let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 augroup indentGuides
   autocmd! indentGuides
-  autocmd WinEnter,BufRead * highlight IndentGuidesOdd  ctermbg=black
-  autocmd WinEnter,BufRead * highlight IndentGuidesEven ctermbg=darkblue
+  autocmd WinEnter,BufRead * highlight IndentGuidesEven ctermbg=black
 augroup END
 
 " display listchars (spaces at end of line, tab etc) {{{2
@@ -248,6 +249,16 @@ augroup invisible
   autocmd BufNew,BufRead * call EOLSpaceHilight()
 augroup END
 
+" [vim -b] binary edit (xxd) mode
+augroup BinaryXXD
+  autocmd!
+  autocmd BufReadPost * if &binary | silent %!xxd -g 1
+  autocmd BufReadPost * set ft=xxd | endif
+  autocmd BufWritePre * if &binary | %!xxd -r | endif
+  autocmd BufWritePost * if &binary | silent %!xxd -g 1
+  autocmd BufWritePost * set nomod | endif
+augroup END
+
 
 " Key remappings ============================================ {{{1
 " general keys {{{2
@@ -261,6 +272,8 @@ inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 inoremap jj <ESC>jj
+inoremap jk <ESC>
+inoremap kj <ESC>
 
 " Replace colon with semi-colon
 nnoremap ; :
@@ -308,10 +321,14 @@ inoremap <C-F><C-K> =
 inoremap <C-F><C-L> _
 
 " parentheses specific settings for test
-inoremap <C-J> ()<LEFT>
-" inoremap <C-J><C-J> []<LEFT>
-" inoremap <C-J><C-F> {}<LEFT>
-" inoremap <C-J><C-D> []<LEFT>
+inoremap <C-J><C-J> ()<LEFT>
+inoremap <C-J><C-K> {}<LEFT>
+inoremap <C-J><C-L> []<LEFT>
+
+" move cursor (proc a b*) => (proc a b) *
+inoremap <C-L> <RIGHT><Space>
+" move cursor {a: b*} => {a: b}, * |or| self(*) => self(), *
+inoremap <C-J>, <RIGHT>,<Space>
 
 inoremap  _
 
@@ -378,7 +395,7 @@ noremap ]] ]]zMzvz.
 "nnoremap <LEFT>  :<C-u>bprevious<CR>
 
 " save and quit
-nnoremap <space>w :<C-u>write<CR>
+nnoremap <space>w :<C-u>update<CR>
 nnoremap <space>q :<C-u>quit<CR>
 
 " insert a blank line by 1 stroke
@@ -411,6 +428,9 @@ nnoremap <Leader>fn :<C-u>echo expand("%")<CR>
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
+" Toggle set paste/nopaste
+nnoremap <Space>p :set paste!<CR>
+
 " set UTF-8
 nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 
@@ -421,18 +441,8 @@ nnoremap <Leader>ma :'a,.y<CR>
 nnoremap <Space>f gf
 nnoremap <Space>F <C-w>f
 
-nnoremap <Space>p :set paste<CR>
-nnoremap <Space>np :set nopaste<CR>
-
 " select last pasted block
 nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-"" Don't use Browser reload cuz it breaks tmux display
-" augroup MyBrowserReload
-"   command! -bar BrowserReload silent !osascript $HOME/bin/reload.scpt
-" augroup END
-" nnoremap <silent> <Leader>rl :BrowserReload<CR>
-
 
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
@@ -445,7 +455,6 @@ augroup MyAutoCmdRSpec
     autocmd BufNewFile,BufRead *.watchr      set filetype=ruby
     autocmd BufNewFile,BufRead *.ru          set filetype=ruby
     autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
-    autocmd BufNewFile,BufRead *.god         set filetype=ruby
 augroup END
 let g:quickrun_config = {}
 if executable('bundle exec rspec')
@@ -483,7 +492,7 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 "   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
 let g:rbpt_max = 7
 let g:rbpt_loadcmd_toggle = 0
-nnoremap <Leader>rp :<C-u>RainbowParenthesesLoadRound<CR>
+nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 
 " syntastic
 let g:syntastic_enable_signs=1
@@ -509,15 +518,15 @@ let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
 nnoremap <silent> <Leader>j  :<C-u>Unite file -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file -no-quit -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -here -auto-preview -winheight=250 -prompt=＼(^o^)／ <CR>
-" nnoremap <silent> <Leader>ua :<C-u>Unite -horizontal -no-quit -auto-resize -buffer-name=ack  -prompt=＼(^o^)／ -auto-preview ack::<CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -winheight=500 -prompt=(?_?) <CR>
+nnoremap <silent> <Leader>ua :<C-u>Unite -buffer-name=ack -prompt=(?_?) ack:.:<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
@@ -535,6 +544,8 @@ function! s:unite_my_settings()
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   nmap <buffer> <C-k> <Plug>(unite_select_previous_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  nmap <buffer> <C-l> i/<ESC>
+  imap <buffer> <C-l> /
   nmap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   imap <silent> <buffer> <expr> <C-y> unite#do_action('split')
   nmap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
@@ -552,21 +563,6 @@ let g:unite_source_ack_command = "ack --ignore-dir=vendor"
 let g:vimfiler_as_default_explorer = 1
 call vimfiler#set_execute_file('vim,rb,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
-
-" VimShell settings and aliases {{{2
-
-if has('mac')
-  let g:vimproc_dll_path = "/Users/hash/.vim/bundle/vimproc/autoload/proc.so"
-endif
-
-" TODO: add loaded_vimshell judgement
-nnoremap <silent> ,is :VimShell<CR>
-nnoremap <silent> ,irb :VimShellInteractive pry<CR>
-nnoremap <silent> ,irc :VimShellInteractive bundle exec rails console<CR>
-nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
-" nnoremap <silent> ,ihs :VimShellInteractive ghci<CR> " Haskell
-nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
-vmap <silent> <Space>s :VimShellSendString<CR>
 
 " fugitive.vim settings {{{2
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
@@ -756,4 +752,5 @@ function! s:do_git_diff_aware_gf(command)
     return a:command
   endif
 endfunction
+
 

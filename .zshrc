@@ -1,4 +1,15 @@
-# Prompt settings
+### Environmant Variables ### {{{2
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+export MAILCHECK=0 # on sakura rental server
+export EDITOR=vim
+
+if [[ -s $HOME/.zsh_local ]] ; then
+  source $HOME/.zsh_local
+fi
+
+
+### Prompt settings ### {{{2
 #
 autoload -U colors; colors
 setopt prompt_subst
@@ -11,107 +22,89 @@ else
     color_ok="green"; color_ng="yellow"
 fi
 
-# prompt format
-    PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-[%h]%n%#\
-%{$reset_color%} '
-    RPROMPT='`rprompt-git-current-branch`%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
-%(4~,%-1~/.../%2~,%~) [`date +%Y/%m/%d` %T]@%m\
-%{$reset_color%}'
-    SPROMPT="%{${bg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
+# define color by $?, [count]name, and float $.
+PROMPT='%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
+%m%{$reset_color%} \
+%{$fg[blue]%}%B\$%b%{$reset_color%} '
 
-#Environmant Variables
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
-export MAILCHECK=0 # on sakura rental server
-export EDITOR=vim
+# git branch, path, date@hostname(define color by $?)
+RPROMPT='`rprompt-git-current-branch`\
+%{$reset_color%}%{$fg[blue]%}%B%(4~,%-1~|%2~,%~)%b \
+%{%(!.$bg[default].%(?.$bg[$color_ok].$bg[$color_ng]))%}\
+%{$fg[black]%}[`date +%Y/%m/%d` %T]%{$reset_color%}'
 
-if [[ -s $HOME/.zsh_local ]] ; then
-  source $HOME/.zsh_local
-fi
+SPROMPT='%{${bg[red]}%}\
+m9(^Д^) \
+%R -> %r ?[nyae]%{${reset_color}%} '
 
 
-fpath=(~/.zsh $fpath)
-
-### autoload ~/.zsh/*.zsh file as a part of .zshrc
-# should work only on Mac.
-if [ `uname` = "Darwin" ]; then
-  ZSHHOME="${HOME}/.zsh"
-
-  if [ -d $ZSHHOME -a -r $ZSHHOME -a \
-    -x $ZSHHOME ]; then
-  for i in $ZSHHOME/*; do
-    [[ ${i##*/} = *.zsh ]] &&
-      [ \( -f $i -o -h $i \) -a -r $i ] && . $i
-  done
-  fi
-
-  #if [ -f $ZSHHOME/auto-fu.zsh ]; then
-  #  zle-line-init () {auto-fu-init;}
-  #  zle -N zle-line-init
-  #  #  zstyle ':completion:*' completer _oldlist _complete #_history
-  #  zstyle ':auto-fu:highlight' completion/one fg=blue
-  #  zstyle ':auto-fu:var' postdisplay $'
-  #  navi > '
-  #  bindkey-advice-before "^G" afu+cancel
-  #  bindkey-advice-before "^[" afu+cancel
-  #  bindkey-advice-before "^J" afu+cancel afu+accept-line
-  #fi
-fi
-
-# key-bindings (check by bindkey -L)
-# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
-bindkey "^O" clear-screen # originally, it's L
-bindkey "^Y" kill-line    # originally, it's K
-
-bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
-
-# Aliases
+### Aliases ### {{{2
 setopt aliases
-alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG'
-alias y='ls -vFG'
+if [ `uname` = "Darwin" ];then
+  alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
+  alias gvim='open -a MacVim.app'
+  alias sed='gsed'
+else
+  alias ls='ls -vF --color' sl='ls -vF --color' la='ls -avF --color' ll='ls -lhrtvF --color' l='ls -lhrtvF --color'
+fi
 alias laa='ls -vA | grep --ignore-case --color=auto ^\\.'
 alias lg='ll -va | grep --ignore-case --color=auto'
 alias mv='mv -i' cp='cp -i' rm='rm -i'
+alias less='less -R' # colorful less
 alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
 alias grep='grep --color=auto --ignore-case'
 alias pgrep='pgrep -i' pkill='pkill -i'
-alias s='screen -r'
 #alias v='nocorrect vim' vim='nocorrect vim'
 alias vimrc='vim ~/.vimrc'
 alias r='rails'
 alias tailf='tail -f'
-alias lan='landslide icampresen.md && open presentation.html'
 alias scon='vim ~/.ssh/config'
-alias ta='tmux attach'
 alias ifconfig.me='curl ifconfig.me/ip'
+alias svim='sudo -H vim --noplugin'
+alias rest='sudo -H vim --noplugin /etc/hosts'
 
-# Global Aliases
+if [ `uname` = "Linux" ];then
+  alias tmux='TERM=screen-256color-bce tmux'
+fi
+alias ta='tmux attach'
+
+if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
+  alias ag='sudo apt-get'
+  alias ac='sudo apt-cache'
+  alias agi='sudo apt-get install -y'
+  alias acs='sudo apt-cache search'
+  if [ -f /usr/lib/mozc/mozc_tool ]; then
+    alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
+    alias mozc-dict='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
+  fi
+fi
+
+
+### Global Aliases {{{3
 alias -g G='| grep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
+alias -g N='2> /dev/null'
 alias -g TX='tar xvzf'
 alias -g TC='tar cvzf'
-### Edit Stdout with vim, making tmpfile.
-export VIM_TMP=~/tmp/vim_stdout.tmp
-alias -g V="> $VIM_TMP$$; vim $VIM_TMP$$"
-alias -g BGEM="vendor/bundle/ruby/1.9.1/gems/"
 
-# Aliases -- for git
+### Aliases -- for git {{{3
 alias g='nocorrect git'
 alias gst='git st && g stash list'
 alias st='git st'
 alias gs='git st'
 alias gb='git br -a'
+alias gf='git fetch -p'
 alias glgg='git logg'
 alias glg='git logg | head'
 alias gln='git logn | head'
 alias ga='git add'
 alias gc='git commit -m'
 alias gcm='git commit -m'
+alias gcam='git commit --amend'
 alias gch='git cherry -v'
 alias gd='git diff --no-ext-diff -w "$@" | vim -'
 alias gg='git grep -H --heading --break'
@@ -123,38 +116,17 @@ alias gchs='nocorrect gchs'
 
 alias hubb='hub browse'
 
-# Aliases -- for Programming
-alias node='nocorrect node'
-alias gemst='rvm gemset list'
-alias gemset='rvm gemset list'
-alias b='bundle'
+### Aliases -- for Programming {{{3
 alias bi='bundle install'
 alias be='bundle exec'
 alias bs='bundle show'
 alias bo='bundle open'
-alias ber='bundle exec rails'
-alias cuc='bundle exec cucumber 2>/dev/null'
-alias rsp='bundle exec rspec'
 
-# Local Mac {{{1
-if [ `uname` = "Darwin" ]; then
-    #alias vim='/usr/local/Cellar/vim/7.3.333/bin/vim'
-    alias gvim='open -a MacVim.app'
-    export VMAIL_VIM=mvim #Vmail settings
-    alias pymol='open -a MacPyMOL.app'
-    alias gitx='open -a GitX'
-    alias hoge='cd /Users/hash/'
-    alias calc='ruby ~/unix/bin/calc.rb'
-    alias rest='sudo vim --noplugin /etc/hosts'
-    alias ssh2relics='ssh hash@10.0.1.5'
-    alias refe='/Users/hash/work/src/refe/refe-1_9_2'
-#    source /usr/local/Cellar/coreutils/8.12/aliases # GNU utils
-    alias sed='gsed'
-fi #}}}1
 
-# Set Options
+
+### Set Options ### {{{2
 autoload -U compinit
-compinit
+compinit -u
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -174,7 +146,7 @@ zstyle ':completion:*' menu select=1
 # zstyle ':completion:*' group-name ''
 # zstyle ':completion:*' keep-prefix
 
-# History
+### History ### {{{2
 # by default, display latest histories.
  HISTFILE=${HOME}/.zsh_history
  SAVEHIST=500000
@@ -186,18 +158,67 @@ zstyle ':completion:*' menu select=1
  setopt hist_save_nodups
  setopt share_history
 
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 
-### refer words from alc using w3c
-function alc() {
-  if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
-  else
-    w3m "http://www.alc.co.jp/"
-  fi
+
+### key bindkeys (bindkey -L) ### {{{2
+# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
+bindkey "^O" clear-screen # originally, it's L
+bindkey "^H" backward-delete-char # backward-char
+bindkey "^L" clear-screen # forward-char
+bindkey "^K" kill-line
+
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+
+bindkey "^U" backward-delete-char
+bindkey '^R' history-incremental-search-backward
+bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
+
+function runvim() {
+  exec < /dev/tty
+  vim .
+  zle reset-prompt
 }
+zle -N runvim
+bindkey '\@\@' runvim
 
 
-### display git branch on the prompt
+### libs, miscs ### {{{2
+fpath=(~/.zsh $fpath)
+
+# should work only on Mac.
+if [ `uname` = "Darwin" ]; then
+  #ZSHHOME="${HOME}/.zsh"
+
+  ## autoload ~/.zsh/*.zsh file as a part of .zshrc
+  #if [ -d $ZSHHOME -a -r $ZSHHOME -a \
+  #  -x $ZSHHOME ]; then
+  #for i in $ZSHHOME/*; do
+  #  [[ ${i##*/} = *.zsh ]] &&
+  #    [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+  #done
+  #fi
+
+  #if [ -f $ZSHHOME/auto-fu.zsh ]; then
+  #  zle-line-init () {auto-fu-init;}
+  #  zle -N zle-line-init
+  #  #  zstyle ':completion:*' completer _oldlist _complete #_history
+  #  zstyle ':auto-fu:highlight' completion/one fg=blue
+  #  zstyle ':auto-fu:var' postdisplay $'
+  #  navi > '
+  #  bindkey-advice-before "^G" afu+cancel
+  #  bindkey-advice-before "^[" afu+cancel
+  #  bindkey-advice-before "^J" afu+cancel afu+accept-line
+  #fi
+fi
+
+
+### display git branch on the prompt ### {{{3
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
 function rprompt-git-current-branch {
@@ -226,4 +247,14 @@ function rprompt-git-current-branch {
   echo "$color$name$action%f%b "
 }
 
-export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/r18
+
+### perl settings in ubuntu {{{3
+if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
+
+  export PERL_LOCAL_LIB_ROOT="/home/hash/perl5";
+  export PERL_MB_OPT="--install_base /home/hash/perl5";
+  export PERL_MM_OPT="INSTALL_BASE=/home/hash/perl5";
+  export PERL5LIB="/home/hash/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/hash/perl5/lib/perl5";
+  export PATH="/home/hash/perl5/bin:$PATH";
+
+fi

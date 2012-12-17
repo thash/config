@@ -1,3 +1,6 @@
+" Plugins with Gvim
+Bundle 'colorsel.vim'
+
 if has('gui_macvim')
 
   CdCurrent
@@ -41,4 +44,25 @@ elseif has("gui_win32")
     autocmd GUIEnter * winpos 200 100
     autocmd GUIEnter * winsize 150 50
 
+elseif has('gui')
+
+  set guioptions=
+  set background=dark
+  colorscheme solarized
+  set novisualbell
+
+  set lines=50
+
+  highlight LineNr ctermfg=darkgray
+  highlight Visual guibg=yellow guifg=darkgray
+
+  " C-Space to ESC, work only on gvim
+  inoremap <C-Space> <C-[>
+  cnoremap <C-Space> <C-[>
+  nnoremap <C-Space> <C-[>
+
+  " Linux have no Command key.
+  nnoremap <Leader>pp "+gP
+  vnoremap <C-X> "+x
+  vnoremap <C-C> "+y
 endif
