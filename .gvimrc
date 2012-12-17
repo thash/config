@@ -6,7 +6,8 @@ if has('gui_macvim')
   CdCurrent
   set cursorcolumn
   set showtabline=2
-  set guifont=Osaka-Mono:h12
+  "set guifont=Ricty:12
+  set guifont=Monaco
   " no scroll/tool bar
   set go=egmtc
   set transparency=20
