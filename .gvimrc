@@ -50,6 +50,7 @@ elseif has('gui')
   set background=dark
   colorscheme solarized
   set novisualbell
+  set guifont=Ricty
 
   set lines=50
 
