@@ -1,4 +1,6 @@
 --smart-case
+--ignore-dir=tmp
+--ignore-dir=.git
 --ignore-dir=vendor
---ignore-dir=coverage
 --ignore-dir=.bundle
+--ignore-dir=coverage
