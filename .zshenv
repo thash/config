@@ -23,6 +23,6 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     source $HOME/.rvm/scripts/rvm
     # when called from quickrun, load .rvmrc
     if [ `uname` = "Darwin" ]; then
-        rvm use 1.9.3-p194
+        rvm use 1.9.3-p327
     fi
 fi
