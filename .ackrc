@@ -4,3 +4,5 @@
 --ignore-dir=vendor
 --ignore-dir=.bundle
 --ignore-dir=coverage
+--ignore-dir=doc
+--ignore-dir=public
