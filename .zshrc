@@ -261,3 +261,9 @@ if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   export PATH="/home/hash/perl5/bin:$PATH";
 
 fi
+
+
+### autojump settings {{{3
+if [ -f /usr/share/autojump/autojump.sh ]; then
+  . /usr/share/autojump/autojump.sh
+fi
