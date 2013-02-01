@@ -166,6 +166,23 @@ augroup MyAutoCmdFileType
     autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
 augroup END
 
+"" Command line Window mode (q:) {{{3
+nnoremap <SID>(command-line-enter) q:
+xnoremap <SID>(command-line-enter) q:
+xnoremap <SID>(command-line-norange) q:<C-u>
+nmap : <SID>(command-line-enter)
+xmap : <SID>(command-line-enter)
+autocmd CmdwinEnter * call s:CmdLineWindow()
+function! s:CmdLineWindow()
+  nnoremap <buffer> q :<C-u>quit<CR>
+  nnoremap <buffer> <TAB> :<C-u>quit<CR>
+  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+  inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  startinsert!
+endfunction
 
 
 " omni completion setting {{{3
