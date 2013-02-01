@@ -27,7 +27,7 @@ Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
-Bundle 'memerelics/rainbow_parentheses.vim'
+Bundle 'memerelics/rainbow_parentheses.vim', { 'rev': 'RainbowParenthesesActivate' }
 
 Bundle 'ref.vim'
 
