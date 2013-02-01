@@ -149,6 +149,13 @@ zstyle ':completion:*' menu select=1
 # zstyle ':completion:*' group-name ''
 # zstyle ':completion:*' keep-prefix
 
+# Autojump
+if [ `uname` = "Darwin" ]; then
+  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+else
+  #TODO: Add Linux settings here
+fi
+
 ### History ### {{{2
 # by default, display latest histories.
  HISTFILE=${HOME}/.zsh_history
