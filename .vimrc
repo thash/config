@@ -425,6 +425,9 @@ nnoremap <CR> o<ESC>
 " yank from cursol to eol
 nnoremap Y y$
 
+" originally defined movement. inside parenthesis
+onoremap p i(
+
 
 " ======================================================================
 " Map Leader (,) settings  {{{2
