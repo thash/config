@@ -28,6 +28,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'ack.vim'
 Bundle 'YankRing.vim'
 Bundle 'memerelics/rainbow_parentheses.vim', { 'rev': 'RainbowParenthesesActivate' }
+Bundle 'sequence'
 
 Bundle 'ref.vim'
 
@@ -35,6 +36,8 @@ Bundle 'textobj-user'
 Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
+
+Bundle 'sjl/clam.vim'
 
 
 """ Unite, and new generation plugins {{{3
