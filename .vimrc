@@ -134,10 +134,11 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
 
     """ HTML, HAML, XML etc {{{4
-    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby.html
+    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
+    autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype haml IndentGuidesEnable
 
     """ Scheme {{{4
