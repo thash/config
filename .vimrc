@@ -112,7 +112,7 @@ augroup END
 " set Shebang line {{{3
 augroup SetShebang
     autocmd! SetShebang
-    autocmd BufNewFile *.rb 0put =\"# -*- coding: utf-8 -*-\"|$
+    autocmd BufNewFile *.rb 0put =\"# encoding: utf-8\"|$
 augroup END
 
 " filetype autocmd {{{3
