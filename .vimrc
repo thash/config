@@ -204,9 +204,6 @@ augroup MyAutoCmdGeneral
     " automatically move to last line
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-    " automatically remove spaces end of the line
-    autocmd BufWritePre * :%s/\s\+$//ge
-
     " automatically add timestamp to backup files
     autocmd BufWritePre * let &bex = '-' . strftime('%Y%m%d_%Hh') . '~'
 augroup END
