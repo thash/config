@@ -113,7 +113,6 @@ augroup MyAutoCmdFileType
     " smart indent is disabled when paste is on
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
-    autocmd FileType ruby setl fileencoding=utf-8
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
     " [Ruby] convert Hash style
 
