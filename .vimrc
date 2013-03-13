@@ -12,24 +12,21 @@ Bundle 'gmarik/vundle'
 
 
 " Vundle Define active plugins {{{2
-Bundle 'calendar.vim'
+" 'calendar.vim' 'mattn/webapi-vim' 'Gist.vim' 'zef/vim-cycle' 'mkitt/markdown-preview.vim'
 Bundle 'fugitive.vim'
-Bundle 'mattn/webapi-vim'
-" Bundle 'Gist.vim' -- updated.
 Bundle 'surround.vim'
 Bundle 'Align'
 Bundle 'quickrun.vim'
 Bundle 'open-browser.vim'
 Bundle 'snipMate'
 Bundle 'TwitVim'
-" Bundle 'daisuzu/facebook.vim'
-Bundle 'zef/vim-cycle'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'ack.vim'
+Bundle 'ag.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sequence'
-
+" what: matchit -- extend '%' match
+Bundle 'tsaleh/vim-matchit'
 Bundle 'ref.vim'
 
 Bundle 'textobj-user'
@@ -37,30 +34,22 @@ Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
-Bundle 'sjl/clam.vim'
-
 
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
-Bundle 't9md/vim-unite-ack'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
 
-
 """ ColorSchemes, Syntax {{{3
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'molokai'
 Bundle 'Gentooish'
-Bundle 'scrooloose/syntastic'
 
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
-"Bundle 'mkitt/markdown-preview.vim'
-Bundle 'tsaleh/vim-matchit'
+Bundle 'kchmck/vim-coffee-script'
 
 " General ============================================ {{{1
 " set someting {{{2
