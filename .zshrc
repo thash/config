@@ -131,27 +131,12 @@ alias bo='bundle open'
 
 
 ### Set Options ### {{{2
-# -u option: ignore "insecure" warning
-autoload -U compinit; compinit -u
-compdef hub=git
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt correct
 setopt list_packed
 setopt nolistbeep
-
-# ignore CASE when complete
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' menu select=1
-
-# Advanced completion settings
-  # zstyle ':completion:*' verbose yes
-# zstyle ':completion:*:descriptions' format '%B%d%b'
-# zstyle ':completion:*:messages' format '%d'
-# zstyle ':completion:*:warnings' format 'No matches for: %d'
-# zstyle ':completion:*' group-name ''
-# zstyle ':completion:*' keep-prefix
 
 # Autojump
 if [ `uname` = "Darwin" ]; then
@@ -207,6 +192,9 @@ fpath=(~/.zsh $fpath)
 
 # should work only on Mac.
 if [ `uname` = "Darwin" ]; then
+  # zsh-completions (brew)
+  fpath=(~/.zsh /usr/local/share/zsh-completions $fpath)
+
   #ZSHHOME="${HOME}/.zsh"
 
   ## autoload ~/.zsh/*.zsh file as a part of .zshrc
@@ -230,6 +218,15 @@ if [ `uname` = "Darwin" ]; then
   #  bindkey-advice-before "^J" afu+cancel afu+accept-line
   #fi
 fi
+
+## completion {{{3
+# -u option: ignore "insecure" warning
+autoload -U compinit; compinit -u
+compdef hub=git
+
+# ignore CASE when complete
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select=1
 
 
 ### display git branch on the prompt ### {{{3
