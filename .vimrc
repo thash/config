@@ -538,7 +538,6 @@ nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-
 nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -winheight=500 -prompt=(?_?) <CR>
-nnoremap <silent> <Leader>ua :<C-u>Unite -buffer-name=ack -prompt=(?_?) ack:.:<CR>
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
@@ -567,9 +566,6 @@ function! s:unite_my_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
   imap <silent> <buffer> <ESC><ESC> <Plug>(unite_exit)
 endfunction
-
-" vim-unite-ack
-let g:unite_source_ack_command = "ack --ignore-dir=vendor"
 
 " Vimfiler settings {{{2
 let g:vimfiler_as_default_explorer = 1
