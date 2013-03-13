@@ -41,6 +41,7 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
+Bundle 'Sixeight/unite-grep'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'Gentooish'
@@ -514,7 +515,7 @@ let g:syntastic_auto_loc_list=2
 "let g:gist_browser_command = 'firefox %URL% &'
 
 " unite.vim settings {{{2
-let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=0
 let g:unite_split_rule="topleft"
 "let g:unite_enable_split_vertically=1
 let g:unite_update_time=50
@@ -529,15 +530,20 @@ let g:unite_source_file_mru_filename_format = ":~:." "default
 let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
-nnoremap <silent> <Leader>j  :<C-u>Unite file -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
-nnoremap <silent> <Leader>ub :<C-u>Unite buffer -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>um :<C-u>Unite mapping -auto-preview -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>ug :<C-u>Unite vcs_grep -winheight=500 -prompt=(?_?) <CR>
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ur :<C-u>Unite register      -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -start-insert -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline       -start-insert -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>um :<C-u>Unite mapping       -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>ug :<C-u>Unite grep:.: -no-quit -prompt=(?_?)<CR>
+
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 100
 
 call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 "call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
