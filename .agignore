@@ -1,3 +1,6 @@
 log
 .bundle
 tmp
+
+# Rails app
+app/assets/images
