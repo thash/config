@@ -95,7 +95,11 @@ alias -g TX='tar xvzf'
 alias -g TC='tar cvzf'
 
 ### Aliases -- for git {{{3
-alias g='nocorrect git'
+## hub
+eval "$(hub alias -s)"
+alias hubb='hub browse'
+
+alias g='git'
 alias gst='git st && g stash list'
 alias st='git st'
 alias gs='git st'
@@ -117,7 +121,6 @@ alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
 alias gchs='nocorrect gchs'
 
-alias hubb='hub browse'
 
 ### Aliases -- for Programming {{{3
 alias bi='bundle install'
@@ -128,8 +131,9 @@ alias bo='bundle open'
 
 
 ### Set Options ### {{{2
-autoload -U compinit
-compinit -u
+# -u option: ignore "insecure" warning
+autoload -U compinit; compinit -u
+compdef hub=git
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
