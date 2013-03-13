@@ -454,6 +454,8 @@ nnoremap <Space>F <C-w>f
 " select last pasted block
 nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+vnoremap ,# :s/^/#/<CR>:nohlsearch<CR>
+
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
 " execute current window using QuickRun
