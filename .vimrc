@@ -538,7 +538,7 @@ nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-inser
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite register      -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -start-insert -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline       -start-insert -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>uo :<C-u>Unite outline       -start-insert -vertical -no-quit -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping       -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep:.: -no-quit -prompt=(?_?)<CR>
 nnoremap <silent> <Leader>ut :<C-u>Unite tig -no-split<CR>
