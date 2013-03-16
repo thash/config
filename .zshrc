@@ -65,6 +65,19 @@ alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 
+### suffix
+alias -s {rb,haml,slim}=vim
+
+function extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar xzvf $1;;
+    *.tar.bz2|*.tbz) tar xjvf $1;;
+    *.zip) unzip $1;;
+    *.tar) tar xvf $1;;
+  esac
+}
+alias -s {gz,tgz,bz2,tbz,zip,tar}=extract
+
 ### tmux
 if [ `uname` = "Linux" ];then
   alias tmux='TERM=screen-256color-bce tmux'
@@ -73,6 +86,7 @@ alias ta='tmux attach'
 alias tmux-key-remote='tmux set-option -ag prefix C-b'
 alias tmux-key-local='tmux set-option -ag prefix C-t'
 
+### aptitude
 if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
   alias ag='sudo apt-get'
   alias ac='sudo apt-cache'
