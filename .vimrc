@@ -52,6 +52,7 @@ Bundle 'ruby.vim'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'slim-template/vim-slim'
 
 " General ============================================ {{{1
 " set someting {{{2
