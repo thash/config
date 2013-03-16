@@ -339,6 +339,7 @@ inoremap <C-J><C-L> []<LEFT>
 inoremap <C-L> <RIGHT><Space>
 " move cursor {a: b*} => {a: b}, * |or| self(*) => self(), *
 inoremap <C-J>, <RIGHT>,<Space>
+inoremap <C-J>. <RIGHT>.
 
 inoremap  _
 
