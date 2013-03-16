@@ -42,6 +42,7 @@ Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
 Bundle 'Sixeight/unite-grep'
+Bundle 'Kocha/vim-unite-tig'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'Gentooish'
@@ -539,6 +540,7 @@ nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -start-insert -no-quit -t
 nnoremap <silent> <Leader>uo :<C-u>Unite outline       -start-insert -vertical -no-quit -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>um :<C-u>Unite mapping       -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ug :<C-u>Unite grep:.: -no-quit -prompt=(?_?)<CR>
+nnoremap <silent> <Leader>ut :<C-u>Unite tig -no-split<CR>
 
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
