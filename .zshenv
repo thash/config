@@ -14,8 +14,8 @@ if [ "`ls -a ~ | grep .cabal`" != "" ]; then
 fi
 
 # setting for node
-if [ "`ls -a ~ | grep .nave`" = ".nave/" ]; then
-    ~/.nave/nave.sh use 0.4.7
+if [ `which npm` != "" ]; then
+  export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
 
 ### rvm settings -- should in zshenv, not in zshrc
