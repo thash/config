@@ -14,10 +14,10 @@ if has('gui_macvim')
   highlight LineNr ctermfg=darkgray
   highlight Visual guibg=yellow guifg=darkgray
 
-  colorscheme torte
+  colorscheme Gentooish
   " No Full Screen size
   set lines=54
-  set columns=150
+  set columns=80
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:
