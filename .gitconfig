@@ -45,7 +45,7 @@
 [apply]
   whitespace = nowarn
 [push]
-	default = upstream
+	default = simple
 [pull]
   rebase = true
 [grep]
