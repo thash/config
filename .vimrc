@@ -519,7 +519,7 @@ let g:syntastic_auto_loc_list=2
 "let g:gist_browser_command = 'firefox %URL% &'
 
 " unite.vim settings {{{2
-let g:unite_enable_start_insert=0
+" let g:unite_enable_start_insert=0
 let g:unite_split_rule="topleft"
 "let g:unite_enable_split_vertically=1
 let g:unite_update_time=50
@@ -534,7 +534,8 @@ let g:unite_source_file_mru_filename_format = ":~:." "default
 let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
-nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert<CR>
+" nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert -buffer-name=files -prompt=＼(^o^)／<CR>
 nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
 nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
