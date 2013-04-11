@@ -473,6 +473,7 @@ augroup MyAutoCmdRSpec
     autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
 augroup END
 let g:quickrun_config = {}
+let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
 if executable('bundle exec rspec')
     let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
 else
