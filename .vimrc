@@ -54,6 +54,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'slim-template/vim-slim'
 Bundle 'VimClojure'
+Bundle 'nginx.vim'
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -159,6 +160,7 @@ augroup MyAutoCmdFileType
     """ Others {{{4
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
+    autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
 augroup END
 
 "" Command line Window mode (q:) {{{3
