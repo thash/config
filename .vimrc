@@ -25,6 +25,7 @@ Bundle 'ag.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sequence'
+Bundle 'DirDiff.vim'
 " what: matchit -- extend '%' match
 Bundle 'tsaleh/vim-matchit'
 Bundle 'ref.vim'
