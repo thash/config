@@ -26,3 +26,7 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
         rvm use 2.0.0
     fi
 fi
+
+if [[ -d $HOME/adk/ ]] ; then
+  export PATH=$HOME/adk/tools:$PATH
+fi
