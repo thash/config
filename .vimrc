@@ -484,6 +484,9 @@ if executable('bundle exec rspec')
 else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
+if executable('lein')
+  let g:quickrun_config['clojure'] = {'command': 'lein run'}
+endif
 
 " let g:quickrun_config['ruby'] = {
 " \  'command': ''ruby',
