@@ -47,6 +47,7 @@ Bundle 'Kocha/vim-unite-tig'
 
 """ ColorSchemes, Syntax {{{3
 Bundle 'Gentooish'
+Bundle 'altercation/vim-colors-solarized'
 
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
