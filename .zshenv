@@ -26,3 +26,14 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
         rvm use 2.0.0
     fi
 fi
+
+AWS_CONFIG_FILE=$HOME/.aws.config
+#source aws_zsh_completer.sh
+
+# Android development
+if [ -f /usr/libexec/java_home ]; then
+  export JAVA_HOME=`/usr/libexec/java_home`
+fi
+if [ -d /Users/hash/work/android-sdk-macosx/tools ]; then
+  export PATH=/Users/hash/work/android-sdk-macosx/platform-tools:/Users/hash/work/android-sdk-macosx/tools:$PATH
+fi
