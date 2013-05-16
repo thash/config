@@ -593,7 +593,7 @@ endfunction
 
 " Vimfiler settings {{{2
 let g:vimfiler_as_default_explorer = 1
-call vimfiler#set_execute_file('vim,rb,md,txt,js,haml,html,yml', 'vim')
+call vimfiler#set_execute_file('vim,rb,java,clj,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 
 " fugitive.vim settings {{{2
