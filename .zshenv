@@ -28,12 +28,15 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
 fi
 
 AWS_CONFIG_FILE=$HOME/.aws.config
-#source aws_zsh_completer.sh
 
-# Android development
+############ Android development ##############
 if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME=`/usr/libexec/java_home`
 fi
-if [ -d /Users/hash/work/android-sdk-macosx/tools ]; then
-  export PATH=/Users/hash/work/android-sdk-macosx/platform-tools:/Users/hash/work/android-sdk-macosx/tools:$PATH
+
+# installed ADK in some places
+if [ -d $HOME/work/android-sdk-macosx/ ]; then
+  export PATH=$HOME/work/android-sdk-macosx/platform-tools:$HOME/work/android-sdk-macosx/tools:$PATH
+if [[ -d $HOME/adk/ ]] ; then
+  export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
 fi

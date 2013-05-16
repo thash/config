@@ -88,7 +88,6 @@ alias tmux-key-local='tmux set-option -ag prefix C-t'
 
 ### aptitude
 if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
-  alias ag='sudo apt-get'
   alias ac='sudo apt-cache'
   alias agi='sudo apt-get install -y'
   alias acs='sudo apt-cache search'

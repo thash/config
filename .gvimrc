@@ -48,8 +48,9 @@ elseif has("gui_win32")
 elseif has('gui')
 
   set guioptions=
-  set background=dark
-  colorscheme solarized
+  " set background=dark
+  " colorscheme solarized
+  colorscheme gentooish
   set novisualbell
   set guifont=Ricty
 
