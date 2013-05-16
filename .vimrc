@@ -25,7 +25,7 @@ Bundle 'ag.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sequence'
-Bundle 'DirDiff.vim'
+" Bundle 'DirDiff.vim' -- error while installing other plugins
 " what: matchit -- extend '%' match
 Bundle 'tsaleh/vim-matchit'
 Bundle 'ref.vim'
@@ -50,6 +50,7 @@ Bundle 'Gentooish'
 
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
+Bundle 'ngmy/vim-rubocop'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 Bundle 'kchmck/vim-coffee-script'
@@ -518,6 +519,9 @@ nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 " syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
+
+" Rubocop
+let vimrubocop_rubocop_cmd = 'bundle exec rubocop '
 
 " Gist
 "let g:gist_browser_command = 'firefox %URL% &'
