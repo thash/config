@@ -38,7 +38,7 @@ Bundle 't9md/vim-textobj-function-ruby'
 
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
-Bundle 'h1mesuke/unite-outline'
+Bundle 'Shougo/unite-outline'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
