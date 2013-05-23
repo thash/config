@@ -160,6 +160,10 @@ augroup MyAutoCmdFileType
     autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
     autocmd Filetype int-erl inoremap <C-L> <RIGHT><Space>
 
+    """ Java {{{4
+    autocmd Filetype java setl tabstop=4
+    autocmd Filetype java setl shiftwidth=4
+
     """ Others {{{4
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
