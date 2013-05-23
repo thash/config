@@ -14,7 +14,7 @@ if [ "`ls -a ~ | grep .cabal`" != "" ]; then
 fi
 
 # setting for node
-if [ `which npm` != "" ]; then
+if [ `which npm > /dev/null; echo $?` = 0 ]; then
   export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
 
