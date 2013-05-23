@@ -37,6 +37,7 @@ fi
 # installed ADK in some places
 if [ -d $HOME/work/android-sdk-macosx/ ]; then
   export PATH=$HOME/work/android-sdk-macosx/platform-tools:$HOME/work/android-sdk-macosx/tools:$PATH
-if [[ -d $HOME/adk/ ]] ; then
+fi
+if [ -d $HOME/adk/ ]; then
   export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
 fi
