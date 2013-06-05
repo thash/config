@@ -10,14 +10,14 @@ if has('gui_macvim')
   set guifont=Monaco
   " no scroll/tool bar
   set go=egmtc
-  set transparency=20
+  set transparency=10
   highlight LineNr ctermfg=darkgray
   highlight Visual guibg=yellow guifg=darkgray
 
   colorscheme Gentooish
   " No Full Screen size
   set lines=54
-  set columns=80
+  set columns=120
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:
