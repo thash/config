@@ -25,6 +25,7 @@ Bundle 'ag.vim'
 Bundle 'YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sequence'
+Bundle 'scrooloose/nerdcommenter'
 " Bundle 'DirDiff.vim' -- error while installing other plugins
 " what: matchit -- extend '%' match
 Bundle 'tsaleh/vim-matchit'
@@ -54,6 +55,7 @@ Bundle 'ruby.vim'
 Bundle 'ngmy/vim-rubocop'
 Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
+Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'slim-template/vim-slim'
 Bundle 'VimClojure'
@@ -623,9 +625,9 @@ vmap <Leader>sa <Plug>SequenceV_Increment
 nmap <Leader>sx <Plug>SequenceN_Decrement
 vmap <Leader>sx <Plug>SequenceV_Decrement
 
-""" facebook.vim settings {{{2
-""let g:facebook_access_token_file = expand('~/.fb_access_token')
-""let g:facebook_timezone = '+0900'
+" nelstrom/vim-markdown-folding setting {{{2
+let g:markdown_fold_style = 'nested'
+
 
 " Functions my/someone's ============================================ {{{1
 function! GetEFstatus() " {{{2
