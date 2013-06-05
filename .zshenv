@@ -1,4 +1,5 @@
 export PATH=$HOME/bin:$HOME/.rvm/bin:$HOME/local/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/git/local_gems/bin:$PATH
 
 export LANG=ja_JP.UTF-8
 export LC_ALL="$LANG"
