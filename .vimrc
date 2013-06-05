@@ -112,22 +112,27 @@ augroup END
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
 
+    """ set filetype {{{4
+    autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
+    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby
+    autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
+    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+    autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
+
     """ Ruby {{{4
     autocmd FileType ruby setl autoindent
     " smart indent is disabled when paste is on
     autocmd FileType ruby setl nopaste
     autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
+    autocmd FileType ruby vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
     " [Ruby] convert Hash style
 
     """ vim {{{4
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
-    autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
 
     """ HTML, HAML, XML etc {{{4
-    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby
-    autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o><ESC>==
@@ -159,11 +164,6 @@ augroup MyAutoCmdFileType
     """ Java {{{4
     autocmd Filetype java setl tabstop=4
     autocmd Filetype java setl shiftwidth=4
-
-    """ Others {{{4
-    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
-    autocmd FileType vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
-    autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
 augroup END
 
 "" Command line Window mode (q:) {{{3
