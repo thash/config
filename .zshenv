@@ -36,9 +36,10 @@ if [ -f /usr/libexec/java_home ]; then
 fi
 
 # installed ADK in some places
-if [ -L $HOME/work/android-sdk-macosx ]; then
-  export PATH=$HOME/work/android-sdk-macosx/platform-tools:$HOME/work/android-sdk-macosx/tools:$PATH
-fi
+# /Users/hash/bin/hub:550: warning: Insecure world writable dir /Users/hash/work/android-sdk-macosx/platform-tools in PATH, mode 040777
+#if [ -L $HOME/work/android-sdk-macosx ]; then
+#  export PATH=$HOME/work/android-sdk-macosx/platform-tools:$HOME/work/android-sdk-macosx/tools:$PATH
+#fi
 
 if [ -d $HOME/adk/ ]; then
   export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
