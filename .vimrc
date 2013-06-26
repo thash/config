@@ -563,10 +563,10 @@ let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_source_grep_max_candidates = 100
 
-call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
-"call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
-"call unite#set_substitute_pattern('file', '/\ze[^*]', '/*', 10)
-call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
+call unite#custom#substitute('file', '\*\*\+', '*', -1)
+"call unite#custom#substitute('file', '[^~.]\zs/', '*/*', 20)
+"call unite#custom#substitute('file', '/\ze[^*]', '/*', 10)
+call unite#custom#substitute('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
