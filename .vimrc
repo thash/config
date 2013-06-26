@@ -88,6 +88,7 @@ set splitbelow
 set splitright
 set visualbell t_vb=
 set cmdwinheight=12
+set cmdheight=2
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
@@ -485,7 +486,10 @@ if executable('bundle exec rspec')
 else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
-if executable('lein')
+if executable('./clj')
+  " clj: java -cp clojure-1.5.1-slim.jar clojure.main $1
+  let g:quickrun_config['clojure'] = {'command': 'clj'}
+elseif executable('lein')
   let g:quickrun_config['clojure'] = {'command': 'lein run'}
 endif
 
@@ -593,8 +597,9 @@ endfunction
 
 " Vimfiler settings {{{2
 let g:vimfiler_as_default_explorer = 1
-call vimfiler#set_execute_file('vim,rb,java,clj,md,txt,js,haml,html,yml', 'vim')
+call vimfiler#set_execute_file('vim,rb,java,scm,clj,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
+
 
 " fugitive.vim settings {{{2
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
