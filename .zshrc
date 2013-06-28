@@ -83,7 +83,7 @@ if [ `uname` = "Linux" ];then
   alias tmux='TERM=screen-256color-bce tmux'
 fi
 alias ta='tmux attach'
-alias tmux-key-remote='tmux set-option -ag prefix C-z'
+alias tmux-key-remote='tmux set-option -ag prefix C-w'
 alias tmux-key-local='tmux set-option -ag prefix C-t'
 
 ### aptitude
