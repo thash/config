@@ -18,6 +18,8 @@ unsetopt transient_rprompt
 # define prompt color
 if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
     color_ok="blue"; color_ng="red"
+elif [ `hostname | grep 'vagrant'` ]; then
+    color_ok="magenta"; color_ng="yellow"
 else
     color_ok="green"; color_ng="yellow"
 fi
