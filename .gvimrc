@@ -3,7 +3,6 @@ Bundle 'colorsel.vim'
 
 if has('gui_macvim')
 
-  CdCurrent
   set cursorcolumn
   set showtabline=2
   "set guifont=Ricty:12
@@ -14,7 +13,7 @@ if has('gui_macvim')
   highlight LineNr ctermfg=darkgray
   highlight Visual guibg=yellow guifg=darkgray
 
-  colorscheme Gentooish
+  colorscheme gentooish
   " No Full Screen size
   set lines=54
   set columns=120
