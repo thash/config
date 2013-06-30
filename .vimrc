@@ -178,7 +178,7 @@ augroup END
 "   nnoremap <buffer> q :<C-u>quit<CR>
 "   nnoremap <buffer> <TAB> :<C-u>quit<CR>
 "   inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" 
+"
 "   inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
 "   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
 "   inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
@@ -293,10 +293,8 @@ inoremap jk <ESC>
 inoremap kj <ESC>
 
 " Replace colon with semi-colon
-nnoremap ; :
-vnoremap ; :
-nnoremap q; q:
-vnoremap q; q:
+" nnoremap ; :
+" vnoremap ; :
 
 " move by one display line
 noremap j gj
