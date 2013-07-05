@@ -14,6 +14,7 @@ Bundle 'gmarik/vundle'
 " Vundle Define active plugins {{{2
 " 'calendar.vim' 'mattn/webapi-vim' 'Gist.vim' 'zef/vim-cycle' 'mkitt/markdown-preview.vim'
 Bundle 'fugitive.vim'
+Bundle 'gregsexton/gitv'
 Bundle 'surround.vim'
 Bundle 'Align'
 Bundle 'quickrun.vim'
