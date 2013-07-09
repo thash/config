@@ -8,11 +8,14 @@ do
     ln -s `pwd`/.$filename $HOME/.$filename
 done
 
-if [ -d `pwd`/.zsh ]; then
-  if [ -d $HOME/.zsh ]; then
-    rm -i -r $HOME/.zsh
+for dirname in .zsh .lein
+do
+  if [ -d `pwd`/$dirname ]; then
+    if [ -d $HOME/$dirname ]; then
+      rm -i -r $HOME/$dirname
+    fi
+    ln -s `pwd`/$dirname $HOME/$dirname
   fi
-  ln -s `pwd`/.zsh $HOME/.zsh
-fi
+done
 
 # source ~/.zshrc

@@ -1,3 +1,6 @@
 multiuser.screen
 .zsh/.zcompdump
 .zsh/auto-fu
+
+.lein/self-installs
+.lein/repl-history
