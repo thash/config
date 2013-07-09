@@ -485,7 +485,7 @@ if executable('bundle exec rspec')
 else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
-if executable('./clj')
+if executable('clj')
   " clj: java -cp clojure-1.5.1-slim.jar clojure.main $1
   let g:quickrun_config['clojure'] = {'command': 'clj'}
 elseif executable('lein')
