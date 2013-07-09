@@ -93,9 +93,6 @@ set cmdheight=2
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
 
-" load my plugins under development.
-set rtp+=~/.vim/dev/
-
 "set clipboard=unnamed,autoselect
 
 set formatoptions-=r
@@ -215,14 +212,31 @@ if has('persistent_undo')
     set undodir=./.undofiles,$VIM/.undofiles
 endif
 
-" Local .vimrc {{{2
+" settings for vimshell
+if filereadable(expand('~/.vimrc.vimshell'))
+    source ~/.vimrc.vimshell
+endif
+
+" Local .vimrc, and directory specific vimrc {{{2
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
-" settings for vimshell
-if filereadable(expand('~/.vimrc.vimshell'))
-    source ~/.vimrc.vimshell
+" http://d.hatena.ne.jp/thinca/20100216/1266294717
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+
+if has('vim_starting')
+  call s:vimrc_local(getcwd())
 endif
 
 " Color/Layout Settings ============================================ {{{1
