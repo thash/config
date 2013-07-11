@@ -274,18 +274,6 @@ function rprompt-git-current-branch {
 }
 
 
-### perl settings in ubuntu {{{3
-if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
-
-  export PERL_LOCAL_LIB_ROOT="/home/hash/perl5";
-  export PERL_MB_OPT="--install_base /home/hash/perl5";
-  export PERL_MM_OPT="INSTALL_BASE=/home/hash/perl5";
-  export PERL5LIB="/home/hash/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/hash/perl5/lib/perl5";
-  export PATH="/home/hash/perl5/bin:$PATH";
-
-fi
-
-
 ### autojump settings {{{3
 if [ -f /usr/share/autojump/autojump.sh ]; then
   . /usr/share/autojump/autojump.sh
