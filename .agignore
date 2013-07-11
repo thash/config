@@ -4,3 +4,6 @@ tmp
 
 # Rails app
 app/assets/images
+
+# Android
+proguard
