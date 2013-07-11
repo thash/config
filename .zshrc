@@ -111,7 +111,9 @@ alias -g TC='tar cvzf'
 
 ### Aliases -- for git {{{3
 ## hub
-eval "$(hub alias -s)"
+if [ `which hub > /dev/null; echo $?` = 0 ]; then
+  eval "$(hub alias -s)"
+fi
 alias hubb='hub browse'
 
 alias g='git'
@@ -180,7 +182,8 @@ zle -N history-beginning-search-forward-end history-search-end
 ### key bindkeys (bindkey -L) ### {{{2
 # NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
 bindkey "^O" clear-screen # originally, it's L
-bindkey "^H" backward-delete-char # backward-char
+# bindkey "^H" backward-delete-char # backward-char
+bindkey "^H" backward-char # backward-delete-char
 bindkey "^L" clear-screen # forward-char
 bindkey "^K" kill-line
 
@@ -192,14 +195,6 @@ bindkey "^E" end-of-line
 bindkey "^U" backward-delete-char
 bindkey '^R' history-incremental-search-backward
 bindkey "\e[Z" reverse-menu-complete # backward action of TAB key complete
-
-function runvim() {
-  exec < /dev/tty
-  vim .
-  zle reset-prompt
-}
-zle -N runvim
-bindkey '\@\@' runvim
 
 
 ### libs, miscs ### {{{2
