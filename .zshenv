@@ -15,7 +15,13 @@ if [ "`ls -a ~ | grep .cabal`" != "" ]; then
   export PATH=$HOME/.cabal/bin:$PATH
 fi
 
-# setting for node
+### setting for node(including nvm, npm)
+# nvm: https://github.com/creationix/nvm/blob/master/README.markdown
+if [ -d $HOME/.nvm ]; then
+  source ~/.nvm/nvm.sh
+  # TODO: find installed versions
+  # nvm use v0.9.5
+fi
 if [ `which npm > /dev/null; echo $?` = 0 ]; then
   export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
