@@ -61,6 +61,10 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'slim-template/vim-slim'
 Bundle 'VimClojure'
 Bundle 'nginx.vim'
+"" Clojure
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-classpath'
+Bundle 'guns/vim-clojure-static'
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -117,6 +121,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
+    autocmd BufRead,BufWinEnter,BufNewFile *.cljs set filetype=clojure
 
     """ Ruby {{{4
     autocmd FileType ruby setl autoindent
@@ -145,20 +150,10 @@ augroup MyAutoCmdFileType
     " TODO: remove all <C-*> mappings when open scheme file.
     autocmd Filetype scheme inoremap <C-J> ()<LEFT>
 
-    """ Erlang {{{4
-    autocmd Filetype erlang syntax match erlangVariable /[A-Z]\+[a-zA-Z0-9]*/
-    autocmd Filetype erlang syntax match erlangRecord /#[a-z]\+[a-zA-Z0-9_.]*/
-    autocmd Filetype erlang highlight erlangVariable ctermfg=218
-    autocmd Filetype erlang highlight erlangRecord ctermfg=61
-    autocmd Filetype erlang highlight erlangDirective ctermfg=22
-    autocmd Filetype erlang  inoremap <C-J><C-J> ()<LEFT>
-    autocmd Filetype erlang  inoremap <C-J><C-K> {}<LEFT>
-    autocmd Filetype int-erl inoremap <C-J><C-J> ()<LEFT>
-    autocmd Filetype int-erl inoremap <C-J><C-K> {}<LEFT>
-    " move cursor {a: b*} => {a: b}. * |or| self(*) => self(). *
-    autocmd Filetype erlang  inoremap <C-J>. <RIGHT>.<Space>
-    autocmd Filetype int-erl inoremap <C-J>. <RIGHT>.<Space>
-    autocmd Filetype int-erl inoremap <C-L> <RIGHT><Space>
+    """ Clojure {{{4
+    autocmd Filetype clojure RainbowParenthesesActivate
+    autocmd Filetype clojure RainbowParenthesesLoadRound
+    autocmd Filetype clojure RainbowParenthesesLoadSquare
 
     """ Java {{{4
     autocmd Filetype java setl tabstop=4
@@ -610,7 +605,7 @@ endfunction
 
 " Vimfiler settings {{{2
 let g:vimfiler_as_default_explorer = 1
-call vimfiler#set_execute_file('vim,rb,java,scm,clj,md,txt,js,haml,html,yml', 'vim')
+call vimfiler#set_execute_file('vim,rb,java,scm,clj,cljs,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 
 
