@@ -16,7 +16,7 @@ if has('gui_macvim')
   colorscheme gentooish
   " No Full Screen size
   set lines=54
-  set columns=120
+  set columns=80
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:
