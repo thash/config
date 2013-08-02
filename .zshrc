@@ -66,6 +66,7 @@ alias scon='vim ~/.ssh/config'
 alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
+alias vag='vagrant'
 
 ### suffix
 alias -s {rb,haml,slim}=vim
