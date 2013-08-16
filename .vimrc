@@ -155,9 +155,9 @@ augroup MyAutoCmdFileType
     autocmd Filetype clojure RainbowParenthesesLoadRound
     autocmd Filetype clojure RainbowParenthesesLoadSquare
 
-    """ Java {{{4
-    autocmd Filetype java setl tabstop=4
-    autocmd Filetype java setl shiftwidth=4
+    """ just tab/shift {{{4
+    autocmd Filetype php,java,xml setl tabstop=4
+    autocmd Filetype php,java,xml setl shiftwidth=4
 augroup END
 
 "" Command line Window mode (q:) {{{3
