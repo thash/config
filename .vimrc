@@ -306,7 +306,7 @@ inoremap kj <ESC>
 " nnoremap ; :
 " vnoremap ; :
 
-" move by one display line
+" move based on visible lines
 noremap j gj
 noremap k gk
 noremap 0 g0
@@ -315,6 +315,12 @@ noremap gj j
 noremap gk k
 noremap g0 0
 noremap g$ $
+
+" avoid arrow keys to insert A,B,C,D
+nnoremap OA gi<Up>
+nnoremap OB gi<Down>
+nnoremap OC gi<Right>
+nnoremap OD gi<Left>
 
 " join without space
 noremap gJ J
