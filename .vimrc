@@ -59,7 +59,6 @@ Bundle 'tpope/vim-markdown'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'slim-template/vim-slim'
-Bundle 'VimClojure'
 Bundle 'nginx.vim'
 "" Clojure
 Bundle 'tpope/vim-fireplace'
