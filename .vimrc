@@ -37,7 +37,6 @@ Bundle 'textobj-indent'
 Bundle 'textobj-function'
 Bundle 't9md/vim-textobj-function-ruby'
 
-
 """ Unite, and new generation plugins {{{3
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
@@ -64,6 +63,7 @@ Bundle 'nginx.vim'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
+
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -113,6 +113,7 @@ augroup END
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
+    " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
 
     """ set filetype {{{4
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
@@ -122,14 +123,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
     autocmd BufRead,BufWinEnter,BufNewFile *.cljs set filetype=clojure
 
-    """ Ruby {{{4
-    autocmd FileType ruby setl autoindent
-    " smart indent is disabled when paste is on
-    autocmd FileType ruby setl nopaste
-    autocmd FileType ruby setl smartindent cinwords=if,elsif,else,for,begin,def,class
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
-    autocmd FileType ruby vnoremap sh :s/:\([a-z_]*\)\s*=>/\1:/<CR>
-    " [Ruby] convert Hash style
 
     """ vim {{{4
     autocmd FileType help nnoremap <buffer> q <C-w>q
@@ -141,22 +135,9 @@ augroup MyAutoCmdFileType
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype haml IndentGuidesEnable
 
-    """ Scheme {{{4
-    " adding VimEnter, TermResponse... don't work as I expect.
-    " autocmd Filetype scheme RainbowParenthesesToggle
-    autocmd Filetype scheme RainbowParenthesesActivate
-    autocmd Filetype scheme RainbowParenthesesLoadRound
-    " TODO: remove all <C-*> mappings when open scheme file.
-    autocmd Filetype scheme inoremap <C-J> ()<LEFT>
-
-    """ Clojure {{{4
-    autocmd Filetype clojure RainbowParenthesesActivate
-    autocmd Filetype clojure RainbowParenthesesLoadRound
-    autocmd Filetype clojure RainbowParenthesesLoadSquare
-
     """ just tab/shift {{{4
-    autocmd Filetype php,java,xml setl tabstop=4
-    autocmd Filetype php,java,xml setl shiftwidth=4
+    autocmd Filetype php,xml setl tabstop=4
+    autocmd Filetype php,xml setl shiftwidth=4
 augroup END
 
 "" Command line Window mode (q:) {{{3
