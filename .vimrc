@@ -53,7 +53,6 @@ Bundle 'altercation/vim-colors-solarized'
 """ Filetypes -- depends on current work {{{3
 Bundle 'ruby.vim'
 Bundle 'ngmy/vim-rubocop'
-Bundle 'taq/vim-rspec'
 Bundle 'tpope/vim-markdown'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'kchmck/vim-coffee-script'
