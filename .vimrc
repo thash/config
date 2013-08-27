@@ -603,6 +603,13 @@ nnoremap <silent> <Space>gb :<C-u>Gblame<Enter>
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+let g:openbrowser_iskeyword = join(
+\   range(char2nr('A'), char2nr('Z'))
+\   + range(char2nr('a'), char2nr('z'))
+\   + range(char2nr('0'), char2nr('9'))
+\   + ['_', ':', '/', '.', '-', '+', '%', '#', '?', '&', '=',
+\      ';', '@', '$', ',', '[', ']', '!', "'", "*", "~", ], ',')
+
 
 " buftabs settings {{{2
 let g:buftabs_in_statusline=1
