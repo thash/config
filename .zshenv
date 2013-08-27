@@ -56,7 +56,9 @@ fi
 
 # installed ADK in some places
 if [ -d $HOME/work/android/sdk ]; then
-  export PATH=$HOME/work/android/sdk/platform-tools:$HOME/work/android/sdk/tools:$PATH
+  export PATH=$HOME/work/android/sdk/tools:$PATH
+  export PATH=$HOME/work/android/sdk/platform-tools:$PATH
+  export PATH=$HOME/work/android/sdk/build-tools/17.0.0:$PATH
 fi
 
 if [ -d $HOME/adk/ ]; then
