@@ -67,6 +67,7 @@ Bundle 'guns/vim-clojure-static'
 " General ============================================ {{{1
 " set someting {{{2
 set shortmess=asIAWT "simpler messages
+set scrolloff=1000
 set t_Co=256
 set encoding=utf8
 set fileencoding=utf8
