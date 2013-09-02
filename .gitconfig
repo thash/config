@@ -44,6 +44,8 @@
     d5 = diff HEAD~~~~~
 [apply]
   whitespace = nowarn
+[diff]
+	algorithm = patience
 [push]
 	default = simple
 [pull]
