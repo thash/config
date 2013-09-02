@@ -2,66 +2,63 @@
 " Vundle initialization {{{2
 
 set nocompatible
-filetype off "here off, and after vundle finish, on again.
-set rtp+=~/.vim/bundle/vundle/
-let g:vundle_default_git_proto='git'
-call vundle#rc()
+if has('vim_starting')
+  set rtp+=~/.vim/bundle/neobundle.vim/
+endif
+let g:neobundle_default_git_protocol='git'
+call neobundle#rc(expand('~/.vim/bundle/'))
 
-nmap <C-l> <Plug>(openbrowser-open)
-Bundle 'gmarik/vundle'
-
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Vundle Define active plugins {{{2
-" 'calendar.vim' 'mattn/webapi-vim' 'Gist.vim' 'zef/vim-cycle' 'mkitt/markdown-preview.vim'
-Bundle 'fugitive.vim'
-Bundle 'gregsexton/gitv'
-Bundle 'surround.vim'
-Bundle 'Align'
-Bundle 'quickrun.vim'
-Bundle 'open-browser.vim'
-Bundle 'snipMate'
-Bundle 'TwitVim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'ag.vim'
-Bundle 'YankRing.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'sequence'
-Bundle 'scrooloose/nerdcommenter'
-" Bundle 'DirDiff.vim' -- error while installing other plugins
-" what: matchit -- extend '%' match
-Bundle 'tsaleh/vim-matchit'
-Bundle 'ref.vim'
+NeoBundle 'fugitive.vim'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'surround.vim'
+NeoBundle 'Align'
+NeoBundle 'quickrun.vim'
+NeoBundle 'open-browser.vim'
+NeoBundle 'snipMate'
+NeoBundle 'TwitVim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'ag.vim'
+NeoBundle 'YankRing.vim'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'sequence'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tsaleh/vim-matchit'
+NeoBundle 'ref.vim'
 
-Bundle 'textobj-user'
-Bundle 'textobj-indent'
-Bundle 'textobj-function'
-Bundle 't9md/vim-textobj-function-ruby'
+NeoBundle 'textobj-user'
+NeoBundle 'textobj-indent'
+NeoBundle 'textobj-function'
+NeoBundle 't9md/vim-textobj-function-ruby'
 
 """ Unite, and new generation plugins {{{3
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite-outline'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimfiler'
-Bundle 'Sixeight/unite-grep'
-Bundle 'Kocha/vim-unite-tig'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Sixeight/unite-grep'
+NeoBundle 'Kocha/vim-unite-tig'
 
 """ ColorSchemes, Syntax {{{3
-Bundle 'Gentooish'
-Bundle 'altercation/vim-colors-solarized'
+NeoBundle 'Gentooish'
+" NeoBundle 'altercation/vim-colors-solarized'
 
 """ Filetypes -- depends on current work {{{3
-Bundle 'ruby.vim'
-Bundle 'ngmy/vim-rubocop'
-Bundle 'tpope/vim-markdown'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'slim-template/vim-slim'
-Bundle 'nginx.vim'
+NeoBundle 'ruby.vim'
+NeoBundle 'ngmy/vim-rubocop'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'nginx.vim'
+
 "" Clojure
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-classpath'
+NeoBundle 'guns/vim-clojure-static'
 
 
 " General ============================================ {{{1
@@ -601,6 +598,7 @@ nnoremap <silent> <Space>gs :<C-u>Gstatus<Enter>
 nnoremap <silent> <Space>gb :<C-u>Gblame<Enter>
 
 " Openbrowser settings {{{2
+nmap <C-l> <Plug>(openbrowser-open)
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
