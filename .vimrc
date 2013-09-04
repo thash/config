@@ -91,6 +91,7 @@ set cmdwinheight=12
 set cmdheight=2
 set gdefault " all substitution
 set backupdir=~/tmp,$VIM/tmp
+set shell=/bin/bash
 
 "set clipboard=unnamed,autoselect
 
