@@ -185,10 +185,15 @@ if has('persistent_undo')
     set undodir=./.undofiles,$VIM/.undofiles
 endif
 
-" settings for vimshell
-if filereadable(expand('~/.vimrc.vimshell'))
-    source ~/.vimrc.vimshell
-endif
+" VimShell settings and aliases {{{2
+nnoremap <silent> ,is :VimShell<CR>
+nnoremap <silent> ,irb :VimShellInteractive pry<CR>
+nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
+nnoremap <silent> ,ihs :VimShellInteractive ghci<CR>
+nnoremap <silent> ,iclj :VimShellInteractive lein repl<CR>
+
+nnoremap <silent> <Space>s <S-v>:VimShellSendString<CR>
+vmap <silent> <Space>s :VimShellSendString<CR>
 
 " Local .vimrc, and directory specific vimrc {{{2
 if filereadable(expand('~/.vimrc.local'))
