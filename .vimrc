@@ -51,9 +51,11 @@ NeoBundle 'ruby.vim'
 NeoBundle 'ngmy/vim-rubocop'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'nginx.vim'
+NeoBundle 'kana/vim-filetype-haskell'
 
 "" Clojure
 NeoBundle 'tpope/vim-fireplace'
@@ -444,7 +446,6 @@ nnoremap <Space>F <C-w>f
 " select last pasted block
 nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-vnoremap ,# :s/^/#/<CR>:nohlsearch<CR>
 
 " plugins setting ============================================ {{{1
 " QuickRun settings {{{2
@@ -616,9 +617,6 @@ nmap <Leader>sa <Plug>SequenceN_Increment
 vmap <Leader>sa <Plug>SequenceV_Increment
 nmap <Leader>sx <Plug>SequenceN_Decrement
 vmap <Leader>sx <Plug>SequenceV_Decrement
-
-" nelstrom/vim-markdown-folding setting {{{2
-let g:markdown_fold_style = 'nested'
 
 
 " Functions my/someone's ============================================ {{{1
