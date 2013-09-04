@@ -16,6 +16,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'surround.vim'
 NeoBundle 'Align'
 NeoBundle 'quickrun.vim'
+NeoBundle 'open-browser.vim'
 NeoBundle 'snipMate'
 NeoBundle 'TwitVim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -189,10 +190,6 @@ if filereadable(expand('~/.vimrc.vimshell'))
     source ~/.vimrc.vimshell
 endif
 
-if filereadable(expand('~/.vimrc.mac')) &&
-   \ (has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin')
-    source ~/.vimrc.mac
-endif
 " Local .vimrc, and directory specific vimrc {{{2
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
@@ -600,6 +597,18 @@ nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <silent> <Space>gs :<C-u>Gstatus<Enter>
 nnoremap <silent> <Space>gb :<C-u>Gblame<Enter>
+
+" Openbrowser settings {{{2
+nmap <C-l> <Plug>(openbrowser-open)
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+let g:openbrowser_iskeyword = join(
+\   range(char2nr('A'), char2nr('Z'))
+\   + range(char2nr('a'), char2nr('z'))
+\   + range(char2nr('0'), char2nr('9'))
+\   + ['_', ':', '/', '.', '-', '+', '%', '#', '?', '&', '=',
+\      ';', '@', '$', ',', '[', ']', '!', "'", "*", "~", ], ',')
 
 
 " buftabs settings {{{2
