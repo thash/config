@@ -455,7 +455,7 @@ augroup MyAutoCmdRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
     autocmd BufNewFile,BufRead Gemfile       set filetype=ruby
     autocmd BufNewFile,BufRead Capfile       set filetype=ruby
-    autocmd BufNewFile,BufRead *.watchr      set filetype=ruby
+    autocmd BufNewFile,BufRead Vagrantfile   set filetype=ruby
     autocmd BufNewFile,BufRead *.ru          set filetype=ruby
     autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
 augroup END
