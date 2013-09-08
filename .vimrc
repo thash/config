@@ -18,15 +18,13 @@ NeoBundle 'Align'
 NeoBundle 'quickrun.vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'snipMate'
-NeoBundle 'TwitVim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'ag.vim'
 NeoBundle 'YankRing.vim'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'sequence'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tsaleh/vim-matchit'
 NeoBundle 'ref.vim'
+NeoBundle 'wadako111/say.vim'
 
 NeoBundle 'textobj-user'
 NeoBundle 'textobj-indent'
@@ -44,23 +42,22 @@ NeoBundle 'Kocha/vim-unite-tig'
 
 """ ColorSchemes, Syntax {{{3
 NeoBundle 'Gentooish'
-" NeoBundle 'altercation/vim-colors-solarized'
 
-""" Filetypes -- depends on current work {{{3
-NeoBundle 'ruby.vim'
-NeoBundle 'ngmy/vim-rubocop'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'joker1007/vim-markdown-quote-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'nginx.vim'
-NeoBundle 'kana/vim-filetype-haskell'
+""" Filetypes -- loaded by NeoBundleSource when needed {{{3
+NeoBundleLazy 'ruby.vim'
+NeoBundleLazy 'ngmy/vim-rubocop'
+NeoBundleLazy 'tpope/vim-markdown'
+NeoBundleLazy 'nelstrom/vim-markdown-folding'
+NeoBundleLazy 'joker1007/vim-markdown-quote-syntax'
+NeoBundleLazy 'kchmck/vim-coffee-script'
+NeoBundleLazy 'slim-template/vim-slim'
+NeoBundleLazy 'nginx.vim'
+NeoBundleLazy 'kana/vim-filetype-haskell'
 
 "" Clojure
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-classpath'
-NeoBundle 'guns/vim-clojure-static'
+NeoBundleLazy 'tpope/vim-fireplace'
+NeoBundleLazy 'tpope/vim-classpath'
+NeoBundleLazy 'guns/vim-clojure-static'
 
 
 " General ============================================ {{{1
@@ -113,7 +110,6 @@ augroup END
 " filetype autocmd {{{3
 augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
-    " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
 
     """ set filetype {{{4
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
@@ -123,19 +119,33 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
     autocmd BufRead,BufWinEnter,BufNewFile *.cljs set filetype=clojure
 
+    """ NeoBundleSources {{{4
+    autocmd FileType markdown NeoBundleSource vim-markdown
+    autocmd FileType markdown NeoBundleSource vim-markdown-folding
+    autocmd FileType markdown NeoBundleSource vim-markdown-quote-syntax
+    autocmd FileType ruby     NeoBundleSource ruby.vim
+    autocmd FileType ruby     NeoBundleSource vim-rubocop
+    autocmd FileType clojure  NeoBundleSource vim-fireplace
+    autocmd FileType clojure  NeoBundleSource vim-classpath
+    autocmd FileType clojure  NeoBundleSource vim-clojure-static
+    autocmd FileType haskell  NeoBundleSource vim-filetype-haskell
+    autocmd FileType coffee   NeoBundleSource vim-coffee-script
+    autocmd FileType slim     NeoBundleSource vim-slim
+    autocmd FileType nginx    NeoBundleSource nginx.vim
+
+    """ FileType on {{{4
+    " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
+
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
 
-    """ vim {{{4
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
 
-    """ HTML, HAML, XML etc {{{4
     autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype html inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype haml IndentGuidesEnable
 
-    """ just tab/shift {{{4
     autocmd Filetype php,xml setl tabstop=4
     autocmd Filetype php,xml setl shiftwidth=4
 augroup END
