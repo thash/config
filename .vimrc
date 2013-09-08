@@ -93,7 +93,7 @@ set visualbell t_vb=
 set cmdwinheight=12
 set cmdheight=2
 set gdefault " all substitution
-set backupdir=~/tmp,$VIM/tmp
+set backupdir=$HOME/.vim/tmp
 set shell=/bin/bash
 
 "set clipboard=unnamed,autoselect
@@ -604,7 +604,7 @@ let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 
 " YankRing.vim settings {{{2
-let g:yankring_history_dir = '$HOME/tmp'
+let g:yankring_history_dir = '$HOME/.vim/tmp'
 " let g:yankring_paste_using_g = 0
 
 " vim-cycle settings {{{2
