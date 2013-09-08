@@ -469,19 +469,78 @@ augroup MyAutoCmdRSpec
     autocmd BufNewFile,BufRead *.ru          set filetype=ruby
     autocmd BufNewFile,BufRead .pryrc        set filetype=ruby
 augroup END
+
 let g:quickrun_config = {}
 let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
+let g:quickrun_config['java'] = {
+      \ 'runner' : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 100,
+      \ 'outputter' : 'multi:buffer:quickfix',
+      \ 'outputter/buffer/split' : ''
+      \ }
+
+function! s:QuickRunAndroidProject()
+    let s:project_dir = unite#util#path2project_directory(expand('%'))
+
+    " scan AndroidManifest.xml
+    for s:line in readfile(s:project_dir.'/AndroidManifest.xml')
+        " get package name ex) com.sample.helloworld
+        if !empty(matchstr(s:line, 'package="\zs.*\ze"'))
+            let s:package = matchstr(s:line, 'package="\zs.*\ze"')
+            continue
+        endif
+
+        " get android:name ex) com.sample.helloworld.HelloWorldActivity
+        if !empty(matchstr(s:line, 'android:name="\zs.*\ze"'))
+            let s:start_activity = matchstr(s:line, 'android:name="\zs.*\ze"')
+            break
+        endif
+
+    endfor
+
+    " get project name from build.xml
+    for s:line in readfile(s:project_dir.'/build.xml')
+      if !empty(matchstr(s:line, '<project name="\zs.*\ze>'))
+        let s:project = matchstr(s:line, 'name="\zs.\{-}\ze"')
+        break
+      endif
+    endfor
+
+    if empty(s:package) || empty(s:start_activity) || empty(s:project)
+        echo 'not found package and/or start_activity and/or project'
+        return -1
+    endif
+
+    let s:apk_file = s:project_dir.'/bin/'.matchstr(s:project, '[^.]\+$').'-debug.apk'
+    let g:quickrun_config['androidProject'] = {
+                \   'hook/cd/directory'           : s:project_dir,
+                \   'exec'                        : [
+                \       'android update project --path .',
+                \       'ant debug',
+                \       'adb -d install -r '.s:apk_file,
+                \       'adb shell am start -a android.intent.action.MAIN -n '.s:package.'/'.s:start_activity
+                \   ]
+                \}
+
+    QuickRun androidProject
+endfunction
+
+command! QuickRunAndroidProject :call s:QuickRunAndroidProject()
+autocmd BufRead,BufNewFile */android/* nnoremap <buffer> <Leader>r :QuickRunAndroidProject<CR>
+
 if executable('bundle exec rspec')
     let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
 else
     let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
 endif
+
 if executable('clj')
   " clj: java -cp clojure-1.5.1-slim.jar clojure.main $1
   let g:quickrun_config['clojure'] = {'command': 'clj'}
 elseif executable('lein')
   let g:quickrun_config['clojure'] = {'command': 'lein run'}
 endif
+
 
 " let g:quickrun_config['ruby'] = {
 " \  'command': ''ruby',
