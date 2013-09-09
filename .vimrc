@@ -29,7 +29,7 @@ NeoBundle 'wadako111/say.vim'
 NeoBundle 'textobj-user'
 NeoBundle 'textobj-indent'
 NeoBundle 'textobj-function'
-NeoBundle 't9md/vim-textobj-function-ruby'
+NeoBundle 'TwitVim'
 
 """ Unite, and new generation plugins {{{3
 NeoBundle 'Shougo/unite.vim'
@@ -45,6 +45,7 @@ NeoBundle 'Gentooish'
 
 """ Filetypes -- loaded by NeoBundleSource when needed {{{3
 NeoBundleLazy 'ruby.vim'
+NeoBundleLazy 't9md/vim-textobj-function-ruby'
 NeoBundleLazy 'ngmy/vim-rubocop'
 NeoBundleLazy 'tpope/vim-markdown'
 NeoBundleLazy 'nelstrom/vim-markdown-folding'
@@ -125,6 +126,7 @@ augroup MyAutoCmdFileType
     autocmd FileType markdown NeoBundleSource vim-markdown-quote-syntax
     autocmd FileType ruby     NeoBundleSource ruby.vim
     autocmd FileType ruby     NeoBundleSource vim-rubocop
+    autocmd FileType ruby     NeoBundleSource vim-textobj-function-ruby
     autocmd FileType clojure  NeoBundleSource vim-fireplace
     autocmd FileType clojure  NeoBundleSource vim-classpath
     autocmd FileType clojure  NeoBundleSource vim-clojure-static

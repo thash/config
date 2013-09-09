@@ -1,6 +1,6 @@
 " Plugins with Gvim
 NeoBundle 'colorsel.vim'
-NeoBundle 'TwitVim'
+NeoBundleSource TwitVim
 
 if has('gui_macvim')
 
