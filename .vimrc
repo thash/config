@@ -10,28 +10,34 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Vundle Define active plugins {{{2
-NeoBundle 'fugitive.vim'
-NeoBundle 'gregsexton/gitv'
+""" NeoBundle plugins {{{2
+" input support
 NeoBundle 'surround.vim'
 NeoBundle 'Align'
-NeoBundle 'quickrun.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'snipMate'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'ag.vim'
 NeoBundle 'YankRing.vim'
-NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'sequence'
+NeoBundle 'snipMate'
+
+" looks nicer
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'Gentooish'
+
+" additional commands/features
+NeoBundle 'fugitive.vim'
+NeoBundle 'quickrun.vim'
+NeoBundle 'ag.vim'
+NeoBundle 'open-browser.vim'
 NeoBundle 'ref.vim'
 NeoBundle 'wadako111/say.vim'
 
+" textobj family. -user is base plugin
 NeoBundle 'textobj-user'
 NeoBundle 'textobj-indent'
 NeoBundle 'textobj-function'
-NeoBundle 'TwitVim'
 
-""" Unite, and new generation plugins {{{3
+" Unite/Vimshell family
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimshell'
@@ -40,10 +46,10 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'Kocha/vim-unite-tig'
 
-""" ColorSchemes, Syntax {{{3
-NeoBundle 'Gentooish'
+"" Lazys {{{3
+NeoBundleLazy 'TwitVim'
 
-""" Filetypes -- loaded by NeoBundleSource when needed {{{3
+"" Filetypes -- loaded by NeoBundleSource when needed {{{3
 NeoBundleLazy 'ruby.vim'
 NeoBundleLazy 't9md/vim-textobj-function-ruby'
 NeoBundleLazy 'ngmy/vim-rubocop'
@@ -55,7 +61,7 @@ NeoBundleLazy 'slim-template/vim-slim'
 NeoBundleLazy 'nginx.vim'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 
-"" Clojure
+" Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
 NeoBundleLazy 'tpope/vim-classpath'
 NeoBundleLazy 'guns/vim-clojure-static'
