@@ -116,7 +116,8 @@ alias -g TC='tar cvzf'
 
 ### Aliases -- for git {{{3
 ## hub
-if [ `which hub > /dev/null; echo $?` = 0 ]; then
+if [ `which ruby > /dev/null; echo $?` = 0 ] &&
+  [ `which hub > /dev/null; echo $?` = 0 ]; then
   eval "$(hub alias -s)"
 fi
 alias hubb='hub browse'
