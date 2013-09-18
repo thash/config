@@ -16,6 +16,7 @@
     autocrlf = input
 	editor = /usr/bin/vim
 	quotepath = false
+	pager = cat
 
 [alias]
     loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
