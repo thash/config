@@ -45,6 +45,7 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'Kocha/vim-unite-tig'
 
@@ -249,11 +250,11 @@ augroup END
 
 " display listchars (spaces at end of line, tab etc) {{{2
 set nolist " list or nolist
-"set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
-" function! JISX0208SpaceHilight()
-"     syntax match JISX0208Space "　" display containedin=ALL
-"     highlight JISX0208Space term=underline ctermbg=brown
-" endf
+set listchars=tab:>\ ,trail:X,nbsp:%,extends:>,precedes:<
+function! JISX0208SpaceHilight()
+    syntax match JISX0208Space "　" display containedin=ALL
+    highlight JISX0208Space term=underline ctermbg=brown
+endf
 
 " highlight spaces at the end of line.
 function! EOLSpaceHilight()
@@ -409,13 +410,6 @@ nnoremap <space>mj ''zz
 noremap [[ [[zMzvz.
 noremap ]] ]]zMzvz.
 
-
-" buffer control by arrow keys
-"nnoremap <DOWN>  :<C-u>bdelete<CR>
-"nnoremap <UP>    :<C-u>ls<CR>
-"nnoremap <RIGHT> :<C-u>bnext<CR>
-"nnoremap <LEFT>  :<C-u>bprevious<CR>
-
 " save and quit
 nnoremap <space>w :<C-u>update<CR>
 nnoremap <space>q :<C-u>quit<CR>
@@ -471,8 +465,7 @@ nnoremap <expr> <Leader>gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 
 " plugins setting ============================================ {{{1
-" QuickRun settings {{{2
-" execute current window using QuickRun
+"" QuickRun {{{2
 augroup MyAutoCmdRSpec
     autocmd! MyAutoCmdRSpec
     autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
@@ -570,11 +563,8 @@ command! QuickRunAndroid :call s:QuickRunAndroid()
 autocmd BufRead,BufNewFile */*[aA]ndroid/* nnoremap <buffer> <Space>r :QuickRunAndroid<CR>
 autocmd BufRead,BufNewFile */android/* nnoremap <buffer> <Space>r :QuickRunAndroid<CR>
 
-" if executable('gcc')
-"   let g:quickrun_config['C'] = {'command': 'gcc'}
-" end
 
-" ref.vim {{{3
+"" ref.vim {{{2
 let g:ref_alc_start_linenumber = 44
 let g:ref_alc_encoding = 'utf-8'
 "let g:ref_no_default_key_mappings = 1
@@ -583,23 +573,7 @@ let g:ref_alc_encoding = 'utf-8'
 let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 
 
-" RainbowParenthesesToggle {{{3
-"   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
-let g:rbpt_max = 7
-let g:rbpt_loadcmd_toggle = 0
-nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
-
-" syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-
-" Rubocop
-let vimrubocop_rubocop_cmd = 'bundle exec rubocop '
-
-" Gist
-"let g:gist_browser_command = 'firefox %URL% &'
-
-" unite.vim settings {{{2
+"" unite.vim {{{2
 " let g:unite_enable_start_insert=0
 let g:unite_split_rule="topleft"
 "let g:unite_enable_split_vertically=1
@@ -660,18 +634,48 @@ function! s:unite_my_settings()
   imap <silent> <buffer> <ESC><ESC> <Plug>(unite_exit)
 endfunction
 
-" Vimfiler settings {{{2
+
+"" Vimfiler {{{2
 let g:vimfiler_as_default_explorer = 1
 call vimfiler#set_execute_file('vim,rb,java,scm,clj,cljs,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 
 
-" fugitive.vim settings {{{2
+"" neocomplcache {{{2
+" disable AutoComplPop
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+" auto select first item
+let g:neocomplcache_enable_auto_select = 1
+
+" omni completion by <C-j>
+inoremap <expr> <C-j> &filetype == 'vim' ? "\<C-x>\<C-v>\<C-p>" : "\<C-x>\<C-o>\<C-p>"
+" finish completion by <CR>
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "<CR>"
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+" don't cache Japanese
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+
+"" eclim {{{2
+" first, run eclimd.
+" autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
+" exists under ~/.vim/eclim/, ~/.eclim/
+" inoremap <C-X><C-I> <C-X><C-U>
+" (<C-X><C-U> is user defined completion - disabled by C-U to BackSpace)
+
+
+"" fugitive.vim {{{2
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <silent> <Space>gs :<C-u>Gstatus<Enter>
 nnoremap <silent> <Space>gb :<C-u>Gblame<Enter>
 
-" Openbrowser settings {{{2
+"" Openbrowser {{{2
 nmap <C-l> <Plug>(openbrowser-open)
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
@@ -684,25 +688,44 @@ let g:openbrowser_iskeyword = join(
 \      ';', '@', '$', ',', '[', ']', '!', "'", "*", "~", ], ',')
 
 
-" buftabs settings {{{2
+"" Other plugins {{{2
+" RainbowParentheses
+"   -- enabled by :RainbowParenthesesToggle, or Filetype autocmd
+let g:rbpt_max = 7
+let g:rbpt_loadcmd_toggle = 0
+nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
+
+" syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+
+" Rubocop
+let vimrubocop_rubocop_cmd = 'bundle exec rubocop '
+
+" Gist
+"let g:gist_browser_command = 'firefox %URL% &'
+
+" buftabs
 let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 
-" YankRing.vim settings {{{2
+" YankRing.vim
 let g:yankring_history_dir = '$HOME/.vim/tmp'
 " let g:yankring_paste_using_g = 0
 
-" vim-cycle settings {{{2
+" vim-cycle
 " I added personal setting into vim-cycle plugin itseif
 let g:cycle_no_mappings=1
 nmap <C-C> <Plug>CycleNext
 
-" sequence settings {{{2
+" sequence
 nmap <Leader>sa <Plug>SequenceN_Increment
 vmap <Leader>sa <Plug>SequenceV_Increment
 nmap <Leader>sx <Plug>SequenceN_Decrement
 vmap <Leader>sx <Plug>SequenceV_Decrement
 
+" Align.vim
+let g:Align_xstrlen=3
 
 " Functions my/someone's ============================================ {{{1
 function! GetEFstatus() " {{{2
