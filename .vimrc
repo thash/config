@@ -58,6 +58,7 @@ NeoBundleLazy 't9md/vim-textobj-function-ruby'
 NeoBundleLazy 'ngmy/vim-rubocop'
 NeoBundleLazy 'tpope/vim-markdown'
 NeoBundleLazy 'nelstrom/vim-markdown-folding'
+NeoBundleLazy 'kannokanno/previm'
 NeoBundleLazy 'joker1007/vim-markdown-quote-syntax'
 NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'slim-template/vim-slim'
@@ -135,6 +136,7 @@ augroup MyAutoCmdFileType
     autocmd FileType markdown NeoBundleSource vim-markdown
     autocmd FileType markdown NeoBundleSource vim-markdown-folding
     autocmd FileType markdown NeoBundleSource vim-markdown-quote-syntax
+    autocmd FileType markdown NeoBundleSource previm
     autocmd FileType ruby     NeoBundleSource ruby.vim
     autocmd FileType ruby     NeoBundleSource vim-rubocop
     autocmd FileType ruby     NeoBundleSource vim-textobj-function-ruby
