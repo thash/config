@@ -162,8 +162,8 @@ augroup MyAutoCmdFileType
     autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o><ESC>==
     autocmd Filetype haml IndentGuidesEnable
 
-    autocmd Filetype php,xml setl tabstop=4
-    autocmd Filetype php,xml setl shiftwidth=4
+    autocmd Filetype php,xml setl tabstop=2
+    autocmd Filetype php,xml setl shiftwidth=2
 augroup END
 
 
