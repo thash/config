@@ -69,7 +69,7 @@ NeoBundleLazy 'elzr/vim-json'
 " Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
 NeoBundleLazy 'tpope/vim-classpath'
-NeoBundleLazy 'guns/vim-clojure-static'
+NeoBundleLazy 'thinca/vim-ft-clojure'
 
 
 " General ============================================ {{{1
@@ -142,7 +142,7 @@ augroup MyAutoCmdFileType
     autocmd FileType ruby     NeoBundleSource vim-textobj-function-ruby
     autocmd FileType clojure  NeoBundleSource vim-fireplace
     autocmd FileType clojure  NeoBundleSource vim-classpath
-    autocmd FileType clojure  NeoBundleSource vim-clojure-static
+    autocmd FileType clojure  NeoBundleSource vim-ft-clojure
     autocmd FileType haskell  NeoBundleSource vim-filetype-haskell
     autocmd FileType coffee   NeoBundleSource vim-coffee-script
     autocmd FileType slim     NeoBundleSource vim-slim
