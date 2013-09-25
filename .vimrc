@@ -32,6 +32,8 @@ NeoBundle 'open-browser.vim'
 NeoBundle 'ref.vim'
 NeoBundle 'wadako111/say.vim'
 
+NeoBundle 'thinca/vim-logcat'
+
 " textobj family. -user is base plugin
 NeoBundle 'textobj-user'
 NeoBundle 'textobj-indent'
@@ -483,61 +485,6 @@ augroup END
 
 let g:quickrun_config = {}
 let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
-let g:quickrun_config['java'] = {
-      \ 'runner' : 'vimproc',
-      \ 'runner/vimproc/updatetime' : 100,
-      \ 'outputter' : 'multi:buffer:quickfix',
-      \ 'outputter/buffer/split' : ''
-      \ }
-
-function! s:QuickRunAndroidProject()
-    let s:project_dir = unite#util#path2project_directory(expand('%'))
-
-    " scan AndroidManifest.xml
-    for s:line in readfile(s:project_dir.'/AndroidManifest.xml')
-        " get package name ex) com.sample.helloworld
-        if !empty(matchstr(s:line, 'package="\zs.*\ze"'))
-            let s:package = matchstr(s:line, 'package="\zs.*\ze"')
-            continue
-        endif
-
-        " get android:name ex) com.sample.helloworld.HelloWorldActivity
-        if !empty(matchstr(s:line, 'android:name="\zs.*\ze"'))
-            let s:start_activity = matchstr(s:line, 'android:name="\zs.*\ze"')
-            break
-        endif
-
-    endfor
-
-    " get project name from build.xml
-    for s:line in readfile(s:project_dir.'/build.xml')
-      if !empty(matchstr(s:line, '<project name="\zs.*\ze>'))
-        let s:project = matchstr(s:line, 'name="\zs.\{-}\ze"')
-        break
-      endif
-    endfor
-
-    if empty(s:package) || empty(s:start_activity) || empty(s:project)
-        echo 'not found package and/or start_activity and/or project'
-        return -1
-    endif
-
-    let s:apk_file = s:project_dir.'/bin/'.matchstr(s:project, '[^.]\+$').'-debug.apk'
-    let g:quickrun_config['androidProject'] = {
-                \   'hook/cd/directory'           : s:project_dir,
-                \   'exec'                        : [
-                \       'android update project --path .',
-                \       'ant debug',
-                \       'adb -d install -r '.s:apk_file,
-                \       'adb shell am start -a android.intent.action.MAIN -n '.s:package.'/'.s:start_activity
-                \   ]
-                \}
-
-    QuickRun androidProject
-endfunction
-
-command! QuickRunAndroidProject :call s:QuickRunAndroidProject()
-autocmd BufRead,BufNewFile */android/* nnoremap <buffer> <Leader>r :QuickRunAndroidProject<CR>
 
 if executable('bundle exec rspec')
     let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
@@ -552,18 +499,76 @@ elseif executable('lein')
   let g:quickrun_config['clojure'] = {'command': 'lein run'}
 endif
 
-
-" let g:quickrun_config['ruby'] = {
-" \  'command': ''ruby',
-" \  'exec': 'source $HOME/.rvm/scripts/rvm && source .rvmrc && ruby',
-" \  'tempfile': '{tempname()}.rb'
-" \ }
-
-let g:Align_xstrlen=3
-
 nnoremap <space>r :<C-u>QuickRun<CR>
 vnoremap <space>r :<C-u>QuickRun<CR>
 nnoremap <space>ro :<C-u>QuickRun -outputter browser<CR>
+
+
+""" Android build {{{3
+function! s:QuickRunAndroid()
+    let s:project_dir = unite#util#path2project_directory(expand('%'))
+
+    " scan AndroidManifest.xml
+    for s:line in readfile(s:project_dir.'/AndroidManifest.xml')
+        " get package name ex) com.sample.helloworld
+        if !empty(matchstr(s:line, 'package="\zs.*\ze"'))
+            let s:package = matchstr(s:line, 'package="\zs.*\ze"')
+            continue
+        endif
+
+        " get android:name ex) com.sample.helloworld.HelloWorldActivity
+        if !empty(matchstr(s:line, '<activity'))
+          let s:first_activity = 1
+        endif
+        if exists('s:first_activity') && !empty(matchstr(s:line, 'android:name="\zs.*\ze"'))
+            let s:start_activity = matchstr(s:line, 'android:name="\zs.*\ze"')
+            unlet s:first_activity
+            break
+        endif
+
+    endfor
+
+    " get project name from build.xml
+    if filereadable(s:project_dir.'/build.xml')
+      for s:line in readfile(s:project_dir.'/build.xml')
+        if !empty(matchstr(s:line, '<project name="\zs.*\ze>'))
+          let s:project = matchstr(s:line, 'name="\zs.\{-}\ze"')
+          break
+        endif
+      endfor
+    elseif
+      " if build.xml does not exist, set start_activity as the project name.
+      let s:project = s:start_activity
+    endif
+
+    if empty(s:package) || empty(s:start_activity) || empty(s:project)
+        echo 'not found package and/or start_activity and/or project'
+        return -1
+    endif
+
+    let s:apk_file = s:project_dir.'/bin/'.matchstr(s:project, '[^.]\+$').'-debug.apk'
+    " TODO: use android update --subproject if needed.
+    let g:quickrun_config['android'] = {
+                \   'hook/cd/directory' : s:project_dir,
+                \   'runner' : 'vimproc',
+                \   'runner/vimproc/updatetime' : 200,
+                \   'outputter' : 'buffer',
+                \   'outputter/buffer/filetype' : 'android.quickrun',
+                \   'exec' : [
+                \       'android update project --path .',
+                \       'ant debug -q',
+                \       'adb -d install -r '.s:apk_file,
+                \       'adb shell am start -a android.intent.action.MAIN -n '.s:package.'/'.s:start_activity
+                \   ]
+                \}
+
+    QuickRun android
+endfunction
+
+command! QuickRunAndroid :call s:QuickRunAndroid()
+" TODO: judge if current file belongs to an Android project using AndroidManifest.
+autocmd BufRead,BufNewFile */*[aA]ndroid/* nnoremap <buffer> <Space>r :QuickRunAndroid<CR>
+autocmd BufRead,BufNewFile */android/* nnoremap <buffer> <Space>r :QuickRunAndroid<CR>
 
 " if executable('gcc')
 "   let g:quickrun_config['C'] = {'command': 'gcc'}
