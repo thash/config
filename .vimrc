@@ -197,6 +197,10 @@ if has('persistent_undo')
 endif
 
 " VimShell settings and aliases {{{2
+"" VimShell
+autocmd FileType vimshell setl nonumber
+
+"" VimShellInteractive
 nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,irb :VimShellInteractive pry<CR>
 nnoremap <silent> ,igs :VimShellInteractive gosh<CR>
