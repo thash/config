@@ -153,6 +153,7 @@ augroup MyAutoCmdFileType
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
 
     autocmd FileType ruby.rspec setl smartindent cinwords=describe,it,expect
+    autocmd FileType ruby.rspec setl foldmethod=syntax
 
     autocmd FileType help nnoremap <buffer> q <C-w>q
     autocmd FileType qf nnoremap <buffer> q :cclose<CR>
