@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-for filename in vimrc vimrc.vimshell gvimrc zshrc zshenv tmux.conf gitconfig vimperatorrc gemrc tigrc pryrc ackrc agignore
+for filename in vimrc gvimrc zshrc zshenv tmux.conf gitconfig gitignore gemrc pryrc rspec tigrc agignore
 do
     if [ -e $HOME/.$filename ]; then
         rm -i $HOME/.$filename
