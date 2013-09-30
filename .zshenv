@@ -31,19 +31,7 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
     fi
 fi
 
-
 export AWS_CONFIG_FILE=$HOME/.aws.config
-
-
-### perl settings in ubuntu
-if [ -f /etc/issue ] && cat /etc/issue | grep -q Ubuntu; then
-  export PERL_LOCAL_LIB_ROOT="/home/hash/perl5";
-  export PERL_MB_OPT="--install_base /home/hash/perl5";
-  export PERL_MM_OPT="INSTALL_BASE=/home/hash/perl5";
-  export PERL5LIB="/home/hash/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/hash/perl5/lib/perl5";
-  export PATH="/home/hash/perl5/bin:$PATH";
-fi
-
 
 ############ Android development ##############
 if [ -f /usr/libexec/java_home ]; then
