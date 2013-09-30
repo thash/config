@@ -9,7 +9,6 @@ if [[ -s $HOME/.zsh_local ]] ; then
 fi
 
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/.rvm/bin:$PATH
 export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
