@@ -17,6 +17,7 @@ NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
 NeoBundle 'sequence'
 NeoBundle 'snipMate'
+NeoBundle 'scrooloose/syntastic'
 
 " looks nicer
 NeoBundle 'gregsexton/gitv'
@@ -56,7 +57,6 @@ NeoBundleLazy 'TwitVim'
 "" Filetypes -- loaded by NeoBundleSource when needed {{{3
 NeoBundleLazy 'ruby.vim'
 NeoBundleLazy 't9md/vim-textobj-function-ruby'
-NeoBundleLazy 'ngmy/vim-rubocop'
 NeoBundleLazy 'tpope/vim-markdown'
 NeoBundleLazy 'nelstrom/vim-markdown-folding'
 NeoBundleLazy 'kannokanno/previm'
@@ -139,7 +139,6 @@ augroup MyAutoCmdFileType
     autocmd FileType markdown NeoBundleSource vim-markdown-quote-syntax
     autocmd FileType markdown NeoBundleSource previm
     autocmd FileType ruby     NeoBundleSource ruby.vim
-    autocmd FileType ruby     NeoBundleSource vim-rubocop
     autocmd FileType ruby     NeoBundleSource vim-textobj-function-ruby
     autocmd FileType clojure  NeoBundleSource vim-fireplace
     autocmd FileType clojure  NeoBundleSource vim-classpath
@@ -707,9 +706,10 @@ nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 " syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
-
-" Rubocop
-let vimrubocop_rubocop_cmd = 'bundle exec rubocop '
+" let g:syntastic_mode_map = { 'mode': 'passive',
+"             \ 'active_filetypes': ['ruby'] }
+" let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_quiet_warnings = 0
 
 " Gist
 "let g:gist_browser_command = 'firefox %URL% &'
