@@ -17,7 +17,8 @@ NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
 NeoBundle 'sequence'
 NeoBundle 'snipMate'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'ngmy/vim-rubocop'
 
 " looks nicer
 NeoBundle 'gregsexton/gitv'
@@ -700,13 +701,14 @@ let g:rbpt_max = 7
 let g:rbpt_loadcmd_toggle = 0
 nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 
-" syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-" let g:syntastic_mode_map = { 'mode': 'passive',
-"             \ 'active_filetypes': ['ruby'] }
+" " syntastic
+" let g:syntastic_enable_signs=1
+" let g:syntastic_mode_map = { 'mode': 'active' }
 " let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_quiet_warnings = 0
+
+" vim-rubocop
+let vimrubocop_rubocop_cmd = 'bundle exec rubocop'
 
 " Gist
 "let g:gist_browser_command = 'firefox %URL% &'
