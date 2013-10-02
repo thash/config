@@ -23,6 +23,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'Gentooish'
+NeoBundle 'w0ng/vim-hybrid'
 
 " additional commands/features
 NeoBundle 'fugitive.vim'
@@ -233,7 +234,8 @@ if has('vim_starting')
 endif
 
 " Color/Layout Settings ============================================ {{{1
-" colorscheme => ~/.vimrc.local
+
+colorscheme hybrid
 
 " highlight {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
