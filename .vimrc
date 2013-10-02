@@ -243,9 +243,6 @@ highlight StatusLine cterm=reverse,bold ctermfg=darkgreen ctermbg=black
 autocmd InsertEnter * highlight StatusLine ctermfg=blue ctermbg=black
 autocmd InsertLeave * highlight StatusLine ctermfg=darkgreen ctermbg=black
 
-highlight clear CursorLine
-highlight clear LineNr
-
 " vim-indent-guides {{{3
 " vim-indent-guides activated by <Leader>ig
 let g:indent_guides_auto_colors = 0
