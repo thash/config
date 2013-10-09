@@ -52,6 +52,8 @@ NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'Kocha/vim-unite-tig'
 
+NeoBundle 'kien/ctrlp.vim'
+
 "" Lazys {{{3
 NeoBundleLazy 'TwitVim'
 
@@ -579,6 +581,19 @@ let g:ref_alc_encoding = 'utf-8'
 let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 
 
+"" ctrlp.vim {{{2
+nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
+nnoremap <silent> <Leader>ub :<C-u>CtrlPBuffer<CR>
+let g:ctrlp_map = '<Nop>'
+" set git root dir as a working dir.
+let g:ctrlp_working_path_mode = 'ra'
+" originally it was <c-y>
+let g:ctrlp_prompt_mappings = {
+    \ 'CreateNewFile()':      ['<Nop>'],
+    \ 'AcceptSelection("h")': ['<c-y>']
+    \ }
+
+
 "" unite.vim {{{2
 " let g:unite_enable_start_insert=0
 let g:unite_split_rule="topleft"
@@ -595,11 +610,11 @@ let g:unite_source_file_mru_filename_format = ":~:." "default
 let g:unite_source_session_enable_auto_save = 1
 
 " UniteWithBufferDir -> initial input text is current buffer dir
-nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert<CR>
+" nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert<CR>
 " nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert -buffer-name=files -prompt=＼(^o^)／<CR>
 nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
-nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
+" nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite register      -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru file -start-insert -no-quit -toggle -buffer-name=mru&file -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>uo :<C-u>Unite outline       -vertical -no-quit -winwidth=50 -prompt=＼(^o^)／ <CR>
