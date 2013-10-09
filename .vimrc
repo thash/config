@@ -652,8 +652,13 @@ nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
+
+" Camel case completion be too slow.
+let g:neocomplcache_enable_camel_case_completion = 1
+
 " auto select first item
 let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_min_syntax_length = 3
 
 " omni completion by <C-j>
 inoremap <expr> <C-j> &filetype == 'vim' ? "\<C-x>\<C-v>\<C-p>" : "\<C-x>\<C-o>\<C-p>"
