@@ -17,7 +17,7 @@ NeoBundle 'Align'
 NeoBundle 'YankRing.vim'
 NeoBundle 'sequence'
 NeoBundle 'snipMate'
-" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ngmy/vim-rubocop'
 
 " looks nicer
@@ -702,8 +702,8 @@ let g:rbpt_loadcmd_toggle = 0
 nnoremap <Leader>rp :<C-u>RainbowParenthesesToggle<CR>
 
 " " syntastic
-" let g:syntastic_enable_signs=1
-" let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_enable_signs=1
+let g:syntastic_mode_map = { 'mode': 'active' }
 " let g:syntastic_ruby_checkers = ['rubocop']
 " let g:syntastic_quiet_warnings = 0
 
