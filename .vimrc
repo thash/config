@@ -702,6 +702,12 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " (<C-X><C-U> is user defined completion - disabled by C-U to BackSpace)
 
 
+"" vim-fireplace {{{2
+" tips: c!! -> replace expr with value
+"       K -> lookup docs under cursor
+noremap E :Eval<CR>
+
+
 "" fugitive.vim {{{2
 nnoremap <silent> <Space>gd :<C-u>Gdiff<Enter>
 nnoremap <silent> <Space>gs :<C-u>Gstatus<Enter>
