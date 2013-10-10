@@ -662,6 +662,8 @@ endfunction
 
 "" Vimfiler {{{2
 let g:vimfiler_as_default_explorer = 1
+" disable safe mode (to enable file renaming feature)
+let g:vimfiler_safe_mode_by_default = 0
 call vimfiler#set_execute_file('vim,rb,java,scm,clj,cljs,md,txt,js,haml,html,yml', 'vim')
 nnoremap <silent> ,vf :<C-u>VimFiler<CR>
 
