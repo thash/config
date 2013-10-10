@@ -582,7 +582,11 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 
 
 "" ctrlp.vim {{{2
+function! CtrlPHere()
+    exec "CtrlP " . expand("%:p:h")
+endfunction
 nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
+nnoremap <silent> <Leader>J  :<C-u>call CtrlPHere()<CR>
 nnoremap <silent> <Leader>ub :<C-u>CtrlPBuffer<CR>
 let g:ctrlp_map = '<Nop>'
 " set git root dir as a working dir.
@@ -612,7 +616,7 @@ let g:unite_source_session_enable_auto_save = 1
 " UniteWithBufferDir -> initial input text is current buffer dir
 " nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert<CR>
 " nnoremap <silent> <Leader>j  :<C-u>Unite file                       -start-insert -buffer-name=files -prompt=＼(^o^)／<CR>
-nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
+" nnoremap <silent> <Leader>J  :<C-u>UniteWithBufferDir file file/new -start-insert -toggle -buffer-name=files -prompt=＼(^o^)／ <CR>
 
 " nnoremap <silent> <Leader>ub :<C-u>Unite buffer        -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite register      -start-insert -auto-preview -prompt=＼(^o^)／ <CR>
