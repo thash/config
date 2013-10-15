@@ -189,7 +189,7 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^O" clear-screen # originally, it's L
 # bindkey "^H" backward-delete-char # backward-char
 bindkey "^H" backward-char # backward-delete-char
-bindkey "^L" clear-screen # forward-char
+bindkey "^L" forward-char # clear-screen
 bindkey "^K" kill-line
 
 bindkey "^P" history-beginning-search-backward-end
