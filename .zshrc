@@ -12,6 +12,10 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
+# rbenv settings
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init - zsh)"
+
 ### Prompt settings ### {{{2
 #
 autoload -U colors; colors

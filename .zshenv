@@ -22,15 +22,6 @@ if [ `which npm > /dev/null; echo $?` = 0 ]; then
   export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
 
-### rvm settings -- should in zshenv, not in zshrc
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then
-    source $HOME/.rvm/scripts/rvm
-    # when called from quickrun, load .rvmrc
-    if [ `rvm list | grep 2.0.0 | wc -l` != 0 ]; then
-        rvm use 2.0.0
-    fi
-fi
-
 export AWS_CONFIG_FILE=$HOME/.aws.config
 
 ############ Android development ##############
