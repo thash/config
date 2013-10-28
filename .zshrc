@@ -72,7 +72,7 @@ alias rest='sudo -H vim --noplugin /etc/hosts'
 alias vag='vagrant'
 
 ### suffix
-alias -s {rb,haml,slim}=vim
+alias -s {haml,slim}=vim
 
 function extract() {
   case $1 in
