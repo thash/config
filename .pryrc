@@ -20,9 +20,6 @@ Pry.config.commands.command "lastcopy", "Last result copy to clipboard" do
   pbcopy _pry_.last_result.chomp
 end
 
-Pry.config.prompt = [proc { " pry >>>>>> " },
-                     proc { " pry      | " }]
-
 cs = Pry::CommandSet.new do
   import Pry::Commands
   command "lm" "Alias for ls -m" do |args|
