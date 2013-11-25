@@ -14,7 +14,7 @@ export PATH=$HOME/bin:$PATH
 
 # rbenv settings
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init - zsh)"
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 ### Prompt settings ### {{{2
 #
