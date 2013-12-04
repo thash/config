@@ -2,7 +2,7 @@
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
-export EDITOR=vim
+export EDITOR=emacs
 
 if [[ -s $HOME/.zsh_local ]] ; then
   source $HOME/.zsh_local
@@ -74,6 +74,8 @@ alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 alias vag='vagrant'
+alias e='emacs'
+alias vim='emacs'
 
 ### suffix
 alias -s {haml,slim}=vim

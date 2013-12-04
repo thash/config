@@ -14,7 +14,7 @@
 
 [core]
     autocrlf = input
-	editor = /usr/bin/vim
+	editor = emacs
 	quotepath = false
 
 [alias]
