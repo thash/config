@@ -1,14 +1,25 @@
 ; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+
+;; package.el
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; TODO: load-path
+;; (let ((dir (expand-file-name "~/.emacs.d/plugins")))
+;;   (add-to-list 'load-path dir)
+;;   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+;;       (normal-top-level-add-subdirs-to-load-path)))
+
+
+;;; settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
-;; TODO: load-path
-;;;;;;;;;;;;;; (let ((dir (expand-file-name "~/.emacs.d/plugins")))
-;;;;;;;;;;;;;;   (add-to-list 'load-path dir)
-;;;;;;;;;;;;;;   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;;;;;;;;;;;;;;       (normal-top-level-add-subdirs-to-load-path)))
 
-;; settings
 (setq make-backup-files nil)
 (global-linum-mode t)
 (setq linum-format "%3d ")
@@ -21,6 +32,11 @@
 
 (global-set-key "\C-h" 'delete-backward-char)
 
+;; tab & space
+(setq-default indent-tabs-mode nil)
+(custom-set-variables '(tab-width 4))
+
+;; white spaces
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
 
@@ -29,75 +45,73 @@
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t)
 
+;; C-Space -> select -> then, press C-RET
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
-;; C-x bでミニバッファにバッファ候補を表示
-;; (iswitchb-mode t)
-;; (iswitchb-default-keybindings)
+;; incremental search buffer items by C-x b
+(iswitchb-mode t)
 
-;; C-kで行全体を削除
-(setq kill-whole-line t)
+;;; looks
+(when (require 'color-theme)
+      (color-theme-initialize)
+      (color-theme-clarity))
 
-;; package.el
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+;; GUI
+(let ((ws window-system))
+  (cond ((eq ws 'ns) ;; mac
+         (set-face-attribute 'default nil :family "Ricty" :height 120)
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
+         (set-foreground-color "LightGray")
+         (set-cursor-color "Gray")
+         (set-background-color "Black")
+         (set-frame-parameter nil 'alpha 80))))
 
-;; looks
 (custom-set-variables
   '(display-time-mode t)
   '(tool-bar-mode nil)
   '(transient-mark-mode t))
 (custom-set-faces)
 
-(if window-system (progn
-   (set-background-color "Black")
-   (set-foreground-color "LightGray")
-   (set-cursor-color "Gray")
-   (set-frame-parameter nil 'alpha 70)))
 
-(when (require 'color-theme)
-      (color-theme-initialize)
-      (color-theme-clarity))
+;; auto-complete (elpa)
+(require 'auto-complete-config)
+(ac-config-default)
 
-;; [lisp] rainbow-delimiters
+;; browse-url (built-in)
+(global-set-key "\C-cu" 'browse-url-at-point)
+
+;; rainbow-delimiters (elpa)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
-(custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8888")))))
+; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8888")))))
+
 
 ;;; mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Ruby
-(autoload 'ruby-mode "ruby-mode"
-  "Mode for editing ruby source files" t)
+(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;; Gauche
-(setq scheme-program-name "gosh")
-(require 'cmuscheme)
-;; ウィンドウを２つに分けて、
-;; 一方でgoshインタプリタを実行するコマンドを定義します。
+(require 'cmuscheme) ;; use run-scheme
+;; Split window and exec gosh interpreter
 (defun scheme-other-window ()
   "Run scheme on other window"
   (interactive)
   (switch-to-buffer-other-window
-   (get-buffer-create "*scheme*"))
-  (run-scheme scheme-program-name))
-;; そのコマンドをCtrl-cSで呼び出します。
-(define-key global-map
-  "\C-cS" 'scheme-other-window)
-
-;; 直前/直後の括弧に対応する括弧を光らせます。
-(show-paren-mode)
+   (get-buffer-create "*gosh*"))
+  (run-scheme "gosh"))
+;; C-c S(open gosh window) -> then, http://goo.gl/uSNTzm
+(define-key global-map "\C-cS" 'scheme-other-window)
+(show-paren-mode) ;; highlight pair parenthesis
 
 ;; Markdown
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Golang
-(autoload 'go-mode "go-mode"
-  "Mode for golang" t)
+(autoload 'go-mode "go-mode" "Mode for golang" t)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))

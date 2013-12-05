@@ -11,3 +11,5 @@ multiuser.screen
 !.emacs.d/elpa/.gitkeep
 .emacs.d/plugins/*
 !.emacs.d/plugins/.gitkeep
+
+.emacs.d/ac-comphist.dat
