@@ -59,9 +59,8 @@
 (iswitchb-mode t)
 
 ;;; looks
-(when (require 'color-theme)
-      (color-theme-initialize)
-      (color-theme-clarity))
+(load-theme 'solarized-dark t) ;; install elpa "color-theme-solarized"
+(setq solarized-termcolors 256)
 
 ;; GUI
 (let ((ws window-system))
@@ -101,6 +100,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+
+;; smooth-scroll(elpa)
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
 
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
