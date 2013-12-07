@@ -108,7 +108,10 @@
 ;; Ruby
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(setq ruby-insert-encoding-magic-comment nil)
 
 ;; Gauche
 (require 'cmuscheme) ;; use run-scheme
@@ -123,10 +126,22 @@
 (define-key global-map "\C-cS" 'scheme-other-window)
 (show-paren-mode) ;; highlight pair parenthesis
 
-;; Markdown
+;; Markdown (elpa)
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
-;; Golang
+;; Golang (elpa)
 (autoload 'go-mode "go-mode" "Mode for golang" t)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+
+;; Clojure (elpa)
+(autoload 'clojure-mode "clojure-mode" "Major mode for clojure" t)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+
+;; Yaml (elpa)
+(autoload 'yaml-mode "yaml-mode" "Major mode for yaml" t)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+;; PHP (elpa)
+(autoload 'php-mode "php-mode" "Major mode for php" t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
