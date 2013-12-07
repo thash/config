@@ -191,13 +191,6 @@ zle -N history-beginning-search-forward-end history-search-end
 
 
 ### key bindkeys (bindkey -L) ### {{{2
-# NOTE: I'm using Ctrl+hjkl <=> left,down,up,right key mappings with KeyRemap4Macbook.
-bindkey "^O" clear-screen # originally, it's L
-# bindkey "^H" backward-delete-char # backward-char
-bindkey "^H" backward-char # backward-delete-char
-bindkey "^L" forward-char # clear-screen
-bindkey "^K" kill-line
-
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^A" beginning-of-line
