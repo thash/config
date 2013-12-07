@@ -7,10 +7,10 @@
 (package-initialize)
 
 ;; TODO: load-path
-;; (let ((dir (expand-file-name "~/.emacs.d/plugins")))
-;;   (add-to-list 'load-path dir)
-;;   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-;;       (normal-top-level-add-subdirs-to-load-path)))
+(let ((dir (expand-file-name "~/.emacs.d/plugins")))
+  (add-to-list 'load-path dir)
+  (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
+      (normal-top-level-add-subdirs-to-load-path)))
 
 
 ;;; settings
