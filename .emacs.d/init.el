@@ -31,6 +31,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (global-set-key "\C-h" 'delete-backward-char)
+;; originally 'exchange-point-and-mark
+(global-set-key "\C-x\C-x" 'kill-region)
+(global-set-key "\C-x:" 'goto-line)
 
 ;; tab & space
 (setq-default indent-tabs-mode nil)
@@ -45,9 +48,12 @@
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t)
 
+(modify-syntax-entry ?_ "w")
+
 ;; C-Space -> select -> then, press C-RET
+(setq cua-rectangle-mark-key (kbd "C-RET")) ;; should come before enabling cua-mode
 (cua-mode t)
-(setq cua-enable-cua-keys nil)
+(setq cua-enable-cua-keys nil) ;; C-x,c,v for cut, copy, paste
 
 ;; incremental search buffer items by C-x b
 (iswitchb-mode t)
@@ -85,6 +91,15 @@
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
 ; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8888")))))
+
+;; cursor-in-brackets (github)
+;; https://raw.github.com/yascentur/cursor-in-brackets-el/master/cursor-in-brackets.el
+(require 'cursor-in-brackets)
+(global-cursor-in-brackets-mode t)
+
+;; yasnippet (elpa)
+(require 'yasnippet)
+(yas-global-mode 1)
 
 
 ;;; mode
