@@ -67,9 +67,6 @@
   (cond ((eq ws 'ns) ;; mac
          (set-face-attribute 'default nil :family "Ricty" :height 120)
          (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-         (set-foreground-color "LightGray")
-         (set-cursor-color "Gray")
-         (set-background-color "Black")
          (set-frame-parameter nil 'alpha 80))))
 
 (custom-set-variables
