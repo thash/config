@@ -147,3 +147,8 @@
 ;; PHP (elpa)
 (autoload 'php-mode "php-mode" "Major mode for php" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
+;; SCSS (elpa)
+(autoload 'scss-mode "scss-mode" "Major mode for scss")
+(setq scss-compile-at-save nil)
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
