@@ -56,6 +56,13 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
+;; normal state
+(key-chord-define evil-normal-state-map " w" 'save-buffer)
+(key-chord-define evil-normal-state-map " q" 'delete-window)
+(key-chord-define evil-normal-state-map " h" 'windmove-left)
+(key-chord-define evil-normal-state-map " j" 'windmove-down)
+(key-chord-define evil-normal-state-map " k" 'windmove-up)
+(key-chord-define evil-normal-state-map " l" 'windmove-right)
 (evil-mode 1)
 
 (global-set-key "\C-h" 'delete-backward-char)
@@ -107,6 +114,17 @@
 ;; auto-complete (elpa)
 (require 'auto-complete-config)
 (ac-config-default)
+
+;; flx-ido (elpa)
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
+;; projectile (elpa) -- uses flx-ido
+(projectile-global-mode)
+(key-chord-define evil-normal-state-map ",j" 'projectile-find-file)
 
 ;; browse-url (built-in)
 (global-set-key "\C-cu" 'browse-url-at-point)

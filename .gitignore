@@ -13,3 +13,4 @@ multiuser.screen
 !.emacs.d/plugins/.gitkeep
 
 .emacs.d/ac-comphist.dat
+.emacs.d/projectile-bookmarks.eld
