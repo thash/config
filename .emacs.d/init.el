@@ -104,10 +104,6 @@
 (yas-global-mode 1)
 
 
-;; smooth-scroll(elpa)
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
-
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
