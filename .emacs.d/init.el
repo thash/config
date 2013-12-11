@@ -30,6 +30,12 @@
 (menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+;; evil (elpa)
+;; http://www.emacswiki.org/emacs/Evil#toc14
+(require 'evil)
+(evil-mode 1)
+
 (global-set-key "\C-h" 'delete-backward-char)
 ;; originally 'exchange-point-and-mark
 (global-set-key "\C-x\C-x" 'kill-region)
