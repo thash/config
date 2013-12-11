@@ -6,7 +6,7 @@
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-;; TODO: load-path
+;; load-path
 (let ((dir (expand-file-name "~/.emacs.d/plugins")))
   (add-to-list 'load-path dir)
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
@@ -31,9 +31,31 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+;; key-chord (elpa)
+(require 'key-chord)
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.5)
+
 ;; evil (elpa)
-;; http://www.emacswiki.org/emacs/Evil#toc14
 (require 'evil)
+;; ESC keys
+(global-set-key "\C- " nil)
+(define-key evil-normal-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(define-key evil-insert-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(define-key evil-visual-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(define-key evil-replace-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(define-key evil-operator-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(define-key evil-motion-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
+(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+;; Emacs-like edit mode for insert state
+(define-key evil-insert-state-map (kbd "C-d") 'delete-char)
+(define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+(define-key evil-insert-state-map (kbd "C-y") 'yank)
+(define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+(define-key evil-insert-state-map (kbd "C-n") 'next-line)
+(define-key evil-insert-state-map (kbd "C-p") 'previous-line)
 (evil-mode 1)
 
 (global-set-key "\C-h" 'delete-backward-char)
