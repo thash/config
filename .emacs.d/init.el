@@ -137,9 +137,7 @@
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (setq ruby-insert-encoding-magic-comment nil)
 
-;; irb session
-(unless (package-installed-p 'inf-ruby) (package-install 'inf-ruby))
-(unless (package-installed-p 'ac-inf-ruby) (package-install 'ac-inf-ruby))
+;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
   '(add-to-list 'ac-modes 'inf-ruby-mode))
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
