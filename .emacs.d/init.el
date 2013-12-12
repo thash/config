@@ -57,6 +57,9 @@
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
 ;; normal state
+(define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
+(define-key evil-normal-state-map (kbd "j") 'next-line) ;; visual line
+(define-key evil-normal-state-map (kbd "k") 'previous-line)
 (key-chord-define evil-normal-state-map " w" 'save-buffer)
 (key-chord-define evil-normal-state-map " q" 'delete-window)
 (key-chord-define evil-normal-state-map " h" 'windmove-left)
@@ -64,6 +67,10 @@
 (key-chord-define evil-normal-state-map " k" 'windmove-up)
 (key-chord-define evil-normal-state-map " l" 'windmove-right)
 (evil-mode 1)
+
+;; evil-surround (plugins) -- https://github.com/timcharper/evil-surround
+(require 'surround)
+(global-surround-mode 1)
 
 (global-set-key "\C-h" 'delete-backward-char)
 ;; originally 'exchange-point-and-mark

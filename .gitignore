@@ -6,11 +6,10 @@ multiuser.screen
 .lein/repl-history
 
 # emacs
+*\#
 .emacs.d/auto-save-list
 .emacs.d/elpa/*
 !.emacs.d/elpa/.gitkeep
-.emacs.d/plugins/*
-!.emacs.d/plugins/.gitkeep
 
 .emacs.d/ac-comphist.dat
 .emacs.d/projectile-bookmarks.eld
