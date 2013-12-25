@@ -158,6 +158,17 @@
 (yas-global-mode 1)
 
 
+;;; eshell
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun eshell-cd-to-current-dir ()
+  (interactive)
+  (let ((dir default-directory))
+    (eshell)
+    (cd dir)
+    (eshell-interactive-print (concat "cd " dir "\n"))
+    (eshell-emit-prompt)))
+(global-set-key "\C-cd" 'eshell-cd-to-current-dir)
+
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
