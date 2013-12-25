@@ -104,6 +104,11 @@
 (load-theme 'solarized-dark t) ;; install elpa "color-theme-solarized"
 (setq solarized-termcolors 256)
 
+;; Twittering-mode
+(defun activate-twittering-mode ()
+  (require 'twittering-mode)
+  (setq twittering-use-master-password t))
+
 ;; GUI
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; mac
