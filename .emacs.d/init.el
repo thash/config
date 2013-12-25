@@ -112,9 +112,11 @@
 ;; GUI
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; mac
-         (set-face-attribute 'default nil :family "Ricty" :height 120)
-         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-         (set-frame-parameter nil 'alpha 80))))
+         (progn (set-face-attribute 'default nil :family "Ricty" :height 120)
+                (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
+                (set-frame-parameter nil 'alpha 90)
+                (set-scroll-bar-mode nil)
+                (activate-twittering-mode)))))
 
 (custom-set-variables
   '(display-time-mode t)
