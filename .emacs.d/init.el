@@ -155,6 +155,8 @@
 
 ;; yasnippet (elpa)
 (require 'yasnippet)
+(setq yas-snippet-dirs `("~/.emacs.d/snippets"
+                         ,(car (file-expand-wildcards "~/.emacs.d/elpa/yasnippet-*/snippets"))))
 (yas-global-mode 1)
 
 
