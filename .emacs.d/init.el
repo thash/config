@@ -188,6 +188,11 @@
   '(add-to-list 'ac-modes 'inf-ruby-mode))
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
 
+;; rspec-mode (elpa) -- prefix = "C-c ,"
+;; v: run current spec, t: toggle spec/target
+;; detail: https://github.com/pezra/rspec-mode/blob/master/rspec-mode.el
+(eval-after-load 'rspec-mode '(rspec-install-snippets))
+
 ;; Gauche
 (require 'cmuscheme) ;; use run-scheme
 ;; Split window and exec gosh interpreter
