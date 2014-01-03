@@ -117,7 +117,7 @@
   (cond ((eq ws 'ns) ;; mac
          (progn (set-face-attribute 'default nil :family "Ricty" :height 120)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-                (set-frame-parameter nil 'alpha 90)
+                (set-frame-parameter nil 'alpha 80)
                 (set-scroll-bar-mode nil)
                 (activate-twittering-mode)))))
 
@@ -234,3 +234,15 @@
 (autoload 'scss-mode "scss-mode" "Major mode for scss")
 (setq scss-compile-at-save nil)
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+
+;; org-mode (elpa: org)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+;; output file of M-x customize
+(setq custom-file "~/.emacs.d/custom.el")
+(if (file-exists-p (expand-file-name "~/.emacs.d/custom.el"))
+    (load (expand-file-name custom-file) t nil nil))
