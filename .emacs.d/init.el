@@ -23,6 +23,9 @@
 (setq make-backup-files nil)
 (global-linum-mode t)
 (setq linum-format "%3d ")
+(setq frame-title-format
+      (list (format "%s %%S: %%j " (system-name))
+        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message "")
