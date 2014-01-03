@@ -220,6 +220,7 @@
 ;; Clojure (elpa)
 (autoload 'clojure-mode "clojure-mode" "Major mode for clojure" t)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+;; cider (formely nrepl.el) -> M-x cider
 
 ;; Yaml (elpa)
 (autoload 'yaml-mode "yaml-mode" "Major mode for yaml" t)
