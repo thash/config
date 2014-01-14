@@ -214,8 +214,10 @@
 (show-paren-mode) ;; highlight pair parenthesis
 
 ;; Markdown (elpa)
+;; C-c C-c -> {p/preview, m/showbuffer, o/open with Marked(install required)}
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(setq markdown-open-command "/Applications/Marked.app/Contents/Resources/mark")
 
 ;; Golang (elpa)
 (autoload 'go-mode "go-mode" "Mode for golang" t)
