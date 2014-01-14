@@ -12,6 +12,10 @@
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
       (normal-top-level-add-subdirs-to-load-path)))
 
+;; add /usr/local/bin to Emacs PATH (!= (getenv PATH))
+(let ((mydir "/usr/local/bin"))
+  (setenv "PATH" (concat mydir ":" (getenv "PATH")))
+  (setq exec-path (append `(,mydir) exec-path)))
 
 ;;; settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
