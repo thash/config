@@ -121,7 +121,7 @@
   (cond ((eq ws 'ns) ;; mac
          (progn (set-face-attribute 'default nil :family "Ricty" :height 120)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-                (set-frame-parameter nil 'alpha 80)
+                (set-frame-parameter nil 'alpha 90)
                 (set-scroll-bar-mode nil)
                 (activate-twittering-mode)))))
 
@@ -246,7 +246,3 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 
-;; output file of M-x customize
-(setq custom-file "~/.emacs.d/custom.el")
-(if (file-exists-p (expand-file-name "~/.emacs.d/custom.el"))
-    (load (expand-file-name custom-file) t nil nil))
