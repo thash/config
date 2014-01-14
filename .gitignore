@@ -12,5 +12,7 @@ multiuser.screen
 .emacs.d/elpa/*
 !.emacs.d/elpa/.gitkeep
 
+.emacs.d/eshell/history
+
 .emacs.d/ac-comphist.dat
 .emacs.d/projectile-bookmarks.eld
