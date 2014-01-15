@@ -111,6 +111,22 @@
 (load-theme 'solarized-dark t) ;; install elpa "color-theme-solarized"
 (setq solarized-termcolors 256)
 
+(defun window-toggle-division ()
+  "Toggle :vs <-> :sp"
+  (interactive)
+  (unless (= (count-windows 1) 2)
+    (error "Single Window"))
+  (let ((before-height)
+        (other-buf (window-buffer (next-window))))
+    (setq before-height (window-height))
+    (delete-other-windows)
+    (if (= (window-height) before-height)
+        (split-window-vertically)
+      (split-window-horizontally))
+    (other-window 1)
+    (switch-to-buffer other-buf)
+    (other-window -1)))
+
 ;; Twittering-mode
 (defun activate-twittering-mode ()
   (require 'twittering-mode)
