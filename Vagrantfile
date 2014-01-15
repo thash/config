@@ -10,8 +10,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :zaim do |zaim|
     zaim.vm.box = "zaim_ubuntu"
-    ### because run chef-solo and overwrite ~/.ssh/authorized_keys, cannot login as zaim directly.
-    # zaim.ssh.username = "zaim"
+    # make sure /home/zaim/.ssh/authorized_keys not to be modified by chef-solo.
+    zaim.ssh.username = "zaim"
 
     zaim.vm.network :private_network, ip: "192.168.33.10"
 
