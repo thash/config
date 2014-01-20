@@ -26,7 +26,7 @@
 
 (setq make-backup-files nil)
 (global-linum-mode t)
-(setq linum-format "%3d ")
+(setq linum-format "%3d")
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
@@ -37,6 +37,12 @@
 (menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; http://www.emacswiki.org/emacs/DiredOmitMode
+;; require: M-x load-library RET dired-x RET
+(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
+(setq dired-omit-files-p t)
+(setq-default dired-omit-files-p t)
+(setq dired-omit-files "^#\\|^\\..+$")
 
 ;; key-chord (elpa)
 (require 'key-chord)
@@ -163,6 +169,10 @@
 (projectile-global-mode)
 (key-chord-define evil-normal-state-map ",j" 'projectile-find-file)
 
+;; magit (elpa)
+(key-chord-define evil-normal-state-map " s" 'magit-status)
+
+
 ;; browse-url (built-in)
 (global-set-key "\C-cu" 'browse-url-at-point)
 
@@ -203,6 +213,7 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (setq ruby-insert-encoding-magic-comment nil)
 
