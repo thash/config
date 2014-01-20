@@ -113,10 +113,6 @@
 ;; incremental search buffer items by C-x b
 (iswitchb-mode t)
 
-;;; looks
-(load-theme 'solarized-dark t) ;; install elpa "color-theme-solarized"
-(setq solarized-termcolors 256)
-
 (defun window-toggle-division ()
   "Toggle :vs <-> :sp"
   (interactive)
@@ -138,21 +134,17 @@
   (require 'twittering-mode)
   (setq twittering-use-master-password t))
 
-;; GUI
+;;; looks
 (let ((ws window-system))
-  (cond ((eq ws 'ns) ;; mac
-         (progn (set-face-attribute 'default nil :family "Ricty" :height 120)
+  (cond ((eq ws 'ns) ;; Mac OS
+         (progn (load-theme 'subatomic t) ;; elpa 'subatomic-theme'
+                (set-face-attribute 'default nil :family "Ricty" :height 120)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
                 (set-frame-parameter nil 'alpha 90)
                 (set-scroll-bar-mode nil)
-                (activate-twittering-mode)))))
-
-(custom-set-variables
-  '(display-time-mode t)
-  '(tool-bar-mode nil)
-  '(transient-mark-mode t))
-(custom-set-faces)
-
+                (activate-twittering-mode)))
+        (t (progn (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
+                  (setq solarized-termcolors 256)))))
 
 ;; auto-complete (elpa)
 (require 'auto-complete-config)
