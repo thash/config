@@ -92,11 +92,9 @@
 
 ;; tab & space
 (setq-default indent-tabs-mode nil)
-(custom-set-variables '(tab-width 4))
 
 ;; white spaces
 (setq-default show-trailing-whitespace t)
-(set-face-background 'trailing-whitespace "#b14770")
 
 (setq scroll-conservatively 35
       scroll-margin 0
@@ -171,7 +169,6 @@
 ;; rainbow-delimiters (elpa)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode t)
-; (custom-set-faces '(rainbow-delimiters-depth-1-face ((t (:foreground "#7f8888")))))
 
 ;; cursor-in-brackets (github)
 ;; https://raw.github.com/yascentur/cursor-in-brackets-el/master/cursor-in-brackets.el
@@ -266,4 +263,10 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+
+;; output file of M-x customize
+(setq custom-file "~/.emacs.d/custom.el")
+(if (file-exists-p (expand-file-name "~/.emacs.d/custom.el"))
+    (load (expand-file-name custom-file) t nil nil))
 
