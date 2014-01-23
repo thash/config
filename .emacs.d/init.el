@@ -40,7 +40,8 @@
 
 ;; http://www.emacswiki.org/emacs/DiredOmitMode
 ;; require: M-x load-library RET dired-x RET
-(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
+(defun my-dired-load-hooks () (require 'dired-x))
+(add-hook 'dired-load-hook 'my-dired-load-hooks)
 (setq dired-omit-files-p t)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^#\\|^\\..+$")
@@ -296,10 +297,12 @@
 
 ;; org-mode (elpa: org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(add-hook 'org-mode-hook '(lambda () (local-set-key "\C-cl" 'org-store-link)
-                                     (local-set-key "\C-cc" 'org-capture)
-                                     (local-set-key "\C-ca" 'org-agenda)
-                                     (local-set-key "\C-cb" 'org-iswitchb)))
+(defun my-org-mode-hooks ()
+  (local-set-key "\C-cl" 'org-store-link)
+  (local-set-key "\C-cc" 'org-capture)
+  (local-set-key "\C-ca" 'org-agenda)
+  (local-set-key "\C-cb" 'org-iswitchb))
+(add-hook 'org-mode-hook 'my-org-mode-hooks)
 
 ;; output file of M-x customize
 (setq custom-file "~/.emacs.d/custom.el")
