@@ -23,13 +23,14 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
-
 (setq make-backup-files nil)
 (global-linum-mode t)
 (setq linum-format "%3d")
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+(setq display-time-24hr-format t)
 
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message "")
@@ -44,13 +45,11 @@
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^#\\|^\\..+$")
 
-;; key-chord (elpa)
-(require 'key-chord)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.5)
-
+;;; key bindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil (elpa)
 (require 'evil)
+
 ;; ESC keys
 (global-set-key "\C- " nil)
 (define-key evil-normal-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
@@ -59,9 +58,6 @@
 (define-key evil-replace-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
 (define-key evil-operator-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
 (define-key evil-motion-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 ;; Emacs-like edit mode for insert state
 (define-key evil-insert-state-map (kbd "C-d") 'delete-char)
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
@@ -73,12 +69,12 @@
 (define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-normal-state-map (kbd "j") 'next-line) ;; visual line
 (define-key evil-normal-state-map (kbd "k") 'previous-line)
-(key-chord-define evil-normal-state-map " w" 'save-buffer)
-(key-chord-define evil-normal-state-map " q" 'delete-window)
-(key-chord-define evil-normal-state-map " h" 'windmove-left)
-(key-chord-define evil-normal-state-map " j" 'windmove-down)
-(key-chord-define evil-normal-state-map " k" 'windmove-up)
-(key-chord-define evil-normal-state-map " l" 'windmove-right)
+(define-key evil-normal-state-map (kbd "SPC w") 'save-buffer)
+(define-key evil-normal-state-map (kbd "SPC q") 'delete-window)
+(define-key evil-normal-state-map (kbd "SPC h") 'windmove-left)
+(define-key evil-normal-state-map (kbd "SPC j") 'windmove-down)
+(define-key evil-normal-state-map (kbd "SPC k") 'windmove-up)
+(define-key evil-normal-state-map (kbd "SPC l") 'windmove-right)
 (evil-mode 1)
 
 ;; evil-surround (plugins) -- https://github.com/timcharper/evil-surround
@@ -86,9 +82,9 @@
 (global-surround-mode 1)
 
 (global-set-key "\C-h" 'delete-backward-char)
-;; originally 'exchange-point-and-mark
-(global-set-key "\C-x\C-x" 'kill-region)
-(global-set-key "\C-x:" 'goto-line)
+(global-set-key "\C-x\C-b" 'buffer-menu)
+(global-set-key "\C-cl" 'toggle-truncate-lines)
+
 
 ;; tab & space
 (setq-default indent-tabs-mode nil)
@@ -101,6 +97,7 @@
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t)
 
+;; recognize _ as a word. (It seems don't work on evil)
 (modify-syntax-entry ?_ "w")
 
 ;; C-Space -> select -> then, press C-RET
@@ -133,6 +130,7 @@
   (setq twittering-use-master-password t))
 
 ;;; looks
+(global-hl-line-mode t)
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; Mac OS
          (progn (load-theme 'subatomic t) ;; elpa 'subatomic-theme'
@@ -155,12 +153,14 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
-;; projectile (elpa) -- uses flx-ido
-(projectile-global-mode)
-(key-chord-define evil-normal-state-map ",j" 'projectile-find-file)
 
 ;; magit (elpa)
-(key-chord-define evil-normal-state-map " s" 'magit-status)
+(require 'magit)
+(define-key evil-normal-state-map (kbd "C-x g") 'magit-status)
+(define-key magit-status-mode-map (kbd "j") 'next-line)
+(define-key magit-status-mode-map (kbd "k") 'previous-line)
+(define-key magit-status-mode-map (kbd "l") 'magit-toggle-section)
+(define-key magit-status-mode-map (kbd "h") 'magit-toggle-section)
 
 
 ;; browse-url (built-in)
@@ -182,8 +182,11 @@
 (yas-global-mode 1)
 
 
-;;; eshell
+;;; anything.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ag.el (the_silver_searcher) (elpa)
+(setq ag-highlight-search t)
+(define-key evil-normal-state-map (kbd ", s") 'ag)
 (defun eshell-cd-to-current-dir ()
   (interactive)
   (let ((dir default-directory))
@@ -216,7 +219,7 @@
 ;; detail: https://github.com/pezra/rspec-mode/blob/master/rspec-mode.el
 (eval-after-load 'rspec-mode '(rspec-install-snippets))
 
-;; Gauche
+;; Gauche TODO: activate only on scheme mode.
 (require 'cmuscheme) ;; use run-scheme
 ;; Split window and exec gosh interpreter
 (defun scheme-other-window ()
@@ -258,12 +261,11 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
 
 ;; org-mode (elpa: org)
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(add-hook 'org-mode-hook '(lambda () (local-set-key "\C-cl" 'org-store-link)
+                                     (local-set-key "\C-cc" 'org-capture)
+                                     (local-set-key "\C-ca" 'org-agenda)
+                                     (local-set-key "\C-cb" 'org-iswitchb)))
 
 ;; output file of M-x customize
 (setq custom-file "~/.emacs.d/custom.el")
