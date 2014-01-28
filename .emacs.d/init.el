@@ -89,7 +89,13 @@
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 (global-set-key "\C-cl" 'toggle-truncate-lines)
+(global-set-key (kbd "C-x F") 'find-file-other-window)
+(global-set-key (kbd "C-x B") 'switch-to-buffer-other-window)
 
+;; Command + o instead of C-x o
+(global-set-key (kbd "s-o") 'other-window)
+;; Prevent unintended quit
+(global-set-key (kbd "s-q") nil)
 
 ;; tab & space
 (setq-default indent-tabs-mode nil)
@@ -238,6 +244,10 @@
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my-buffer-menu-mode-hooks ()
+  (local-set-key "k" 'previous-line))
+(add-hook 'Buffer-menu-mode-hook 'my-buffer-menu-mode-hooks)
+
 ;; Ruby
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
@@ -312,4 +322,3 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-exists-p (expand-file-name "~/.emacs.d/custom.el"))
     (load (expand-file-name custom-file) t nil nil))
-
