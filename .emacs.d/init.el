@@ -38,6 +38,10 @@
 (menu-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; off visual bell
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
+
 ;; http://www.emacswiki.org/emacs/DiredOmitMode
 ;; require: M-x load-library RET dired-x RET
 (defun my-dired-load-hooks () (require 'dired-x))
