@@ -298,6 +298,11 @@
 (autoload 'scss-mode "scss-mode" "Major mode for scss")
 (setq scss-compile-at-save nil)
 (add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
+;; rainbow-mode (elpa)
+(require 'rainbow-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
+(add-hook 'scss-mode-hook 'rainbow-mode)
+(add-hook 'html-mode-hook 'rainbow-mode)
 
 ;; org-mode (elpa: org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
