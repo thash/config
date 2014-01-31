@@ -200,49 +200,23 @@
 (setq ag-highlight-search t)
 (define-key evil-normal-state-map (kbd ", s") 'ag)
 
-;;; anything.el
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'anything-startup nil t)
+;; helm, (helm-ag) (elpa)
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x) ;; extended M-x
+(define-key evil-normal-state-map (kbd "C-x b") 'helm-for-files) ;; instead of just opening from buffer list
+(define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
 
-;; anything-git-project
-;; http://shibayu36.hatenablog.com/entry/2012/12/22/135157
-(defun chomp (str)
-  (replace-regexp-in-string "[\n\r]+$" "" str))
-
-(defun anything-git-project-project-dir ()
-  (chomp
-   (shell-command-to-string "git rev-parse --show-toplevel")))
-
-(defun anything-c-sources-git-project-for ()
-  (loop for elt in
-        '(("Modified files (%s)" . "--modified")
-          ("Untracked files (%s)" . "--others --exclude-standard")
-          ("All controlled files in this project (%s)" . ""))
-        collect
-        `((name . ,(format (car elt) (anything-git-project-project-dir)))
-          (init . (lambda ()
-                    (unless (and ,(string= (cdr elt) "") ;update candidate buffer every time except for that of all project files
-                                 (anything-candidate-buffer))
-                      (with-current-buffer
-                          (anything-candidate-buffer 'global)
-                        (insert
-                         (shell-command-to-string
-                          ,(format "git ls-files --full-name $(git rev-parse --show-cdup) %s"
-                                   (cdr elt))))))))
-          (candidates-in-buffer)
-          (display-to-real . (lambda (name)
-                               (format "%s/%s"
-                                       (anything-git-project-project-dir) name)))
-          (type . file))))
-
-(defun anything-git-project ()
-  (interactive)
-  (let* ((sources (anything-c-sources-git-project-for)))
-    (anything-other-buffer sources
-                           (format "*Anything git project in %s*"
-                                   (anything-git-project-project-dir)))))
-
-(define-key evil-normal-state-map (kbd ", j") 'anything-git-project)
+;; popwin (elpa)
+(setq pop-up-windows nil)
+(require 'popwin nil t)
+(when (require 'popwin nil t)
+  (setq anything-samewindow nil)
+  (setq display-buffer-function 'popwin:display-buffer)
+  (push '("*helm for files*" :height 0.3) popwin:special-display-config)
+  (push '("*helm lsgit*" :position left :width 0.2) popwin:special-display-config)
+  (push '("*helm M-x*" :height 0.2) popwin:special-display-config)
+  (push '("*Completions*" :height 0.4) popwin:special-display-config)
+  (push '("*compilation*" :height 0.4 :noselect t :stick t) popwin:special-display-config))
 
 
 ;;; mode
