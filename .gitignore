@@ -18,3 +18,6 @@ multiuser.screen
 .emacs.d/ac-comphist.dat
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/tramp
+.emacs.d/bookmarks
+
+.emacs.d/ircconf.el

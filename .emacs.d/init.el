@@ -218,6 +218,10 @@
   (push '("*Completions*" :height 0.4) popwin:special-display-config)
   (push '("*compilation*" :height 0.4 :noselect t :stick t) popwin:special-display-config))
 
+;; RCIRC: load rcirc setting files (git ignored)
+(if (file-exists-p (expand-file-name "~/.emacs.d/ircconf.el"))
+    (load (expand-file-name "~/.emacs.d/ircconf.el") t nil nil))
+
 
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
