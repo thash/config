@@ -17,6 +17,10 @@
   (setenv "PATH" (concat mydir ":" (getenv "PATH")))
   (setq exec-path (append `(,mydir) exec-path)))
 
+;; rbenv
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") exec-path))
+
 ;;; settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -257,6 +261,14 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (setq ruby-insert-encoding-magic-comment nil)
+
+(defun my-ruby-mode-hooks ()
+  (require 'rbenv) ;; rbenv.el (elpa)
+  (rbenv-use "2.0.0-p353")
+  ;; rcodetools (clone from github and cp *.el under plugins dir)
+  (add-to-list 'load-path "~/.emacs.d/plugins/rcodetools")
+  (require 'rcodetools)) ;; M-x xmp
+(add-hook 'ruby-mode-hook 'my-ruby-mode-hooks)
 
 ;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
