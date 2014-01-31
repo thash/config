@@ -176,6 +176,7 @@
 (define-key magit-status-mode-map (kbd "k") 'previous-line)
 (define-key magit-status-mode-map (kbd "l") 'magit-toggle-section)
 (define-key magit-status-mode-map (kbd "h") 'magit-toggle-section)
+(setq auto-mode-alist (remove (rassoc 'git-rebase-mode auto-mode-alist) auto-mode-alist))
 
 
 ;; browse-url (built-in)
