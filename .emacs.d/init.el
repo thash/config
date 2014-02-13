@@ -148,7 +148,8 @@
 (global-hl-line-mode t)
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; Mac OS
-         (progn (load-theme 'subatomic t) ;; elpa 'subatomic-theme'
+         (progn ;; (load-theme 'wombat t) ;; elpa 'subatomic-theme'
+                (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el")
                 (set-face-attribute 'default nil :family "Ricty" :height 120)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
                 (set-frame-parameter nil 'alpha 90)
