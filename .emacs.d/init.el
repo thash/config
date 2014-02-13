@@ -175,8 +175,8 @@
 (define-key evil-normal-state-map (kbd "C-x g") 'magit-status)
 (define-key magit-status-mode-map (kbd "j") 'next-line)
 (define-key magit-status-mode-map (kbd "k") 'previous-line)
-(define-key magit-status-mode-map (kbd "l") 'magit-toggle-section)
-(define-key magit-status-mode-map (kbd "h") 'magit-toggle-section)
+(define-key magit-status-mode-map (kbd "l") 'magit-show-section)
+(define-key magit-status-mode-map (kbd "h") 'magit-hide-section)
 (setq auto-mode-alist (remove (rassoc 'git-rebase-mode auto-mode-alist) auto-mode-alist))
 
 
