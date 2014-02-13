@@ -315,6 +315,7 @@
 ;; org-mode (elpa: org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (defun my-org-mode-hooks ()
+  (local-set-key "RET" 'newline)
   (local-set-key "\C-cl" 'org-store-link)
   (local-set-key "\C-cc" 'org-capture)
   (local-set-key "\C-ca" 'org-agenda)
