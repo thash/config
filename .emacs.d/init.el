@@ -228,18 +228,19 @@
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun add-all-to-list (list-var mode patterns)
+  (dolist (pattern patterns)
+    (add-to-list list-var `(,pattern . ,mode))))
+
 (defun my-buffer-menu-mode-hooks ()
   (local-set-key "k" 'previous-line))
 (add-hook 'Buffer-menu-mode-hook 'my-buffer-menu-mode-hooks)
 
 ;; Ruby
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-all-to-list 'auto-mode-alist 'ruby-mode
+                 '("\\.rb$" "\\.rake$"
+                   "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Vagrantfile$"))
 (setq ruby-insert-encoding-magic-comment nil)
 
 (defun my-ruby-mode-hooks ()
@@ -274,7 +275,7 @@
 (show-paren-mode) ;; highlight pair parenthesis
 
 ;; Markdown (elpa)
-;; C-c C-c -> {p/preview, m/showbuffer, o/open with Marked(install required)}
+;; C-c C-c -> {p/preview, m/showbuffer, e/export, o/open with Marked(install required)}
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (setq markdown-open-command "/Applications/Marked.app/Contents/Resources/mark")
