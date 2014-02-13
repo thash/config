@@ -17,6 +17,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(compilation-line-number ((t nil)))
- '(linum ((t (:inherit default :background "#303347" :foreground "disabledControlTextColor"))))
  '(trailing-whitespace ((t (:inherit show-paren-mismatch-face :foreground "scrollBarColor" :inverse-video t :underline nil :slant normal :weight normal)))))
 
