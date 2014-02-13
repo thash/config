@@ -297,6 +297,11 @@
 (autoload 'php-mode "php-mode" "Major mode for php" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
+;; CoffeeScript
+(defun my-coffee-mode-hooks ()
+  (setq coffee-tab-width 2))
+(add-hook 'coffee-mode-hook 'my-coffee-mode-hooks)
+
 ;; SCSS (elpa)
 (autoload 'scss-mode "scss-mode" "Major mode for scss")
 (setq scss-compile-at-save nil)
