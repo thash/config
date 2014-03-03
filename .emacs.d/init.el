@@ -138,6 +138,13 @@
     (switch-to-buffer other-buf)
     (other-window -1)))
 
+(defun small-split-vertically ()
+  (interactive)
+  (split-window-vertically)
+  (enlarge-window (/ (window-height (next-window)) 2))
+  (other-window 1)) ;; move to the window
+(global-set-key (kbd "C-x 2") 'small-split-vertically)
+
 ;; Twittering-mode
 (defun activate-twittering-mode ()
   (require 'twittering-mode)
