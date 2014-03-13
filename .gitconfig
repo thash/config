@@ -14,8 +14,8 @@
 
 [core]
   autocrlf = input
-	editor = vi
-	quotepath = false
+  editor = vim
+  quotepath = false
 
 [log]
   date = iso
