@@ -13,15 +13,17 @@
   user = memerelics
 
 [core]
-    autocrlf = input
+  autocrlf = input
 	editor = vi
 	quotepath = false
 
+[log]
+  date = iso
+
 [alias]
-    loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d%Creset'
-    logg = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d%Creset'
-    logn = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d%Creset'
-    logo = log --oneline --decorate
+    l  = log --stat --pretty=format:'%Cblue%h %Cgreen%cd %Cred%an %Creset%s %Cred%d%Creset'
+    lr = log --graph --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d%Creset'
+    lo = log --date=short --graph --decorate --pretty=format:'%Cblue%h %Cgreen%cd %Cred%an %Creset%s %Cred%d'
     st = status -s -b
     br = branch
     co = checkout
