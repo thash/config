@@ -13,7 +13,6 @@ export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
 # rbenv settings
-export PATH=$HOME/.rbenv/bin:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 ### Prompt settings ### {{{2
