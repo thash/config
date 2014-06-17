@@ -21,3 +21,5 @@ multiuser.screen
 .emacs.d/bookmarks
 
 .emacs.d/ircconf.el
+
+.DS_Store
