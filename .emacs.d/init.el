@@ -157,22 +157,16 @@
   (other-window 1)) ;; move to the window
 (global-set-key (kbd "C-x 2") 'small-split-vertically)
 
-;; Twittering-mode
-(defun activate-twittering-mode ()
-  (require 'twittering-mode)
-  (setq twittering-use-master-password t))
-
 ;;; looks
 (global-hl-line-mode t)
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; Mac OS
-         (progn ;; (load-theme 'wombat t) ;; elpa 'subatomic-theme'
-                (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el")
-                (set-face-attribute 'default nil :family "Ricty" :height 120)
+         (progn ;; (load-theme 'zenburn t) ;; elpa 'subatomic-theme', wombat
+                (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el") ;; LightTable style
+                (set-face-attribute 'default nil :family "Ricty" :height 140)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-                (set-frame-parameter nil 'alpha 90)
-                (set-scroll-bar-mode nil)
-                (activate-twittering-mode)))
+                (set-frame-parameter nil 'alpha 85)
+                (set-scroll-bar-mode nil)))
         (t (progn (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
                   (setq solarized-termcolors 256)))))
 
