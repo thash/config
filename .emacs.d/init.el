@@ -227,7 +227,8 @@
 
 ;; ag.el (the_silver_searcher) (elpa)
 (setq ag-highlight-search t)
-(define-key evil-normal-state-map (kbd ", s") 'ag)
+(setq ag-reuse-buffers t)
+(define-key evil-normal-state-map (kbd ", s") 'ag-project)
 
 ;; helm, (helm-ag) (elpa)
 (require 'helm-config)
