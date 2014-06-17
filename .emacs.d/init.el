@@ -173,6 +173,20 @@
 ;; auto-complete (elpa)
 (require 'auto-complete-config)
 (ac-config-default)
+(setq ac-use-menu-map t)
+(define-key ac-completing-map (kbd "C-<SPC>") 'ac-stop)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
+
+;; stop auto-complete when insert 'end' in ruby-mode
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (make-local-variable 'ac-ignores)
+            (add-to-list 'ac-ignores "end")))
+
+;; robe (code navigation, lookup docs) (elpa)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'ac-robe-setup) ;; robe w/ auto-complete
 
 ;; flx-ido (elpa)
 (require 'flx-ido)
@@ -193,6 +207,7 @@
 
 
 ;; browse-url (built-in)
+;; NOTE: use C-c C-o to open markdown link
 (global-set-key "\C-cu" 'browse-url-at-point)
 
 ;; rainbow-delimiters (elpa)
