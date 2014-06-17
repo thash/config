@@ -273,11 +273,16 @@
 
 (defun my-ruby-mode-hooks ()
   (require 'rbenv) ;; rbenv.el (elpa)
-  (rbenv-use "2.0.0-p353")
+  (rbenv-use "2.1.0")
   ;; rcodetools (clone from github and cp *.el under plugins dir)
   (add-to-list 'load-path "~/.emacs.d/plugins/rcodetools")
   (require 'rcodetools)) ;; M-x xmp
 (add-hook 'ruby-mode-hook 'my-ruby-mode-hooks)
+
+;; samrt-compile (elpa)
+(define-key evil-normal-state-map (kbd "SPC R") 'smart-compile)
+(define-key evil-normal-state-map (kbd "SPC r") (kbd "SPC R C-m"))
+(setq smart-compile-option-string '("\\.rb\\'" . "ruby %f"))
 
 ;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
