@@ -59,6 +59,10 @@
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^#\\|^\\..+$")
 
+;; Tramp
+(setq tramp-default-method "ssh")
+(setenv "VM" "/ssh:zaim@vagrant.zaim:")
+
 ;;; key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil (elpa)
