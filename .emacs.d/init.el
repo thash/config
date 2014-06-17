@@ -27,6 +27,9 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
+;; Automatically reload buffers modified by other process.
+;; or use emacsclient-server
+(global-auto-revert-mode 1)
 (setq make-backup-files nil)
 (global-linum-mode t)
 (setq linum-format "%3d")
