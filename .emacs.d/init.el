@@ -83,6 +83,8 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
+;; (define-key evil-insert-state-map (kbd "C-i") 'dabbrev-expand)
+(define-key evil-insert-state-map (kbd "C-u") 'delete-backward-char)
 ;; normal state
 (define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-normal-state-map (kbd "j") 'next-line) ;; visual line
