@@ -205,6 +205,18 @@
 (define-key magit-status-mode-map (kbd "h") 'magit-hide-section)
 (setq auto-mode-alist (remove (rassoc 'git-rebase-mode auto-mode-alist) auto-mode-alist))
 
+;; git-gutter (elpa)
+(require 'git-gutter)
+(global-git-gutter-mode +1)
+(custom-set-variables
+ '(git-gutter:modified-sign " ")
+ '(git-gutter:added-sign "+")
+ '(git-gutter:deleted-sign "-"))
+(set-face-foreground 'git-gutter:modified "yellow")
+
+;; ediff (built-in)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 
 ;; browse-url (built-in)
 ;; NOTE: use C-c C-o to open markdown link
@@ -280,9 +292,12 @@
 (add-hook 'ruby-mode-hook 'my-ruby-mode-hooks)
 
 ;; samrt-compile (elpa)
+(require 'smart-compile)
 (define-key evil-normal-state-map (kbd "SPC R") 'smart-compile)
 (define-key evil-normal-state-map (kbd "SPC r") (kbd "SPC R C-m"))
 (setq smart-compile-option-string '("\\.rb\\'" . "ruby %f"))
+(setq smart-compile-alist
+  (append smart-compile-alist '(("\\.ml\\'" . "ocaml %f"))))
 
 ;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
@@ -358,6 +373,17 @@
   (local-set-key "\C-ca" 'org-agenda)
   (local-set-key "\C-cb" 'org-iswitchb))
 (add-hook 'org-mode-hook 'my-org-mode-hooks)
+
+;; OCaml (tuareg-mode) (elpa)
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+; (autoload 'tuareg-imenu-set-imenu "tuareg-imenu"
+;   "Configuration of imenu for tuareg" t)
+; (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+  (append '(("\\.ml[ily]?$" . tuareg-mode)
+     ("\\.topml$" . tuareg-mode))
+     auto-mode-alist))
 
 ;; output file of M-x customize
 (setq custom-file "~/.emacs.d/custom.el")
