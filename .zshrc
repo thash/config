@@ -113,6 +113,7 @@ alias -g G='| egrep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
+alias -g P='| peco'
 alias -g N='2> /dev/null'
 alias -g TX='tar xvzf'
 alias -g TC='tar cvzf'
@@ -157,6 +158,7 @@ alias bo='bundle open'
 
 ### Set Options ### {{{2
 setopt auto_cd
+function chpwd() { ls }
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt correct

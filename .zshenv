@@ -39,3 +39,7 @@ fi
 if [ -d $HOME/adk/ ]; then
   export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
 fi
+
+# golang settings
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
