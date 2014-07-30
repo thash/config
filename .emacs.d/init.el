@@ -271,6 +271,17 @@
 (if (file-exists-p (expand-file-name "~/.emacs.d/ircconf.el"))
     (load (expand-file-name "~/.emacs.d/ircconf.el") t nil nil))
 
+;; Twitter (elpa) http://www.emacswiki.org/emacs/TwitteringMode-ja
+(require 'twittering-mode)
+(setq twittering-icon-mode t)
+(setq twittering-timer-interval 300)
+(define-key twittering-mode-map (kbd "F") 'twittering-favorite)
+(define-key twittering-mode-map (kbd "R") 'twittering-native-retweet)
+(setq twittering-initial-timeline-spec-string
+      '(":home"
+        ":replies"
+        "T_Hash/ln"))
+
 
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
