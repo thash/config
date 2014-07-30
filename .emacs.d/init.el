@@ -170,6 +170,13 @@
         (t (progn (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
                   (setq solarized-termcolors 256)))))
 
+;; tags(built-in)
+(defun my-find-tag ()
+  (interactive)
+  (find-tag (find-tag-default)))
+(define-key evil-normal-state-map (kbd ", l") 'my-find-tag)
+(define-key evil-normal-state-map (kbd ", h") 'pop-tag-mark)
+
 ;; auto-complete (elpa)
 (require 'auto-complete-config)
 (ac-config-default)
