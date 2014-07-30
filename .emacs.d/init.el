@@ -403,6 +403,17 @@
      ("\\.topml$" . tuareg-mode))
      auto-mode-alist))
 
+;; Oz(Mozart2)
+(defun run-oz-env ()
+    (setq load-path (cons "/Applications/Mozart2.app/Contents/Resources//share/mozart/elisp" load-path))
+    (load "oz.elc")
+    (run-oz))
+(defun my-oz-mode-hooks ()
+  (define-key oz-mode-map "\C-c\C-b" 'oz-feed-buffer)
+  (define-key oz-mode-map "\C-c\C-l" 'oz-feed-line)
+  (define-key oz-mode-map "\C-c\C-r" 'oz-feed-region))
+(add-hook 'oz-mode-hook 'my-oz-mode-hooks)
+
 ;; output file of M-x customize
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-exists-p (expand-file-name "~/.emacs.d/custom.el"))
