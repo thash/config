@@ -69,6 +69,7 @@ NeoBundleLazy 'slim-template/vim-slim'
 NeoBundleLazy 'nginx.vim'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'elzr/vim-json'
+NeoBundleLazy 'wting/rust.vim'
 
 " Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
@@ -135,6 +136,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
     autocmd BufRead,BufWinEnter,BufNewFile *.json set filetype=json
     autocmd BufRead,BufWinEnter,BufNewFile *.cljs set filetype=clojure
+    autocmd BufRead,BufWinEnter,BufNewFile *.rs   set filetype=rust
 
     """ NeoBundleSources {{{4
     autocmd FileType markdown NeoBundleSource vim-markdown
@@ -151,6 +153,7 @@ augroup MyAutoCmdFileType
     autocmd FileType slim     NeoBundleSource vim-slim
     autocmd FileType nginx    NeoBundleSource nginx.vim
     autocmd FileType json     NeoBundleSource vim-json
+    autocmd FileType rust     NeoBundleSource rust.vim
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
