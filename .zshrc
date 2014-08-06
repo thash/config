@@ -74,6 +74,7 @@ alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 alias vag='vagrant'
 alias e='emacs'
+alias a='asana'
 
 ### suffix
 alias -s {haml,slim}=vim
