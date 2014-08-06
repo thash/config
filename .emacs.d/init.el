@@ -1,4 +1,4 @@
-; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 ;; package.el
 (require 'package)
@@ -107,6 +107,9 @@
 (define-key evil-normal-state-map (kbd "SPC j") 'windmove-down)
 (define-key evil-normal-state-map (kbd "SPC k") 'windmove-up)
 (define-key evil-normal-state-map (kbd "SPC l") 'windmove-right)
+;; indent(format) buffer
+(define-key evil-normal-state-map (kbd "SPC =")
+  (lambda () (interactive) (indent-region (point-min) (point-max))))
 (evil-mode 1)
 
 ;; evil-surround (plugins) -- https://github.com/timcharper/evil-surround
@@ -173,8 +176,8 @@
 (global-hl-line-mode t)
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; Mac OS
-         (progn ;; (load-theme 'zenburn t) ;; elpa 'subatomic-theme', wombat
-                (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el") ;; LightTable style
+         (progn (load-theme 'monokai t) ;; subatomic-theme, wombat, zenburn
+                ;; (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el") ;; LightTable style
                 (set-face-attribute 'default nil :family "Ricty" :height 140)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
                 (set-frame-parameter nil 'alpha 85)
@@ -315,7 +318,7 @@
 
 (defun my-ruby-mode-hooks ()
   (require 'rbenv) ;; rbenv.el (elpa)
-  (rbenv-use "2.1.0")
+  (rbenv-use "2.1.1")
   ;; rcodetools (clone from github and cp *.el under plugins dir)
   (add-to-list 'load-path "~/.emacs.d/plugins/rcodetools")
   (require 'rcodetools)) ;; M-x xmp
