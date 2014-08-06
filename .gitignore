@@ -19,6 +19,7 @@ multiuser.screen
 .emacs.d/projectile-bookmarks.eld
 .emacs.d/tramp
 .emacs.d/bookmarks
+.emacs.d/abbrev_defs
 
 .emacs.d/ircconf.el
 

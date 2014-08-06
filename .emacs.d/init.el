@@ -330,7 +330,8 @@
 (define-key evil-normal-state-map (kbd "SPC r") (kbd "SPC R C-m"))
 (setq smart-compile-option-string '("\\.rb\\'" . "ruby %f"))
 (setq smart-compile-alist
-  (append smart-compile-alist '(("\\.ml\\'" . "ocaml %f"))))
+      (append smart-compile-alist '(("\\.ml\\'" . "ocaml %f")
+                                    ("\\.go\\'" . "go run %f"))))
 
 ;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
@@ -363,7 +364,11 @@
 
 ;; Golang (elpa)
 (autoload 'go-mode "go-mode" "Mode for golang" t)
+(defun my-go-mode-hooks ()
+  (setenv "GOPATH" (concat (getenv "HOME") "/.go")))
+(add-hook 'go-mode-hook 'my-go-mode-hooks)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; Clojure (elpa)
 (autoload 'clojure-mode "clojure-mode" "Major mode for clojure" t)
