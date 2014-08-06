@@ -38,7 +38,7 @@
   (run-with-idle-timer 0.2 nil #'linum-update-current))
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
-        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 (setq display-time-24hr-format t)
 
 (setq inhibit-startup-screen t)
@@ -51,13 +51,25 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
+;; Dired
 ;; http://www.emacswiki.org/emacs/DiredOmitMode
 ;; require: M-x load-library RET dired-x RET
 (defun my-dired-load-hooks () (require 'dired-x))
 (add-hook 'dired-load-hook 'my-dired-load-hooks)
+(defun my-dired-mode-hooks ()
+  (define-key dired-mode-map (kbd "C-l") 'dired-display-file)
+  (define-key dired-mode-map (kbd "C-h") 'dired-jump)
+  (define-key dired-mode-map (kbd "C-j") (kbd "j"))
+  (define-key dired-mode-map (kbd "C-k") (kbd "k")))
+
+(add-hook 'dired-mode-hook 'my-dired-mode-hooks)
 (setq dired-omit-files-p t)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^#\\|^\\..+$")
+;; もう片方のdired windowをデフォルトターゲットにする
+(setq dired-dwim-target t)
+(setq dired-recursive-copies 'always)
+(setq dired-isearch-filenames t)
 
 ;; Tramp
 (setq tramp-default-method "ssh")
