@@ -191,6 +191,7 @@ zle -N history-beginning-search-forward-end history-search-end
 
 
 ### key bindkeys (bindkey -L) ### {{{2
+bindkey -e
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^A" beginning-of-line
