@@ -10,6 +10,7 @@ multiuser.screen
 *\#
 .emacs.d/auto-save-list
 .emacs.d/url
+.emacs.d/var
 .emacs.d/elpa/*
 !.emacs.d/elpa/.gitkeep
 
