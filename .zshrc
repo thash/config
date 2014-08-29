@@ -74,7 +74,6 @@ alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
 alias vag='vagrant'
 alias e='emacs'
-alias a='asana'
 
 ### suffix
 alias -s {haml,slim}=vim
@@ -139,6 +138,7 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gcm='git commit -m'
 alias gcam='git commit --amend'
+alias gco='git checkout -b'
 alias gch='git cherry -v'
 alias gd='git diff --no-ext-diff -w "$@" | vim -'
 alias gg='git grep -H --heading --break'
@@ -148,6 +148,12 @@ alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
 alias gchs='nocorrect gchs'
 
+alias a='/Users/hash/work/asana/asana'
+alias at='a task -v'
+alias ats='a tasks'
+alias acm='a comment'
+alias ad='a due'
+alias adn='a done'
 
 ### Aliases -- for Programming {{{3
 alias bi='bundle install'
