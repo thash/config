@@ -195,6 +195,68 @@
 (define-key evil-normal-state-map (kbd ", l") 'my-find-tag)
 (define-key evil-normal-state-map (kbd ", h") 'pop-tag-mark)
 
+;; tabbar(elpa)
+(require 'tabbar)
+(tabbar-mode 1)
+(tabbar-mwheel-mode -1) ;; disable mouse scroll
+(setq tabbar-buffer-groups-function nil) ;; disable useless grouping
+(dolist (btn '(tabbar-buffer-home-button ;; disable buttons
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+
+(setq tabbar-separator '(1.0))
+;; move around tabs by Ctrl + (Shift) + <Tab>
+(global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
+(global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
+
+(defvar my-tabbar-ignore-names
+  '("*scratch*" "*helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*tramp/ssh"))
+
+(defun include (str list)
+  (if list (if (string-prefix-p (car list) str) t
+             (include str (cdr list)))
+    nil))
+
+(defun tabbar-filter (condp lst)
+  (delq nil
+        (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
+
+(defun tabbar-filter-buffer-list ()
+  (tabbar-filter
+   (lambda (x)
+     (let ((name (format "%s" x)))
+        (not (include name my-tabbar-ignore-names))))
+   (delq nil
+         (mapcar #'(lambda (b)
+                     (cond
+                      ;; Always include the current buffer.
+                      ((eq (current-buffer) b) b)
+                      ((buffer-file-name b) b)
+                      ((char-equal ?\  (aref (buffer-name b) 0)) nil)
+                      ((buffer-live-p b) b)))
+                 (buffer-list)))))
+
+(setq tabbar-buffer-list-function 'tabbar-filter-buffer-list)
+
+(set-face-attribute
+ 'tabbar-default nil
+ :family (face-attribute 'default :family)
+ :background (face-attribute 'mode-line-inactive :background)
+ :height 0.9)
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background (face-attribute 'mode-line-inactive :background)
+ :foreground (face-attribute 'mode-line-inactive :foreground)
+ :box nil)
+(set-face-attribute
+ 'tabbar-selected nil
+ :background (face-attribute 'mode-line :background)
+ :foreground (face-attribute 'mode-line :foreground)
+ :box nil)
+
+
 ;; auto-complete (elpa)
 (require 'auto-complete-config)
 (ac-config-default)
