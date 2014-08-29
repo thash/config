@@ -126,6 +126,8 @@
 (global-set-key (kbd "s-o") 'other-window)
 ;; Prevent unintended quit
 (global-set-key (kbd "s-q") nil)
+;; Command + t to open new file
+(global-set-key (kbd "s-t") 'find-file)
 
 ;; tab & space
 (setq-default indent-tabs-mode nil)
@@ -181,7 +183,8 @@
                 (set-face-attribute 'default nil :family "Ricty" :height 140)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
                 (set-frame-parameter nil 'alpha 85)
-                (set-scroll-bar-mode nil)))
+                (set-scroll-bar-mode nil)
+                (set-frame-parameter nil 'fullscreen 'maximized)))
         (t (progn (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
                   (setq solarized-termcolors 256)))))
 
