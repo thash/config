@@ -357,10 +357,7 @@
 (setq twittering-timer-interval 300)
 (define-key twittering-mode-map (kbd "F") 'twittering-favorite)
 (define-key twittering-mode-map (kbd "R") 'twittering-native-retweet)
-(setq twittering-initial-timeline-spec-string
-      '(":home"
-        ":replies"
-        "T_Hash/ln"))
+(setq twittering-initial-timeline-spec-string '("T_Hash/ln"))
 
 
 ;;; mode
