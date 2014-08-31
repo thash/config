@@ -496,9 +496,9 @@
 
 ;; Oz(Mozart2)
 (defun run-oz-env ()
-    (setq load-path (cons "/Applications/Mozart2.app/Contents/Resources//share/mozart/elisp" load-path))
-    (load "oz.elc")
-    (run-oz))
+  (setq load-path (cons "/Applications/Mozart2.app/Contents/Resources//share/mozart/elisp" load-path))
+  (load "oz.elc")
+  (run-oz))
 (defun my-oz-mode-hooks ()
   (define-key oz-mode-map "\C-c\C-b" 'oz-feed-buffer)
   (define-key oz-mode-map "\C-c\C-l" 'oz-feed-line)
