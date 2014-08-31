@@ -175,6 +175,10 @@
   (other-window 1)) ;; move to the window
 (global-set-key (kbd "C-x 2") 'small-split-vertically)
 
+(defun kill-current-buffer ()
+  (interactive) (kill-buffer) (kbd "RET"))
+(global-set-key (kbd "s-w") 'kill-current-buffer)
+
 ;;; looks
 (global-hl-line-mode t)
 (let ((ws window-system))
@@ -213,7 +217,8 @@
 (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
 
 (defvar my-tabbar-ignore-names
-  '("*scratch*" "*helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*tramp/ssh"))
+  '("*scratch*" "*helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*tramp/ssh"
+    "*gosh*" "*magit-process*"))
 
 (defun include (str list)
   (if list (if (string-prefix-p (car list) str) t
