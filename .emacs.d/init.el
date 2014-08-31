@@ -436,10 +436,10 @@
 ;; Golang (elpa)
 (autoload 'go-mode "go-mode" "Mode for golang" t)
 (defun my-go-mode-hooks ()
-  (setenv "GOPATH" (concat (getenv "HOME") "/.go")))
+  (setenv "GOPATH" (concat (getenv "HOME") "/.go"))
+  (add-hook 'before-save-hook 'gofmt-before-save))
 (add-hook 'go-mode-hook 'my-go-mode-hooks)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
-(add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; Clojure (elpa)
 (autoload 'clojure-mode "clojure-mode" "Major mode for clojure" t)
