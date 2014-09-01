@@ -148,12 +148,12 @@ alias gstd='nocorrect gstd'
 alias gsta='nocorrect gsta'
 alias gchs='nocorrect gchs'
 
-alias a='/Users/hash/work/asana/asana'
-alias at='a task -v'
-alias ats='a tasks'
-alias acm='a comment'
-alias ad='a due'
-alias adn='a done'
+alias a='asana'
+alias at='asana task -v'
+alias ats='asana tasks'
+alias acm='asana comment'
+alias ad='asana due'
+alias adn='asana done'
 
 ### Aliases -- for Programming {{{3
 alias bi='bundle install'
