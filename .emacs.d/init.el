@@ -442,6 +442,7 @@
 (defun my-go-mode-hooks ()
   (setenv "GOPATH" (concat (getenv "HOME") "/.go"))
   (add-hook 'before-save-hook 'gofmt-before-save))
+  ;; NOT WORK (require 'go-autocomplete)) ;; installed in plugins dir
 (add-hook 'go-mode-hook 'my-go-mode-hooks)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 
