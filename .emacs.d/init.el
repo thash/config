@@ -395,6 +395,10 @@
   (require 'rcodetools)) ;; M-x xmp
 (add-hook 'ruby-mode-hook 'my-ruby-mode-hooks)
 
+;; Rubocop (elpa)
+(require 'rubocop)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
+
 ;; samrt-compile (elpa)
 (require 'smart-compile)
 (define-key evil-normal-state-map (kbd "SPC R") 'smart-compile)
