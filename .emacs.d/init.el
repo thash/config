@@ -217,8 +217,8 @@
 (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
 
 (defvar my-tabbar-ignore-names
-  '("*scratch*" "*helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*tramp/ssh"
-    "*gosh*" "*magit-process*"))
+  '("*scratch*" "*helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*Compile-Log*" "*tramp/ssh"
+    "*gosh*" "*magit-process*" "*Gofmt Errors*"))
 
 (defun include (str list)
   (if list (if (string-prefix-p (car list) str) t
