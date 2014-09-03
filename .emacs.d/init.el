@@ -389,7 +389,7 @@
 
 (defun my-ruby-mode-hooks ()
   (require 'rbenv) ;; rbenv.el (elpa)
-  (rbenv-use "2.1.1")
+  (rbenv-use-global)
   ;; rcodetools (clone from github and cp *.el under plugins dir)
   (add-to-list 'load-path "~/.emacs.d/plugins/rcodetools")
   (require 'rcodetools)) ;; M-x xmp
