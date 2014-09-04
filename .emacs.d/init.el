@@ -51,6 +51,10 @@
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
+;; auto save (https://raw.githubusercontent.com/kentaro/auto-save-buffers-enhanced/master/auto-save-buffers-enhanced.el)
+(require 'auto-save-buffers-enhanced)
+(auto-save-buffers-enhanced t)
+
 ;; Dired
 ;; http://www.emacswiki.org/emacs/DiredOmitMode
 ;; require: M-x load-library RET dired-x RET
