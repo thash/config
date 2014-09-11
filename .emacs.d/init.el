@@ -480,6 +480,14 @@
 (add-hook 'go-mode-hook 'my-go-mode-hooks)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 
+;; Haskell (elpa)
+(autoload 'haskell-mode "haskell-mode" "Major mode for Haskell" t)
+(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+(defun my-haskell-mode-hook ()
+   (haskell-indentation-mode -1)
+   (haskell-indent-mode 1))
+(add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
+
 ;; Clojure (elpa)
 (autoload 'clojure-mode "clojure-mode" "Major mode for clojure" t)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
