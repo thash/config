@@ -104,6 +104,9 @@
 (define-key evil-insert-state-map (kbd "C-p") 'previous-line)
 ;; (define-key evil-insert-state-map (kbd "C-i") 'dabbrev-expand)
 (define-key evil-insert-state-map (kbd "C-u") 'delete-backward-char)
+;; automatically insert comment to newline, when current line is commented.
+(define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
+
 ;; normal state
 (define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-normal-state-map (kbd "j") 'next-line) ;; visual line
