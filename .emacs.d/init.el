@@ -79,8 +79,8 @@
 (setq dired-isearch-filenames t)
 
 ;; Tramp
-(setq tramp-default-method "ssh")
-(setenv "VM" "/ssh:zaim@vagrant.zaim:")
+(setq tramp-default-method "scp")
+(setenv "VM" "/scp:zaim@vagrant.zaim:")
 
 ;;; key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -224,7 +224,7 @@
 (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
 
 (defvar my-tabbar-ignore-names
-  '("*scratch*" "*helm" "*Helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*Compile-Log*" "*tramp/ssh"
+  '("*scratch*" "*helm" "*Helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*Compile-Log*" "*tramp/"
     "*gosh*" "*magit-process*" "*Gofmt Errors*" "*RuboCop"))
 
 (defun include (str list)
