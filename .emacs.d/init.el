@@ -54,6 +54,9 @@
 ;; auto save (https://raw.githubusercontent.com/kentaro/auto-save-buffers-enhanced/master/auto-save-buffers-enhanced.el)
 (require 'auto-save-buffers-enhanced)
 (auto-save-buffers-enhanced t)
+(custom-set-variables
+ '(auto-save-buffers-enhanced-interval 5.0))
+(setq auto-save-buffers-enhanced-exclude-regexps '("^/ssh" "^/scp"))
 
 ;; Dired
 ;; http://www.emacswiki.org/emacs/DiredOmitMode
