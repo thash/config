@@ -349,10 +349,29 @@
 (define-key evil-normal-state-map (kbd ", s") 'ag)
 
 ;; helm, (helm-ag) (elpa)
-(require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x) ;; extended M-x
-(define-key evil-normal-state-map (kbd "C-x b") 'helm-for-files) ;; instead of just opening from buffer list
-(define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
+(when (require 'helm-config nil t)
+  (helm-mode 1)
+  (global-set-key (kbd "M-x") 'helm-M-x) ;; extended M-x
+  (define-key evil-normal-state-map (kbd "C-x b") 'helm-for-files) ;; instead of just opening from buffer list
+  ;; (define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
+  (define-key evil-normal-state-map (kbd ", j") 'helm-mini)
+  (custom-set-variables
+   '(helm-truncate-lines t)
+   '(helm-ff-transformer-show-only-basename nil)
+   '(helm-tramp-verbose 0)
+   '(helm-delete-minibuffer-contents-from-point t)
+   '(helm-mini-default-sources '(helm-source-files-in-current-dir
+                                 helm-source-ls-git
+                                 helm-source-buffers-list
+                                 helm-source-recentf)))
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-map (kbd "C-u") 'delete-backward-char))
+
+(eval-after-load "helm-files"
+  '(progn
+     (define-key helm-find-files-map (kbd "C-h") 'helm-ff-backspace)
+     (define-key helm-find-files-map (kbd "C-u") 'helm-ff-backspace)
+     (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)))
 
 ;; popwin (elpa)
 (setq pop-up-windows nil)
@@ -361,10 +380,15 @@
   (setq anything-samewindow nil)
   (setq display-buffer-function 'popwin:display-buffer)
   (push '("*helm for files*" :height 0.3) popwin:special-display-config)
-  (push '("*helm lsgit*" :position left :width 0.2) popwin:special-display-config)
+  ;; (push '("*helm lsgit*" :position left :width 0.2) popwin:special-display-config)
+  (push '("*helm lsgit*" :height 0.4) popwin:special-display-config)
   (push '("*helm M-x*" :height 0.2) popwin:special-display-config)
+  (push '("*Helm Find Files*" :height 0.4) popwin:special-display-config)
+  (push '("*helm mini*" :height 0.3) popwin:special-display-config)
   (push '("*Completions*" :height 0.4) popwin:special-display-config)
-  (push '("*compilation*" :height 0.4 :noselect t :stick t) popwin:special-display-config))
+  (push '("*compilation*" :height 0.4 :noselect t :stick t) popwin:special-display-config)
+  ;; (push '("*helm-ag*" :height 0.4) popwin:special-display-config)
+  (push '("*ag*" :height 0.4) popwin:special-display-config))
 
 ;; RCIRC: load rcirc setting files (git ignored)
 (if (file-exists-p (expand-file-name "~/.emacs.d/ircconf.el"))
