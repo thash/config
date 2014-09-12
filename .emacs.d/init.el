@@ -189,6 +189,13 @@
   (interactive) (kill-buffer) (kbd "RET"))
 (global-set-key (kbd "s-w") 'kill-current-buffer)
 
+(defun insert-datetime (format)
+  (insert (shell-command-to-string (concat "echo -n $(date +" format ")"))))
+(defun today () (interactive) (insert-datetime "%Y%m%d"))
+(defun now () (interactive) (insert-datetime "\"%Y/%m/%d %H:%M\""))
+(define-key evil-normal-state-map (kbd ", d d") 'today)
+(define-key evil-normal-state-map (kbd ", d t") 'now)
+
 ;;; looks
 (global-hl-line-mode t)
 (let ((ws window-system))
