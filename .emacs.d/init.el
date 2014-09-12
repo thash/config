@@ -144,7 +144,7 @@
 
 ;; white spaces
 (setq-default show-trailing-whitespace t)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq scroll-conservatively 35
       scroll-margin 0
