@@ -272,6 +272,10 @@
  :foreground (face-attribute 'mode-line :foreground)
  :box nil)
 
+;; saveplace (built-in)
+(when (require 'saveplace nil t)
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saveplace.log"))
 
 ;; auto-complete (elpa)
 (require 'auto-complete-config)

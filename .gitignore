@@ -21,6 +21,7 @@ multiuser.screen
 .emacs.d/tramp
 .emacs.d/bookmarks
 .emacs.d/abbrev_defs
+.emacs.d/saveplace.log
 
 .emacs.d/ircconf.el
 
