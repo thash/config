@@ -305,6 +305,11 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'robe-mode-hook 'ac-robe-setup) ;; robe w/ auto-complete
 
+(add-hook 'scheme-mode-hook
+          (lambda ()
+            (make-local-variable 'ac-ignores)
+            (add-to-list 'ac-ignores "def")))
+
 ;; flx-ido (elpa)
 (require 'flx-ido)
 (ido-mode 1)
