@@ -1,0 +1,105 @@
+-	ー
+~	〜
+.	。
+,	、
+[	「
+]	」
+
+q	ん
+w	か
+e	た
+r	こ
+t	さ
+jq	ゅ
+jw	が
+je	だ
+jr	ご
+jt	ざ
+fq	ぁ
+fw	え
+fe	り
+fr	ゃ
+ft	れ
+
+y	ら
+u	ち
+i	く
+o	つ
+p	,
+fy	ぱ
+fu	ぢ
+fi	ぐ
+fo	づ
+fp	ぴ
+jy	よ
+ju	に
+ji	る
+jo	ま
+jp	ぇ
+
+a	う
+s	し
+d	て
+ff	け
+g	せ
+ja ヴァ
+js	じ
+jd	で
+
+jf	ゅ
+
+jg	ぜ
+fa	を
+fs	あ
+fd	な
+fg	も
+
+h	は
+jj	と
+k	き
+l	い
+:	っ
+'	ー
+fh	ば
+fj	お
+fk	ぎ
+fl	ぽ
+jh	み
+jk	の
+jl	ょ
+
+f:	っ
+j:	ー
+
+z	.
+x	ひ
+c	す
+v	ふ
+b	へ
+jz	ど
+jx	び
+jc	ず
+jv	ぶ
+jb	べ
+fz	ぅ
+fx	ー
+fc	ろ
+fv	や
+fb	ぃ
+
+n	め
+m	そ
+,	ね
+.	ほ
+/	・
+fn	ぷ
+fm	ぞ
+f,	ぺ
+f.	ぼ
+jn	ぬ
+jm	ゆ
+j,	む
+j.	わ
+j/	ぉ
+
+f/	げ
