@@ -235,7 +235,7 @@
 
 (defvar my-tabbar-ignore-names
   '("*scratch*" "*helm" "*Helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*Compile-Log*" "*tramp/"
-    "*gosh*" "*magit-process*" "*Gofmt Errors*" "*RuboCop"))
+    "*gosh*" "*magit-process*" "*Gofmt Errors*" "*RuboCop" "*Oz"))
 
 (defun include (str list)
   (if list (if (string-prefix-p (car list) str) t
