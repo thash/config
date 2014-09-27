@@ -209,6 +209,7 @@ jf	じゅ
 jh	じゅう
 ji	じ
 jj	じゅん
+jn	じゅん
 jk	じん
 jl	じょん
 jo	じょ
