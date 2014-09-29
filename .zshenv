@@ -7,7 +7,7 @@ fi
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
-if [ "`ls -a ~ | grep .cabal`" != "" ]; then
+if [ "`/bin/ls -a ~ | /bin/grep .cabal`" != "" ]; then
   export PATH=$HOME/.cabal/bin:$PATH
 fi
 
