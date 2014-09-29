@@ -18,3 +18,6 @@ alias sl='ls -F'
 alias la='ls -aF'
 alias ll='ls -lhrtF'
 alias l='ls -lhrtF'
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
