@@ -6,9 +6,9 @@ if has('vim_starting')
   set rtp+=~/.vim/bundle/neobundle.vim/
 endif
 let g:neobundle_default_git_protocol='git'
-call neobundle#rc(expand('~/.vim/bundle/'))
-
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 
 """ NeoBundle plugins {{{2
 " input support
@@ -42,11 +42,18 @@ NeoBundle 'textobj-user'
 NeoBundle 'textobj-indent'
 NeoBundle 'textobj-function'
 
-" Unite/Vimshell family
+" Shougo family
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'mac'   : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix'  : 'gmake',
+\    },
+\ }
+
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Sixeight/unite-grep'
@@ -108,7 +115,7 @@ set visualbell t_vb=
 set cmdwinheight=12
 set cmdheight=2
 set gdefault " all substitution
-set backupdir=$HOME/.vim/tmp
+set backupdir=$HOME/.vim
 set shell=/bin/bash
 
 "set clipboard=unnamed,autoselect
@@ -756,7 +763,6 @@ let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 
 " YankRing.vim
-let g:yankring_history_dir = '$HOME/.vim/tmp'
 " let g:yankring_paste_using_g = 0
 
 " vim-cycle
