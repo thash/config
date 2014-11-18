@@ -23,6 +23,7 @@ multiuser.screen
 .emacs.d/abbrev_defs
 .emacs.d/saveplace.log
 
+.emacs.d/custom.el
 .emacs.d/ircconf.el
 
 .DS_Store
