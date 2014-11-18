@@ -239,7 +239,7 @@
 
 (defvar my-tabbar-ignore-names
   '("*scratch*" "*helm" "*Helm" "*Messages*" "*Backtrace*" "*Help*" "*Buffer" "*Compile-Log*" "*tramp/"
-    "*gosh*" "*magit-process*" "*Gofmt Errors*" "*RuboCop" "*Oz"))
+    "*gosh*" "*magit-process*" "*Gofmt Errors*" "*RuboCop" "*Oz" "*compilation*"))
 
 (defun include (str list)
   (if list (if (string-prefix-p (car list) str) t
@@ -562,10 +562,29 @@
               auto-mode-alist))
 
 ;; Oz(Mozart2)
-(defun run-oz-env ()
-  (setq load-path (cons "/Applications/Mozart2.app/Contents/Resources//share/mozart/elisp" load-path))
+
+;; (defun run-oz-env ()
+;;   (let ((mozart-path "/Applications/Mozart2.app/Contents/Resources"))
+;;     (setq load-path (cons (concat mozart-path "/share/mozart/elisp")
+;;                           load-path))
+;;     (load "oz.elc")
+;;     ;; 不要? ;; (setenv "PATH" (concat mozart-path "/bin" ":" (getenv "PATH")))
+;;     (run-oz)))
+
+;; TODO: 任意の場所にある*.oz内でoz-feed-*を実行可能に. 現状は以下のエラーが出る
+;;       apply: Searching for program: No such file or directory, ./bin/ozengine
+;; TODO: もっと簡易にはSPC-rのsmart-compileで実行できるようにする. その際以前作成したrunozスクリプトを活用
+
+(let ((mozart-path "/Applications/Mozart2.app/Contents/Resources"))
+  (setq load-path (cons (concat mozart-path "/share/mozart/elisp")
+                        load-path))
   (load "oz.elc")
-  (run-oz))
+  (load "oz-server.elc")
+  (load "oz-extra.elc")
+  (load "mozart.elc"))
+(autoload 'oz-mode "oz-mode" "Mode for OZ/Mozart" t)
+(add-to-list 'auto-mode-alist '("\\.oz$" . oz-mode))
+
 (defun my-oz-mode-hooks ()
   (define-key oz-mode-map "\C-c\C-b" 'oz-feed-buffer)
   (define-key oz-mode-map "\C-c\C-l" 'oz-feed-line)
