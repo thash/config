@@ -207,8 +207,12 @@
                 (set-frame-parameter nil 'alpha 85)
                 (set-scroll-bar-mode nil)
                 (set-frame-parameter nil 'fullscreen 'maximized)))
-        (t (progn (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
+        (t (progn (global-hl-line-mode -1)
+                  (hl-line-mode -1)
+                  (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
                   (setq solarized-termcolors 256)))))
+
+(add-to-list 'frame-inherited-parameters 'alpha)
 
 ;; tags(built-in)
 (defun my-find-tag ()
