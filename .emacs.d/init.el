@@ -299,20 +299,6 @@
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
-;; stop auto-complete when insert 'end' in ruby-mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (make-local-variable 'ac-ignores)
-            (add-to-list 'ac-ignores "end")))
-
-;; robe (code navigation, lookup docs) (elpa)
-(add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'robe-mode-hook 'ac-robe-setup) ;; robe w/ auto-complete
-
-(add-hook 'scheme-mode-hook
-          (lambda ()
-            (make-local-variable 'ac-ignores)
-            (add-to-list 'ac-ignores "def")))
 
 ;; flx-ido (elpa)
 (require 'flx-ido)
@@ -435,10 +421,19 @@
 (add-hook 'Buffer-menu-mode-hook 'my-buffer-menu-mode-hooks)
 
 ;; Ruby
+;; enhanced-ruby-mode (elpa: enh-ruby-mode)
+;; https://github.com/zenspider/enhanced-ruby-mode
+;; (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
 (autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
 (add-all-to-list 'auto-mode-alist 'ruby-mode
                  '("\\.rb$" "\\.rake$"
                    "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Vagrantfile$"))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+;; robe (code navigation, lookup docs) (elpa)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'ac-robe-setup) ;; robe w/ auto-complete
+
 (setq ruby-insert-encoding-magic-comment nil)
 
 (defun my-ruby-mode-hooks ()
@@ -446,7 +441,10 @@
   (rbenv-use-global)
   ;; rcodetools (clone from github and cp *.el under plugins dir)
   (add-to-list 'load-path "~/.emacs.d/plugins/rcodetools")
-  (require 'rcodetools)) ;; M-x xmp
+  (require 'rcodetools) ;; M-x xmp
+  ;; stop auto-complete when insert 'end' in ruby-mode
+  (make-local-variable 'ac-ignores)
+  (add-to-list 'ac-ignores "end"))
 (add-hook 'ruby-mode-hook 'my-ruby-mode-hooks)
 
 ;; Rubocop (elpa)
@@ -466,6 +464,17 @@
 (eval-after-load 'auto-complete
   '(add-to-list 'ac-modes 'inf-ruby-mode))
 (add-hook 'inf-ruby-mode-hook 'ac-inf-ruby-enable)
+
+;; inf-ruby + pry
+;; usage: M-x inf-ruby => (そのファイルを開いて(Gemfile pathのため)) M-x ruby-load-file
+;; ~/.pryrc: Pry.config.editor = "emacsclient"
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+(require 'inf-ruby) ;; elpa
+(setq inf-ruby-default-implementation "pry")
+(setq inf-ruby-eval-binding "Pry.toplevel_binding")
+(add-hook 'inf-ruby-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; rspec-mode (elpa) -- prefix = "C-c ,"
 ;; v: run current spec, t: toggle spec/target
