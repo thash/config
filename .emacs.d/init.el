@@ -496,6 +496,11 @@
 (define-key global-map "\C-cS" 'scheme-other-window)
 (show-paren-mode) ;; highlight pair parenthesis
 
+(add-hook 'scheme-mode-hook
+          (lambda ()
+            (make-local-variable 'ac-ignores)
+            (add-to-list 'ac-ignores "def")))
+
 ;; Markdown (elpa)
 ;; C-c C-c -> {p/preview, m/showbuffer, e/export, o/open with Marked(install required)}
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
