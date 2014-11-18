@@ -55,3 +55,4 @@ end
   klass.send(:include, ComposableFunction)
 end
 
+Pry.config.editor = "emacsclient"
