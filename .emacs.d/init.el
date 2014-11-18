@@ -283,6 +283,11 @@
  :foreground (face-attribute 'mode-line :foreground)
  :box nil)
 
+
+(require 'auto-async-byte-compile) ;; elpa
+(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
+
 ;; saveplace (built-in)
 (when (require 'saveplace nil t)
   (setq-default save-place t)
