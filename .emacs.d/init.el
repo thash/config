@@ -408,6 +408,8 @@
 (define-key twittering-mode-map (kbd "R") 'twittering-native-retweet)
 (setq twittering-initial-timeline-spec-string '("T_Hash/ln"))
 
+;; slack.el (plugins) http://nullman.net/tutorial/emacs-files/.emacs.d/local-modules/slack.el
+;; currently not working
 
 ;;; mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
