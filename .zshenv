@@ -43,3 +43,6 @@ fi
 # golang settings
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
+
+# Emacs path (mainly for emacsclient)
+export PATH=/usr/local/Cellar/emacs/24.3/bin:$PATH
