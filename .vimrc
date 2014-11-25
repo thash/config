@@ -94,7 +94,7 @@ set fileencoding=utf8
 set autoindent
 set expandtab
 set foldmethod=marker
-set foldlevel=1
+set foldlevel=2
 set foldnestmax=2
 set tags=./tags
 set incsearch
