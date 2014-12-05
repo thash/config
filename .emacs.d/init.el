@@ -200,13 +200,12 @@
 (global-hl-line-mode t)
 (let ((ws window-system))
   (cond ((eq ws 'ns) ;; Mac OS
-         (progn (load-theme 'monokai t) ;; subatomic-theme, wombat, zenburn
-                ;; (load "/Users/hash/.emacs.d/themes/bubbleberry-theme.el") ;; LightTable style
+         (progn (load-theme 'darcula t) ;; favs: [subatomic-theme, wombat, zenburn, monokai]
                 (set-face-attribute 'default nil :family "Ricty" :height 140)
                 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
                 (set-frame-parameter nil 'alpha 85)
-                (set-scroll-bar-mode nil)
-                (set-frame-parameter nil 'fullscreen 'maximized)))
+                ;; (set-frame-parameter nil 'fullscreen 'maximized)
+                (set-scroll-bar-mode nil)))
         (t (progn (global-hl-line-mode -1)
                   (hl-line-mode -1)
                   (load-theme 'solarized-dark t) ;; elpa 'color-theme-solarized'
@@ -232,7 +231,6 @@
   (set btn (cons (cons "" nil)
                  (cons "" nil))))
 
-(setq tabbar-separator '(1.0))
 ;; move around tabs by Ctrl + (Shift) + <Tab>
 (global-set-key (kbd "<C-tab>") 'tabbar-forward-tab)
 (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
@@ -267,20 +265,24 @@
 
 (setq tabbar-buffer-list-function 'tabbar-filter-buffer-list)
 
+(setq tabbar-separator '(1.0))
 (set-face-attribute
  'tabbar-default nil
  :family (face-attribute 'default :family)
- :background (face-attribute 'mode-line-inactive :background)
+ :background (face-attribute 'mode-line :foreground)
  :height 0.9)
-(set-face-attribute
- 'tabbar-unselected nil
- :background (face-attribute 'mode-line-inactive :background)
- :foreground (face-attribute 'mode-line-inactive :foreground)
- :box nil)
+(set-face-attribute ;; separator色をtabbar-defaultと同じに
+ 'tabbar-separator nil
+ :foreground (face-attribute 'tabbar-default :background))
 (set-face-attribute
  'tabbar-selected nil
- :background (face-attribute 'mode-line :background)
+ :background "white"
  :foreground (face-attribute 'mode-line :foreground)
+ :box nil)
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background (face-attribute 'mode-line :background)
+ :foreground (face-attribute 'mode-line-inactive :foreground)
  :box nil)
 
 
