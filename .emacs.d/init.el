@@ -287,7 +287,7 @@
 
 
 (require 'auto-async-byte-compile) ;; elpa
-(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
 ;; (setq auto-async-byte-compile-exclude-files-regexp "/junk/")
 
 ;; saveplace (built-in)
@@ -467,7 +467,8 @@
 (setq smart-compile-option-string '("\\.rb\\'" . "ruby %f"))
 (setq smart-compile-alist
       (append smart-compile-alist '(("\\.ml\\'" . "ocaml %f")
-                                    ("\\.go\\'" . "go run %f"))))
+                                    ("\\.go\\'" . "go run %f")
+                                    ("\\.hx\\'" . "haxe -main %f -js %f.js -debug"))))
 
 ;; irb session inf-ruby, ac-inf-ruby (elpa)
 (eval-after-load 'auto-complete
@@ -543,6 +544,10 @@
 ;; PHP (elpa)
 (autoload 'php-mode "php-mode" "Major mode for php" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
+;; Haxe (elpa)
+(autoload 'haxe-mode "haxe-mode" "Major mode for haxe" t)
+(add-to-list 'auto-mode-alist '("\\.hx$" . haxe-mode))
 
 ;; CoffeeScript
 (defun my-coffee-mode-hooks ()
