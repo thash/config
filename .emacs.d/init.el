@@ -284,6 +284,11 @@
  :background (face-attribute 'mode-line :background)
  :foreground (face-attribute 'mode-line-inactive :foreground)
  :box nil)
+(set-face-attribute ;; 編集ファイルは自動保存されるので強調しない
+ 'tabbar-modified nil
+ :background (face-attribute 'tabbar-default :background)
+ :foreground (face-attribute 'tabbar-default :foreground)
+ :box nil)
 
 
 (require 'auto-async-byte-compile) ;; elpa
