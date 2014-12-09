@@ -25,7 +25,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'Gentooish'
-NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'alem0lars/vim-colorscheme-darcula'
 
 " additional commands/features
 NeoBundle 'fugitive.vim'
@@ -253,7 +253,7 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 
-colorscheme hybrid
+colorscheme darcula
 
 " highlight {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
