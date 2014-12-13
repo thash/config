@@ -1,4 +1,4 @@
 bind generic G move-last-line
 bind generic g move-first-line
-bind generic ^F move-page-down
-bind generic ^B move-page-up
+bind generic <Ctrl-F> move-page-down
+bind generic <Ctrl-B> move-page-up
