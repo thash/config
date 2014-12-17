@@ -26,6 +26,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'Gentooish'
 NeoBundle 'alem0lars/vim-colorscheme-darcula'
+NeoBundle 'tomasr/molokai'
 
 " additional commands/features
 NeoBundle 'fugitive.vim'
