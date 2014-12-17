@@ -354,7 +354,7 @@ inoremap <C-a> <ESC>0i
 inoremap <C-e> <ESC>$a
 
 " autocomplete (, [, {, ", '
-" inoremap () ()<LEFT>
+inoremap () ()<LEFT>
 inoremap <> <><LEFT>
 inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
