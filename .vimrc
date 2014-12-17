@@ -257,8 +257,6 @@ endif
 
 " Color/Layout Settings ============================================ {{{1
 
-colorscheme darcula
-
 " highlight {{{2
 " FYI: execute ':so $VIMRUNTIME/syntax/colortest.vim' to view sample colors
 " change statusline color in insert mode
