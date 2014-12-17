@@ -27,6 +27,9 @@ NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'Gentooish'
 NeoBundle 'alem0lars/vim-colorscheme-darcula'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'adlawson/vim-sorcerer'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jnurmine/Zenburn'
 
 " additional commands/features
 NeoBundle 'fugitive.vim'
