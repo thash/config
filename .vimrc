@@ -770,6 +770,7 @@ let g:buftabs_only_basename=1
 
 " YankRing.vim
 " let g:yankring_paste_using_g = 0
+let g:yankring_history_dir = expand('$HOME/.vim')
 
 " vim-cycle
 " I added personal setting into vim-cycle plugin itseif
