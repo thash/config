@@ -715,14 +715,6 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 
-"" eclim {{{2
-" first, run eclimd.
-" autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
-" exists under ~/.vim/eclim/, ~/.eclim/
-" inoremap <C-X><C-I> <C-X><C-U>
-" (<C-X><C-U> is user defined completion - disabled by C-U to BackSpace)
-
-
 "" vim-fireplace {{{2
 " tips: c!! -> replace expr with value
 "       K -> lookup docs under cursor
