@@ -81,9 +81,13 @@ NeoBundleLazy 'nginx.vim'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'elzr/vim-json'
 NeoBundleLazy 'wting/rust.vim'
+NeoBundleLazy 'dgryski/vim-godef'
 NeoBundleLazy 'jnwhiteh/vim-golang'
+NeoBundleLazy 'fatih/vim-go'
+NeoBundleLazy 'vim-jp/vim-go-extra'
 NeoBundleLazy 'jdonaldson/vaxe'
 NeoBundleLazy 'derekwyatt/vim-scala'
+NeoBundleLazy 'oz.vim'
 
 " Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
@@ -132,6 +136,8 @@ set formatoptions-=o
 " filetype settings + additional {{{2
 filetype plugin indent on
 syntax on
+NeoBundleCheck
+
 " skeleton loading autocmd {{{3
 augroup SkeletonLoad
     autocmd! SkeletonLoad
@@ -154,6 +160,8 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go
     autocmd BufRead,BufWinEnter,BufNewFile *.hx   set filetype=haxe
     autocmd BufRead,BufWinEnter,BufNewFile *.scala set filetype=scala
+    autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
+    autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
 
     """ NeoBundleSources {{{4
     autocmd FileType markdown NeoBundleSource vim-markdown
@@ -171,9 +179,13 @@ augroup MyAutoCmdFileType
     autocmd FileType nginx    NeoBundleSource nginx.vim
     autocmd FileType json     NeoBundleSource vim-json
     autocmd FileType rust     NeoBundleSource rust.vim
-    autocmd FileType go       NeoBundleSource vim-golang
+    autocmd FileType go       NeoBundleSource vim-go
+    autocmd FileType go       NeoBundleSource vim-go-extra
+    autocmd FileType go       NeoBundleSource vim-godef
+
     autocmd FileType haxe     NeoBundleSource vaxe
     autocmd FileType scala    NeoBundleSource vim-scala
+    autocmd FileType oz       NeoBundleSource oz.vim
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
@@ -779,6 +791,11 @@ vmap <Leader>sx <Plug>SequenceV_Decrement
 
 " Align.vim
 let g:Align_xstrlen=3
+
+" golang
+set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
+set path+=$GOPATH/bin/
+let g:gofmt_command = 'goimports'
 
 " Functions my/someone's ============================================ {{{1
 function! GetEFstatus() " {{{2
