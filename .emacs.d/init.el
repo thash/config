@@ -13,7 +13,8 @@
       (normal-top-level-add-subdirs-to-load-path)))
 
 ;; add /usr/local/bin to Emacs PATH (!= (getenv PATH))
-(let ((mydir "/usr/local/bin"))
+;; (let ((mydir "/usr/local/bin"))
+(let ((mydir "/Users/hash/bin"))
   (setenv "PATH" (concat mydir ":" (getenv "PATH")))
   (setq exec-path (append `(,mydir) exec-path)))
 
@@ -306,7 +307,7 @@
 (setq ac-use-menu-map t)
 ;; (setq ac-sources (add-to-list 'ac-sources 'ac-source-filename))
 ;; explicitly start auto-complete by TAB (added it to use ac-source-filename)
-;; (define-key evil-insert-state-map (kbd "TAB") 'ac-start)
+(define-key evil-insert-state-map (kbd "TAB") 'ac-start)
 (define-key ac-completing-map (kbd "C-<SPC>") 'ac-stop)
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
@@ -371,7 +372,7 @@
   (helm-mode 1)
   (global-set-key (kbd "M-x") 'helm-M-x) ;; extended M-x
   (define-key evil-normal-state-map (kbd "C-x b") 'helm-for-files) ;; instead of just opening from buffer list
-  ;; (define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
+  (define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
   (define-key evil-normal-state-map (kbd ", j") 'helm-mini)
   (custom-set-variables
    '(helm-truncate-lines t)
@@ -411,14 +412,6 @@
 ;; RCIRC: load rcirc setting files (git ignored)
 (if (file-exists-p (expand-file-name "~/.emacs.d/ircconf.el"))
     (load (expand-file-name "~/.emacs.d/ircconf.el") t nil nil))
-
-;; Twitter (elpa) http://www.emacswiki.org/emacs/TwitteringMode-ja
-(require 'twittering-mode)
-(setq twittering-icon-mode t)
-(setq twittering-timer-interval 300)
-(define-key twittering-mode-map (kbd "F") 'twittering-favorite)
-(define-key twittering-mode-map (kbd "R") 'twittering-native-retweet)
-(setq twittering-initial-timeline-spec-string '("T_Hash/ln"))
 
 ;; slack.el (plugins) http://nullman.net/tutorial/emacs-files/.emacs.d/local-modules/slack.el
 ;; currently not working
@@ -594,35 +587,7 @@
                 ("\\.topml$" . tuareg-mode))
               auto-mode-alist))
 
-;; Oz(Mozart2)
-
-;; (defun run-oz-env ()
-;;   (let ((mozart-path "/Applications/Mozart2.app/Contents/Resources"))
-;;     (setq load-path (cons (concat mozart-path "/share/mozart/elisp")
-;;                           load-path))
-;;     (load "oz.elc")
-;;     ;; 不要? ;; (setenv "PATH" (concat mozart-path "/bin" ":" (getenv "PATH")))
-;;     (run-oz)))
-
-;; TODO: 任意の場所にある*.oz内でoz-feed-*を実行可能に. 現状は以下のエラーが出る
-;;       apply: Searching for program: No such file or directory, ./bin/ozengine
-;; TODO: もっと簡易にはSPC-rのsmart-compileで実行できるようにする. その際以前作成したrunozスクリプトを活用
-
-(let ((mozart-path "/Applications/Mozart2.app/Contents/Resources"))
-  (setq load-path (cons (concat mozart-path "/share/mozart/elisp")
-                        load-path))
-  (load "oz.elc")
-  (load "oz-server.elc")
-  (load "oz-extra.elc")
-  (load "mozart.elc"))
-(autoload 'oz-mode "oz-mode" "Mode for OZ/Mozart" t)
-(add-to-list 'auto-mode-alist '("\\.oz$" . oz-mode))
-
-(defun my-oz-mode-hooks ()
-  (define-key oz-mode-map "\C-c\C-b" 'oz-feed-buffer)
-  (define-key oz-mode-map "\C-c\C-l" 'oz-feed-line)
-  (define-key oz-mode-map "\C-c\C-r" 'oz-feed-region))
-(add-hook 'oz-mode-hook 'my-oz-mode-hooks)
+;; Oz(Mozart2) -- Oz利用時はMozart2.appを起動したほうが楽
 
 ;; output file of M-x customize
 (setq custom-file "~/.emacs.d/custom.el")
