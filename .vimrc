@@ -88,6 +88,9 @@ NeoBundleLazy 'vim-jp/vim-go-extra'
 NeoBundleLazy 'jdonaldson/vaxe'
 NeoBundleLazy 'derekwyatt/vim-scala'
 NeoBundleLazy 'oz.vim'
+NeoBundleLazy 'dag/vim2hs'
+NeoBundleLazy 'eagletmt/ghcmod-vim'
+NeoBundleLazy 'eagletmt/neco-ghc'
 
 " Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
@@ -174,6 +177,9 @@ augroup MyAutoCmdFileType
     autocmd FileType clojure  NeoBundleSource vim-classpath
     autocmd FileType clojure  NeoBundleSource vim-clojure-static
     autocmd FileType haskell  NeoBundleSource vim-filetype-haskell
+    autocmd FileType haskell  NeoBundleSource vim2hs
+    autocmd FileType haskell  NeoBundleSource ghcmod-vim
+    autocmd FileType haskell  NeoBundleSource neco-ghc
     autocmd FileType coffee   NeoBundleSource vim-coffee-script
     autocmd FileType slim     NeoBundleSource vim-slim
     autocmd FileType nginx    NeoBundleSource nginx.vim

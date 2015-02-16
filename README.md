@@ -25,3 +25,8 @@ copy private.xml to
 
 It's bothering, but KeyRemap4Macbook doesn't recognize symbolic link.
 
+
+TODO
+====================================
+
+* merge vimdir
