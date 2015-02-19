@@ -7,10 +7,6 @@ fi
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
-if [ "`/bin/ls -a ~ | grep .cabal`" != "" ]; then
-  export PATH=$HOME/.cabal/bin:$PATH
-fi
-
 ### setting for node(including nvm, npm)
 # nvm: https://github.com/creationix/nvm/blob/master/README.markdown
 if [ -d $HOME/.nvm ]; then
