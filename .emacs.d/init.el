@@ -85,9 +85,6 @@
 
 ;;; key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'surround)
-(global-surround-mode 1)
-
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 (global-set-key "\C-cl" 'toggle-truncate-lines)
