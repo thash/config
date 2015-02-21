@@ -85,45 +85,16 @@
 
 ;;; key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; evil (elpa)
-(require 'evil)
 
 ;; ESC keys
 (global-set-key "\C- " nil)
-(define-key evil-normal-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(define-key evil-insert-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(define-key evil-visual-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(define-key evil-replace-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(define-key evil-operator-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
-(define-key evil-motion-state-map (kbd "C-<SPC>") 'evil-force-normal-state)
 ;; Emacs-like edit mode for insert state
-(define-key evil-insert-state-map (kbd "C-d") 'delete-char)
-(define-key evil-insert-state-map (kbd "C-k") 'kill-line)
-(define-key evil-insert-state-map (kbd "C-y") 'yank)
-(define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
-(define-key evil-insert-state-map (kbd "C-n") 'next-line)
-(define-key evil-insert-state-map (kbd "C-p") 'previous-line)
-;; (define-key evil-insert-state-map (kbd "C-i") 'dabbrev-expand)
-(define-key evil-insert-state-map (kbd "C-u") 'delete-backward-char)
 ;; automatically insert comment to newline, when current line is commented.
-(define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 
 ;; normal state
-(define-key evil-normal-state-map (kbd "C-e") 'move-end-of-line)
-(define-key evil-normal-state-map (kbd "j") 'next-line) ;; visual line
-(define-key evil-normal-state-map (kbd "k") 'previous-line)
-(define-key evil-normal-state-map (kbd "SPC w") 'save-buffer)
-(define-key evil-normal-state-map (kbd "SPC q") 'delete-window)
-(define-key evil-normal-state-map (kbd "SPC h") 'windmove-left)
-(define-key evil-normal-state-map (kbd "SPC j") 'windmove-down)
-(define-key evil-normal-state-map (kbd "SPC k") 'windmove-up)
-(define-key evil-normal-state-map (kbd "SPC l") 'windmove-right)
 ;; indent(format) buffer
-(define-key evil-normal-state-map (kbd "SPC =")
   (lambda () (interactive) (indent-region (point-min) (point-max))))
-(evil-mode 1)
 
-;; evil-surround (plugins) -- https://github.com/timcharper/evil-surround
 (require 'surround)
 (global-surround-mode 1)
 
@@ -152,7 +123,6 @@
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t)
 
-;; recognize _ as a word. (It seems don't work on evil)
 (modify-syntax-entry ?_ "w")
 
 ;; C-Space -> select -> then, press C-RET
@@ -194,8 +164,6 @@
   (insert (shell-command-to-string (concat "echo -n $(date +" format ")"))))
 (defun today () (interactive) (insert-datetime "%Y%m%d"))
 (defun now () (interactive) (insert-datetime "\"%Y/%m/%d %H:%M\""))
-(define-key evil-normal-state-map (kbd ", d d") 'today)
-(define-key evil-normal-state-map (kbd ", d t") 'now)
 
 ;;; looks
 (global-hl-line-mode t)
@@ -218,8 +186,6 @@
 (defun my-find-tag ()
   (interactive)
   (find-tag (find-tag-default)))
-(define-key evil-normal-state-map (kbd ", l") 'my-find-tag)
-(define-key evil-normal-state-map (kbd ", h") 'pop-tag-mark)
 
 ;; tabbar(elpa)
 (require 'tabbar)
@@ -307,7 +273,6 @@
 (setq ac-use-menu-map t)
 ;; (setq ac-sources (add-to-list 'ac-sources 'ac-source-filename))
 ;; explicitly start auto-complete by TAB (added it to use ac-source-filename)
-(define-key evil-insert-state-map (kbd "TAB") 'ac-start)
 (define-key ac-completing-map (kbd "C-<SPC>") 'ac-stop)
 (define-key ac-menu-map "\C-n" 'ac-next)
 (define-key ac-menu-map "\C-p" 'ac-previous)
@@ -323,7 +288,6 @@
 
 ;; magit (elpa)
 (require 'magit)
-(define-key evil-normal-state-map (kbd "C-x g") 'magit-status)
 (define-key magit-status-mode-map (kbd "j") 'next-line)
 (define-key magit-status-mode-map (kbd "k") 'previous-line)
 (define-key magit-status-mode-map (kbd "l") 'magit-show-section)
@@ -365,15 +329,11 @@
 ;; ag.el (the_silver_searcher) (elpa)
 (setq ag-highlight-search t)
 (setq ag-reuse-buffers t)
-(define-key evil-normal-state-map (kbd ", s") 'ag)
 
 ;; helm, (helm-ag) (elpa)
 (when (require 'helm-config nil t)
   (helm-mode 1)
   (global-set-key (kbd "M-x") 'helm-M-x) ;; extended M-x
-  (define-key evil-normal-state-map (kbd "C-x b") 'helm-for-files) ;; instead of just opening from buffer list
-  (define-key evil-normal-state-map (kbd ", j") 'helm-ls-git-ls)
-  (define-key evil-normal-state-map (kbd ", j") 'helm-mini)
   (custom-set-variables
    '(helm-truncate-lines t)
    '(helm-ff-transformer-show-only-basename nil)
@@ -460,8 +420,6 @@
 
 ;; samrt-compile (elpa)
 (require 'smart-compile)
-(define-key evil-normal-state-map (kbd "SPC R") 'smart-compile)
-(define-key evil-normal-state-map (kbd "SPC r") (kbd "SPC R C-m"))
 (setq smart-compile-option-string '("\\.rb\\'" . "ruby %f"))
 (setq smart-compile-alist
       (append smart-compile-alist '(("\\.ml\\'" . "ocaml %f")
