@@ -85,16 +85,6 @@
 
 ;;; key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; ESC keys
-(global-set-key "\C- " nil)
-;; Emacs-like edit mode for insert state
-;; automatically insert comment to newline, when current line is commented.
-
-;; normal state
-;; indent(format) buffer
-  (lambda () (interactive) (indent-region (point-min) (point-max))))
-
 (require 'surround)
 (global-surround-mode 1)
 
