@@ -89,8 +89,11 @@
 (global-set-key "\C-k" 'previous-line)
 (global-set-key "\C-l" 'forward-char)
 (global-set-key "\C-h" 'backward-char)
+(global-set-key "\C-n" 'scroll-up)
+(global-set-key "\C-p" 'scroll-down)
 
 (global-set-key "\C-u" 'delete-backward-char)
+(global-set-key (kbd "C-S-d") 'kill-line)
 (global-set-key "\C-x\C-b" 'buffer-menu)
 (global-set-key "\C-cl" 'toggle-truncate-lines)
 (global-set-key (kbd "C-x F") 'find-file-other-window)
