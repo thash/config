@@ -125,9 +125,6 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil) ;; C-x,c,v for cut, copy, paste
 
-;; incremental search buffer items by C-x b
-(iswitchb-mode t)
-
 (defun window-toggle-division ()
   "Toggle :vs <-> :sp"
   (interactive)
