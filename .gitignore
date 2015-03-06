@@ -27,3 +27,4 @@ multiuser.screen
 .emacs.d/ircconf.el
 
 .DS_Store
+/.emacs.d/.mc-lists.el
