@@ -516,16 +516,6 @@
 (add-hook 'scss-mode-hook 'rainbow-mode)
 (add-hook 'html-mode-hook 'rainbow-mode)
 
-;; org-mode (elpa: org)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(defun my-org-mode-hooks ()
-  (local-set-key "RET" 'newline)
-  (local-set-key "\C-cl" 'org-store-link)
-  (local-set-key "\C-cc" 'org-capture)
-  (local-set-key "\C-ca" 'org-agenda)
-  (local-set-key "\C-cb" 'org-iswitchb))
-(add-hook 'org-mode-hook 'my-org-mode-hooks)
-
 ;; OCaml (tuareg-mode) (elpa)
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
