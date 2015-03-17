@@ -336,6 +336,7 @@ inoremap <F1> <C-[>
 " always reset iminsert to zero when leaving Insert mode.
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 inoremap jj <ESC>jj
+inoremap kk <ESC>kk
 inoremap jk <ESC>
 inoremap kj <ESC>
 
