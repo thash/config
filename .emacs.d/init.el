@@ -120,11 +120,6 @@
 
 (modify-syntax-entry ?_ "w")
 
-;; C-Space -> select -> then, press C-RET
-(setq cua-rectangle-mark-key (kbd "C-RET")) ;; should come before enabling cua-mode
-(cua-mode t)
-(setq cua-enable-cua-keys nil) ;; C-x,c,v for cut, copy, paste
-
 (defun window-toggle-division ()
   "Toggle :vs <-> :sp"
   (interactive)
@@ -248,6 +243,19 @@
  :background (face-attribute 'tabbar-default :background)
  :foreground (face-attribute 'tabbar-default :foreground)
  :box nil)
+
+
+;; multiple-cursors (elpa)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+;; C-Space -> select -> then, press C-RET
+;; http://www.emacswiki.org/emacs/CuaMode
+(setq cua-rectangle-mark-key (kbd "C-RET")) ;; put it before enabling cua
+(cua-mode t)
+(setq cua-enable-cua-keys nil) ;; C-x,c,v for cut, copy, paste
+
+(global-set-key "\C-v" 'cua-rectangle-mark-mode)
 
 
 (require 'auto-async-byte-compile) ;; elpa
