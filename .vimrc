@@ -8,7 +8,6 @@ endif
 let g:neobundle_default_git_protocol='git'
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 
 """ NeoBundle plugins {{{2
 " input support
@@ -96,6 +95,9 @@ NeoBundleLazy 'tpope/vim-fireplace'
 NeoBundleLazy 'tpope/vim-classpath'
 NeoBundleLazy 'guns/vim-clojure-static'
 
+NeoBundleCheck
+
+call neobundle#end()
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -138,7 +140,6 @@ set formatoptions-=o
 " filetype settings + additional {{{2
 filetype plugin indent on
 syntax on
-NeoBundleCheck
 
 " skeleton loading autocmd {{{3
 augroup SkeletonLoad
