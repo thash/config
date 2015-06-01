@@ -305,3 +305,18 @@ function ec2ssh () {
     # ec2_ip="$(echo $ec2_hosts | jq -r --arg HHH $ec2_selected '.Reservations[].Instances[]|select(.Tags[].Value == $HHH)|.PrivateIpAddress')"
     ssh -i ~/.ssh/ec2-key.pem ec2-user@$ec2_ip
 }
+
+# open URL from Firefox bookmarks
+function fb () {
+  sqlite_file="$(find $HOME/Library/Application\ Support/Firefox/Profiles/*.default/places.sqlite)"
+  if [ ! -e "$sqlite_file" ]; then
+    echo "cannot find sqlite file"; return
+  fi
+
+  sql="SELECT moz_bookmarks.title, moz_places.url FROM moz_bookmarks, moz_places WHERE moz_bookmarks.fk IS NOT NULL AND moz_bookmarks.fk = moz_places.id AND moz_places.url NOT LIKE 'place:%' ORDER BY moz_bookmarks.id;"
+
+  selection="$(sqlite3 $sqlite_file "$sql" | peco)"
+  echo $selection
+  open -a Firefox "$(echo $selection | awk -F '|' '{print $2}')"
+}
+
