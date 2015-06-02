@@ -280,7 +280,7 @@ if [ -f /usr/share/autojump/autojump.sh ]; then
   . /usr/share/autojump/autojump.sh
 fi
 
-### history with peco
+### history with peco {{{3
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -297,7 +297,7 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-### aws functions
+### aws functions {{{3
 function ec2ssh () {
     ec2_hosts="$(aws ec2 describe-instances)"
     ec2_selected="$(echo $ec2_hosts | jq -r '.Reservations[].Instances[].Tags[].Value' | peco)"
@@ -306,7 +306,7 @@ function ec2ssh () {
     ssh -i ~/.ssh/ec2-key.pem ec2-user@$ec2_ip
 }
 
-# open URL from Firefox bookmarks
+# open URL from Firefox bookmarks {{{3
 function fb () {
   sqlite_file="$(find $HOME/Library/Application\ Support/Firefox/Profiles/*.default/places.sqlite)"
   if [ ! -e "$sqlite_file" ]; then
@@ -315,8 +315,10 @@ function fb () {
 
   sql="SELECT moz_bookmarks.title, moz_places.url FROM moz_bookmarks, moz_places WHERE moz_bookmarks.fk IS NOT NULL AND moz_bookmarks.fk = moz_places.id AND moz_places.url NOT LIKE 'place:%' ORDER BY moz_bookmarks.id;"
 
-  selection="$(sqlite3 $sqlite_file "$sql" | peco)"
-  echo $selection
-  open -a Firefox "$(echo $selection | awk -F '|' '{print $2}')"
+  selections="$(sqlite3 $sqlite_file "$sql" | peco)"
+  if [ "$selections" = "" ]; then; return; fi
+
+  echo $selections
+  echo $selections | awk -F '|' '{print $(NF)}' | xargs open -g -a Firefox
 }
 
