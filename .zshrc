@@ -314,7 +314,12 @@ function fb () {
     echo "cannot find sqlite file"; return
   fi
 
-  sql="SELECT moz_bookmarks.title, moz_places.url FROM moz_bookmarks, moz_places WHERE moz_bookmarks.fk IS NOT NULL AND moz_bookmarks.fk = moz_places.id AND moz_places.url NOT LIKE 'place:%' ORDER BY moz_bookmarks.id;"
+  sql="SELECT b.title, p.url FROM moz_bookmarks as b, moz_places as p \
+    WHERE b.type = 1 \
+      AND b.title IS NOT NULL \
+      AND b.fk = p.id \
+      AND p.url NOT LIKE 'place:%' \
+    ORDER BY b.id;"
 
   selections="$(sqlite3 $sqlite_file "$sql" | peco)"
   if [ "$selections" = "" ]; then; return; fi
