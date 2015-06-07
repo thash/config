@@ -9,6 +9,10 @@ set nextpattern+=next
 set previouspattern+=prev
 set previouspattern+=previous
 
+" ignore pages {{{2
+autocmd LocationChange .*                             js modes.passAllKeys = false
+autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
+autocmd LocationChange www\\.google\\.com/calendar    js modes.passAllKeys = true
 
 "key mappings {{{2
 nnoremap <BS> H
