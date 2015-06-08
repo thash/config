@@ -625,7 +625,7 @@ let g:ref_jquery_path = $HOME . '/.vim/jquery_docs'
 function! CtrlPHere()
     exec "CtrlP " . expand("%:p:h")
 endfunction
-nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
+" nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
 nnoremap <silent> <Leader>J  :<C-u>call CtrlPHere()<CR>
 nnoremap <silent> <Leader>ub :<C-u>CtrlPBuffer<CR>
 let g:ctrlp_map = '<Nop>'
@@ -637,6 +637,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("h")': ['<c-y>']
     \ }
 
+"" fzf -- installed via brew {{{2
+set rtp+=/usr/local/Cellar/fzf/HEAD
+nnoremap <silent> <Leader>j  :<C-u>FZF<CR>
 
 "" unite.vim {{{2
 " let g:unite_enable_start_insert=0
