@@ -328,3 +328,4 @@ function fb () {
   echo $selections | awk -F '|' '{print $(NF)}' | xargs open -g -a Firefox
 }
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
