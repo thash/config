@@ -321,11 +321,11 @@ function fb () {
       AND p.url NOT LIKE 'place:%' \
     ORDER BY b.id;"
 
-  selections="$(sqlite3 $sqlite_file "$sql" | peco)"
+  selections="$(sqlite3 $sqlite_file "$sql" | fzf --multi)"
   if [ "$selections" = "" ]; then; return; fi
 
   echo $selections
-  echo $selections | awk -F '|' '{print $(NF)}' | xargs open -g -a Firefox
+  echo $selections | awk -F '|' '{print $(NF)}' | xargs open -a Firefox
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
