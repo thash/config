@@ -124,7 +124,9 @@ if (!liberator.globalVariables.copy_templates){
         { label: 'title',          value: '%TITLE%' },
         { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
         { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
-        { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' }
+        { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+        { label: 'mdquote',        value: '> %HTMLSEL%\n>\n> from: %TITLE%\n> %URL%' },
+        { label: 'Hatebu',         value: '<a href="%URL%">%TITLE%</a> <a href="http://b.hatena.ne.jp/entry/%URL%"> <img src="http://b.hatena.ne.jp/entry/image/%URL%" title="%TITLE%" border="0"></a>' }
     ];
 }
 
