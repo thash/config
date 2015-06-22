@@ -28,3 +28,6 @@ multiuser.screen
 
 .DS_Store
 /.emacs.d/.mc-lists.el
+
+# Vimperator local machine settings
+.vimperator/info
