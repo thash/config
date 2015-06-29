@@ -113,6 +113,7 @@ alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
 alias -g P='| peco'
+alias -g W='| wc'
 alias -g N='2> /dev/null'
 alias -g TC='tar cvzf'
 
