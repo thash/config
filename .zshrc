@@ -299,13 +299,19 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 ### aws functions {{{3
-# TODO: select region and key
 function ec2ssh () {
     ec2_hosts="$(aws ec2 describe-instances)"
     selected_line="$(echo $ec2_hosts | jq -r '.Reservations[].Instances[] | "\(.Tags[0].Value), \(.PublicIpAddress), \(.PrivateIpAddress)"' | peco)"
     # key="$(ls $HOME/.ssh | peco)"
-    ec2_ip="$(echo $selected_line | awk -F ', ' '{print $(NF - 1)}')" # select public ip
-    ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
+    if [ $selected_line ]; then
+      ec2_ip="$(echo $selected_line | awk -F ', ' '{print $(NF - 1)}')" # select public ip
+      echo $ec2_ip
+      # TODO: select region and key
+      ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
+    else
+      echo "canceled";
+      exit 1;
+    fi
 }
 
 # open URL from Firefox bookmarks {{{3
