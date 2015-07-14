@@ -126,7 +126,20 @@ if (!liberator.globalVariables.copy_templates){
         { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
         { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
         { label: 'mdquote',        value: '> %HTMLSEL%\n>\n> from: %TITLE%\n> %URL%' },
-        { label: 'Hatebu',         value: '<a href="%URL%">%TITLE%</a> <a href="http://b.hatena.ne.jp/entry/%URL%"> <img src="http://b.hatena.ne.jp/entry/image/%URL%" title="%TITLE%" border="0"></a>' }
+        { label: 'Hatebu',         value: '<a href="%URL%">%TITLE%</a> <a href="http://b.hatena.ne.jp/entry/%URL%"> <img src="http://b.hatena.ne.jp/entry/image/%URL%" title="%TITLE%" border="0"></a>' },
+        { label: 'case',           value: 'case id and title', custom: function(){
+                                                                                  function getCaseId() {
+                                                                                    var params = content.window.location.href.split("?")[1].split("&");
+                                                                                    for ( i = 0; i < params.length; i++ ) {
+                                                                                      pair = params[i].split("=");
+                                                                                      if (pair[0] == "caseID") {
+                                                                                        return pair[1].replace(/(\d+).*/, '$1');
+                                                                                      }
+                                                                                    }
+                                                                                    return "";
+                                                                                  };
+                                                                                  return "* " + getCaseId() + ": " + content.document.title;
+                                                                                } }
     ];
 }
 
