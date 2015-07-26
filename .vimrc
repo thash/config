@@ -28,6 +28,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'benjaminwhite/Benokai'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'whatyouhide/vim-gotham'
 
 " additional commands/features
 NeoBundle 'fugitive.vim'
