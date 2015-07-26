@@ -9,9 +9,6 @@
     interactive = auto
     grep = auto
 
-[github]
-  user = memerelics
-
 [core]
   autocrlf = input
   editor = vim
@@ -51,7 +48,6 @@
 [push]
 	default = simple
 [pull]
-  rebase = true
 [grep]
   lineNumber = true
 
@@ -66,4 +62,3 @@
 
 [include]
   path = .gitconfig.local
-
