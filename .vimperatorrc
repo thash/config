@@ -14,6 +14,7 @@ autocmd LocationChange .*                             js modes.passAllKeys = fal
 autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
 autocmd LocationChange www\\.google\\.com/calendar    js modes.passAllKeys = true
 autocmd LocationChange app\\.asana\\.com              js modes.passAllKeys = true
+autocmd LocationChange reader\\.livedoor\\.com        js modes.passAllKeys = true
 
 
 "key mappings {{{2
