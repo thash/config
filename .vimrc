@@ -63,6 +63,8 @@ NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'Kocha/vim-unite-tig'
 
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'godlygeek/tabular'
+
 
 "" Lazys {{{3
 NeoBundleLazy 'TwitVim'
