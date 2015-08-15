@@ -639,7 +639,7 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 "" fzf -- installed via brew {{{2
-set rtp+=/usr/local/Cellar/fzf/HEAD
+set rtp+=/usr/local/Cellar/fzf/0.10.2
 nnoremap <silent> <Leader>j  :<C-u>FZF<CR>
 
 "" unite.vim {{{2
