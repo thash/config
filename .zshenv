@@ -32,6 +32,11 @@ if [ -d $HOME/work/android/sdk ]; then
   export PATH=$HOME/work/android/sdk/build-tools/17.0.0:$PATH
 fi
 
+# brew install android-sdk
+if [ -d /usr/local/opt/android-sdk/ ];then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+fi
+
 if [ -d $HOME/adk/ ]; then
   export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
 fi
