@@ -501,6 +501,9 @@ nnoremap <Leader>nn :<C-u>set number!<CR>
 " Toggle set paste/nopaste
 nnoremap <Space>p :set paste!<CR>
 
+" copy to clipboard
+vnoremap <Space>p :!pbcopy<CR>u
+
 " set UTF-8
 nnoremap <Leader>u8 :<C-u>e ++enc=UTF-8<CR>
 
