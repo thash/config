@@ -168,6 +168,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.scala set filetype=scala
     autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
     autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
+    autocmd BufRead,BufWinEnter,BufNewFile *.es6.js set filetype=es6.javascript
 
     """ NeoBundleSources {{{4
     autocmd FileType markdown NeoBundleSource vim-markdown
@@ -532,6 +533,7 @@ augroup END
 
 let g:quickrun_config = {}
 let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
+let g:quickrun_config['es6.javascript'] = {'command' : './run', 'exec' : ['%c %s'], 'filetype' : 'javascript'}
 
 if executable('bundle exec rspec')
     let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
