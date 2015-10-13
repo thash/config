@@ -112,7 +112,6 @@ alias -g G='| egrep --color=auto --ignore-case'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
-alias -g P='| peco'
 alias -g W='| wc'
 alias -g N='2> /dev/null'
 alias -g TC='tar cvzf'
@@ -281,28 +280,11 @@ if [ -f /usr/share/autojump/autojump.sh ]; then
   . /usr/share/autojump/autojump.sh
 fi
 
-### history with peco {{{3
-function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
 ### aws functions {{{3
 function ec2ssh () {
     ec2_hosts="$(aws ec2 describe-instances)"
-    selected_line="$(echo $ec2_hosts | jq -r '.Reservations[].Instances[] | "\(.Tags[0].Value), \(.PublicIpAddress), \(.PrivateIpAddress)"' | peco)"
-    # key="$(ls $HOME/.ssh | peco)"
+    selected_line="$(echo $ec2_hosts | jq -r '.Reservations[].Instances[] | "\(.Tags[0].Value), \(.PublicIpAddress), \(.PrivateIpAddress)"' | fzf)"
+    # key="$(ls $HOME/.ssh | fzf)"
     if [ $selected_line ]; then
       ec2_ip="$(echo $selected_line | awk -F ', ' '{print $(NF - 1)}')" # select public ip
       echo $ec2_ip
