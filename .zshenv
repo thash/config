@@ -8,12 +8,12 @@ export CLICOLOR='true'
 export PERL_BADLANG=0
 
 ### setting for node(including nvm, npm)
-# nvm: https://github.com/creationix/nvm/blob/master/README.markdown
-if [ -d $HOME/.nvm ]; then
-  source ~/.nvm/nvm.sh
-  # TODO: find installed versions
-  # nvm use v0.9.5
+export NVM_DIR="/Users/hash/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh" # This loads nvm
+  nvm use stable
 fi
+
 if [ `which npm > /dev/null; echo $?` = 0 ]; then
   export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
