@@ -534,6 +534,7 @@ augroup END
 let g:quickrun_config = {}
 let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
 let g:quickrun_config['es6.javascript'] = {'command' : 'babel', 'exec' : ['%c %s | node'], 'filetype' : 'javascript'}
+let g:quickrun_config['lisp'] = {'command' : '/usr/local/bin/sbcl', 'exec' : ['%c --script %s'], 'filetype' : 'lisp'}
 
 if executable('bundle exec rspec')
     let g:quickrun_config['ruby.rspec'] = {'command': 'bundle exec rspec'}
