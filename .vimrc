@@ -159,6 +159,7 @@ augroup MyAutoCmdFileType
     """ set filetype {{{4
     autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
     autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby
+    autocmd BufRead,BufWinEnter,BufNewFile *.thor set filetype=ruby
     autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
     autocmd BufRead,BufNewFile *.applescript set filetype=applescript
     autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
