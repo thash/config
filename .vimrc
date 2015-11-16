@@ -92,6 +92,8 @@ NeoBundleLazy 'oz.vim'
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'eagletmt/ghcmod-vim'
 NeoBundleLazy 'eagletmt/neco-ghc'
+NeoBundleLazy 'applescript.vim'
+
 
 " Clojure
 NeoBundleLazy 'tpope/vim-fireplace'
@@ -192,6 +194,7 @@ augroup MyAutoCmdFileType
     autocmd FileType go       NeoBundleSource vim-go
     autocmd FileType go       NeoBundleSource vim-go-extra
     autocmd FileType go       NeoBundleSource vim-godef
+    autocmd FileType applescript NeoBundleSource applescript.vim
 
     autocmd FileType haxe     NeoBundleSource vaxe
     autocmd FileType scala    NeoBundleSource vim-scala
@@ -547,6 +550,10 @@ if executable('clj')
   let g:quickrun_config['clojure'] = {'command': 'clj'}
 elseif executable('lein')
   let g:quickrun_config['clojure'] = {'command': 'lein run'}
+endif
+
+if executable('osascript')
+  let g:quickrun_config['applescript'] = {'command': 'osascript'}
 endif
 
 nnoremap <space>r :<C-u>QuickRun<CR>
