@@ -8,7 +8,7 @@ export CLICOLOR='true'
 export PERL_BADLANG=0
 
 ### setting for node(including nvm, npm)
-export NVM_DIR="/Users/hash/.nvm"
+export NVM_DIR="/Users/$USER/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh" # This loads nvm
   nvm use stable
