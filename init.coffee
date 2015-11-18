@@ -9,3 +9,9 @@
 # atom.workspace.observeTextEditors (editor) ->
 #   editor.onDidSave ->
 #     console.log "Saved! #{editor.getPath()}"
+
+process.env.PATH = [
+  "#{process.env.HOME}/.nvm/versions/node/v5.0.0/bin",
+  "#{process.env.HOME}/.rbenv/shims",
+  process.env.PATH
+].join(":")
