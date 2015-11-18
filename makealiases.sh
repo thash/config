@@ -1,14 +1,14 @@
 #!/bin/bash
 
-for filename in bashrc zshenv zshrc gitconfig gitignore vimrc gvimrc tmux.conf pryrc rspec tigrc agignore sbclrc
+for filename in .bashrc .zshenv .zshrc .gitconfig .gitignore .vimrc .gvimrc .tmux.conf .pryrc .rspec .gemrc .tigrc .agignore .vimperatorrc .sbclrc .atom/init.coffee
 do
-    if [ -e $HOME/.$filename ]; then
-        rm -i $HOME/.$filename
+    if [ -e $HOME/$filename ]; then
+        rm -i $HOME/$filename
     fi
-    ln -s `pwd`/.$filename $HOME/.$filename
+    ln -s `pwd`/$filename $HOME/$filename
 done
 
-for dirname in .zsh .lein
+for dirname in .zsh .lein .vimperator
 do
   if [ -d `pwd`/$dirname ]; then
     if [ -d $HOME/$dirname ]; then
@@ -17,7 +17,3 @@ do
     ln -s `pwd`/$dirname $HOME/$dirname
   fi
 done
-
-ln -s `pwd`/init.coffee $HOME/.atom/init.coffee
-
-# source ~/.zshrc
