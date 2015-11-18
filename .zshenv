@@ -11,7 +11,7 @@ export PERL_BADLANG=0
 export NVM_DIR="/Users/$USER/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh" # This loads nvm
-  nvm use stable
+  # nvm use stable
 fi
 
 if [ `which npm > /dev/null; echo $?` = 0 ]; then
