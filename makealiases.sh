@@ -18,4 +18,6 @@ do
   fi
 done
 
+ln -s `pwd`/init.coffee $HOME/.atom/init.coffee
+
 # source ~/.zshrc
