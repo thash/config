@@ -30,3 +30,23 @@ TODO
 ====================================
 
 * merge vimdir
+
+
+Tips
+====================================
+
+how to change commiter/author of old commits
+
+```
+$ git config user.name "memerelics"
+$ git config user.email "xxxxxxxxxxxxxxxxx@gmail.com"
+
+$ cat .git/config
+
+$ git rebase -i <earlier commit>
+
+// if --amend without --author, only commiter information will be changed.
+$ git commit --amend --author="memerelics <xxxxxxxxxxxxxxxxx@gmail.com>"
+$ git rebase --continue
+```
+
