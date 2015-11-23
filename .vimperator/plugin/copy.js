@@ -118,6 +118,18 @@ EOM
 liberator.plugins.exCopy = (function(){
 var excludeLabelsMap = {};
 var copy_templates = [];
+
+var getCaseId = function() {
+  var params = content.window.location.href.split("?")[1].split("&");
+  for ( i = 0; i < params.length; i++ ) {
+    pair = params[i].split("=");
+    if (pair[0] == "caseID") {
+      return pair[1].replace(/(\d+).*/, '$1');
+    }
+  }
+  return "";
+};
+
 if (!liberator.globalVariables.copy_templates){
     liberator.globalVariables.copy_templates = [
         { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
@@ -127,19 +139,8 @@ if (!liberator.globalVariables.copy_templates){
         { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
         { label: 'mdquote',        value: '> %HTMLSEL%\n>\n> from: %TITLE%\n> %URL%' },
         { label: 'Hatebu',         value: '<a href="%URL%">%TITLE%</a> <a href="http://b.hatena.ne.jp/entry/%URL%"> <img src="http://b.hatena.ne.jp/entry/image/%URL%" title="%TITLE%" border="0"></a>' },
-        { label: 'case',           value: 'case id and title', custom: function(){
-                                                                                  function getCaseId() {
-                                                                                    var params = content.window.location.href.split("?")[1].split("&");
-                                                                                    for ( i = 0; i < params.length; i++ ) {
-                                                                                      pair = params[i].split("=");
-                                                                                      if (pair[0] == "caseID") {
-                                                                                        return pair[1].replace(/(\d+).*/, '$1');
-                                                                                      }
-                                                                                    }
-                                                                                    return "";
-                                                                                  };
-                                                                                  return "* " + getCaseId() + ": " + content.document.title;
-                                                                                } }
+        { label: 'cid',            value: 'case id',           custom: function(){ return getCaseId(); } },
+        { label: 'case',           value: 'case id and title', custom: function(){ return "- " + getCaseId() + ": " + content.document.title; } }
     ];
 }
 
