@@ -1,20 +1,10 @@
 <?xml version="1.0"?>
 <root>
-    <appdef>
-      <appname>MACVIM</appname>
-      <equal>org.vim.MacVim</equal>
-    </appdef>
-    <appdef>
-      <appname>ITERM2</appname>
-      <equal>com.googlecode.iterm2</equal>
-    </appdef>
     <list>
         <item>
             <name>Control_L+hjk</name>
             <identifier>private.vimode_control_hjk</identifier>
                 <not>TERMINAL</not>
-                <not>ITERM2</not>
-                <not>MACVIM</not>
                 <autogen>--KeyToKey-- KeyCode::H, ModifierFlag::CONTROL_L,
                     KeyCode::CURSOR_LEFT</autogen>
                 <autogen>--KeyToKey-- KeyCode::J, ModifierFlag::CONTROL_L,
@@ -27,8 +17,6 @@
             <name>Control_L+l</name>
             <identifier>private.vimode_control_l</identifier>
                 <not>TERMINAL</not>
-                <not>ITERM2</not>
-                <not>MACVIM</not>
                 <autogen>--KeyToKey-- KeyCode::L, ModifierFlag::CONTROL_L,
                     KeyCode::CURSOR_RIGHT</autogen>
         </item>
