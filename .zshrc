@@ -4,10 +4,6 @@ export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 export EDITOR=vim
 
-if [[ -s $HOME/.zsh_local ]] ; then
-  source $HOME/.zsh_local
-fi
-
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
@@ -193,6 +189,8 @@ zle -N history-beginning-search-forward-end history-search-end
 
 ### key bindkeys (bindkey -L) ### {{{2
 bindkey -e
+# bindkey "^G" clear-screen # just in case
+
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^A" beginning-of-line
@@ -318,3 +316,10 @@ function fb () {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# load local settings
+if [[ -s $HOME/.zshrc.local ]] ; then
+  source $HOME/.zshrc.local
+fi
+
