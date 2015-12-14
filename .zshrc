@@ -190,7 +190,7 @@ zle -N history-beginning-search-forward-end history-search-end
 
 ### key bindkeys (bindkey -L) ### {{{2
 bindkey -e
-# bindkey "^G" clear-screen # just in case
+bindkey "^G" clear-screen # just in case when Karabiner kills Ctrl-L
 
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
