@@ -7,6 +7,10 @@ fi
 export CLICOLOR='true'
 export PERL_BADLANG=0
 
+if [ `which zsh > /dev/null; echo $?` = 0 ]; then
+  export SHELL=`which zsh`
+fi
+
 ### setting for node(including nvm, npm)
 export NVM_DIR="/Users/$USER/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
