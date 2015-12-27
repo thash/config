@@ -12,3 +12,8 @@
 #   editor = editorView.getEditor()
 #   if path.extname(editor.getPath()) is '.md'
 #     editor.setSoftWrap(true)
+
+process.env.PATH = ["/usr/local/bin",
+                    "/Users/hash/bin"
+                    process.env.PATH].join(":")
+process.env.GOPATH = "/Users/hash/.go"
