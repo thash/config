@@ -1,108 +1,91 @@
-" Vundle ============================================ {{{1
-" Vundle initialization {{{2
+" vim-plug https://github.com/junegunn/vim-plug
 
-set nocompatible
-if has('vim_starting')
-  set rtp+=~/.vim/bundle/neobundle.vim/
-endif
-let g:neobundle_default_git_protocol='git'
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/plugged')
 
-""" NeoBundle plugins {{{2
 " input support
-NeoBundle 'surround.vim'
-NeoBundle 'Align'
-NeoBundle 'YankRing.vim'
-NeoBundle 'sequence'
-NeoBundle 'snipMate'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'ngmy/vim-rubocop'
+Plug 'surround.vim'
+Plug 'Align'
+Plug 'YankRing.vim'
+Plug 'sequence'
+Plug 'snipMate'
+Plug 'scrooloose/syntastic'
 
 " looks nicer
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'Gentooish'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'benjaminwhite/Benokai'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'whatyouhide/vim-gotham'
+Plug 'gregsexton/gitv'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'Gentooish'
+Plug 'tomasr/molokai'
+Plug 'w0ng/vim-hybrid'
+Plug 'benjaminwhite/Benokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'whatyouhide/vim-gotham'
 
 " additional commands/features
-NeoBundle 'fugitive.vim'
-NeoBundle 'quickrun.vim'
-NeoBundle 'ag.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'ref.vim'
-NeoBundle 'wadako111/say.vim'
+Plug 'fugitive.vim'
+Plug 'quickrun.vim'
+Plug 'ag.vim'
+Plug 'open-browser.vim'
+Plug 'ref.vim'
+Plug 'wadako111/say.vim'
 
-NeoBundle 'thinca/vim-logcat'
+Plug 'thinca/vim-logcat'
 
 " textobj family. -user is base plugin
-NeoBundle 'textobj-user'
-NeoBundle 'textobj-indent'
-NeoBundle 'textobj-function'
+Plug 'textobj-user'
+Plug 'textobj-indent'
+Plug 'textobj-function'
 
 " Shougo family
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'mac'   : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix'  : 'gmake',
-\    },
-\ }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+" NeoBundle 'Shougo/vimshell'
+" NeoBundle 'Shougo/vimproc.vim', {
+" \ 'build' : {
+" \     'mac'   : 'make -f make_mac.mak',
+" \     'linux' : 'make',
+" \     'unix'  : 'gmake',
+" \    },
+" \ }
 
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'Sixeight/unite-grep'
-NeoBundle 'Kocha/vim-unite-tig'
+Plug 'Shougo/vimfiler'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'Sixeight/unite-grep'
+Plug 'Kocha/vim-unite-tig'
 
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'godlygeek/tabular'
-
-
-"" Lazys {{{3
-NeoBundleLazy 'TwitVim'
-
-"" Filetypes -- loaded by NeoBundleSource when needed {{{3
-NeoBundleLazy 'ruby.vim'
-NeoBundleLazy 't9md/vim-textobj-function-ruby'
-NeoBundleLazy 'tpope/vim-markdown'
-NeoBundleLazy 'nelstrom/vim-markdown-folding'
-NeoBundleLazy 'kannokanno/previm'
-NeoBundleLazy 'joker1007/vim-markdown-quote-syntax'
-NeoBundleLazy 'kchmck/vim-coffee-script'
-NeoBundleLazy 'slim-template/vim-slim'
-NeoBundleLazy 'nginx.vim'
-NeoBundleLazy 'kana/vim-filetype-haskell'
-NeoBundleLazy 'elzr/vim-json'
-NeoBundleLazy 'wting/rust.vim'
-NeoBundleLazy 'dgryski/vim-godef'
-NeoBundleLazy 'jnwhiteh/vim-golang'
-NeoBundleLazy 'fatih/vim-go'
-NeoBundleLazy 'vim-jp/vim-go-extra'
-NeoBundleLazy 'jdonaldson/vaxe'
-NeoBundleLazy 'derekwyatt/vim-scala'
-NeoBundleLazy 'oz.vim'
-NeoBundleLazy 'dag/vim2hs'
-NeoBundleLazy 'eagletmt/ghcmod-vim'
-NeoBundleLazy 'eagletmt/neco-ghc'
-NeoBundleLazy 'applescript.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'godlygeek/tabular'
 
 
-" Clojure
-NeoBundleLazy 'tpope/vim-fireplace'
-NeoBundleLazy 'tpope/vim-classpath'
-NeoBundleLazy 'guns/vim-clojure-static'
+""" Lazy load by Filetypes
+Plug 'ruby.vim'                            , { 'for' : ['ruby'] }
+Plug 'ngmy/vim-rubocop'                    , { 'for' : ['ruby'] }
+Plug 't9md/vim-textobj-function-ruby'      , { 'for' : ['ruby'] }
+Plug 'tpope/vim-markdown'                  , { 'for' : ['markdown'] }
+Plug 'kannokanno/previm'                   , { 'for' : ['markdown'] }
+Plug 'joker1007/vim-markdown-quote-syntax' , { 'for' : ['markdown'] }
+Plug 'kchmck/vim-coffee-script'            , { 'for' : ['coffee'] }
+Plug 'slim-template/vim-slim'              , { 'for' : ['slim'] }
+Plug 'nginx.vim'                           , { 'for' : ['nginx'] }
+Plug 'kana/vim-filetype-haskell'           , { 'for' : ['haskell'] }
+Plug 'dag/vim2hs'                          , { 'for' : ['haskell'] }
+Plug 'eagletmt/ghcmod-vim'                 , { 'for' : ['haskell'] }
+Plug 'eagletmt/neco-ghc'                   , { 'for' : ['haskell'] }
+Plug 'elzr/vim-json'                       , { 'for' : ['json'] }
+Plug 'wting/rust.vim'                      , { 'for' : ['rust'] }
+Plug 'dgryski/vim-godef'                   , { 'for' : ['go'] }
+Plug 'jnwhiteh/vim-golang'                 , { 'for' : ['go'] }
+Plug 'fatih/vim-go'                        , { 'for' : ['go'] }
+Plug 'vim-jp/vim-go-extra'                 , { 'for' : ['go'] }
+Plug 'jdonaldson/vaxe'                     , { 'for' : ['haxe'] }
+Plug 'derekwyatt/vim-scala'                , { 'for' : ['scala'] }
+Plug 'oz.vim'                              , { 'for' : ['oz'] }
+Plug 'applescript.vim'                     , { 'for' : ['applescript'] }
+Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
+Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
+Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
 
-NeoBundleCheck
-
-call neobundle#end()
+call plug#end()
 
 " General ============================================ {{{1
 " set someting {{{2
@@ -172,34 +155,6 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
     autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
     autocmd BufRead,BufWinEnter,BufNewFile *.es6.js set filetype=es6.javascript
-
-    """ NeoBundleSources {{{4
-    autocmd FileType markdown NeoBundleSource vim-markdown
-    autocmd FileType markdown NeoBundleSource vim-markdown-folding
-    autocmd FileType markdown NeoBundleSource vim-markdown-quote-syntax
-    autocmd FileType markdown NeoBundleSource previm
-    autocmd FileType ruby     NeoBundleSource ruby.vim
-    autocmd FileType ruby     NeoBundleSource vim-textobj-function-ruby
-    autocmd FileType clojure  NeoBundleSource vim-fireplace
-    autocmd FileType clojure  NeoBundleSource vim-classpath
-    autocmd FileType clojure  NeoBundleSource vim-clojure-static
-    autocmd FileType haskell  NeoBundleSource vim-filetype-haskell
-    autocmd FileType haskell  NeoBundleSource vim2hs
-    autocmd FileType haskell  NeoBundleSource ghcmod-vim
-    autocmd FileType haskell  NeoBundleSource neco-ghc
-    autocmd FileType coffee   NeoBundleSource vim-coffee-script
-    autocmd FileType slim     NeoBundleSource vim-slim
-    autocmd FileType nginx    NeoBundleSource nginx.vim
-    autocmd FileType json     NeoBundleSource vim-json
-    autocmd FileType rust     NeoBundleSource rust.vim
-    autocmd FileType go       NeoBundleSource vim-go
-    autocmd FileType go       NeoBundleSource vim-go-extra
-    autocmd FileType go       NeoBundleSource vim-godef
-    autocmd FileType applescript NeoBundleSource applescript.vim
-
-    autocmd FileType haxe     NeoBundleSource vaxe
-    autocmd FileType scala    NeoBundleSource vim-scala
-    autocmd FileType oz       NeoBundleSource oz.vim
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
@@ -882,24 +837,6 @@ endfunction
 command! -nargs=* Nameru call <sid>nameru(<f-args>)
 nnoremap <Leader>na :Nameru<CR>
 
-" Load settings for each location. {{{2
-" http://d.hatena.ne.jp/thinca/20100216/1266294717
-augroup vimrc-local
-  autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-  let files = findfile('vimrc_local.vim', escape(a:loc, ' ') . ';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
-
-" if g:loaded_vimrc == 0
-"   call s:vimrc_local(getcwd())
-" endif
-
 " git-diff-aware version of gf commands. {{{2
 " http://labs.timedia.co.jp/2011/04/git-diff-aware-gf-commands-for-vim.html
 nnoremap <expr> gf  <SID>do_git_diff_aware_gf('gf')
@@ -934,4 +871,19 @@ function! s:Jq(...)
         let l:arg = a:1
     endif
     execute "%! jq \"" . l:arg . "\""
+endfunction
+
+
+" Load settings for each location. {{{2
+" http://d.hatena.ne.jp/thinca/20100216/1266294717
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('vimrc.local.vim', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
 endfunction
