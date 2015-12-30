@@ -32,9 +32,18 @@
 #   'ctrl-space': 'vim-mode:activate-normal-mode'
 'atom-text-editor.vim-mode-plus:not(.normal-mode)':
   'ctrl-space': 'vim-mode-plus:activate-normal-mode'
+  'ctrl-g': 'vim-mode-plus:activate-normal-mode'
 
 'atom-text-editor':
   'ctrl-shift-space': 'autocomplete-plus:activate'
 
 '.platform-darwin atom-text-editor':
   'cmd-r': 'script:run'
+
+# https://github.com/atom/autocomplete-plus#remapping-movement-commands
+'body atom-text-editor.autocomplete-active':
+  'ctrl-p': 'autocomplete-plus:move-up'
+  'ctrl-n': 'autocomplete-plus:move-down'
+'atom-text-editor.autocomplete-active':
+  'escape': 'autocomplete-plus:cancel'
+  # 'ctrl-g': 'autocomplete-plus:cancel'
