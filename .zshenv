@@ -51,3 +51,8 @@ export PATH=$PATH:$GOPATH/bin
 
 # Emacs path (mainly for emacsclient)
 export PATH=/usr/local/Cellar/emacs/24.3/bin:$PATH
+
+# Python installation based on:
+# https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
+export PATH=/usr/local/share/python:$PATH
+export WORKON_HOME=~/.virtualenvs
