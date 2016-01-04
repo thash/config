@@ -38,7 +38,7 @@
   'ctrl-shift-space': 'autocomplete-plus:activate'
 
 '.platform-darwin atom-text-editor':
-  'cmd-r': 'script:run'
+  'cmd-alt-r': 'script:run'
 
 # https://github.com/atom/autocomplete-plus#remapping-movement-commands
 'body atom-text-editor.autocomplete-active':
