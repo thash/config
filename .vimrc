@@ -610,7 +610,6 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 "" fzf -- installed via brew {{{2
-set rtp+=/usr/local/Cellar/fzf/0.10.2
 set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <Leader>j  :<C-u>FZF<CR>
 
