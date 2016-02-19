@@ -14,7 +14,10 @@ fi
 ### setting for node(including nvm, npm)
 export NVM_DIR="/Users/$USER/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
-  . "$NVM_DIR/nvm.sh" # This loads nvm
+  . "$NVM_DIR/nvm.sh"
+  # nvm use stable
+elif [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
+  . $(brew --prefix nvm)/nvm.sh
   # nvm use stable
 fi
 
