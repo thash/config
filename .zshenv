@@ -14,7 +14,10 @@ fi
 ### setting for node(including nvm, npm)
 export NVM_DIR="/Users/$USER/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
-  . "$NVM_DIR/nvm.sh" # This loads nvm
+  . "$NVM_DIR/nvm.sh"
+  # nvm use stable
+elif [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
+  . $(brew --prefix nvm)/nvm.sh
   # nvm use stable
 fi
 
@@ -22,7 +25,9 @@ if [ `which npm > /dev/null; echo $?` = 0 ]; then
   export PATH=`npm -g bin 2>/dev/null`:$PATH
 fi
 
-export AWS_CONFIG_FILE=$HOME/.aws.config
+# WARNING: Found the legacy environment variable [AWS_CONFIG_FILE=/Users/thash/.aws.config].
+# Please use the latest environment variable to specify your credentials file override: [AWS_CREDENTIAL_PROFILES_FILE=/Users/thash/.aws.config]
+export AWS_CREDENTIAL_PROFILES_FILE=$HOME/.aws/credentials
 
 ############ Android development ##############
 if [ -f /usr/libexec/java_home ]; then
