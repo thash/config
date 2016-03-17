@@ -5,6 +5,7 @@ multiuser.screen
 .lein/self-installs
 .lein/repl-history
 .lein/indices
+.lein/tmp-atom-jars
 
 # emacs
 *\#
