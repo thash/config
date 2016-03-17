@@ -24,6 +24,10 @@
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
 
+'.command-palette':
+  'ctrl-space': 'command-palette:toggle'
+  'ctrl-g': 'command-palette:toggle'
+
 'atom-workspace':
   'ctrl-cmd-shift-d': 'date:date'
   'ctrl-cmd-shift-t': 'date:time'
