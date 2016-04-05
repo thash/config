@@ -93,6 +93,7 @@ fi
 
 ### Global Aliases {{{3
 alias -g G='| egrep --color=auto --ignore-case'
+alias -g XG='| xargs ag'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
