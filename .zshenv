@@ -11,6 +11,7 @@ export PATH=$HOME/bin:$PATH
 
 # rbenv settings
 export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
@@ -65,10 +66,7 @@ fi
 
 # golang settings
 export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
-
-# Emacs path (mainly for emacsclient)
-export PATH=/usr/local/Cellar/emacs/24.3/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
 # Python installation based on:
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
