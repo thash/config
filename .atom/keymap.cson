@@ -65,3 +65,4 @@
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   ', j': 'fuzzy-grep:toggle'
+  'space r': 'script:run'
