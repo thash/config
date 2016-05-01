@@ -54,5 +54,3 @@ end
 [Proc, Method, Symbol].each do |klass|
   klass.send(:include, ComposableFunction)
 end
-
-Pry.config.editor = "emacsclient"
