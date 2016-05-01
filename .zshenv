@@ -72,3 +72,6 @@ export PATH=$GOPATH/bin:$PATH
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=~/.virtualenvs
+
+# https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1
