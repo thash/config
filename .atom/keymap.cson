@@ -38,6 +38,9 @@
   'ctrl-space': 'vim-mode-plus:activate-normal-mode'
   'ctrl-g': 'vim-mode-plus:activate-normal-mode'
 
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'space w': 'core:save'
+
 'atom-text-editor':
   'ctrl-shift-space': 'autocomplete-plus:activate'
 
