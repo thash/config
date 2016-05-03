@@ -1,8 +1,22 @@
 export LANG=ja_JP.UTF-8
 export LC_ALL="$LANG"
+
+export LESSCHARSET=utf-8
+export MAILCHECK=0 # on sakura rental server
+export EDITOR=vim
+
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/git/local_gems/bin:$PATH
+export PATH=$HOME/bin:$PATH
+
+# rbenv settings
+export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
 fi
+
 # export LS_COLORS='no=0:fi=0:di=32:ln=36:ex=35'
 export CLICOLOR='true'
 export PERL_BADLANG=0
@@ -52,12 +66,12 @@ fi
 
 # golang settings
 export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
-
-# Emacs path (mainly for emacsclient)
-export PATH=/usr/local/Cellar/emacs/24.3/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
 # Python installation based on:
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=~/.virtualenvs
+
+# https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1

@@ -13,6 +13,9 @@ export CLICOLOR=1
 export LSCOLORS=ExGxcxdxBxegedabagacad
 export HISTFILESIZE="1000"
 
+# https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1
+
 alias ls='ls -F'
 alias sl='ls -F'
 alias la='ls -aF'

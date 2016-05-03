@@ -1,17 +1,3 @@
-### Environmant Variables ### {{{2
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
-export MAILCHECK=0 # on sakura rental server
-export EDITOR=vim
-
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/git/local_gems/bin:$PATH
-export PATH=$HOME/bin:$PATH
-
-# rbenv settings
-export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-
 ### Prompt settings ### {{{2
 #
 autoload -U colors; colors
@@ -107,6 +93,7 @@ fi
 
 ### Global Aliases {{{3
 alias -g G='| egrep --color=auto --ignore-case'
+alias -g XG='| xargs ag'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
