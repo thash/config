@@ -98,6 +98,7 @@ alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
 alias -g W='| wc'
+alias -g TV='| tr "\n" " "'
 alias -g N='2> /dev/null'
 alias -g TC='tar cvzf'
 
