@@ -10,9 +10,11 @@ The repo includes KeyRemap4Macbook and daily Rakefile.
 ```bash
 $ git clone git@github.com:memerelics/vimdir.git ~/git/vimdir
 $ cd ~ && ln -s ~/git/vimdir .vim
-$ mkdir -p ~/.vim/bundle
-$ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+Then exec vim and call `:PlugInstall`.
 
 
 ## private.xml
