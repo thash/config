@@ -289,6 +289,19 @@ function ec2ssh () {
     fi
 }
 
+### fuzzy selecting ssh target host {{{3
+
+function fuzzy-ssh() {
+  target_host="$(grep "^\s*Host " ~/.ssh/config | sed s/"[\s ]*Host "// | sed s/#.*$// | grep -v "^\*$" | sort | fzf)"
+  if [ $target_host ]; then
+    echo "connecting to" $target_host "..."
+    ssh $target_host
+  else
+    echo "exit fuzzy-ssh"; return
+  fi
+}
+alias sssh='fuzzy-ssh'
+
 # open URL from Firefox bookmarks {{{3
 function fb () {
   sqlite_file="$(find $HOME/Library/Application\ Support/Firefox/Profiles/*.default/places.sqlite)"
