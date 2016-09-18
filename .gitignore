@@ -32,3 +32,4 @@ multiuser.screen
 
 # Vimperator local machine settings
 .vimperator/info
+.vimperator/plugin/copy.js

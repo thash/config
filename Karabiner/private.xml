@@ -24,6 +24,12 @@
   </item>
 
   <item>
+    <name>Ctrl+: To Enter</name>
+    <identifier>private.mycustomkeys_ctrlSemiColon2Enter</identifier>
+    <autogen>--KeyToKey-- KeyCode::SEMICOLON, VK_CONTROL, KeyCode::RETURN</autogen>
+  </item>
+
+  <item>
     <name>Ctrl+M To Open file in Finder</name>
     <identifier>private.mycustomkeys_ctrlM2Enter</identifier>
     <only>FINDER</only>

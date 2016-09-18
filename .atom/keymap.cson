@@ -73,3 +73,8 @@
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   ', j': 'fuzzy-grep:toggle'
   'space r': 'script:run'
+
+'body':
+  'ctrl-tab ^ctrl': 'unset!'
+  'ctrl-tab': 'pane:show-next-item'
+  'ctrl-shift-tab': 'pane:show-previous-item'

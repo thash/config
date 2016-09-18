@@ -101,6 +101,7 @@ alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
 alias -g W='| wc'
+alias -g TV='| tr "\n" " "'
 alias -g N='2> /dev/null'
 alias -g TC='tar cvzf'
 
@@ -275,8 +276,10 @@ fi
 
 ### aws functions {{{3
 function ec2ssh () {
-    ec2_hosts="$(aws ec2 describe-instances)"
+    ec2_hosts="$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running)"
+    # TODO: fix "Tags[0]"
     selected_line="$(echo $ec2_hosts | jq -r '.Reservations[].Instances[] | "\(.Tags[0].Value), \(.PublicIpAddress), \(.PrivateIpAddress)"' | fzf)"
+    # selected_line="$(echo $ec2_hosts | jrq -r '_.Reservations.map{|r| r.Instances }.flatten.map{|i| print \"\n%s, %s, %s\" % [i.Tags.find{|t| t.Key == \"Name\" }.Value, i.PublicIpAddress, i.PrivateIpAddress] }; nil')"
     # key="$(ls $HOME/.ssh | fzf)"
     if [ $selected_line ]; then
       ec2_ip="$(echo $selected_line | awk -F ', ' '{print $(NF - 1)}')" # select public ip
