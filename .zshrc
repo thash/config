@@ -28,6 +28,9 @@ SPROMPT='%{${bg[red]}%}\
 m9(^Д^) \
 %R -> %r ?[nyae]%{${reset_color}%} '
 
+# prevent accidentally exit shell by hitting Ctrh-d
+stty eof undef
+
 
 ### Aliases ### {{{2
 setopt aliases
