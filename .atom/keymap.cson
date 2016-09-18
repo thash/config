@@ -32,6 +32,10 @@
   'ctrl-cmd-shift-d': 'date:date'
   'ctrl-cmd-shift-t': 'date:time'
 
+'body':
+  'ctrl-tab': 'pane:show-next-item'
+  'ctrl-shift-tab': 'pane:show-previous-item'
+
 # 'atom-text-editor.vim-mode:not(.normal-mode)':
 #   'ctrl-space': 'vim-mode:activate-normal-mode'
 'atom-text-editor.vim-mode-plus:not(.normal-mode)':
