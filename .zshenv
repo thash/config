@@ -10,9 +10,13 @@ export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
 # rbenv settings
-export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
 
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+if which rbenv > /dev/null; then
+  export RBENV_ROOT=$HOME/.rbenv
+  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+  eval "$(rbenv init - zsh)"
+fi
+
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
 fi
