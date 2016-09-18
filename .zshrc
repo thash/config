@@ -284,8 +284,7 @@ function ec2ssh () {
       # TODO: select region and key
       ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
     else
-      echo "canceled";
-      exit 1;
+      echo "canceled"; return
     fi
 }
 
