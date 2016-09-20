@@ -44,8 +44,8 @@ a {}
 }
 .address { text-decoration: underline; word-break: break-all; }
 .highlight { color: #eee86f; }
-.time { color: #32699f; }
-.place { color: #008; }
+.time { color: #666 /*#32699f*/; }
+.place { color: #4a924a; }
 
 /* nickname for text messages */
 .sender[type=myself] { color: #4db880 /*#82c5a2*/; }
@@ -68,21 +68,21 @@ a {}
 .sender[type=normal][colornumber='15'] {}
 
 /* message body */
-.message[type=system] { color: #444; } /* You have joined the channel */
+.message[type=system] { color: #555; } /* You have joined the channel */
 .message[type=error] { color: #f00; font-weight: bold; }
 .message[type=reply] { color: #088; }
 .message[type=error_reply] { color: #f00; }
 .message[type=dcc_send_send] { color: #088; }
 .message[type=dcc_send_receive] { color: #00c; }
 .message[type=privmsg] {}
-.message[type=notice] { color: #888; }
+.message[type=notice] { color: #aaa; }
 .message[type=action] { color: #080; }
 .message[type=join] { color: #080; }
 .message[type=part] { color: #080; }
 .message[type=kick] { color: #080; }
 .message[type=quit] { color: #080; }
 .message[type=kill] { color: #080; }
-.message[type=nick] { color: #444; } /* thash is now known as thash_primary */
+.message[type=nick] { color: #666; } /* thash is now known as thash_primary */
 .message[type=mode] { color: #080; }
 .message[type=topic] { color: #080; }
 .message[type=invite] { color: #080; }

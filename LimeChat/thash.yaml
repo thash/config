@@ -17,7 +17,7 @@ member-list:
   color: '#969696'
   background-color: '#000'
   operator:
-    color: '#000'
+    color: '#969696'
   selected:
     color: '#fff'
     background:
@@ -31,11 +31,11 @@ server-tree:
   font-size: 9.0
   background-color: '#000'
   highlight:
-    color: '#f0f'
+    color: '#eee86f'
   newtalk:
     color: '#f00'
   unread:
-    color: '#00f'
+    color: '#b4b4fd'
   normal:
     active:
       color: '#969696'
