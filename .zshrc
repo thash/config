@@ -28,6 +28,9 @@ SPROMPT='%{${bg[red]}%}\
 m9(^Д^) \
 %R -> %r ?[nyae]%{${reset_color}%} '
 
+# prevent accidentally exit shell by hitting Ctrh-d
+stty eof undef
+
 
 ### Aliases ### {{{2
 setopt aliases
@@ -284,10 +287,22 @@ function ec2ssh () {
       # TODO: select region and key
       ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
     else
-      echo "canceled";
-      exit 1;
+      echo "canceled"; return
     fi
 }
+
+### fuzzy selecting ssh target host {{{3
+
+function fuzzy-ssh() {
+  target_host="$(grep "^\s*Host " ~/.ssh/config | sed s/"[\s ]*Host "// | sed s/#.*$// | grep -v "^\*$" | sort | fzf)"
+  if [ $target_host ]; then
+    echo "connecting to" $target_host "..."
+    ssh $target_host
+  else
+    echo "exit fuzzy-ssh"; return
+  fi
+}
+alias sssh='fuzzy-ssh'
 
 # open URL from Firefox bookmarks {{{3
 function fb () {
