@@ -82,5 +82,8 @@ fi
 export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=~/.virtualenvs
 
+## Set path for pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
