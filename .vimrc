@@ -458,8 +458,9 @@ nnoremap <Leader>fn :<C-u>echo expand("%")<CR>
 " toggle nonumber (used often for copy&paste)
 nnoremap <Leader>nn :<C-u>set number!<CR>
 
-" Toggle set paste/nopaste
-nnoremap <Space>p :set paste!<CR>
+" set paste/nopaste
+nnoremap <Space>p :set paste<CR>
+nnoremap <Space>P :set nopaste<CR>
 
 " copy to clipboard
 vnoremap <Space>p :!pbcopy<CR>u
