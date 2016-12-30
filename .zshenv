@@ -52,20 +52,26 @@ if [ -f /usr/libexec/java_home ]; then
   export JAVA_HOME=`/usr/libexec/java_home`
 fi
 
-# installed ADK in some places
-if [ -d $HOME/work/android/sdk ]; then
-  export PATH=$HOME/work/android/sdk/tools:$PATH
-  export PATH=$HOME/work/android/sdk/platform-tools:$PATH
-  export PATH=$HOME/work/android/sdk/build-tools/17.0.0:$PATH
-fi
+# # installed ADK in some places
+# if [ -d $HOME/work/android/sdk ]; then
+#   export PATH=$HOME/work/android/sdk/tools:$PATH
+#   export PATH=$HOME/work/android/sdk/platform-tools:$PATH
+#   export PATH=$HOME/work/android/sdk/build-tools/17.0.0:$PATH
+# fi
+#
+# # brew install android-sdk
+# if [ -d /usr/local/opt/android-sdk/ ];then
+#   export ANDROID_HOME=/usr/local/opt/android-sdk
+# fi
+#
+# if [ -d $HOME/adk/ ]; then
+#   export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
+# fi
 
-# brew install android-sdk
-if [ -d /usr/local/opt/android-sdk/ ];then
-  export ANDROID_HOME=/usr/local/opt/android-sdk
-fi
-
-if [ -d $HOME/adk/ ]; then
-  export PATH=$HOME/adk/platform-tools:$HOME/adk/tools:$PATH
+# Android Studio : https://facebook.github.io/react-native/docs/getting-started.html
+if [ -d $HOME/Library/Android/sdk/ ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=${PATH}:${ANDROID_HOME}/tools
 fi
 
 # golang settings
