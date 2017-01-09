@@ -72,6 +72,11 @@ fi
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 
+# Haskell (cabal) settings
+if [ -d $HOME/.cabal/bin ];then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
+
 # Python installation based on:
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
 export PATH=/usr/local/share/python:$PATH
