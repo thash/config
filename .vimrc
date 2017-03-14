@@ -84,6 +84,7 @@ Plug 'applescript.vim'                     , { 'for' : ['applescript'] }
 Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
 Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
+Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
 
 call plug#end()
 
@@ -155,6 +156,8 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
     autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
     autocmd BufRead,BufWinEnter,BufNewFile *.es6.js set filetype=es6.javascript
+    autocmd BufRead,BufWinEnter,BufNewFile *.ex set filetype=elixir
+    autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
