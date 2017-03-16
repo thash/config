@@ -74,3 +74,6 @@
   'ctrl-tab ^ctrl': 'unset!'
   'ctrl-tab': 'pane:show-next-item'
   'ctrl-shift-tab': 'pane:show-previous-item'
+
+'.platform-darwin atom-workspace':
+  'cmd-o': 'advanced-open-file:toggle'
