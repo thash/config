@@ -62,3 +62,7 @@
 
 [include]
   path = .gitconfig.local
+
+[credential]
+  helper = !aws codecommit credential-helper $@
+  UseHttpPath = true
