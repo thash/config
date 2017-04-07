@@ -9,6 +9,7 @@ Plug 'YankRing.vim'
 Plug 'sequence'
 Plug 'snipMate'
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
 
 " looks nicer
 Plug 'gregsexton/gitv'
@@ -782,6 +783,10 @@ let g:Align_xstrlen=3
 set rtp^=$GOPATH/src/github.com/nsf/gocode/vim
 set path+=$GOPATH/bin/
 let g:gofmt_command = 'goimports'
+
+" NERDCommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " Functions my/someone's ============================================ {{{1
 function! GetEFstatus() " {{{2
