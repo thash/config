@@ -60,6 +60,7 @@ alias rest='sudo -H vim --noplugin /etc/hosts'
 alias vag='vagrant'
 alias emacs='emacsclient -n'
 alias e='emacs'
+alias sm='stack_master'
 
 ### suffix
 alias -s {haml,slim}=vim
