@@ -10,12 +10,13 @@ export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
 # rbenv settings
-
-if which rbenv > /dev/null; then
-  export RBENV_ROOT=$HOME/.rbenv
-  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
-  eval "$(rbenv init - zsh)"
-fi
+## >>> comment out to make zsh up faster
+# if which rbenv > /dev/null; then
+#   export RBENV_ROOT=$HOME/.rbenv
+#   export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+#   eval "$(rbenv init - zsh)"
+# fi
+## <<<
 
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
@@ -30,18 +31,20 @@ if [ `which zsh > /dev/null; echo $?` = 0 ]; then
 fi
 
 ### setting for node(including nvm, npm)
-export NVM_DIR="/Users/$USER/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  . "$NVM_DIR/nvm.sh"
-  # nvm use stable
-elif [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
-  . $(brew --prefix nvm)/nvm.sh
-  # nvm use stable
-fi
-
-if [ `which npm > /dev/null; echo $?` = 0 ]; then
-  export PATH=`npm -g bin 2>/dev/null`:$PATH
-fi
+## >>> comment out to make zsh up faster
+# export NVM_DIR="/Users/$USER/.nvm"
+# if [ -s "$NVM_DIR/nvm.sh" ]; then
+#   . "$NVM_DIR/nvm.sh"
+#   # nvm use stable
+# elif [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
+#   . $(brew --prefix nvm)/nvm.sh
+#   # nvm use stable
+# fi
+#
+# if [ `which npm > /dev/null; echo $?` = 0 ]; then
+#   export PATH=`npm -g bin 2>/dev/null`:$PATH
+# fi
+## <<<
 
 # WARNING: Found the legacy environment variable [AWS_CONFIG_FILE=/Users/thash/.aws.config].
 # Please use the latest environment variable to specify your credentials file override: [AWS_CREDENTIAL_PROFILES_FILE=/Users/thash/.aws.config]
@@ -89,7 +92,7 @@ export PATH=/usr/local/share/python:$PATH
 export WORKON_HOME=~/.virtualenvs
 
 ## Set path for pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
