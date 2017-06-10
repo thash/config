@@ -10,13 +10,11 @@ export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
 # rbenv settings
-## >>> comment out to make zsh up faster
-# if which rbenv > /dev/null; then
-#   export RBENV_ROOT=$HOME/.rbenv
-#   export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
-#   eval "$(rbenv init - zsh)"
-# fi
-## <<<
+if which rbenv > /dev/null; then
+  export RBENV_ROOT=$HOME/.rbenv
+  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+  eval "$(rbenv init - zsh)"
+fi
 
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
