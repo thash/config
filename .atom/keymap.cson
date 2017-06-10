@@ -66,10 +66,6 @@
   "ctrl-g ctrl-p": "markdown-writer:jump-to-previous-heading"
   "ctrl-g ctrl-n": "markdown-writer:jump-to-next-heading"
 
-'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  ', j': 'fuzzy-grep:toggle'
-  'space r': 'script:run'
-
 'body':
   'ctrl-tab ^ctrl': 'unset!'
   'ctrl-tab': 'pane:show-next-item'
@@ -77,3 +73,14 @@
 
 '.platform-darwin atom-workspace':
   'cmd-o': 'advanced-open-file:toggle'
+
+
+## vim-mode-plus
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  ', j': 'fuzzy-grep:toggle'
+  'space r': 'script:run'
+  # switch gj <-> j / gk <-> k
+  'j': 'vim-mode-plus:move-down-screen'
+  'k': 'vim-mode-plus:move-up-screen'
+  'g j': 'vim-mode-plus:move-down'
+  'g k': 'vim-mode-plus:move-up'
