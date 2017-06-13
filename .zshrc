@@ -50,7 +50,7 @@ alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
 alias grep='grep --color=auto --ignore-case'
-alias ag='ag --ignore-case'
+alias rg='rg --ignore-case'
 alias v='vim'
 alias vimrc='vim ~/.vimrc'
 alias scon='vim ~/.ssh/config'
@@ -98,7 +98,7 @@ fi
 
 ### Global Aliases {{{3
 alias -g G='| egrep --color=auto --ignore-case'
-alias -g XG='| xargs ag'
+alias -g XG='| xargs rg'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
