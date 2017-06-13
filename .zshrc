@@ -238,9 +238,6 @@ compdef hub=git
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
-# Add the following to ~/.zshrc to enable zsh completion:
-if which aws > /dev/null; then source /usr/local/share/zsh/site-functions/_aws; fi
-
 ### display git branch on the prompt ### {{{3
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
