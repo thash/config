@@ -5,51 +5,40 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
-^h::
-  Send, {Left down}
-Return
-^j::
-  Send, {Down down}
-Return
-^k::
-  Send, {Up down}
-Return
-^l::
-  Send, {Right down}
-Return
+^h::Send,{Left down}
+^j::Send,{Down down}
+^k::Send,{Up down}
+^l::Send,{Right down}
++^h::Send,{Shift down}{Left down}
++^j::Send,{Shift down}{Down down}
++^k::Send,{Shift down}{Up down}
++^l::Send,{Shift down}{Right down}
 
-^e::
-  Send, {End down}
-Return
+^e::Send,{End down}
+^a::Send,{Home down}
++^e::Send,{Shift down}{End down}
++^a::Send,{Shift down}{Home down}
 
-^a::
-  Send, {Home down}
-Return
+^m::Send,{Enter down}
+^u::Send,{Backspace down}
+^d::Send,{Delete down}
 
-^m::
-  Send, {Enter down}
-Return
+;; LAlt + h or l -> Alt + Tab window switch
+LAlt & l::AltTab
+LAlt & h::ShiftAltTab
+;; LAlt -> Muhenkan
+LAlt::Send,{vk1Dsc07B down}
 
-^u::
-  Send, {Backspace down}
-Return
+;; RAlt -> Henkan
+RAlt::Send,{vk1Csc079 down}
 
-Enter::
-  Send, {: down}
-Return
-+Enter::
-  Send, {; down}
-Return
+;; This could cause problem that locking the keys
+; LWin::Send,{Alt down}
+; LCtrl::Send,{Alt down}
 
-; Muhenkan
-LAlt::
-  Send, {vk1Dsc07B down}
-Return
-; Henkan
-RAlt::
-  Send, {vk1Csc079 down}
-Return
 
-LWin::
-  Send, {Alt down}
-Return
+;; GPD Pocket specific
+RShift::Send,{: down}
++RShift::Send,{; down}
+Del::Send,{- down}
++Del::Send,{_ down}
