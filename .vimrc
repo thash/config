@@ -86,6 +86,7 @@ Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
 Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
 Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
+Plug 'vim-yaml-folds'                      , { 'for' : ['yaml'] }
 
 call plug#end()
 
@@ -176,6 +177,8 @@ augroup MyAutoCmdFileType
 
     autocmd Filetype php,xml setl tabstop=2
     autocmd Filetype php,xml setl shiftwidth=2
+
+    autocmd Filetype yaml setl foldmethod=indent foldlevel=3 foldnestmax=6
 augroup END
 
 
