@@ -25,7 +25,7 @@ Plug 'whatyouhide/vim-gotham'
 " additional commands/features
 Plug 'fugitive.vim'
 Plug 'quickrun.vim'
-Plug 'ag.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'open-browser.vim'
 Plug 'ref.vim'
 Plug 'wadako111/say.vim'
