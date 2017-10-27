@@ -50,7 +50,7 @@ alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
 alias grep='grep --color=auto --ignore-case'
-alias ag='ag --ignore-case'
+alias rg='rg --ignore-case'
 alias v='vim'
 alias vimrc='vim ~/.vimrc'
 alias scon='vim ~/.ssh/config'
@@ -98,7 +98,7 @@ fi
 
 ### Global Aliases {{{3
 alias -g G='| egrep --color=auto --ignore-case'
-alias -g XG='| xargs ag'
+alias -g XG='| xargs rg'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g L='| less'
@@ -238,9 +238,6 @@ compdef hub=git
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
-# Add the following to ~/.zshrc to enable zsh completion:
-if which aws > /dev/null; then source /usr/local/share/zsh/site-functions/_aws; fi
-
 ### display git branch on the prompt ### {{{3
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
@@ -278,17 +275,27 @@ fi
 
 ### aws functions {{{3
 function ec2ssh () {
-    ec2_hosts="$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running)"
-    selected_line="$(echo $ec2_hosts | jrq -r '_.Reservations.map(&:Instances).flatten.map{|i| "%30s,%16s,%16s" % [(nameTag = i.Tags.find{|t| t.Key == "Name"}) ? nameTag.Value : (i.Tags.size.zero? ? "--" : i.Tags.first.Value), i.PublicIpAddress,i.PrivateIpAddress] }' | fzf)"
-    # key="$(ls $HOME/.ssh | fzf)"
-    # echo $selected_line
-    if [ $selected_line ]; then
-      ec2_ip="$(echo $selected_line | sed 's/ //g'  | awk -F ',' '{print $(NF - 1)}')" # select public ip
-      echo $ec2_ip
-      # TODO: select region and key
-      ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
+    if [ $# -gt 0 ]; then
+      echo "Retrieving Public DNS for instance $1..."
+      pubname=$(aws ec2 describe-instances --instance-ids $1 --query 'Reservations[0].Instances[0].PublicDnsName' --output text)
+      ssh $pubname
     else
-      echo "canceled"; return
+      echo "Retrieving Running instances..."
+      ec2_hosts="$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running)"
+      echo $ec2_hosts
+      # sth wrong in jrq parse
+      selected_line="$(echo $ec2_hosts | jrq -r '_.Reservations.map(&:Instances).flatten.map{|i| "%30s,%16s,%16s" % [(nameTag = i.Tags.find{|t| t.Key == "Name"}) ? nameTag.Value : (i.Tags.size.zero? ? "--" : i.Tags.first.Value), i.PublicIpAddress,i.PrivateIpAddress] }' | fzf)"
+      echo $selected_line
+      # key="$(ls $HOME/.ssh | fzf)"
+      # echo $selected_line
+      if [ $selected_line ]; then
+        ec2_ip="$(echo $selected_line | sed 's/ //g'  | awk -F ',' '{print $(NF - 1)}')" # select public ip
+        echo $ec2_ip
+        # TODO: select region and key
+        ssh -i $HOME/.ssh/ec2-key.pem ec2-user@$ec2_ip
+      else
+        echo "canceled"; return
+      fi
     fi
 }
 
@@ -333,4 +340,3 @@ function fb () {
 if [[ -s $HOME/.zshrc.local ]] ; then
   source $HOME/.zshrc.local
 fi
-
