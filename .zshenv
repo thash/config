@@ -94,3 +94,6 @@ export WORKON_HOME=~/.virtualenvs
 
 # https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
+
+# Common Lisp - Roswell
+export PATH=$HOME/.roswell/bin:$PATH
