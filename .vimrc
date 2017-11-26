@@ -87,6 +87,9 @@ Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
 Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
 Plug 'vim-yaml-folds'                      , { 'for' : ['yaml'] }
+Plug 'kovisoft/slimv'                      , { 'for' : ['lisp'] }
+" Google Closure's Soy templating language
+Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
 
 call plug#end()
 
