@@ -73,7 +73,10 @@
 
 '.platform-darwin atom-workspace':
   'cmd-o': 'advanced-open-file:toggle'
-
+  ## platformio-ide-terminal
+  'ctrl-`': 'platformio-ide-terminal:toggle'
+  'alt-cmd-f': 'platformio-ide-terminal:focus'
+  'ctrl-enter': 'platformio-ide-terminal:insert-selected-text'
 
 ## vim-mode-plus
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
@@ -84,3 +87,9 @@
   'k': 'vim-mode-plus:move-up-screen'
   'g j': 'vim-mode-plus:move-down'
   'g k': 'vim-mode-plus:move-up'
+
+
+## platformio-ide-terminal
+'.platform-darwin .platformio-ide-terminal .terminal':
+  'cmd-v': 'platformio-ide-terminal:paste'
+  'cmd-c': 'platformio-ide-terminal:copy'

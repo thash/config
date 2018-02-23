@@ -1,23 +1,38 @@
-" Plugins with Gvim
-NeoBundle 'colorsel.vim'
-NeoBundleSource TwitVim
-
 if has('gui_macvim')
 
-  set cursorcolumn
+  " Prefer English menu
+  source $VIMRUNTIME/delmenu.vim
+  set langmenu=none
+  source $VIMRUNTIME/menu.vim
+
+  set guioptions=
+
+  if has("multi_lang")
+    language C
+  endif
+
+  "" enabling cursorcolumn slow down cursor
+  set nocursorcolumn
   set showtabline=2
-  "set guifont=Ricty:12
-  set guifont=Monaco
+  set guifont=Ricty\ Diminished:h10
+  set guifontwide=Ricty\ Diminished:h10
+  " set guifont=Monaco
   " no scroll/tool bar
   set go=egmtc
-  set transparency=10
-  highlight LineNr ctermfg=darkgray
-  highlight Visual guibg=yellow guifg=darkgray
+  set transparency=25
+  " highlight LineNr ctermfg=darkgray
+  " highlight Visual guibg=yellow guifg=darkgray
 
-  colorscheme gentooish
+  " set spell
+  " set spelllang+=cjk
+  " set spellfile=~/.vim/spell/en.utf-8.add
+
+  " colorscheme pencil
+  set background=dark
+
   " No Full Screen size
-  set lines=54
-  set columns=80
+  set lines=80
+  set columns=160
   " Full Screen mode: MAX window size
   set fuoptions=maxvert,maxhorz
   ":macaction zoomAll:
@@ -25,11 +40,6 @@ if has('gui_macvim')
   set visualbell t_vb=
 
   let g:returnApp = "MacVim"
-
-  " C-Space to ESC, work only on gvim
-  inoremap <C-Space> <C-[>
-  cnoremap <C-Space> <C-[>
-  nnoremap <C-Space> <C-[>
 
   augroup indentGuidesGUI
     autocmd! indentGuidesGUI
@@ -58,11 +68,6 @@ elseif has('gui')
 
   highlight LineNr ctermfg=darkgray
   highlight Visual guibg=yellow guifg=darkgray
-
-  " C-Space to ESC, work only on gvim
-  inoremap <C-Space> <C-[>
-  cnoremap <C-Space> <C-[>
-  nnoremap <C-Space> <C-[>
 
   " Linux have no Command key.
   nnoremap <Leader>pp "+gP
