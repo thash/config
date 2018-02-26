@@ -50,6 +50,8 @@ alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
 alias grep='grep --color=auto --ignore-case'
+alias cal='cal `date +%Y`'
+alias today="date +'%Y%m%d'"
 alias rg='rg --ignore-case'
 alias v='vim'
 alias vimrc='vim ~/.vimrc'
