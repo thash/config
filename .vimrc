@@ -72,7 +72,6 @@ Plug 'kana/vim-filetype-haskell'           , { 'for' : ['haskell'] }
 Plug 'dag/vim2hs'                          , { 'for' : ['haskell'] }
 Plug 'eagletmt/ghcmod-vim'                 , { 'for' : ['haskell'] }
 Plug 'eagletmt/neco-ghc'                   , { 'for' : ['haskell'] }
-Plug 'elzr/vim-json'                       , { 'for' : ['json'] }
 Plug 'wting/rust.vim'                      , { 'for' : ['rust'] }
 Plug 'dgryski/vim-godef'                   , { 'for' : ['go'] }
 Plug 'jnwhiteh/vim-golang'                 , { 'for' : ['go'] }
@@ -86,7 +85,8 @@ Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
 Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
 Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
-Plug 'vim-yaml-folds'                      , { 'for' : ['yaml'] }
+Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
+
 
 call plug#end()
 
@@ -178,7 +178,8 @@ augroup MyAutoCmdFileType
     autocmd Filetype php,xml setl tabstop=2
     autocmd Filetype php,xml setl shiftwidth=2
 
-    autocmd Filetype yaml setl foldmethod=indent foldlevel=3 foldnestmax=6
+    " yaml with vim-yaml-folds plugin
+    autocmd Filetype yaml setl foldlevel=3 foldnestmax=6
 augroup END
 
 
