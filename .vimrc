@@ -311,6 +311,7 @@ inoremap jj <ESC>jj
 inoremap kk <ESC>kk
 inoremap jk <ESC>
 inoremap kj <ESC>
+inoremap <C-Space> <ESC>
 
 " Replace colon with semi-colon
 " nnoremap ; :
