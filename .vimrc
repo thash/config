@@ -443,6 +443,9 @@ nnoremap Y y$
 " originally defined movement. inside parenthesis
 onoremap p i(
 
+" disable command line window
+nnoremap q: <nop>
+
 
 " ======================================================================
 " Map Leader (,) settings  {{{2
