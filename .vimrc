@@ -453,8 +453,8 @@ let mapleader=','
 
 " insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
-inoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
-cnoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
+inoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
+cnoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
 inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 " Copy/Paste via clipboard
 vnoremap <Leader>cc "+y
@@ -611,6 +611,7 @@ function! CtrlPHere()
     exec "CtrlP " . expand("%:p:h")
 endfunction
 " nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
+" https://github.com/kien/ctrlp.vim/issues/176
 nnoremap <silent> <Leader>J  :<C-u>call CtrlPHere()<CR>
 nnoremap <silent> <Leader>ub :<C-u>CtrlPBuffer<CR>
 let g:ctrlp_map = '<Nop>'
