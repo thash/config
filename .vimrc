@@ -32,10 +32,10 @@ Plug 'wadako111/say.vim'
 
 Plug 'thinca/vim-logcat'
 
-" textobj family. -user is base plugin
-Plug 'textobj-user'
-Plug 'textobj-indent'
-Plug 'textobj-function'
+" " textobj family. -user is base plugin
+" Plug 'textobj-user'
+" Plug 'textobj-indent'
+" Plug 'textobj-function'
 
 " Shougo family
 Plug 'Shougo/unite.vim'
