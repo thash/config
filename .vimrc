@@ -32,10 +32,10 @@ Plug 'wadako111/say.vim'
 
 Plug 'thinca/vim-logcat'
 
-" textobj family. -user is base plugin
-Plug 'textobj-user'
-Plug 'textobj-indent'
-Plug 'textobj-function'
+" " textobj family. -user is base plugin
+" Plug 'textobj-user'
+" Plug 'textobj-indent'
+" Plug 'textobj-function'
 
 " Shougo family
 Plug 'Shougo/unite.vim'
@@ -72,7 +72,6 @@ Plug 'kana/vim-filetype-haskell'           , { 'for' : ['haskell'] }
 Plug 'dag/vim2hs'                          , { 'for' : ['haskell'] }
 Plug 'eagletmt/ghcmod-vim'                 , { 'for' : ['haskell'] }
 Plug 'eagletmt/neco-ghc'                   , { 'for' : ['haskell'] }
-Plug 'elzr/vim-json'                       , { 'for' : ['json'] }
 Plug 'wting/rust.vim'                      , { 'for' : ['rust'] }
 Plug 'dgryski/vim-godef'                   , { 'for' : ['go'] }
 Plug 'jnwhiteh/vim-golang'                 , { 'for' : ['go'] }
@@ -86,10 +85,10 @@ Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
 Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
 Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
-Plug 'vim-yaml-folds'                      , { 'for' : ['yaml'] }
 Plug 'kovisoft/slimv'                      , { 'for' : ['lisp'] }
 " Google Closure's Soy templating language
 Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
+Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
 
 call plug#end()
 
@@ -181,7 +180,8 @@ augroup MyAutoCmdFileType
     autocmd Filetype php,xml setl tabstop=2
     autocmd Filetype php,xml setl shiftwidth=2
 
-    autocmd Filetype yaml setl foldmethod=indent foldlevel=3 foldnestmax=6
+    " yaml with vim-yaml-folds plugin
+    autocmd Filetype yaml setl foldlevel=3 foldnestmax=6
 augroup END
 
 
@@ -313,6 +313,7 @@ inoremap jj <ESC>jj
 inoremap kk <ESC>kk
 inoremap jk <ESC>
 inoremap kj <ESC>
+inoremap <C-Space> <ESC>
 
 " Replace colon with semi-colon
 " nnoremap ; :
@@ -444,6 +445,9 @@ nnoremap Y y$
 " originally defined movement. inside parenthesis
 onoremap p i(
 
+" disable command line window
+nnoremap q: <nop>
+
 
 " ======================================================================
 " Map Leader (,) settings  {{{2
@@ -451,8 +455,8 @@ let mapleader=','
 
 " insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
-inoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
-cnoremap <Leader>dd <C-R>=strftime('%Y%m%d')<CR>
+inoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
+cnoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
 inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 " Copy/Paste via clipboard
 vnoremap <Leader>cc "+y
@@ -609,6 +613,7 @@ function! CtrlPHere()
     exec "CtrlP " . expand("%:p:h")
 endfunction
 " nnoremap <silent> <Leader>j  :<C-u>CtrlP<CR>
+" https://github.com/kien/ctrlp.vim/issues/176
 nnoremap <silent> <Leader>J  :<C-u>call CtrlPHere()<CR>
 nnoremap <silent> <Leader>ub :<C-u>CtrlPBuffer<CR>
 let g:ctrlp_map = '<Nop>'

@@ -1,0 +1,9 @@
+# https://github.com/philc/vimium/blob/master/background_scripts/commands.coffee
+map j scrollDown count=3
+map k scrollUp count=3
+map d removeTab
+map u restoreTab
+map h previousTab
+map l nextTab
+map < moveTabLeft
+map > moveTabRight

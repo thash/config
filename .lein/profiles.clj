@@ -1,9 +1,6 @@
 {:user  {:plugins  [
-                    ;; [lein-droid "0.2.0"]
-                    [lein-localrepo "0.5.3"]
-                    [venantius/ultra "0.5.1"]
-                    [nightlight/lein-nightlight "1.6.1"]
-                    ]
+                     [descjop/lein-template "0.7.2"]
+                   ]
          ;; :android {:sdk-path "/Users/hash/work/android/sdk/"
          ;;           ;; :keystore-path "/Users/hash/.android/memerelics.keystore"
          ;;           }
