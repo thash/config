@@ -14,8 +14,8 @@ if has('gui_macvim')
   "" enabling cursorcolumn slow down cursor
   set nocursorcolumn
   set showtabline=2
-  set guifont=Ricty\ Diminished:h10
-  set guifontwide=Ricty\ Diminished:h10
+  set guifont=Ricty\ Discord:h11
+  set guifontwide=Ricty\ Discord:h11
   " set guifont=Monaco
   " no scroll/tool bar
   set go=egmtc
@@ -27,7 +27,7 @@ if has('gui_macvim')
   " set spelllang+=cjk
   " set spellfile=~/.vim/spell/en.utf-8.add
 
-  " colorscheme pencil
+  colorscheme solarized
   set background=dark
 
   " No Full Screen size

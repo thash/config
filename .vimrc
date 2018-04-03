@@ -21,6 +21,8 @@ Plug 'w0ng/vim-hybrid'
 Plug 'benjaminwhite/Benokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'whatyouhide/vim-gotham'
+" Plug 'vim-scripts/chlordane.vim'
+" Plug 'noahfrederick/vim-hemisu'
 
 " additional commands/features
 Plug 'fugitive.vim'
@@ -32,10 +34,10 @@ Plug 'wadako111/say.vim'
 
 Plug 'thinca/vim-logcat'
 
-" " textobj family. -user is base plugin
-" Plug 'textobj-user'
-" Plug 'textobj-indent'
-" Plug 'textobj-function'
+""" " textobj family. -user is base plugin
+""" Plug 'textobj-user'
+""" Plug 'textobj-indent'
+""" Plug 'textobj-function'
 
 " Shougo family
 Plug 'Shougo/unite.vim'
@@ -162,6 +164,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.es6.js set filetype=es6.javascript
     autocmd BufRead,BufWinEnter,BufNewFile *.ex set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
+    autocmd BufRead,BufWinEnter,BufNewFile *.mm  set filetype=xml
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
@@ -180,8 +183,9 @@ augroup MyAutoCmdFileType
     autocmd Filetype php,xml setl tabstop=2
     autocmd Filetype php,xml setl shiftwidth=2
 
-    " yaml with vim-yaml-folds plugin
-    autocmd Filetype yaml setl foldlevel=3 foldnestmax=6
+    autocmd Filetype yaml setl foldmethod=indent foldlevel=3 foldnestmax=6
+
+    autocmd Filetype tex setl foldmethod=marker foldlevel=1
 augroup END
 
 
@@ -232,6 +236,7 @@ if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
+" Load settings for each location. {{{2
 " http://d.hatena.ne.jp/thinca/20100216/1266294717
 augroup vimrc-local
   autocmd!
@@ -300,7 +305,12 @@ augroup END
 
 " Key remappings ============================================ {{{1
 " general keys {{{2
-"" <Nul> means <C-Space>
+"" Ctrl+Space to ESC
+inoremap <C-Space> <C-[>
+cnoremap <C-Space> <C-[>
+vnoremap <C-Space> <C-[>
+nnoremap <C-Space> <C-[>
+"" In terminal, <Nul> means <C-Space>
 inoremap <Nul> <C-[>
 cnoremap <Nul> <C-[>
 vnoremap <Nul> <C-[>
@@ -891,19 +901,4 @@ function! s:Jq(...)
         let l:arg = a:1
     endif
     execute "%! jq \"" . l:arg . "\""
-endfunction
-
-
-" Load settings for each location. {{{2
-" http://d.hatena.ne.jp/thinca/20100216/1266294717
-augroup vimrc-local
-  autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-  let files = findfile('vimrc.local.vim', escape(a:loc, ' ') . ';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
 endfunction
