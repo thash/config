@@ -465,8 +465,8 @@ let mapleader=','
 
 " insert date, time (from kana1)
 inoremap <Leader>df <C-R>=strftime('%Y-%m-%dT%H:%M:%S+09:00')<CR>
-inoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
-cnoremap <Leader>dd <C-R>=strftime('%Y/%m/%d')<CR>
+inoremap <Leader>dd <C-R>=strftime('%Y-%m-%d')<CR>
+cnoremap <Leader>dd <C-R>=strftime('%Y-%m-%d')<CR>
 inoremap <Leader>dt <C-R>=strftime('%H:%M:%S')<CR>
 " Copy/Paste via clipboard
 vnoremap <Leader>cc "+y
