@@ -146,6 +146,8 @@ alias acm='asana comment'
 alias ad='asana due'
 alias adn='asana done'
 
+alias aw='awless'
+
 ### Aliases -- for Programming {{{3
 alias bi='bundle install'
 alias be='bundle exec'
@@ -340,7 +342,9 @@ function fb () {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# load local settings
-if [[ -s $HOME/.zshrc.local ]] ; then
-  source $HOME/.zshrc.local
-fi
+
+# load awless (AWS 3rd party CLI tool) auto completion {{{3
+if [[ -s $HOME/.zshrc.awless ]]; then source $HOME/.zshrc.awless; fi
+
+# load local settings {{{3
+if [[ -s $HOME/.zshrc.local ]]; then source $HOME/.zshrc.local; fi
