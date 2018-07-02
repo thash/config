@@ -339,6 +339,12 @@ function fb () {
   echo $selections | awk -F '|' '{print $(NF)}' | xargs open -a Firefox
 }
 
+function cdg() {
+  selection="$(ghq list -p | fzf)"
+  if [ "$selection" = "" ]; then; return; fi
+  cd $selection
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
