@@ -1,0 +1,21 @@
+{
+	"title": "Disable Command+h",
+	"rules": [
+		{
+			"description": "Disable Command+h which hides current application",
+			"manipulators": [
+				{
+
+					"type": "basic",
+					"from": {
+						"key_code": "h",
+						"modifiers": {
+							"mandatory": [ "command" ],
+							"optional": [ "caps_lock" ]
+						}
+					}
+				}
+			]
+		}
+	]
+}
