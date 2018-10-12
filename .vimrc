@@ -23,6 +23,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'whatyouhide/vim-gotham'
 " Plug 'vim-scripts/chlordane.vim'
 " Plug 'noahfrederick/vim-hemisu'
+Plug 'embear/vim-foldsearch'
 
 " additional commands/features
 Plug 'fugitive.vim'
