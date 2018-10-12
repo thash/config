@@ -14,7 +14,6 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "description": "Unless frontmost application is iTerm2",
               "bundle_identifiers": [
                 "^com\\.googlecode\\.iterm2$"
               ]
@@ -31,7 +30,6 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "description": "Unless frontmost application is iTerm2",
               "bundle_identifiers": [
                 "^com\\.googlecode\\.iterm2$"
               ]
@@ -48,7 +46,6 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "description": "Unless frontmost application is iTerm2",
               "bundle_identifiers": [
                 "^com\\.googlecode\\.iterm2$"
               ]
@@ -65,7 +62,6 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "description": "Unless frontmost application is iTerm2",
               "bundle_identifiers": [
                 "^com\\.googlecode\\.iterm2$"
               ]
