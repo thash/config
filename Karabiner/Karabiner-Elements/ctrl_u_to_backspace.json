@@ -1,0 +1,30 @@
+{
+  "title": "Ctrl+u to delete_or_backspace",
+  "rules": [
+    {
+      "description": "Ctrl+u to delete_or_backspace",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "control"
+              ],
+              "optional": [
+                "caps_lock",
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
