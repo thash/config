@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for filename in .bashrc .zshenv .zshrc .gitconfig .gitignore .vimrc .gvimrc .tmux.conf .pryrc .rspec .gemrc .tigrc .agignore .vimperatorrc .sbclrc .atom/init.coffee .atom/keymap.cson
+for filename in .bashrc .zshenv .zshrc .gitconfig .gitignore .vimrc .gvimrc .tmux.conf .pryrc .rspec .gemrc .tigrc .vimperatorrc .sbclrc
 do
     if [ -e $HOME/$filename ]; then
         rm -i $HOME/$filename
