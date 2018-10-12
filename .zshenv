@@ -5,6 +5,12 @@ export LESSCHARSET=utf-8
 export MAILCHECK=0 # on sakura rental server
 export EDITOR=vim
 
+# Latest Mac OS is doing some silly things when configuring PATH and I've commented out /etc/zprofile to shut them up.
+# And explicitly export standard paths (defined in /etc/paths) here, before adding cutom paths in the head of $PATH.
+if which /usr/libexec/path_helper > /dev/null; then
+  eval `/usr/libexec/path_helper -s`
+fi
+
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
