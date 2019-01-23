@@ -25,6 +25,7 @@ Plug 'whatyouhide/vim-gotham'
 " Plug 'noahfrederick/vim-hemisu'
 Plug 'embear/vim-foldsearch'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'othree/yajs.vim'
 
 " additional commands/features
 Plug 'fugitive.vim'
