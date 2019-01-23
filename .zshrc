@@ -346,9 +346,8 @@ function cdg() {
   cd $selection
 }
 
+# load fzf.zsh {{{3
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
 
 # load awless (AWS 3rd party CLI tool) auto completion {{{3
 if [[ -s $HOME/.zshrc.awless ]]; then source $HOME/.zshrc.awless; fi
