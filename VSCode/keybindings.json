@@ -26,5 +26,9 @@
     {
         "key": "cmd+n",
         "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+      "key": "ctrl+shift+o",
+      "command": "editor.action.openLink"
     }
 ]
