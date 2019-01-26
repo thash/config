@@ -1,0 +1,10 @@
+{
+  "editor.fontSize": 10,
+  "window.zoomLevel": 0,
+  "editor.copyWithSyntaxHighlighting": false,
+  "editor.minimap.enabled": false,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] }
+  ]
+}
