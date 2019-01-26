@@ -94,6 +94,7 @@ Plug 'kovisoft/slimv'                      , { 'for' : ['lisp'] }
 " Google Closure's Soy templating language
 Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
 Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
+Plug 'zah/nim.vim'                         , { 'for' : ['nim'] }
 
 call plug#end()
 
@@ -168,6 +169,7 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.ex set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.mm  set filetype=xml
+    autocmd BufRead,BufWinEnter,BufNewFile *.nim  set filetype=nim
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
