@@ -30,5 +30,17 @@
     {
       "key": "ctrl+shift+o",
       "command": "editor.action.openLink"
+    },
+    {
+        "key": "shift+cmd+o",
+        "command": "-workbench.action.gotoSymbol"
+    },
+    {
+        "key": "shift+cmd+o",
+        "command": "extension.advancedOpenFile"
+    },
+    {
+        "key": "ctrl+x ctrl+f",
+        "command": "-extension.advancedOpenFile"
     }
 ]

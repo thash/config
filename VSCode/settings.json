@@ -3,8 +3,11 @@
   "window.zoomLevel": 0,
   "editor.copyWithSyntaxHighlighting": false,
   "editor.minimap.enabled": false,
+  "vim.leader": ",",
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
+    // { "before": ["g", "j"], "after": ["j"] },
+    // { "before": ["g", "k"], "after": ["k"] }
   ]
 }
