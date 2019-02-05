@@ -306,6 +306,12 @@ function ec2ssh () {
     fi
 }
 
+### aws cli auto completion
+if [ -f /usr/local/bin/aws_completer ]; then
+  . /usr/local/bin/aws_zsh_completer.sh
+fi
+
+
 ### fuzzy selecting ssh target host {{{3
 
 function fuzzy-ssh() {
