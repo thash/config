@@ -36,8 +36,9 @@ fi
 
 
 # setting for node(including nvm, npm)
+# NOTE: installing nvm via brew make shell startup slower https://github.com/creationix/nvm/issues/1277
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # WARNING: Found the legacy environment variable [AWS_CONFIG_FILE=/Users/thash/.aws.config].
 # Please use the latest environment variable to specify your credentials file override: [AWS_CREDENTIAL_PROFILES_FILE=/Users/thash/.aws.config]
