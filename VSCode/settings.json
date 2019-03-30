@@ -1,14 +1,21 @@
 {
-  "editor.fontSize": 10,
-  "window.zoomLevel": 0,
   "editor.copyWithSyntaxHighlighting": false,
+  "editor.detectIndentation": false,
+  "editor.fontSize": 10,
   "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "markdown.preview.breaks": true,
+  "markdown.preview.fontSize": 12,
+  "markdown.trace": "verbose",
+  "todo.embedded.provider": "rg",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
   "vim.leader": ",",
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
-    // { "before": ["g", "j"], "after": ["j"] },
-    // { "before": ["g", "k"], "after": ["k"] }
   ],
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Palenight Theme",
   "markdown.preview.fontSize": 10
 }
