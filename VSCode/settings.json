@@ -9,5 +9,6 @@
     { "before": ["k"], "after": ["g", "k"] }
     // { "before": ["g", "j"], "after": ["j"] },
     // { "before": ["g", "k"], "after": ["k"] }
-  ]
+  ],
+  "markdown.preview.fontSize": 10
 }
