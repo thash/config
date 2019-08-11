@@ -6,7 +6,7 @@
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
   "markdown.preview.breaks": true,
-  "markdown.preview.fontSize": 12,
+  "markdown.preview.fontSize": 10,
   "markdown.trace": "verbose",
   "todo.embedded.provider": "rg",
   "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
