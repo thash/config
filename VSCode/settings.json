@@ -16,5 +16,28 @@
     { "before": ["k"], "after": ["g", "k"] }
   ],
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Palenight Theme"
+  "workbench.colorTheme": "Palenight Theme",
+
+  // Enable/disable default YAML formatter (requires restart)
+  "yaml.format.enable": true,
+  // Custom tags for the parser to use
+  "yaml.customTags": [
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Join sequence"
+  ],
 }
