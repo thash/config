@@ -286,6 +286,8 @@ function! JISX0208SpaceHilight()
     highlight JISX0208Space term=underline ctermbg=brown
 endf
 
+" NOTE: to remove trailing whitespaces - `:%s/\s\+$//`
+
 " highlight spaces at the end of line.
 function! EOLSpaceHilight()
     syntax match EOLSpace " *$" display containedin=ALL
