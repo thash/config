@@ -16,6 +16,6 @@
     { "before": ["k"], "after": ["g", "k"] }
   ],
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Palenight Theme",
+  "workbench.colorTheme": "Solarized Dark",
   "markdown.preview.fontSize": 10
 }
