@@ -6,7 +6,7 @@
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
   "markdown.preview.breaks": true,
-  "markdown.preview.fontSize": 12,
+  "markdown.preview.fontSize": 10,
   "markdown.trace": "verbose",
   "todo.embedded.provider": "rg",
   "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
@@ -16,6 +16,35 @@
     { "before": ["k"], "after": ["g", "k"] }
   ],
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "Solarized Dark",
-  "markdown.preview.fontSize": 10
+  "workbench.colorTheme": "Palenight Theme",
+
+  // Enable/disable default YAML formatter (requires restart)
+  "yaml.format.enable": true,
+  // Custom tags for the parser to use
+  "yaml.customTags": [
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Join sequence"
+  ],
+
+  "vs-kubernetes": {
+    "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
+    "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl"
+  },
 }
