@@ -358,5 +358,12 @@ function cdg() {
 # load awless (AWS 3rd party CLI tool) auto completion {{{3
 if [[ -s $HOME/.zshrc.awless ]]; then source $HOME/.zshrc.awless; fi
 
+# load auto suggestion {{{3
+# https://github.com/zsh-users/zsh-autosuggestions
+if [[ -s $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+  export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#065c78'
+fi
+
 # load local settings {{{3
 if [[ -s $HOME/.zshrc.local ]]; then source $HOME/.zshrc.local; fi
