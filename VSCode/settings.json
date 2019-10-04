@@ -15,8 +15,8 @@
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
   ],
-  "window.zoomLevel": 0,
-  "workbench.colorTheme": "Palenight Theme",
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Solarized Dark",
 
   // Enable/disable default YAML formatter (requires restart)
   "yaml.format.enable": true,
@@ -47,4 +47,6 @@
     "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
     "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl"
   },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
