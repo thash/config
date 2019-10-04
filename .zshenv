@@ -80,6 +80,11 @@ if [ -d $HOME/.cabal/bin ];then
   export PATH=$HOME/.cabal/bin:$PATH
 fi
 
+# Rust (w/ Cargo)
+if [ -d $HOME/.cargo/bin ];then
+  export PATH=$HOME/.cargo/bin:$PATH
+fi
+
 # Python installation based on:
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
 export PATH=/usr/local/share/python:$PATH
