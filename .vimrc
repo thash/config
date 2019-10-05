@@ -95,6 +95,7 @@ Plug 'kovisoft/slimv'                      , { 'for' : ['lisp'] }
 Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
 Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
 Plug 'zah/nim.vim'                         , { 'for' : ['nim'] }
+Plug 'cespare/vim-toml'                    , { 'for' : ['toml'] }
 
 call plug#end()
 
