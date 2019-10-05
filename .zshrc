@@ -307,7 +307,7 @@ function ec2ssh () {
 }
 
 ### aws cli auto completion
-if [ -f /usr/local/bin/aws_completer ]; then
+if [ -f /usr/local/bin/aws_zsh_completer.sh ]; then
   . /usr/local/bin/aws_zsh_completer.sh
 fi
 
