@@ -93,9 +93,11 @@ Plug 'elixir-lang/vim-elixir'              , { 'for' : ['elixir'] }
 Plug 'kovisoft/slimv'                      , { 'for' : ['lisp'] }
 " Google Closure's Soy templating language
 Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
-Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
+" Plug 'digitalrounin/vim-yaml-folds'        , { 'for' : ['yaml'] }
 Plug 'zah/nim.vim'                         , { 'for' : ['nim'] }
 Plug 'cespare/vim-toml'                    , { 'for' : ['toml'] }
+Plug 'leafgarland/typescript-vim'          , { 'for' : ['typescript'] }
+
 
 call plug#end()
 
@@ -171,6 +173,8 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.mm  set filetype=xml
     autocmd BufRead,BufWinEnter,BufNewFile *.nim  set filetype=nim
+    autocmd BufRead,BufWinEnter,BufNewFile *.ts  set filetype=typescript
+    autocmd BufRead,BufWinEnter,BufNewFile *.tsx  set filetype=typescript
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/
