@@ -25,7 +25,6 @@ Plug 'whatyouhide/vim-gotham'
 " Plug 'noahfrederick/vim-hemisu'
 Plug 'embear/vim-foldsearch'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'othree/yajs.vim'
 Plug 'morhetz/gruvbox'
 
 " additional commands/features
@@ -71,7 +70,6 @@ Plug 't9md/vim-textobj-function-ruby'      , { 'for' : ['ruby'] }
 Plug 'tpope/vim-markdown'                  , { 'for' : ['markdown'] }
 Plug 'kannokanno/previm'                   , { 'for' : ['markdown'] }
 Plug 'joker1007/vim-markdown-quote-syntax' , { 'for' : ['markdown'] }
-Plug 'kchmck/vim-coffee-script'            , { 'for' : ['coffee'] }
 Plug 'slim-template/vim-slim'              , { 'for' : ['slim'] }
 Plug 'nginx.vim'                           , { 'for' : ['nginx'] }
 Plug 'kana/vim-filetype-haskell'           , { 'for' : ['haskell'] }
@@ -98,6 +96,8 @@ Plug 'duganchen/vim-soy'                   , { 'for' : ['soy'] }
 Plug 'zah/nim.vim'                         , { 'for' : ['nim'] }
 Plug 'cespare/vim-toml'                    , { 'for' : ['toml'] }
 Plug 'leafgarland/typescript-vim'          , { 'for' : ['typescript'] }
+Plug 'pangloss/vim-javascript'             , { 'for' : ['javascript'] }
+
 
 
 call plug#end()
@@ -169,7 +169,6 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufWinEnter,BufNewFile *.scala set filetype=scala
     autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
     autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
-    autocmd BufRead,BufWinEnter,BufNewFile *.es6.js set filetype=es6.javascript
     autocmd BufRead,BufWinEnter,BufNewFile *.ex set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
     autocmd BufRead,BufWinEnter,BufNewFile *.mm  set filetype=xml
@@ -529,8 +528,6 @@ augroup MyAutoCmdRSpec
 augroup END
 
 let g:quickrun_config = {}
-let g:quickrun_config['coffee'] = {'command' : 'coffee', 'exec' : ['%c -cbp %s'], 'filetype' : 'javascript'}
-let g:quickrun_config['es6.javascript'] = {'command' : 'babel', 'exec' : ['%c %s | node'], 'filetype' : 'javascript'}
 let g:quickrun_config['lisp'] = {'command' : '/usr/local/bin/sbcl', 'exec' : ['%c --script %s'], 'filetype' : 'lisp'}
 
 if executable('bundle exec rspec')

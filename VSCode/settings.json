@@ -15,8 +15,8 @@
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
   ],
-  "window.zoomLevel": 1,
-  "workbench.colorTheme": "Solarized Dark",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai Dimmed",
 
   // Enable/disable default YAML formatter (requires restart)
   "yaml.format.enable": true,
@@ -49,4 +49,5 @@
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.fontFamily": "Ricty Diminished,Menlo, Monaco, 'Courier New', monospace",
 }
