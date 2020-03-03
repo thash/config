@@ -15,13 +15,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=$HOME/git/local_gems/bin:$PATH
 export PATH=$HOME/bin:$PATH
 
-# rbenv settings
-if which rbenv > /dev/null; then
-  export RBENV_ROOT=$HOME/.rbenv
-  export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
-  eval "$(rbenv init - zsh)"
-fi
-
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"
 fi
@@ -78,11 +71,6 @@ export PATH=$GOPATH/bin:$PATH
 # Haskell (cabal) settings
 if [ -d $HOME/.cabal/bin ];then
   export PATH=$HOME/.cabal/bin:$PATH
-fi
-
-# Rust (w/ Cargo)
-if [ -d $HOME/.cargo/bin ];then
-  export PATH=$HOME/.cargo/bin:$PATH
 fi
 
 # Python installation based on:

@@ -66,6 +66,7 @@ alias sm='stack_master'
 alias sma='stack_master apply -y --on-failure DELETE'
 alias tz='for tz in US/Pacific US/Central US/Eastern UTC Europe/Dublin Asia/Calcutta Asia/Tokyo Australia/Sydney; do LC_ALL=en_US.UTF-8 TZ=$tz date +"%Z, %Y-%m-%dT%H:%M:%S%z %a"; done'
 alias k='kubectl'
+alias tenki='curl wttr.in/Tokyo'
 
 ### suffix
 alias -s {haml,slim}=vim
@@ -307,7 +308,7 @@ function ec2ssh () {
     fi
 }
 
-### aws cli auto completion
+### aws cli auto completion {{{3
 if [ -f /usr/local/bin/aws_zsh_completer.sh ]; then
   . /usr/local/bin/aws_zsh_completer.sh
 fi
@@ -365,6 +366,13 @@ if [[ -s $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
   export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#065c78'
 fi
+
+
+# rbenv settings (doesn't work in .zshenv) {{{3
+if which rbenv > /dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
+
 
 # load local settings {{{3
 if [[ -s $HOME/.zshrc.local ]]; then source $HOME/.zshrc.local; fi
