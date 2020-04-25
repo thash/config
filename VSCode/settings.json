@@ -15,7 +15,7 @@
     { "before": ["k"], "after": ["g", "k"] }
   ],
   "window.zoomLevel": 0,
-  "workbench.colorTheme": "One Monokai",
+  "workbench.colorTheme": "Monokai Dimmed",
   // Enable/disable default YAML formatter (requires restart)
   "yaml.format.enable": true,
   // Custom tags for the parser to use
