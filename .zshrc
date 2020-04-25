@@ -366,5 +366,12 @@ if [[ -s $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#065c78'
 fi
 
+
+# rbenv settings (doesn't work in .zshenv) {{{3
+if which rbenv > /dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
+
+
 # load local settings {{{3
 if [[ -s $HOME/.zshrc.local ]]; then source $HOME/.zshrc.local; fi
