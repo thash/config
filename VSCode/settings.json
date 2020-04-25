@@ -83,4 +83,5 @@
 "todo-tree.tree.showScanModeButton": false,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.fontFamily": "Ricty Diminished,Menlo, Monaco, 'Courier New', monospace",
+  "editor.renderIndentGuides": false,
 }
