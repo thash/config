@@ -76,6 +76,7 @@ function extract() {
     *.tar.bz2|*.tbz) tar xjvf $1;;
     *.bz2) bunzip2 $1;;
     *.zip) unzip $1;;
+    *.gz) gunzip $1;;
     *.tar) tar xvf $1;;
   esac
 }
