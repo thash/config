@@ -31,7 +31,7 @@
     "!GetAtt scalar",
     "!GetAtt sequence",
     "!GetAtt",
-    "!If",
+    "!If sequence",
     "!ImportValue",
     "!Join sequence",
     "!Not",
