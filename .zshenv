@@ -65,7 +65,7 @@ if [ -d $HOME/Library/Android/sdk/ ]; then
 fi
 
 # golang settings
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
 # Haskell (cabal) settings
