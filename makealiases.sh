@@ -22,7 +22,7 @@ done
 declare -a configdirs=( "zsh" ) # lein vimperator
 
 if [ "$(uname -s)" == "Linux" ]; then
-  configdirs+=("xkb")
+  configdirs+=("xkb" "xkeysnail")
 fi
 
 for dirname in ${configdirs[@]}
