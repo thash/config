@@ -1,0 +1,4 @@
+// keycode: /usr/share/X11/xkb/keycodes/evdev
+xkb_symbols "swapcolons" {
+  replace key <AC10> { [ colon, semicolon ] };
+};

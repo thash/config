@@ -374,6 +374,13 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init - zsh)"
 fi
 
+if which xkbcomp > /dev/null; then
+  if [ -d $HOME/.xkb ]; then
+    echo "[zshrc] applying xkb keymap..."
+    xkbcomp -I$HOME/.xkb ~/.xkb/keymap/thashxkb $DISPLAY 2> /dev/null
+  fi
+fi
+
 
 # load local settings {{{3
 if [[ -s $HOME/.zshrc.local ]]; then source $HOME/.zshrc.local; fi
