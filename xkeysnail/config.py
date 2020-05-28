@@ -47,11 +47,23 @@ define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal"), {
     K("C-Shift-f"): K("Shift-right"),
     K("C-Shift-b"): K("Shift-left"),
     K("C-Shift-n"): K("Shift-down"),
-    K("C-Shift-p"): K("Shift-up"),
+    # K("C-Shift-p"): K("Shift-up"), # move to 'not in VS Code' definitions
+
     # As Ctrl-C has special meaning on terminal. Also Gnome-terminal has a shortcut Shift+Ctrl+V to paste.
     K("Super-c"): K("C-c"),
     K("Super-v"): K("C-v"),
 }, "Arrows")
+
+# NOT in VSCode.
+define_keymap(lambda wm_class: wm_class not in ("Code"), {
+    K("C-Shift-p"): K("Shift-up"),
+}, "not in VSCode-keys")
+
+# IN VSCode.
+define_keymap(lambda wm_class: wm_class in ("Code"), {
+    K("C-Shift-p"): K("C-Shift-p"),
+    K("Super-s"): K("C-s"), # save key. Somehow VSCode gets stuck when you hit Super-s (to save).
+}, "VSCode-keys")
 
 # IN terminal.
 define_keymap(lambda wm_class: wm_class in ("Gnome-terminal"), {
