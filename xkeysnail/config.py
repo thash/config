@@ -23,6 +23,7 @@ define_keymap(None, {
     K("Super-Tab"): K("M-Tab"),
     K("Super-Shift-Tab"): K("M-Shift-Tab"),
     K("C-u"): K("BACKSPACE"),
+    K("C-d"): K("DELETE"),
 }, "Global")
 
 # NOT in terminal.
@@ -31,8 +32,22 @@ define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal"), {
     K("C-j"): with_mark(K("down")),
     K("C-k"): with_mark(K("up")),
     K("C-l"): with_mark(K("right")),
+    K("C-Shift-h"): with_mark(K("Shift-left")),
+    K("C-Shift-j"): with_mark(K("Shift-down")),
+    K("C-Shift-k"): with_mark(K("Shift-up")),
+    K("C-Shift-l"): with_mark(K("Shift-right")),
     K("C-a"): with_mark(K("home")),
     K("C-e"): with_mark(K("end")),
+    K("C-Shift-a"): with_mark(K("Shift-home")),
+    K("C-Shift-e"): with_mark(K("Shift-end")),
+    K("C-f"): K("right"),
+    K("C-b"): K("left"),
+    K("C-n"): K("down"),
+    K("C-p"): K("up"),
+    K("C-Shift-f"): K("Shift-right"),
+    K("C-Shift-b"): K("Shift-left"),
+    K("C-Shift-n"): K("Shift-down"),
+    K("C-Shift-p"): K("Shift-up"),
     # As Ctrl-C has special meaning on terminal. Also Gnome-terminal has a shortcut Shift+Ctrl+V to paste.
     K("Super-c"): K("C-c"),
     K("Super-v"): K("C-v"),
@@ -50,6 +65,7 @@ define_keymap(lambda wm_class: wm_class in ("Chromium-browser"), {
     K("Super-a"): K("C-a"),
     K("Super-f"): K("C-f"),
     K("Super-l"): K("C-l"),
+    K("Super-r"): K("C-r"),
     K("Super-t"): K("C-t"),
     K("Super-w"): K("C-w"),
     K("Super-KEY_1"): K("C-KEY_1"),
@@ -61,4 +77,6 @@ define_keymap(lambda wm_class: wm_class in ("Chromium-browser"), {
     K("Super-KEY_7"): K("C-KEY_7"),
     K("Super-KEY_8"): K("C-KEY_8"),
     K("Super-KEY_9"): K("C-KEY_9"),
+    K("Super-MINUS"): K("C-Shift-MINUS"),
+    K("Super-Shift-EQUAL"): K("C-Shift-EQUAL"),
 }, "Chromium-keys")
