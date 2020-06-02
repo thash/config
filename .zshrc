@@ -78,6 +78,7 @@ function extract() {
     *.gz) gzip -d $1;;
     *.bz2) bunzip2 $1;;
     *.zip) unzip $1;;
+    *.gz) gunzip $1;;
     *.tar) tar xvf $1;;
   esac
 }
@@ -371,6 +372,13 @@ fi
 # rbenv settings (doesn't work in .zshenv) {{{3
 if which rbenv > /dev/null; then
   eval "$(rbenv init - zsh)"
+fi
+
+if which xkbcomp > /dev/null; then
+  if [ -d $HOME/.xkb ]; then
+    echo "[zshrc] applying xkb keymap..."
+    xkbcomp -I$HOME/.xkb ~/.xkb/keymap/thashxkb $DISPLAY 2> /dev/null
+  fi
 fi
 
 

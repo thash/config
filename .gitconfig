@@ -68,5 +68,4 @@
   path = .gitconfig.local
 
 [ghq]
-  root = ~/.ghq
-  root = ~/.go/src
+  root = ~/ghq

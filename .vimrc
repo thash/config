@@ -3,11 +3,11 @@
 call plug#begin('~/.vim/plugged')
 
 " input support
-Plug 'surround.vim'
-Plug 'Align'
-Plug 'YankRing.vim'
-Plug 'sequence'
-Plug 'snipMate'
+Plug 'vim-scripts/surround.vim'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'vim-scripts/sequence'
+Plug 'vim-scripts/snipMate'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 
@@ -15,7 +15,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'gregsexton/gitv'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Gentooish'
+Plug 'vim-scripts/Gentooish'
 Plug 'tomasr/molokai'
 Plug 'w0ng/vim-hybrid'
 Plug 'benjaminwhite/Benokai'
@@ -28,11 +28,11 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
 
 " additional commands/features
-Plug 'fugitive.vim'
-Plug 'quickrun.vim'
+Plug 'vim-scripts/fugitive.vim'
+Plug 'vim-scripts/quickrun.vim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'open-browser.vim'
-Plug 'ref.vim'
+Plug 'vim-scripts/open-browser.vim'
+Plug 'vim-scripts/ref.vim'
 Plug 'wadako111/say.vim'
 
 Plug 'thinca/vim-logcat'
@@ -64,14 +64,14 @@ Plug 'godlygeek/tabular'
 
 
 """ Lazy load by Filetypes
-Plug 'ruby.vim'                            , { 'for' : ['ruby'] }
+Plug 'vim-scripts/ruby.vim'                , { 'for' : ['ruby'] }
 Plug 'ngmy/vim-rubocop'                    , { 'for' : ['ruby'] }
 Plug 't9md/vim-textobj-function-ruby'      , { 'for' : ['ruby'] }
 Plug 'tpope/vim-markdown'                  , { 'for' : ['markdown'] }
 Plug 'kannokanno/previm'                   , { 'for' : ['markdown'] }
 Plug 'joker1007/vim-markdown-quote-syntax' , { 'for' : ['markdown'] }
 Plug 'slim-template/vim-slim'              , { 'for' : ['slim'] }
-Plug 'nginx.vim'                           , { 'for' : ['nginx'] }
+Plug 'vim-scripts/nginx.vim'               , { 'for' : ['nginx'] }
 Plug 'kana/vim-filetype-haskell'           , { 'for' : ['haskell'] }
 Plug 'dag/vim2hs'                          , { 'for' : ['haskell'] }
 Plug 'eagletmt/ghcmod-vim'                 , { 'for' : ['haskell'] }
@@ -83,8 +83,8 @@ Plug 'fatih/vim-go'                        , { 'for' : ['go'] }
 Plug 'vim-jp/vim-go-extra'                 , { 'for' : ['go'] }
 Plug 'jdonaldson/vaxe'                     , { 'for' : ['haxe'] }
 Plug 'derekwyatt/vim-scala'                , { 'for' : ['scala'] }
-Plug 'oz.vim'                              , { 'for' : ['oz'] }
-Plug 'applescript.vim'                     , { 'for' : ['applescript'] }
+Plug 'vim-scripts/oz.vim'                  , { 'for' : ['oz'] }
+Plug 'vim-scripts/applescript.vim'         , { 'for' : ['applescript'] }
 Plug 'tpope/vim-fireplace'                 , { 'for' : ['clojure'] }
 Plug 'tpope/vim-classpath'                 , { 'for' : ['clojure'] }
 Plug 'guns/vim-clojure-static'             , { 'for' : ['clojure'] }
