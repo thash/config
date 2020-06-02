@@ -3,7 +3,6 @@
   "editor.detectIndentation": false,
   "editor.fontSize": 10,
   "editor.minimap.enabled": false,
-  "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
   "markdown.preview.breaks": true,
   "markdown.preview.fontSize": 10,
@@ -15,39 +14,57 @@
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
   ],
-  "window.zoomLevel": 0,
-  "workbench.colorTheme": "Monokai Dimmed",
-
-  // Enable/disable default YAML formatter (requires restart)
-  "yaml.format.enable": true,
-  // Custom tags for the parser to use
-  "yaml.customTags": [
-    "!And",
-    "!If",
-    "!Not",
-    "!Equals",
-    "!Or",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!Select",
-    "!Select sequence",
-    "!Split",
-    "!Join sequence"
-  ],
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "Palenight Theme",
 
   "vs-kubernetes": {
     "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
     "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
     "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl"
-  },
+    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl",
+    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+},
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.fontFamily": "Ricty Diminished,Menlo, Monaco, 'Courier New', monospace",
+
+  // Enable/disable default YAML formatter (requires restart)
+  "yaml.format.enable": true,
+  // https://github.com/y13i/cfn-schema
+  "json.schemas": [ { "fileMatch": ["*.cfn.json"], "url": "https://y13i.github.io/cfn-schema/us-west-2.min.json" } ],
+  // "yaml.schemas": { "https://y13i.github.io/cfn-schema/us-west-2.min.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
+  "yaml.schemas": { "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
+  // Custom tags for the parser to use
+  "yaml.customTags": [
+    "!And",
+    "!Base64 mapping",
+    "!Cidr",
+    "!Condition",
+    "!Equals sequence",
+    "!FindInMap sequence",
+    "!GetAZs",
+    "!GetAtt scalar",
+    "!GetAtt sequence",
+    "!If",
+    "!ImportValue",
+    "!Join sequence",
+    "!Not",
+    "!Or",
+    "!Ref",
+    "!Select scalar",
+    "!Select sequence",
+    "!Split sequence",
+    "!Sub scalar",
+    "!Sub sequence",
+],
+"workbench.sideBar.location": "right",
+"outline.showVariables": false,
+"outline.showStrings": false,
+"outline.showEnumMembers": false,
+"outline.showFields": false,
+"outline.showFiles": false,
+"markdown.links.openLocation": "beside",
+"markdown.preview.lineHeight": 1.2,
+"todo-tree.tree.showScanModeButton": false,
+"rust.all_features": true,
 }
