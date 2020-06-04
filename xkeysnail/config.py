@@ -79,6 +79,7 @@ define_keymap(lambda wm_class: wm_class in ("Chromium-browser"), {
     K("Super-l"): K("C-l"),
     K("Super-r"): K("C-r"),
     K("Super-t"): K("C-t"),
+    K("Super-Shift-t"): K("C-Shift-t"),
     K("Super-w"): K("C-w"),
     K("Super-KEY_1"): K("C-KEY_1"),
     K("Super-KEY_2"): K("C-KEY_2"),
