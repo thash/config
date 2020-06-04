@@ -7,6 +7,7 @@
   "editor.renderIndentGuides": false,
   "editor.suggestSelection": "first",
   "files.autoSave": "afterDelay",
+  "files.eol": "\n",
   "markdown.preview.breaks": true,
   "markdown.preview.fontSize": 10,
   "markdown.trace": "verbose",
@@ -29,6 +30,7 @@
 
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai Dimmed",
   // Enable/disable default YAML formatter (requires restart)
   "yaml.format.enable": true,
   // https://github.com/y13i/cfn-schema
