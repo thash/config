@@ -20,6 +20,7 @@ define_multipurpose_modmap({
 #       due to an unintended side-effect that shift key keep pressed after hitting colon.
 define_keymap(None, {
     K("Super-x"): K("C-x"),
+    K("Super-a"): K("C-a"),
     K("Super-Tab"): K("M-Tab"),
     K("Super-Shift-Tab"): K("M-Shift-Tab"),
     K("C-u"): K("BACKSPACE"),
@@ -40,8 +41,6 @@ define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal"), {
     K("C-e"): with_mark(K("end")),
     K("C-Shift-a"): with_mark(K("Shift-home")),
     K("C-Shift-e"): with_mark(K("Shift-end")),
-    K("C-f"): K("right"),
-    K("C-b"): K("left"),
     K("C-n"): K("down"),
     K("C-p"): K("up"),
     K("C-Shift-f"): K("Shift-right"),
@@ -54,14 +53,18 @@ define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal"), {
     K("Super-v"): K("C-v"),
 }, "Arrows")
 
-# NOT in VSCode.
-define_keymap(lambda wm_class: wm_class not in ("Code"), {
+# NOT in Terminal / VSCode.
+define_keymap(lambda wm_class: wm_class not in ("Code", "Gnome-terminal"), {
     K("C-Shift-p"): K("Shift-up"),
-}, "not in VSCode-keys")
+    K("C-f"): K("right"),
+    K("C-b"): K("left"),
+}, "not in [Terminal, VSCode] keys")
 
 # IN VSCode.
 define_keymap(lambda wm_class: wm_class in ("Code"), {
     K("C-Shift-p"): K("C-Shift-p"),
+    K("C-f"): K("page_down"),
+    K("C-b"): K("page_up"),
     K("Super-s"): K("C-s"), # save key. Somehow VSCode gets stuck when you hit Super-s (to save).
 }, "VSCode-keys")
 
