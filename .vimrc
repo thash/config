@@ -11,7 +11,7 @@ Plug 'vim-scripts/snipMate'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 
-" looks nicer / colorscheme
+" looks nicer / colorscheme / theme
 Plug 'gregsexton/gitv'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kien/rainbow_parentheses.vim'
@@ -26,6 +26,7 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'embear/vim-foldsearch'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 " additional commands/features
 Plug 'vim-scripts/fugitive.vim'
