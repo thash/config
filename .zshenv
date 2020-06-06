@@ -11,9 +11,16 @@ if which /usr/libexec/path_helper > /dev/null; then
   eval `/usr/libexec/path_helper -s`
 fi
 
+# configure PATHs
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$HOME/git/local_gems/bin:$PATH
-export PATH=$HOME/bin:$PATH
+declare -a pathdirs=( "$HOME/git/local_gems/bin" "$HOME/bin" )
+if [ `which ghq > /dev/null; echo $?` = 0 ]; then
+  pathdirs+=( "$(ghq root)/github.com/thash/bin")
+fi
+for dir in ${pathdirs[@]}
+do
+  export PATH=$dir:$PATH
+done
 
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
   export TERM="xterm-256color"

@@ -9,6 +9,8 @@ if [ $SSH_CONNECTION ] || [ $REMOTEHOST ]; then
     color_ok="blue"; color_ng="red"
 elif [ `hostname | grep 'vagrant'` ]; then
     color_ok="magenta"; color_ng="yellow"
+elif [ `uname` = "Linux" ];then
+    color_ok="reset_color"; color_ng="red"
 else
     color_ok="green"; color_ng="yellow"
 fi
