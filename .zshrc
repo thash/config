@@ -377,7 +377,8 @@ if which rbenv > /dev/null; then
 fi
 
 if which xkbcomp > /dev/null; then
-  if [ -d $HOME/.xkb ]; then
+  # As applying xkb configuration takes some time, skip execution when not needed (i.e. "thashkbd" is already applied).
+  if [ `xkbcomp $DISPLAY $HOME/.tmp_xkbcomp && grep -q thashkbd $HOME/.tmp_xkbcomp; echo $?` = 1 ]; then
     echo "[zshrc] applying xkb keymap..."
     xkbcomp -I$HOME/.xkb ~/.xkb/keymap/thashxkb $DISPLAY 2> /dev/null
   fi

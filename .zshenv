@@ -13,13 +13,16 @@ fi
 
 # configure PATHs
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
+
+# golang settings
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+# as ghq depends on go, following definition should placed after adding $GOPATH/bin into $PATH.
 declare -a pathdirs=( "$HOME/git/local_gems/bin" "$HOME/bin" )
-if [ `which ghq > /dev/null; echo $?` = 0 ]; then
-  pathdirs+=( "$(ghq root)/github.com/thash/bin")
-fi
-for dir in ${pathdirs[@]}
-do
-  export PATH=$dir:$PATH
+if [ `which ghq > /dev/null; echo $?` = 0 ]; then; pathdirs+=( "$(ghq root)/github.com/thash/bin"); fi
+for dir in ${pathdirs[@]}; do
+  if [ -d "$dir" ];then; export PATH=$dir:$PATH; fi
 done
 
 if [ "`echo $COLORTERM`" = "gnome-terminal" ]; then
@@ -71,18 +74,12 @@ if [ -d $HOME/Library/Android/sdk/ ]; then
   export PATH=${PATH}:${ANDROID_HOME}/tools
 fi
 
-# golang settings
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
 # Haskell (cabal) settings
-if [ -d $HOME/.cabal/bin ];then
-  export PATH=$HOME/.cabal/bin:$PATH
-fi
+if [ -d "$HOME/.cabal/bin" ];then; export PATH=$HOME/.cabal/bin:$PATH; fi
 
 # Python installation based on:
 # https://python-guide-ja.readthedocs.org/en/latest/starting/install/osx/
-export PATH=/usr/local/share/python:$PATH
+if [ -d "/usr/local/share/python" ];then; export PATH=/usr/local/share/python:$PATH; fi
 export WORKON_HOME=~/.virtualenvs
 
 ## Set path for pyenv
@@ -92,4 +89,4 @@ export WORKON_HOME=~/.virtualenvs
 export HOMEBREW_NO_ANALYTICS=1
 
 # Common Lisp - Roswell
-export PATH=$HOME/.roswell/bin:$PATH
+if [ -d $HOME/.roswell/bin ];then; export PATH=$HOME/.roswell/bin:$PATH; fi
