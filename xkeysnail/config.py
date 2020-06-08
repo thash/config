@@ -63,8 +63,6 @@ define_keymap(lambda wm_class: wm_class not in ("Code", "Gnome-terminal"), {
 # IN VSCode.
 define_keymap(lambda wm_class: wm_class in ("Code"), {
     K("C-Shift-p"): K("C-Shift-p"),
-    K("C-f"): K("page_down"),
-    K("C-b"): K("page_up"),
     K("Super-s"): K("C-s"), # save key. Somehow VSCode gets stuck when you hit Super-s (to save).
 }, "VSCode-keys")
 
