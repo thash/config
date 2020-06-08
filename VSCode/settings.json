@@ -29,8 +29,6 @@
   },
 
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "window.zoomLevel": 0,
-  "workbench.colorTheme": "Monokai Dimmed",
   // Enable/disable default YAML formatter (requires restart)
   "yaml.format.enable": true,
   // https://github.com/y13i/cfn-schema
@@ -68,7 +66,6 @@
   "outline.showArrays": false,
   "outline.showBooleans": false,
   "outline.showConstructors": false,
-  "outline.showEnumMembers": false,
   "outline.showEnumMembers": false,
   "outline.showEvents": false,
   "outline.showFields": false,
