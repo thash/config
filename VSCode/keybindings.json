@@ -11,6 +11,16 @@
         "when": "editorTextFocus && vim.active && vim.use<C-a> && !inDebugRepl"
     },
     {
+        "key": "ctrl+f",
+        "command": "cursorRight",
+        "when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode == 'Insert'"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "cursorLeft",
+        "when": "editorTextFocus && vim.active && vim.use<C-f> && !inDebugRepl && vim.mode == 'Insert'"
+    },
+    {
         "key": "ctrl+\\",
         "command": "workbench.action.toggleSidebarVisibility"
     },
