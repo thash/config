@@ -18,7 +18,6 @@
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] }
   ],
-  "workbench.colorTheme": "Palenight Theme",
 
   "vs-kubernetes": {
     "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
