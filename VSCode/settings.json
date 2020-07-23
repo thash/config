@@ -84,5 +84,11 @@
   "markdown.preview.lineHeight": 1.2,
   "todo-tree.tree.showScanModeButton": false,
   "rust.all_features": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/target/**": true,
+    "**/node_modules/*/**": true
+  },
   "rust-client.trace.server": "verbose",
 }
