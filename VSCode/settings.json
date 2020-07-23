@@ -91,4 +91,11 @@
     "**/node_modules/*/**": true
   },
   "rust-client.trace.server": "verbose",
+  "rust-client.engine": "rust-analyzer",
+  "rust-analyzer.cargo.allFeatures": true,
+  "[json]": {
+
+      "editor.quickSuggestions": { "strings": true },
+      "editor.suggest.insertMode": "replace"
+  },
 }
