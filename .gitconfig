@@ -21,6 +21,7 @@
     l  = log --stat --pretty=format:'%Cblue%h %Cgreen%cd %Cred%an %Creset%s %Cred%d%Creset'
     lr = log --graph --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d%Creset'
     lo = log --date=short --graph --decorate --pretty=format:'%Cblue%h %Cgreen%cd %Cred%an %Creset%s %Cred%d'
+    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%Creset - %Cgreen%ci%Creset %C(bold green)(%ar)%C(reset)%Cred%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     st = status -s -b
     br = branch
     co = checkout
