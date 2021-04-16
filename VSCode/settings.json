@@ -8,60 +8,12 @@
   "editor.suggestSelection": "first",
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
+  "json.schemas": [ { "fileMatch": ["*.cfn.json"], "url": "https://y13i.github.io/cfn-schema/us-west-2.min.json" } ],
+  "markdown.links.openLocation": "beside",
   "markdown.preview.breaks": true,
   "markdown.preview.fontSize": 10,
+  "markdown.preview.lineHeight": 1.2,
   "markdown.trace": "verbose",
-  "todo.embedded.provider": "rg",
-  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
-  "vim.leader": ",",
-  "vim.normalModeKeyBindingsNonRecursive": [
-    { "before": ["j"], "after": ["g", "j"] },
-    { "before": ["k"], "after": ["g", "k"] }
-  ],
-
-  "vs-kubernetes": {
-    "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
-    "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
-    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl",
-    "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-  },
-
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  // Enable/disable default YAML formatter (requires restart)
-  "yaml.format.enable": true,
-  // https://github.com/y13i/cfn-schema
-  "json.schemas": [ { "fileMatch": ["*.cfn.json"], "url": "https://y13i.github.io/cfn-schema/us-west-2.min.json" } ],
-  "yaml.schemas": { "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
-  // "yaml.schemas": { "https://y13i.github.io/cfn-schema/us-west-2.min.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
-  // "yaml.schemas": { "https://d33vqc0rt9ld30.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
-  // Custom tags for the parser to use
-  "yaml.customTags": [
-    "!And",
-    "!Base64 mapping",
-    "!Cidr",
-    "!Condition",
-    "!Equals sequence",
-    "!FindInMap sequence",
-    "!GetAZs",
-    "!GetAtt scalar",
-    "!GetAtt sequence",
-    "!GetAtt",
-    "!If sequence",
-    "!ImportValue",
-    "!Join sequence",
-    "!Not",
-    "!Or",
-    "!Ref",
-    "!Select sequence",
-    "!Split sequence",
-    "!Split sequence",
-    "!Sub scalar",
-    "!Sub scalar",
-    "!Sub sequence",
-    "!Sub sequence",
-  ],
-  "workbench.sideBar.location": "right",
   "outline.showArrays": false,
   "outline.showBooleans": false,
   "outline.showConstructors": false,
@@ -80,22 +32,39 @@
   "outline.showStructs": false,
   "outline.showTypeParameters": false,
   "outline.showVariables": false,
-  "markdown.links.openLocation": "beside",
-  "markdown.preview.lineHeight": 1.2,
-  "todo-tree.tree.showScanModeButton": false,
+  "rust-analyzer.cargo.allFeatures": true,
+  "rust-client.engine": "rust-analyzer",
+  "rust-client.trace.server": "verbose",
   "rust.all_features": true,
+  "todo-tree.tree.showScanModeButton": false,
+  "todo.embedded.provider": "rg",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
+  "vim.leader": ",",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "workbench.sideBar.location": "right",
+  "yaml.customTags": [ "!And", "!Base64 mapping", "!Cidr", "!Condition", "!Equals sequence", "!FindInMap sequence", "!GetAZs", "!GetAtt scalar", "!GetAtt sequence", "!GetAtt", "!If sequence", "!ImportValue", "!Join sequence", "!Not", "!Or", "!Ref", "!Select sequence", "!Split sequence", "!Split sequence", "!Sub scalar", "!Sub scalar", "!Sub sequence", "!Sub sequence", ],
+  "yaml.format.enable": true,
+  "yaml.schemas": { "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
+
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/target/**": true,
     "**/node_modules/*/**": true
   },
-  "rust-client.trace.server": "verbose",
-  "rust-client.engine": "rust-analyzer",
-  "rust-analyzer.cargo.allFeatures": true,
   "[json]": {
-
       "editor.quickSuggestions": { "strings": true },
       "editor.suggest.insertMode": "replace"
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] }
+  ],
+  "vs-kubernetes": {
+    "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
+    "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl",
+    "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
 }
