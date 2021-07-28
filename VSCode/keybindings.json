@@ -52,5 +52,25 @@
     {
         "key": "ctrl+x ctrl+f",
         "command": "-extension.advancedOpenFile"
+    },
+    {
+        "key": "cmd+r",
+        "command": "-workbench.action.reloadWindow",
+        "when": "isDevelopment"
+    },
+    {
+        "key": "cmd+r",
+        "command": "-jupyter.refreshDataViewer",
+        "when": "isWorkspaceTrusted && jupyter.dataViewerActive && jupyter.dataViewerActive"
+    },
+    {
+        "key": "cmd+r",
+        "command": "-python.refreshTensorBoard",
+        "when": "python.hasActiveTensorBoardSession && python.hasActiveTensorBoardSession"
+    },
+    {
+        "key": "cmd+r",
+        "command": "python.execInTerminal",
+        "when": "editorTextFocus && editorLangId == python"
     }
 ]
