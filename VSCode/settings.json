@@ -33,7 +33,6 @@
   "outline.showTypeParameters": false,
   "outline.showVariables": false,
   "rust-analyzer.cargo.allFeatures": true,
-  "rust-client.engine": "rust-analyzer",
   "rust-client.trace.server": "verbose",
   "rust.all_features": true,
   "todo-tree.tree.showScanModeButton": false,
@@ -53,8 +52,8 @@
     "**/node_modules/*/**": true
   },
   "[json]": {
-      "editor.quickSuggestions": { "strings": true },
-      "editor.suggest.insertMode": "replace"
+    "editor.quickSuggestions": { "strings": true },
+    "editor.suggest.insertMode": "replace"
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     { "before": ["j"], "after": ["g", "j"] },
@@ -67,4 +66,24 @@
     "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
     "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "rust-client.logToFile": true,
+  "editor.wordWrap": "off",
+  "markdown.extension.toc.orderedList": true,
+  "markdown.extension.toc.omittedFromToc": {
+
+  },
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "python.showStartPage": false,
+  "workbench.tree.indent": 4,
+  "python.defaultInterpreterPath": "/usr/local/bin/python3",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+},
 }
