@@ -61,10 +61,6 @@
   generic = g move-first-line
   generic = G move-last-line
 
-[credential]
-  helper = !aws codecommit credential-helper $@
-  UseHttpPath = true
-
 [include]
   path = .gitconfig.local
 
