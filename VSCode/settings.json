@@ -81,7 +81,6 @@
   },
   "python.showStartPage": false,
   "workbench.tree.indent": 4,
-  "python.defaultInterpreterPath": "/usr/local/bin/python3",
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
