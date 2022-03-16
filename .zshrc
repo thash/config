@@ -68,7 +68,9 @@ alias sm='stack_master'
 alias sma='stack_master apply -y --on-failure DELETE'
 alias tz='for tz in US/Pacific US/Central US/Eastern UTC Europe/Dublin Asia/Calcutta Asia/Tokyo Australia/Sydney; do LC_ALL=en_US.UTF-8 TZ=$tz date +"%Z, %Y-%m-%dT%H:%M:%S%z %a"; done'
 alias k='kubectl'
+alias tf='terraform'
 alias tenki='curl wttr.in/Tokyo'
+alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json"'
 
 ### suffix
 alias -s {haml,slim}=vim
