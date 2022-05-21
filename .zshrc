@@ -198,11 +198,14 @@ zle -N history-beginning-search-forward-end history-search-end
 
 
 ### key bindkeys (bindkey -L) ### {{{2
-bindkey -e
+bindkey -e # contains: Ctrl-F forward-char, Ctrl-B backward-char
+
 bindkey "^G" clear-screen # just in case when Karabiner kills Ctrl-L
 
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+bindkey "ƒ" forward-word # Option + F
+bindkey "∫" backward-word # Option + B
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 
