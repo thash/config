@@ -53,3 +53,7 @@ if [ -d $HOME/.roswell/bin ];then; export PATH=$HOME/.roswell/bin:$PATH; fi
 
 # GKE authentication https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
 if [ -d $HOME/.config/gcloud ];then; export USE_GKE_GCLOUD_AUTH_PLUGIN=True; fi
+
+if [ -d "$HOME/.cargo" ];then
+  . $HOME/.cargo/env # this script adds ~/.cargo/bin to $PATH
+fi
