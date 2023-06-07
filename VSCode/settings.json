@@ -3,8 +3,7 @@
   "editor.detectIndentation": false,
   "editor.fontFamily": "Ricty Diminished,Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 10,
-  "editor.minimap.enabled": false,
-  "editor.renderIndentGuides": false,
+"editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
@@ -61,11 +60,6 @@
     { "before": ["k"], "after": ["g", "k"] }
   ],
   "vs-kubernetes": {
-    "vs-kubernetes.draft-path": "/Users/thash/.vs-kubernetes/tools/draft/darwin-amd64/draft",
-    "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
-    "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl",
-    "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
     "vscode-kubernetes.helm-path.mac": "/Users/htk/.vs-kubernetes/tools/helm/darwin-amd64/helm",
     "vscode-kubernetes.kubectl-path.mac": "/Users/htk/.vs-kubernetes/tools/kubectl/kubectl",
     "vscode-kubernetes.minikube-path.mac": "/Users/htk/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
@@ -93,4 +87,42 @@
 "workbench.sideBar.location": "right",
 "terraform-ls.terraformExecPath": "/usr/local/bin/terraform-ls",
 "terraform.codelens.referenceCount": true,
+"extensions.ignoreRecommendations": true,
+"security.workspace.trust.untrustedFiles": "open",
+"go.toolsManagement.autoUpdate": true,
+"go.lintOnSave": "package",
+"go.vetOnSave": "package",
+"go.vetFlags": [
+    "-all",
+    "-shadow"
+],
+"vsnotes.defaultNotePath": "/Users/hash/work",
+"[rust]": {
+
+},
+"java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "/usr/local/opt/openjdk/",
+    },
+],
+"files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+},
+"editor.guides.indentation": false,
+"editor.unicodeHighlight.nonBasicASCII": false,
+"editor.inlineSuggest.enabled": true,
+"[python]": {
+    "editor.formatOnType": true
+},
+"github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": true,
+    "markdown": false
+},
+"window.zoomLevel": 1
 }
