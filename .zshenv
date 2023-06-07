@@ -50,3 +50,6 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # Common Lisp - Roswell
 if [ -d $HOME/.roswell/bin ];then; export PATH=$HOME/.roswell/bin:$PATH; fi
+
+# Rust
+if [ -d $HOME/.cargo/bin ];then; . "$HOME/.cargo/env"; fi
