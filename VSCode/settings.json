@@ -8,6 +8,7 @@
   "editor.suggestSelection": "first",
   "files.autoSave": "afterDelay",
   "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
   "json.schemas": [ { "fileMatch": ["*.cfn.json"], "url": "https://y13i.github.io/cfn-schema/us-west-2.min.json" } ],
   "markdown.links.openLocation": "beside",
   "markdown.preview.breaks": true,
@@ -39,8 +40,7 @@
   "todo.embedded.provider": "rg",
   "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
   "vim.leader": ",",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "workbench.sideBar.location": "right",
+"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "yaml.customTags": [ "!And", "!Base64 mapping", "!Cidr", "!Condition", "!Equals sequence", "!FindInMap sequence", "!GetAZs", "!GetAtt scalar", "!GetAtt sequence", "!GetAtt", "!If sequence", "!ImportValue", "!Join sequence", "!Not", "!Or", "!Ref", "!Select sequence", "!Split sequence", "!Split sequence", "!Sub scalar", "!Sub scalar", "!Sub sequence", "!Sub sequence", ],
   "yaml.format.enable": true,
   "yaml.schemas": { "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": [ "*.cfn.yaml", "*.cfn.yml" ] },
@@ -52,6 +52,7 @@
     "**/node_modules/*/**": true
   },
   "[json]": {
+
     "editor.quickSuggestions": { "strings": true },
     "editor.suggest.insertMode": "replace"
   },
@@ -64,8 +65,11 @@
     "vs-kubernetes.helm-path": "/Users/thash/.vs-kubernetes/tools/helm/darwin-amd64/helm",
     "vs-kubernetes.kubectl-path": "/Users/thash/.vs-kubernetes/tools/kubectl/kubectl",
     "vs-kubernetes.minikube-path": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-  },
+    "vs-kubernetes.minikube-path.mac": "/Users/thash/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vscode-kubernetes.helm-path.mac": "/Users/htk/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vscode-kubernetes.kubectl-path.mac": "/Users/htk/.vs-kubernetes/tools/kubectl/kubectl",
+    "vscode-kubernetes.minikube-path.mac": "/Users/htk/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+},
   "workbench.colorTheme": "Gruvbox Dark Medium",
   "rust-client.logToFile": true,
   "editor.wordWrap": "off",
@@ -81,9 +85,12 @@
   },
   "python.showStartPage": false,
   "workbench.tree.indent": 4,
-  "python.defaultInterpreterPath": "/usr/local/bin/python3",
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
 },
+"window.zoomLevel": 1,
+"workbench.sideBar.location": "right",
+"terraform-ls.terraformExecPath": "/usr/local/bin/terraform-ls",
+"terraform.codelens.referenceCount": true,
 }

@@ -98,6 +98,7 @@ Plug 'zah/nim.vim'                         , { 'for' : ['nim'] }
 Plug 'cespare/vim-toml'                    , { 'for' : ['toml'] }
 Plug 'leafgarland/typescript-vim'          , { 'for' : ['typescript'] }
 Plug 'pangloss/vim-javascript'             , { 'for' : ['javascript'] }
+Plug 'hashivim/vim-terraform'              , { 'for' : ['terraform'] }
 
 
 
@@ -156,26 +157,27 @@ augroup MyAutoCmdFileType
     autocmd! MyAutoCmdFileType
 
     """ set filetype {{{4
-    autocmd BufRead,BufNewFile ^\.vimperatorrc$ set filetype=vim
-    autocmd BufRead,BufWinEnter,BufNewFile *.erb set filetype=eruby
-    autocmd BufRead,BufWinEnter,BufNewFile *.thor set filetype=ruby
-    autocmd BufRead,BufWinEnter,BufNewFile *.tpl set filetype=smarty.html
-    autocmd BufRead,BufNewFile *.applescript set filetype=applescript
-    autocmd BufRead,BufWinEnter,BufNewFile nginx.conf set filetype=nginx
-    autocmd BufRead,BufWinEnter,BufNewFile *.json set filetype=json
-    autocmd BufRead,BufWinEnter,BufNewFile *.cljs set filetype=clojure
-    autocmd BufRead,BufWinEnter,BufNewFile *.rs   set filetype=rust
-    autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go
-    autocmd BufRead,BufWinEnter,BufNewFile *.hx   set filetype=haxe
-    autocmd BufRead,BufWinEnter,BufNewFile *.scala set filetype=scala
-    autocmd BufRead,BufWinEnter,BufNewFile *.oz   set filetype=oz
-    autocmd BufRead,BufWinEnter,BufNewFile *.go   set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
-    autocmd BufRead,BufWinEnter,BufNewFile *.ex set filetype=elixir
-    autocmd BufRead,BufWinEnter,BufNewFile *.exs set filetype=elixir
-    autocmd BufRead,BufWinEnter,BufNewFile *.mm  set filetype=xml
-    autocmd BufRead,BufWinEnter,BufNewFile *.nim  set filetype=nim
-    autocmd BufRead,BufWinEnter,BufNewFile *.ts  set filetype=typescript
-    autocmd BufRead,BufWinEnter,BufNewFile *.tsx  set filetype=typescript
+    autocmd BufRead,BufNewFile             *.applescript    set filetype=applescript
+    autocmd BufRead,BufNewFile             ^\.vimperatorrc$ set filetype=vim
+    autocmd BufRead,BufWinEnter,BufNewFile *.cljs           set filetype=clojure
+    autocmd BufRead,BufWinEnter,BufNewFile *.erb            set filetype=eruby
+    autocmd BufRead,BufWinEnter,BufNewFile *.ex             set filetype=elixir
+    autocmd BufRead,BufWinEnter,BufNewFile *.exs            set filetype=elixir
+    autocmd BufRead,BufWinEnter,BufNewFile *.go             set filetype=go
+    autocmd BufRead,BufWinEnter,BufNewFile *.go             set filetype=go sw=4 noexpandtab ts=4 completeopt=menu,preview
+    autocmd BufRead,BufWinEnter,BufNewFile *.hx             set filetype=haxe
+    autocmd BufRead,BufWinEnter,BufNewFile *.json           set filetype=json
+    autocmd BufRead,BufWinEnter,BufNewFile *.mm             set filetype=xml
+    autocmd BufRead,BufWinEnter,BufNewFile *.nim            set filetype=nim
+    autocmd BufRead,BufWinEnter,BufNewFile *.oz             set filetype=oz
+    autocmd BufRead,BufWinEnter,BufNewFile *.rs             set filetype=rust
+    autocmd BufRead,BufWinEnter,BufNewFile *.scala          set filetype=scala
+    autocmd BufRead,BufWinEnter,BufNewFile *.tf             set filetype=terraform
+    autocmd BufRead,BufWinEnter,BufNewFile *.thor           set filetype=ruby
+    autocmd BufRead,BufWinEnter,BufNewFile *.tpl            set filetype=smarty.html
+    autocmd BufRead,BufWinEnter,BufNewFile *.ts             set filetype=typescript
+    autocmd BufRead,BufWinEnter,BufNewFile *.tsx            set filetype=typescript
+    autocmd BufRead,BufWinEnter,BufNewFile nginx.conf       set filetype=nginx
 
     """ FileType on {{{4
     " clojure, scheme, ruby: placed at ~/.vim/after/syntax/

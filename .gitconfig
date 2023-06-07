@@ -42,28 +42,24 @@
     d3 = diff HEAD~~~
     d4 = diff HEAD~~~~
     d5 = diff HEAD~~~~~
+
 [apply]
   whitespace = nowarn
+
 [diff]
 	algorithm = patience
+
 [push]
 	default = simple
+
 [pull]
+
 [grep]
   lineNumber = true
-
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
 
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
-
-[credential]
-  helper = !aws codecommit credential-helper $@
-  UseHttpPath = true
 
 [include]
   path = .gitconfig.local

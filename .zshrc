@@ -68,7 +68,9 @@ alias sm='stack_master'
 alias sma='stack_master apply -y --on-failure DELETE'
 alias tz='for tz in US/Pacific US/Central US/Eastern UTC Europe/Dublin Asia/Calcutta Asia/Tokyo Australia/Sydney; do LC_ALL=en_US.UTF-8 TZ=$tz date +"%Z, %Y-%m-%dT%H:%M:%S%z %a"; done'
 alias k='kubectl'
+alias tf='terraform'
 alias tenki='curl wttr.in/Tokyo'
+alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json"'
 
 ### suffix
 alias -s {haml,slim}=vim
@@ -196,11 +198,14 @@ zle -N history-beginning-search-forward-end history-search-end
 
 
 ### key bindkeys (bindkey -L) ### {{{2
-bindkey -e
+bindkey -e # contains: Ctrl-F forward-char, Ctrl-B backward-char
+
 bindkey "^G" clear-screen # just in case when Karabiner kills Ctrl-L
 
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+bindkey "ƒ" forward-word # Option + F
+bindkey "∫" backward-word # Option + B
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 
