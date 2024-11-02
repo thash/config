@@ -17,15 +17,9 @@ $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 Then exec vim and call `:PlugInstall`.
 
 
-## private.xml
+## Karabiner (karabiner-Elements)
 
-copy private.xml to
-
-``````````````
-/Users/hash/Library/Application\ Support/KeyRemap4MacBook/private.xml
-``````````````
-
-It's bothering, but KeyRemap4Macbook doesn't recognize symbolic link.
+`Karabiner` directory -> `~/.config/karabiner/`
 
 
 TODO
