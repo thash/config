@@ -60,3 +60,9 @@ if [ -d $HOME/.config/gcloud ];then; export USE_GKE_GCLOUD_AUTH_PLUGIN=True; fi
 if [ -d "$HOME/.cargo" ];then
   . $HOME/.cargo/env # this script adds ~/.cargo/bin to $PATH
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
