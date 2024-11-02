@@ -14,6 +14,9 @@ fi
 # configure PATHs
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 
+# add Homebrew PATHs
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # golang settings
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
