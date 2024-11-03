@@ -39,7 +39,6 @@ stty eof undef
 setopt aliases
 if [ `uname` = "Darwin" ];then
   alias ls='ls -vFG' sl='ls -vFG' la='ls -avFG' ll='ls -lhrtvFG' l='ls -lhrtvFG' alias y='ls -vFG'
-  alias gvim='open -a MacVim.app'
   alias sed='gsed'
 else
   alias ls='ls -vF --color' sl='ls -vF --color' la='ls -avF --color' ll='ls -lhrtvF --color' l='ls -lhrtvF --color'
@@ -51,21 +50,14 @@ alias less='less -R' # colorful less
 alias ..='cd ../'
 alias his='history'
 alias hig='history 500 | grep --color=auto --ignore-case'
-alias grep='grep --color=auto --ignore-case'
 alias cal='cal `date +%Y`'
 alias today="date +'%Y%m%d'"
-alias rg='rg --ignore-case'
 alias v='vim'
 alias vimrc='vim ~/.vimrc'
 alias scon='vim ~/.ssh/config'
 alias ifconfig.me='curl ifconfig.me/ip'
 alias svim='sudo -H vim --noplugin'
 alias rest='sudo -H vim --noplugin /etc/hosts'
-alias vag='vagrant'
-alias emacs='emacsclient -n'
-alias e='emacs'
-alias sm='stack_master'
-alias sma='stack_master apply -y --on-failure DELETE'
 alias tz='for tz in US/Pacific US/Central US/Eastern UTC Europe/Dublin Asia/Calcutta Asia/Tokyo Australia/Sydney; do LC_ALL=en_US.UTF-8 TZ=$tz date +"%Z, %Y-%m-%dT%H:%M:%S%z %a"; done'
 alias k='kubectl'
 alias tf='terraform'
@@ -73,8 +65,6 @@ alias tenki='curl wttr.in/Tokyo'
 alias gcurl='curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json"'
 
 ### suffix
-alias -s {haml,slim}=vim
-
 function extract() {
   case $1 in
     *.tar.gz|*.tgz) tar xzvf $1;;
@@ -120,16 +110,9 @@ alias -g N='2> /dev/null'
 alias -g TC='tar cvzf'
 
 ### Aliases -- for git {{{3
-## hub
-if [ `which ruby > /dev/null; echo $?` = 0 ] &&
-  [ `which hub > /dev/null; echo $?` = 0 ]; then
-  eval "$(hub alias -s)"
-fi
-alias hubb='hub browse'
-
 alias g='git'
-alias gst='git st && g stash list'
 alias st='git st'
+alias gst='git st && g stash list'
 alias gs='git st'
 alias gb='git br -avv'
 alias gf='git fetch -p'
@@ -140,28 +123,15 @@ alias gc='git commit -m'
 alias gcm='git commit -m'
 alias gcam='git commit --amend'
 alias gco='git checkout -b'
-alias gch='git cherry -v'
 alias gull='git pull origin'
 alias gush='git push origin'
-alias gstd='nocorrect gstd'
-alias gsta='nocorrect gsta'
-alias gchs='nocorrect gchs'
-
-alias a='asana'
-alias at='asana task -v'
-alias ats='asana tasks'
-alias acm='asana comment'
-alias ad='asana due'
-alias adn='asana done'
-
-alias aw='awless'
-
-### Aliases -- for Programming {{{3
-alias bi='bundle install'
-alias be='bundle exec'
-alias bs='bundle show'
-alias bo='bundle open'
-
+function gstitem { # returns n-th file of git status -b -s output
+  local nth=$(($1+1))
+  git status -b -s | head -n $nth | tail -n 1 | awk '{print $2}'
+}
+function gsta  { git add -- $(gstitem $1) }
+function gstd  { git diff -- $(gstitem $1) }
+function gstco { git checkout HEAD -- $(gstitem $1) }
 
 
 ### Set Options ### {{{2
